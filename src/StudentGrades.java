@@ -1,4 +1,4 @@
-public class StudentGrades {
+public class StudentGrades{
         private  double assignmentGrade;
         private  double quizGrade;
         private  double midTermGrade;
