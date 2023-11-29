@@ -10,7 +10,7 @@ public class Main {
 
         System.out.println("Already have an account?");
         System.out.println("1- Yes");
-        System.out.println("2- No");
+        System.out.println("2- No\n");
         int account = input.nextInt();
 
         if (account == 1) {
