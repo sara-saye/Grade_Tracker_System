@@ -1,7 +1,7 @@
 public class Instructor extends Person{
     private String office_location, department;
     private int numOfSections = 0;
-    public static int instructorID = 202212000;
+    public static int instructor_ID = 202212000;
     Student students[] = new Student[100];
     public Instructor(){}
     public Instructor(String F, String L, String OFFL, String dep, int ns){
@@ -9,8 +9,8 @@ public class Instructor extends Person{
         this.office_location = OFFL;
         this.department = dep;
         this.numOfSections = ns;
-        this.ID = instructorID;
-        instructorID++;
+        this.ID = instructor_ID;
+        instructor_ID++;
     }
     @Override
     public void display() {
