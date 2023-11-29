@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+//anything
 public class Course {
     protected  String courseCode;
     public  String courseTitle;
