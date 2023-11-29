@@ -7,10 +7,9 @@ public abstract class Person {
         this.Lname = "unknown";
         this.ID = 0;
     }
-    public Person(String Fname, String Lname, int ID) {
+    public Person(String Fname, String Lname) {
         this.Fname = Fname;
         this.Lname = Lname;
-        this.ID = ID;
     }
     public void display(){
         System.out.println("Name: " + this.Fname + " " + this.Lname);
