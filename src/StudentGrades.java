@@ -107,6 +107,20 @@ public class StudentGrades{
             System.out.println("Points: " + courseScale);
             System.out.println("Letter Grade: " +courseLetterGrade);
         }
+
+    public void DisplayReport(){
+        double courseGrade=CalcTotalGrade();
+        double courseScale=Calcscale(courseGrade);
+        String courseLetterGrade=CalcLetterGrade(courseGrade);
+        System.out.println("Midterm: " + midTermGrade);
+        System.out.println("Assignment: " + assignmentGrade);
+        System.out.println("Quiz: " + quizGrade);
+        System.out.println("Attendance:" + attendanceGrade);
+        System.out.println("Final:" + finalGrade);
+        System.out.println("Total Grade: " +courseGrade);
+        System.out.println("Points: " + courseScale);
+        System.out.println("Letter Grade: " +courseLetterGrade);
+    }
     }//class
 
 
