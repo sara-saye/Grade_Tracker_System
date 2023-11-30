@@ -8,6 +8,7 @@ public class Main {
         int studentNo = 0, instructorNo = 0;
 
         Student  [] students = new Student[100];
+        Instructor [] instructors = new Instructor[100];
 
         Scanner input = new Scanner(System.in);
 
@@ -18,7 +19,7 @@ public class Main {
 
         if (account == 1) {
 
-            LogIn();
+            Form.LogIn(students,instructors,studentNo,instructorNo);
 
         } else if (account == 2) {
             int who;
@@ -36,7 +37,7 @@ public class Main {
             else
                 instructorNo++;
 
-            Registration(who,students,studentNo,instructorNo);
+            Form.Registration(who,students,instructors,studentNo,instructorNo);
 
         } else {
 
@@ -69,62 +70,4 @@ public class Main {
                 break;
         }
     }
-    public static void LogIn() {
-
-        Scanner input = new Scanner(System.in);
-        int who=0;
-
-        System.out.println("Username : ");
-        String UserName = input.next();
-
-        System.out.println("Password : ");
-        String Password = input.next();
-
-        if(UserName.contains("@Admin")){
-            who=1;
-        } else if (UserName.contains("@Instructor")) {
-            who=2;
-        } else if (UserName.contains("@Student")) {
-            who=3;
-        }
-        else{
-            //invalid state
-        }
-        System.out.println(who);
-
-    }
-
-    public static void Registration(int who,Student [] students,int studentNo,int instructorNo) {
-
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Email : ");
-        String Email = input.next();
-
-        System.out.println("Username : ");
-        String UserName = input.next();
-
-        System.out.println("Password : ");
-        String Password = input.next();
-
-        if(who==1) {
-            Instructor instructor = new Instructor();
-            instructor.setEmail(Email);
-            instructor.setUsername(UserName+"@Instructor");
-            instructor.setPassword(Password);
-
-        } else if(who==2){
-            studentNo++;
-            Student student = new Student();
-            student.setEmail(Email);
-            student.setUsername(UserName+"@Student");
-            student.setPassword(Password);
-            students[studentNo] = student;
-        }
-    }
-
-    public static void LogOut() {
-
-    }
-
 }
