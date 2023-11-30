@@ -11,15 +11,15 @@ public class Course {
     public ArrayList<StudentGrades> grades=new ArrayList<>();
     public Assignment assignedAssignment = new Assignment(); //>>change with real name
     public Quiz assignedQuiz = new Quiz(); //>>change with real name
-    public Midterm assignedMidterm = new Midterm(); //>>change with real name
-    public Final assignedfinal = new Final(); //>>change with real name
+    public MidtermExam assignedMidterm = new MidtermExam(); //>>change with real name
+    public FinalExam assignedfinal = new FinalExam(); //>>change with real name
 
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>(); //>>change with real name
     public String []sessionDates=new String[2];
 
     Course () {}
-    Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor
-    Assignment assignedAssignment,Quiz assignedQuiz,Midterm assignedMidterm,Final assignedfinal)
+    Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor,
+    Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this.courseCode=courseCode;
         this.courseTitle=courseTitle;
@@ -67,11 +67,11 @@ public class Course {
     {
         this.assignedQuiz=assignedQuiz;
     }
-    public void addAssignedMidterm(Midterm assignedMidterm) //>>instructor sends me that Mid
+    public void addAssignedMidterm(MidtermExam assignedMidterm) //>>instructor sends me that Mid
     {
         this.assignedMidterm=assignedMidterm;
     }
-    public void addAssignedFinal(Final assignedfinal) //>>instructor sends me that finalExam
+    public void addAssignedFinal(FinalExam assignedfinal) //>>instructor sends me that finalExam
     {
        this.assignedfinal=assignedfinal;
     }

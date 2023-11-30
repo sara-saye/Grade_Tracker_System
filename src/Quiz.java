@@ -1,6 +1,7 @@
 
 public class Quiz extends Test {
     private int Quiz_Duration ;
+    public Quiz(){}
     public Quiz(int id, String Title,int max_score ,double mark , String date,int quiz_Duration){
         super(id,Title,max_score,mark,date);
         this.Quiz_Duration=quiz_Duration;

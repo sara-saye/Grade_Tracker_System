@@ -1,6 +1,7 @@
 public class Practical extends Test {
     private String Practical_Exam_Location;
     private int Practical_Exam_Time;
+    public Practical(){}
     public Practical(int id, String Title,int max_score ,double mark , String date,String practical_Exam_Location,int practical_Exam_Time){
         super(id,Title,max_score,mark,date);
         this.Practical_Exam_Location=practical_Exam_Location;
