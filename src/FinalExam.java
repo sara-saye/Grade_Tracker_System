@@ -3,6 +3,7 @@
 public class FinalExam extends Test {
     private String Location;
     private double Exam_Time;
+    public FinalExam (){}
     public FinalExam(int id, String Title,int max_score ,double mark , String date,String location,double exam_Time){
         super(id,Title,max_score,mark,date);
         this.Location=location;
