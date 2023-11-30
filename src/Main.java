@@ -1,10 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
-   static Scanner input = new Scanner(System.in);
+
+    static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-       int studentNo = 0, instructorNo = 0;
+        int studentNo = 0, instructorNo = 0;
 
         Student  [] students = new Student[100];
 
@@ -17,7 +18,7 @@ public class Main {
 
         if (account == 1) {
 
-                LogIn();
+            LogIn();
 
         } else if (account == 2) {
             int who;
@@ -30,10 +31,10 @@ public class Main {
                     break;
                 System.out.println("Invalid Choice!Try Again.");
             }while (true);
-           if(who==1)
-               studentNo++;
-           else
-               instructorNo++;
+            if(who==1)
+                studentNo++;
+            else
+                instructorNo++;
 
             Registration(who,students,studentNo,instructorNo);
 
