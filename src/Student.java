@@ -1,4 +1,5 @@
 import java.io.*;
+
 public class Student extends Person {
 
     public Course [] courses = new Course[48];
