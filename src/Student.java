@@ -1,4 +1,6 @@
+import java.io.*;
 public class Student extends Person {
+
     public Course [] courses = new Course[48];
     private StudentGrades [] grades = new StudentGrades[48];
     public int coursesNo ;
@@ -7,6 +9,7 @@ public class Student extends Person {
     public boolean attendance [];
 
     public void ViewStudentPerformance(){
+
 
     }
 
