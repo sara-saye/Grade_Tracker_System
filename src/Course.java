@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 //anything
 public class Course {
     protected  String courseCode;
@@ -49,3 +49,4 @@ public class Course {
 
 }
 
+*/
