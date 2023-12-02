@@ -12,7 +12,7 @@ public class Course {
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
     public MidtermExam assignedMidterm = new MidtermExam();
-    public FinalExam assignedfinal = new FinalExam();
+    public FinalExam assignedfinal = new FinalExam();   
 
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
