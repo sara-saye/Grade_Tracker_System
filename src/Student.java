@@ -4,12 +4,20 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
-    private final Course[] courses = new Course[48];
+    private final Course[] Student_courses = new Course[48];
     private final StudentGrades[] grades = new StudentGrades[48];
-    private int NoOfCourses;
+    private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
-    private boolean[] attendance;
+    private boolean[][] attendance;
+    public Student (){
+        super();
+    }
+
+    public Student(String Fname, String Lname){
+        super(Fname,Lname);
+
+    }
 
     public void ViewStudentPerformance() {
 
@@ -21,7 +29,7 @@ public class Student extends Person {
             System.out.println("You haven't registered any course");
         else if (expenses_paid) {
             for (int courseNo = 0; courseNo < NoOfCourses; courseNo++) {
-                System.out.println("Course Title: " + courses[courseNo].courseTitle);
+                System.out.println("Course Title: " + Student_courses[courseNo].courseTitle);
                 grades[courseNo].DisplayReport();
             }
         } else
@@ -33,7 +41,7 @@ public class Student extends Person {
             System.out.println("No payments to pay");
         else {
             for (int courseNo = 0; courseNo < NoOfCourses; courseNo++) {
-                expenses += courses[courseNo].credits * 100;
+                expenses += Student_courses[courseNo].credits * 100;
             }
             do {
                 System.out.println("Please pay " + expenses);
@@ -54,7 +62,13 @@ public class Student extends Person {
         }
     }
 
-    public void AddCourse() {
+    public void AddCourse(Course[] courses) {
+        for(int i=0;i< Course.no_of_courses;i++){
+            System.out.println((i+1)+":"+courses[i].courseTitle);
+        }
+        System.out.println("Which Course You Want To Register For? ");
+        int answer =input.nextInt();
+        Student_courses[NoOfCourses]=courses[answer-1];
 
     }
 
