@@ -4,13 +4,13 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
-<<<<<<< HEAD
+
     private final Course[] Student_courses = new Course[48];
     private final StudentGrades[] grades = new StudentGrades[48];
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
-    private boolean[][] attendance;
+    public boolean[] attendance = new boolean[];
     public Student (){
         super();
     }
@@ -19,14 +19,6 @@ public class Student extends Person {
         super(Fname,Lname);
 
     }
-=======
-    public Course[] courses = new Course[48];
-   public StudentGrades[] grades = new StudentGrades[48];
-    private int NoOfCourses;
-    private double expenses = 0;
-    private boolean expenses_paid = false;
-    public boolean[] attendance = new boolean[6];
->>>>>>> 30ac101a19b17b6e8b453866f785238fabda24bd
 
     public void ViewStudentPerformance() {
 

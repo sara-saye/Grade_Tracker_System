@@ -12,7 +12,7 @@ public class StatusOfStudent {
         return mean;
     }
     public double [] Calc_Z_Score(){
-        
+
         return Z_Score;
     }
 
