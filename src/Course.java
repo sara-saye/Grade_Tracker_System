@@ -7,14 +7,14 @@ public class Course {
     public  int credits;  //>>convert it to string while we deal with files
     public String department;
     public  String description;
-    public Instructor assignedInstructor = new Instructor(); //>>change with real name
+    public Instructor assignedInstructor = new Instructor();
     public ArrayList<StudentGrades> grades=new ArrayList<>();
-    public Assignment assignedAssignment = new Assignment(); //>>change with real name
-    public Quiz assignedQuiz = new Quiz(); //>>change with real name
-    public MidtermExam assignedMidterm = new MidtermExam(); //>>change with real name
-    public FinalExam assignedfinal = new FinalExam(); //>>change with real name
+    public Assignment assignedAssignment = new Assignment();
+    public Quiz assignedQuiz = new Quiz();
+    public MidtermExam assignedMidterm = new MidtermExam();
+    public FinalExam assignedfinal = new FinalExam();
 
-    public ArrayList<Student>enrolledStudents=new ArrayList<Student>(); //>>change with real name
+    public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
 
     Course () {}
