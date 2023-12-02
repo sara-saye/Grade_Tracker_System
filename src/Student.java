@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
-    private final Course[] courses = new Course[48];
-    private final StudentGrades[] grades = new StudentGrades[48];
+    public Course[] courses = new Course[48];
+   public StudentGrades[] grades = new StudentGrades[48];
     private int NoOfCourses;
     private double expenses = 0;
     private boolean expenses_paid = false;
-    private boolean[] attendance;
+    public boolean[] attendance = new boolean[6];
 
     public void ViewStudentPerformance() {
 
