@@ -122,3 +122,7 @@ public class StudentGrades{
 //        return (sum/totalHours);
 //    }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
