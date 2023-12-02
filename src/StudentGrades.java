@@ -88,7 +88,7 @@ public class StudentGrades{
                 letterGrade = "D";
             }
             else{
-                letterGrade="F";
+                letterGrade = "F";
             }
             return letterGrade;
         }
@@ -136,7 +136,3 @@ public class StudentGrades{
 //        return (sum/totalHours);
 //    }
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
