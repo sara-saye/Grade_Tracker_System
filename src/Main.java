@@ -10,8 +10,6 @@ public class Main {
         Student  [] students = new Student[100];
         Instructor [] instructors = new Instructor[100];
 
-        Scanner input = new Scanner(System.in);
-
         System.out.println("Already have an account?");
         System.out.println("1- Yes");
         System.out.println("2- No\n");

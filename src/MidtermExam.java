@@ -2,9 +2,7 @@
 public class MidtermExam extends Test {
     private String Exam_Location;
     private int Exam_Duration;
-    public MidtermExam (){
-
-    }
+    public MidtermExam (){}
 
     @Override
     public void setID(int id) {
