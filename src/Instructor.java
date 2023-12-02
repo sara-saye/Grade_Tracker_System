@@ -5,7 +5,8 @@ public class Instructor extends Person{
     private String office_location, department;
     private int numOfSections = 0;
     public static int instructor_ID = 202212000;
-    Student students[] = new Student[100];
+    Course course = new Course();
+    Student students[] = new Student[10];
     public Instructor(){}
     public Instructor(String F, String L, String OFFL, String dep, int ns){
         super(F,L);
@@ -76,5 +77,103 @@ public class Instructor extends Person{
                 this.numOfSections = input.nextInt();
                 break;
         }
+    }
+    public void trackAttenForoneSection(){
+        System.out.println("Enter student ID");
+        int sid = input.nextInt();
+        System.out.println("Enter section number");
+        int snum = input.nextInt();
+        students[sid].attendance[snum] = true;
+    }
+    public void setAssessmentsToCourse(){
+        System.out.println("Adding assessment to " + course.courseTitle);
+        System.out.println("1-Assignment\n2-Quiz\n3-Midterm\n4-Practical\n5-Final");
+        int choice =input.nextInt();
+        switch (choice){
+            case 1:
+                //add Assignment
+                Assignment assignment=new Assignment();
+                System.out.print("Title: ");
+                assignment.setTitle(input.next());
+                System.out.print("Mark: ");
+                assignment.setMark(input.nextInt());
+                System.out.print("Deadline: ");
+                assignment.set_Assignment_deadline(input.next());
+                course.addAssignedAssignment(assignment);
+                break;
+            case 2:
+                //add Quiz
+                Quiz quiz =new Quiz();
+                System.out.print("Title: ");
+                quiz.setTitle(input.next());
+                System.out.print("Date: ");
+                quiz.setDate(input.next());
+                System.out.print("Mark: ");
+                quiz.setMark(input.nextInt());
+                System.out.print("Duration: ");
+                quiz.setQuiz_Duration(input.nextInt());
+                course.addAssignedQuiz(quiz);
+                break;
+            case 3:
+                //add Midterm
+                MidtermExam midtermExam = new MidtermExam();
+                System.out.print("Title: ");
+                midtermExam.setTitle(input.next());
+                System.out.print("Date: ");
+                midtermExam.setDate(input.next());
+                System.out.print("Mark: ");
+                midtermExam.setMark(input.nextInt());
+                System.out.print("Duration: ");
+                midtermExam.setExam_Duration(input.nextInt());
+                System.out.println("Location: ");
+                midtermExam.setExam_Location(input.next());
+                course.addAssignedMidterm(midtermExam);
+                break;
+            case 4:
+                //add Practical
+                Practical practical =new Practical();
+                System.out.print("Title: ");
+                practical.setTitle(input.next());
+                System.out.print("Date: ");
+                practical.setDate(input.next());
+                System.out.print("Mark: ");
+                practical.setMark(input.nextInt());
+                System.out.print("Duration: ");
+                practical.setPractical_Exam_Time(input.nextInt());
+                System.out.println("Location: ");
+                practical.setPractical_Exam_Location(input.next());
+                break;
+            case 5:
+                //add Final
+                FinalExam finalExam = new FinalExam();
+                System.out.print("Title: ");
+                finalExam.setTitle(input.next());
+                System.out.print("Date: ");
+                finalExam.setDate(input.next());
+                System.out.print("Mark: ");
+                finalExam.setMark(input.nextInt());
+                System.out.print("Duration: ");
+                finalExam.setExam_Time(input.nextInt());
+                System.out.println("Location: ");
+                finalExam.setLocation(input.next());
+                course.addAssignedFinal(finalExam);
+                break;
+            default:
+                System.out.println("Invalid Choice");
+                break;
+        }
+
+    }
+    public void inputGrades(){
+        System.out.println("Enter student ID");
+        int sid = input.nextInt();
+        System.out.println("Enter course ID");
+        int cid =input.nextInt();
+        System.out.println("What do you want track");
+        System.out.println("1-Assignment\n2-Quiz\n3-Midterm\n4-Practical\n5-Final");
+        //students[sid].courses[cid].grades
+    }
+    public void generateAttRepForIndStud(){
+        
     }
 }
