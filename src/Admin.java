@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Admin extends Person{
     ArrayList<Course>courses=new ArrayList<>();
+    ArrayList<Instructor>instructors=new ArrayList<>();
    public Admin (){}
     public Admin (String Fname,String Lname,int ID){  //>>ID should be string
         super(Fname,Lname);
@@ -12,14 +13,21 @@ public class Admin extends Person{
         courses.add(course);    /*el ArrayList de we will split it in array 3adya then ndefha ll ArrayList
                                   elly btt_3amel m3a el files */
     }
+    public void addInstructor(Instructor instructor)
+    {
+        instructors.add(instructor);    /*el ArrayList de we will split it in array 3adya then ndefha ll ArrayList
+                                  elly btt_3amel m3a el files */
+    }
+
     public String updateCourse(String courseCode,ArrayList<String>LinesOfCourseData,String newCourseCode,String courseTitle,
                              int credits,String department,String description,String instructorId,String newInstructorId)
-        /*lmma y5tar eno 3ayez y update course han5leh yda5a courseCode as a string */
+        /*lmma y 5 tar eno 3ayez y update course han5leh yda5al courseCode as a string */
+            //>>then call updateInInstructorFileWithUpdatedCourse()
     {
         String check=null;
         for(int i=0;i< LinesOfCourseData.size();i++)
         {
-            String[] courseFields = LinesOfCourseData.get(i).split(","); //>>law kolo in the same file, so el index will change as first word in the line will be the type of the user
+            String[] courseFields = LinesOfCourseData.get(i).split(","); //>>lw kolo in the same file, so el index will change as first word in the line will be the type of the user
             if(courseFields[0].equals(courseCode))
             {
                 courseFields[0] =newCourseCode;
@@ -54,7 +62,7 @@ public class Admin extends Person{
     }
     public void updateInInstructorFileWithUpdatedCourse(ArrayList<String>linesOfInstructorData,String courseCode
             ,String newCourseCode)
-    //>>we must call it after updateCourseFunction
+    //>>we must call it after updateCourse()
     {
         for(int i=0;i< linesOfInstructorData.size();i++)
         {
@@ -84,13 +92,119 @@ public class Admin extends Person{
         return index;
     }
     public void deleteCourse(int indexOfCourseWeWillDelete ,ArrayList<String>LinesOfCourseData)
+    //In Main, call findIndexofTheCourseWeWillDelete() first.then, call this
     {
            LinesOfCourseData.remove(indexOfCourseWeWillDelete);
 
     }
-    public void assignInstructorsToCourses()
+    public int findIndexofTheInstructorWeWillDelete(String instructorId,ArrayList<String>LinesOfinstructorData)
+            //when we want to delete instructor, we musst call this then call deleteInstructor()
     {
+        int index=0;
+        for(int i=0;i< LinesOfinstructorData.size();i++)
+        {
+            String[]instructorFields=LinesOfinstructorData.get(i).split(",");
+            if(instructorFields[2].equals(instructorId))         //>>check is[2] the right index or not
+            {
+                index=i;
+                break;
+            }
+        }
+        return index;
+    }
+    public  void  deleteInstructor(int indexOfInstructorWeWillDelete ,ArrayList<String>LinesOfInstructorData)
+    //In Main, call findIndexofTheInstructorWeWillDelete() first.then, call this.then,
+    {
+        LinesOfInstructorData.remove(indexOfInstructorWeWillDelete);
+    }
+    public void removeTheInstructorFromTheCourse(String instructorId,ArrayList<String>linesOfCourseData)
+    {
+        for(int i=0;i< linesOfCourseData.size();i++)
+        {
+            String[]courseFields=linesOfCourseData.get(i).split(",");
+            if(courseFields[5].equals(instructorId))         //>>change [5] with the right index
+            {
+                courseFields[5]="null";                     //replace courseCode with null
+            }
+            String updatedLine=String.join(",",courseFields);
+            linesOfCourseData.set(i,updatedLine);
+        }
+    }
+    public void assignInstructorToCourse(String courseCode,String instructorId,ArrayList<String>linesOfCourseData,
+                                         ArrayList<String>linesOfInstructorData)
+    {
+        boolean courseFlag=false;
+        boolean instructorFlag=false;
+        String courseName=null;
+        String instructorName=null;
+           for( int i=0 ; i<linesOfCourseData.size() ;i++ ) {
+               String[] courseFields = linesOfCourseData.get(i).split(",");
+               if (courseFields[0].equals(courseCode)) {
+                   if (courseFields[5].equals("null")) {
+                       courseFlag = true;
+                       break;
+                   } else {
+                       courseName = courseFields[1];       //>>check whether the [0]is right or not
+                       break;
+                   }
+               }
 
+           }
+               for( int i=0 ; i<linesOfInstructorData.size() ;i++ ) {
+                   String[] instructorFields = linesOfInstructorData.get(i).split(",");
+                   if (instructorFields[0].equals(courseCode)) {
+                       if (instructorFields[7].equals("null")) {
+                           instructorFlag = true;
+                           break;
+                       } else {
+                           instructorName = instructorFields[0]; //>>check whether the [0]is right or not
+                           break;
+                       }
+                   }
+
+               }
+                   if (instructorFlag == true && courseFlag == true)
+                   {
+
+                         for(int i=0;i<linesOfCourseData.size();i++)
+                         {
+                             String [] courseFields=linesOfCourseData.get(i).split(",");
+                             if(courseFields[0].equals(courseCode))
+                             {
+                                 courseFields[5]=instructorId;
+                                 String updatedLine=String.join(",",courseFields);
+                                 linesOfCourseData.set(i,updatedLine);
+                                 break;
+                             }
+                         }
+                         for(int i=0;i<linesOfInstructorData.size();i++)
+                         {
+                             String []instructorFields=linesOfInstructorData.get(i).split(",");
+                             if(instructorFields[2].equals(instructorId))  //>>check whether the [0]is right or not
+                             {
+                                 instructorFields[7]=courseCode;     //>>check whether the [0]is right or not
+                                 String updatedLine=String.join(",",instructorFields);
+                                 linesOfInstructorData.set(i,updatedLine);
+                                 break;
+                             }
+                         }
+                       System.out.println("Done Successfully");
+                   }
+                   else {
+                       if (instructorFlag == false && courseFlag == true) {
+                           System.out.println("Dr."+instructorName+" is already has a course");
+                       }
+                       else if(courseFlag == true && instructorFlag == false)
+                       {
+                           System.out.println(courseName+" is already has an instructor");
+                       }
+                       else if(courseFlag == true && instructorFlag == true)
+                       {
+                           System.out.print("Dr."+instructorName+" is already has a course and ");
+                           System.out.println(courseName+" is already has an instructor");
+                       }
+
+                   }
     }
     public void addEvent()
     {
