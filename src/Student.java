@@ -5,12 +5,12 @@ public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
 
-    private final Course[] Student_courses = new Course[48];
-    private final StudentGrades[] grades = new StudentGrades[48];
+    public final Course[] Student_courses = new Course[48];
+    public final StudentGrades[] grades = new StudentGrades[48];
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
-    public boolean[] attendance = new boolean[];
+    public boolean[][] attendance = new boolean[10][2];
     public Student (){
         super();
     }
