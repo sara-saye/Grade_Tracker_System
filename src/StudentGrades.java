@@ -88,7 +88,7 @@ public class StudentGrades{
                 letterGrade = "D";
             }
             else{
-                letterGrade="F";
+                letterGrade = "F";
             }
             return letterGrade;
         }
