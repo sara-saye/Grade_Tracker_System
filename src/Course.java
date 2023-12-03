@@ -17,7 +17,7 @@ public class Course {
 
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
-
+    public static int no_of_courses=0;//amr
     Course () {}
     Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor,
     Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
@@ -32,6 +32,7 @@ public class Course {
         this.assignedQuiz=assignedQuiz;
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
+        no_of_courses++;
     }
     public void setGrade(StudentGrades grade)
     {
@@ -45,6 +46,7 @@ public class Course {
     {
         this.courseCode=courseCode;
         this.courseTitle=courseTitle;
+        no_of_courses++;
     }
     public void setCourseCode(String courseCode)
     {
