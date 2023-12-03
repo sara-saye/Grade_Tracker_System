@@ -13,7 +13,7 @@ public class Instructor extends Person{
         this.office_location = OFFL;
         this.department = dep;
         this.numOfSections = ns;
-        this.ID = instructor_ID;
+        this.setID(instructor_ID);
         instructor_ID++;
     }
     @Override
@@ -45,8 +45,8 @@ public class Instructor extends Person{
         switch (choice){
             case 1:
                 System.out.println("Enter new first and last name");
-                this.Fname = input.next();
-                this.Lname = input.next();
+                this.setFname(input.next());
+                this.setLname(input.next());
                 break;
             case 2:
                 System.out.println("Enter new Email");
@@ -83,7 +83,7 @@ public class Instructor extends Person{
         int sid = input.nextInt();
         System.out.println("Enter section number");
         int snum = input.nextInt();
-        students[sid].attendance[snum] = true;
+        students[sid].attendance[snum][0] = true;
     }
     public void setAssessmentsToCourse(){
         System.out.println("Adding assessment to " + course.courseTitle);
@@ -96,7 +96,7 @@ public class Instructor extends Person{
                 System.out.print("Title: ");
                 assignment.setTitle(input.next());
                 System.out.print("Mark: ");
-                assignment.setMark(input.nextInt());
+                assignment.setMax_score(input.nextInt());
                 System.out.print("Deadline: ");
                 assignment.set_Assignment_deadline(input.next());
                 course.addAssignedAssignment(assignment);
@@ -109,7 +109,7 @@ public class Instructor extends Person{
                 System.out.print("Date: ");
                 quiz.setDate(input.next());
                 System.out.print("Mark: ");
-                quiz.setMark(input.nextInt());
+                quiz.setMax_score(input.nextInt());
                 System.out.print("Duration: ");
                 quiz.setQuiz_Duration(input.nextInt());
                 course.addAssignedQuiz(quiz);
@@ -122,7 +122,7 @@ public class Instructor extends Person{
                 System.out.print("Date: ");
                 midtermExam.setDate(input.next());
                 System.out.print("Mark: ");
-                midtermExam.setMark(input.nextInt());
+                midtermExam.setMax_score(input.nextInt());
                 System.out.print("Duration: ");
                 midtermExam.setExam_Duration(input.nextInt());
                 System.out.println("Location: ");
@@ -137,7 +137,7 @@ public class Instructor extends Person{
                 System.out.print("Date: ");
                 practical.setDate(input.next());
                 System.out.print("Mark: ");
-                practical.setMark(input.nextInt());
+                practical.setMax_score(input.nextInt());
                 System.out.print("Duration: ");
                 practical.setPractical_Exam_Time(input.nextInt());
                 System.out.println("Location: ");
@@ -151,7 +151,7 @@ public class Instructor extends Person{
                 System.out.print("Date: ");
                 finalExam.setDate(input.next());
                 System.out.print("Mark: ");
-                finalExam.setMark(input.nextInt());
+                finalExam.setMax_score(input.nextInt());
                 System.out.print("Duration: ");
                 finalExam.setExam_Time(input.nextInt());
                 System.out.println("Location: ");
@@ -171,9 +171,84 @@ public class Instructor extends Person{
         int cid =input.nextInt();
         System.out.println("What do you want track");
         System.out.println("1-Assignment\n2-Quiz\n3-Midterm\n4-Practical\n5-Final");
-        //students[sid].courses[cid].grades
+        int choice = input.nextInt();
+        switch (choice){
+            case 1: //Assignment
+                System.out.println("Enter grade");
+                double a = input.nextDouble();
+                students[sid].Student_courses[cid].grade.setAssignmentGrade(a);
+                break;
+            case 2: //Quiz
+                System.out.println("Enter grade");
+                double q = input.nextDouble();
+                students[sid].Student_courses[cid].grade.setQuizGrade(q);
+                break;
+            case 3: //Midterm
+                System.out.println("Enter grade");
+                double m = input.nextDouble();
+                students[sid].Student_courses[cid].grade.setMidTermGrade(m);
+                break;
+            case 4: //Practical
+                System.out.println("Enter grade");
+                double p = input.nextDouble();
+                //  students[sid].Student_courses[cid].grades.se(p);
+                break;
+            case 5: //final
+                System.out.println("Enter grade");
+                double f = input.nextDouble();
+                students[sid].Student_courses[cid].grade.setFinalGrade(f);
+                break;
+            default:
+                System.out.println("Invalid choice");
+        }
     }
-    public void generateAttRepForIndStud(){
-        
+    public void generateAttRepForIndStud(int sum, int sid, int cid,int expsum){
+        System.out.println("Report for student " + students[sid].getFname() + " " + students[sid].getLname());
+        System.out.println("Number of attended sessions: " + sum);
+        System.out.println("Student have " + expsum + " exceptions ");
+
+    }
+    public void generateAttrepforallstud(){
+
+
+    }
+    public void setDEadlinesandReminders(){
+
+    }
+    public void trackingStudentsAttendance(){
+        System.out.println("Enter student ID");
+        int sid = input.nextInt();
+        System.out.println("Enter course ID");
+        int cid = input.nextInt();
+        int attsum = 0, expsum = 0;
+        for (int i = 0; i < 10; i++) {
+            if(students[sid].attendance[i][0]) {
+                attsum++;
+            }
+            else {
+                System.out.println("Is there any exception? Yes/No ");
+                char ch=input.next().charAt(0);
+                if(ch == 'Y' || ch == 'y'){
+                    students[sid].attendance[i][1]=true;
+                    expsum++;
+                }
+                else {
+                    students[sid].attendance[i][1]=false;
+                }
+            }
+        }
+        if(attsum <= 5 && attsum >= 3){
+            Notification notification =new Notification();
+            notification.addAttendance(true);
+        }
+        else if(attsum < 3){
+            students[sid].Student_courses[cid].grade.setAttendanceGrade(0);
+        }
+        generateAttRepForIndStud(attsum,sid,cid,expsum);
+    }
+    public void viewEnrolledStudents (){
+        for (Student student : students) {
+            student.display();
+        }
     }
 }
