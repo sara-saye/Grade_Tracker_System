@@ -10,7 +10,7 @@ public class Student extends Person {
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
-    public boolean[][] attendance = new boolean[10][2];
+    
     public Student (){
         super();
     }

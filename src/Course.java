@@ -7,6 +7,7 @@ public class Course {
     public  int credits;  //>>convert it to string while we deal with files
     public String department;
     public  String description;
+    public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
     private StudentGrades grade=new StudentGrades();
     public Assignment assignedAssignment = new Assignment();
