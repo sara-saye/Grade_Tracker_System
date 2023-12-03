@@ -9,7 +9,6 @@ public class Course {
     public  String description;
     public Instructor assignedInstructor = new Instructor();
     private StudentGrades grade=new StudentGrades();
-    public ArrayList<StudentGrades> grades=new ArrayList<>();
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
     public MidtermExam assignedMidterm = new MidtermExam();
@@ -86,10 +85,7 @@ public class Course {
     {
        this.assignedfinal=assignedfinal;
     }
-    public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
-    {
-         grades.add(grade);
-    }
+
 
 }
 

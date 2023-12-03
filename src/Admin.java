@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-
 public class Admin extends Person{
     String eventDetails;
     ArrayList<Course>courses=new ArrayList<>();
     ArrayList<Instructor>instructors=new ArrayList<>();
-   public Admin (){}
+    public Admin (){}
     public Admin (String Fname,String Lname,int ID){  //>>ID should be string
         super(Fname,Lname);
         this.ID=ID;
