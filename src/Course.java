@@ -8,6 +8,7 @@ public class Course {
     public String department;
     public  String description;
     public Instructor assignedInstructor = new Instructor();
+    private StudentGrades grade=new StudentGrades();
     public ArrayList<StudentGrades> grades=new ArrayList<>();
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
@@ -31,6 +32,14 @@ public class Course {
         this.assignedQuiz=assignedQuiz;
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
+    }
+    public void setGrade(StudentGrades grade)
+    {
+        this.grade=grade;
+    }
+    public StudentGrades getGrade()
+    {
+        return grade;
     }
     public Course(String courseCode,String courseTitle)
     {

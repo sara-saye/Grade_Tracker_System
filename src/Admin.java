@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Admin extends Person{
+    String eventDetails;
     ArrayList<Course>courses=new ArrayList<>();
     ArrayList<Instructor>instructors=new ArrayList<>();
    public Admin (){}
