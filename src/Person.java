@@ -30,6 +30,24 @@ public abstract class Person {
     public String getUsername() {
         return Username;
     }
+    public String getFname() {
+        return Fname;
+    }
+    public void setFname(String fname) {
+        Fname = fname;
+    }
+    public String getLname() {
+        return Lname;
+    }
+    public void setLname(String lname) {
+        Lname = lname;
+    }
+    public int getID() {
+        return ID;
+    }
+    public void setID(int ID) {
+        this.ID = ID;
+    }
     public String getPassword() {
         return password;
     }

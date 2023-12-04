@@ -7,8 +7,13 @@ public class Course {
     public  int credits;  //>>convert it to string while we deal with files
     public String department;
     public  String description;
+    public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
+
     public StudentGrades grades = new StudentGrades();
+
+    private StudentGrades grade=new StudentGrades();
+
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
     public MidtermExam assignedMidterm = new MidtermExam();
@@ -32,6 +37,14 @@ public class Course {
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
         no_of_courses++;
+    }
+    public void setGrade(StudentGrades grade)
+    {
+        this.grade=grade;
+    }
+    public StudentGrades getGrade()
+    {
+        return grade;
     }
     public Course(String courseCode,String courseTitle)
     {
@@ -77,10 +90,12 @@ public class Course {
     {
        this.assignedfinal=assignedfinal;
     }
+
     public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
     {
         // grades.add(grade);
     }
+
 
 }
 

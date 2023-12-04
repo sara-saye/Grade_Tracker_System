@@ -78,7 +78,11 @@ public class Main {
                 instructor.inputGrades();
                 break;
             case 7:
+
               //  instructor.generateAttRepForIndStud();
+
+                //  instructor.generateAttRepForIndStud();
+
                 break;
             case 8:
                 instructor.generateAttrepforallstud();
