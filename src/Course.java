@@ -23,7 +23,6 @@ public class Course {
 >>>>>>> b5af708850464db9da0d9863b97f9dcf63f20ff0
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
-
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
     public static int no_of_courses=0;//amr
@@ -81,7 +80,7 @@ public class Course {
     }
     public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment
     {
-           this.assignedAssignment=assignedAssignment;
+         this.assignedAssignment=assignedAssignment;
     }
     public void addAssignedQuiz(Quiz assignedQuiz) //>>instructor sends me that quiz
     {
