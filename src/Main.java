@@ -5,7 +5,7 @@ public class Main {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int studentNo = 0, instructorNo = 0;
+       /* int studentNo = 0, instructorNo = 0;
 
         Student  [] students = new Student[100];
         Instructor [] instructors = new Instructor[100];
@@ -39,12 +39,12 @@ public class Main {
 
         } else {
 
-        }
+        }*/
         //test case for Instructor skip
-        /*String n=input.next(),l=input.next(),off=input.next(),dep=input.next();
+        String n=input.next(),l=input.next(),off=input.next(),dep=input.next();
         int num=input.nextInt();
-        Instructor ss= new Instructor(n,l,off,dep,num);
-        instructorMenu(ss);*/
+        Instructor instructor= new Instructor(n,l,off,dep,num);
+        instructorMenu(instructor);
     }
     public static void instructorMenu(Instructor instructor){
         System.out.println("1-Show your information\n2-Edit your information");
@@ -78,7 +78,11 @@ public class Main {
                 instructor.inputGrades();
                 break;
             case 7:
+
+              //  instructor.generateAttRepForIndStud();
+
                 //  instructor.generateAttRepForIndStud();
+
                 break;
             case 8:
                 instructor.generateAttrepforallstud();

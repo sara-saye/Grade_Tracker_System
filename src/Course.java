@@ -9,9 +9,18 @@ public class Course {
     public  String description;
     public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
+
+    public StudentGrades grades = new StudentGrades();
+
     private StudentGrades grade=new StudentGrades();
+<<<<<<< HEAD
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
+=======
+
+    public Assignment assignedAssignment = new Assignment();
+    public Quiz assignedQuiz = new Quiz();
+>>>>>>> b5af708850464db9da0d9863b97f9dcf63f20ff0
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
 
@@ -85,6 +94,11 @@ public class Course {
     public void addAssignedFinal(FinalExam assignedfinal) //>>instructor sends me that finalExam
     {
        this.assignedfinal=assignedfinal;
+    }
+
+    public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
+    {
+        // grades.add(grade);
     }
 
 
