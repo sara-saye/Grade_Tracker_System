@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Student extends Person {
@@ -8,9 +9,16 @@ public class Student extends Person {
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
+<<<<<<< HEAD
     public boolean[] attendance = new boolean[10];
 
     public final Course[] Student_courses = new Course[48];
+=======
+
+    public boolean[] attendance = new boolean[10];
+
+    public final ArrayList<Course> Student_courses = new ArrayList<>();
+>>>>>>> af4c7c8f0688b462773e0b9d9644a91f77cc37fd
 
     public Student (){
         super();
