@@ -5,7 +5,7 @@ public class Main {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int studentNo = 0, instructorNo = 0;
+       /* int studentNo = 0, instructorNo = 0;
 
         Student  [] students = new Student[100];
         Instructor [] instructors = new Instructor[100];
@@ -39,33 +39,52 @@ public class Main {
 
         } else {
 
-        }
+        }*/
         //test case for Instructor skip
-        /*String n=input.next(),l=input.next(),off=input.next(),dep=input.next();
+        String n=input.next(),l=input.next(),off=input.next(),dep=input.next();
         int num=input.nextInt();
-        Instructor ss= new Instructor(n,l,off,dep,num);
-        instructorMenu(ss);*/
+        Instructor instructor= new Instructor(n,l,off,dep,num);
+        instructorMenu(instructor);
     }
-    public static void instructorMenu(Instructor ss){
+    public static void instructorMenu(Instructor instructor){
         System.out.println("1-Show your information\n2-Edit your information");
         System.out.println("3-View students\n4-Assign Assessment");
         System.out.println("5-Mark attendance\n6-Input students Grades");
-        System.out.println("7-Create assessment\n8-Set specific deadline");
-        System.out.println("9-Make report for attendance specific student");
-        System.out.println("10-Make report for attendance all students");
+        System.out.println("7-Make report for attendance specific student");
+        System.out.println("8-Make report for attendance all students");
         System.out.println("Enter your choice");
         int choice = input.nextInt();
-        selectInstrMenu(choice,ss);
+        selectInstrMenu(choice,instructor);
     }
-    public static void selectInstrMenu(int x,Instructor ss){
+    public static void selectInstrMenu(int x,Instructor instructor){
         switch (x){
             case 1:
-                ss.display();
+                instructor.display();
                 break;
             case 2:
-                ss.editInfo();
-                ss.display();
+                instructor.editInfo();
+                instructor.display();
                 break;
+            case 3:
+                instructor.viewEnrolledStudents();
+                break;
+            case 4:
+                instructor.setAssessmentsToCourse();
+                break;
+            case 5:
+                instructor.trackAttenForoneSection();
+                break;
+            case 6:
+                instructor.inputGrades();
+                break;
+            case 7:
+              //  instructor.generateAttRepForIndStud();
+                break;
+            case 8:
+                instructor.generateAttrepforallstud();
+                break;
+            default:
+                System.out.println("Invalid choice");
         }
     }
 }
