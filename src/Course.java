@@ -11,16 +11,11 @@ public class Course {
     public Instructor assignedInstructor = new Instructor();
 
     public StudentGrades grades = new StudentGrades();
-
     private StudentGrades grade=new StudentGrades();
-<<<<<<< HEAD
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-=======
-
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
->>>>>>> b5af708850464db9da0d9863b97f9dcf63f20ff0
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
