@@ -10,7 +10,7 @@ public class Student extends Person {
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
-    public boolean[] attendance = new boolean[];
+    public boolean[] attendance = new boolean[10];
     public Student (){
         super();
     }
@@ -70,7 +70,6 @@ public class Student extends Person {
         System.out.println("Which Course You Want To Register For? ");
         int answer =input.nextInt();
         Student_courses[NoOfCourses]=courses[answer-1];
-
     }
 
     public void ViewEvents() {
