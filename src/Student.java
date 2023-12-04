@@ -8,7 +8,11 @@ public class Student extends Person {
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
+<<<<<<< HEAD
+    public boolean[] attendance = new boolean[10];
+=======
     public final Course[] Student_courses = new Course[48];
+>>>>>>> 7ee135927d535dcd7dd2739643fe5b1af08e7d1a
     public Student (){
         super();
     }
@@ -68,7 +72,6 @@ public class Student extends Person {
         System.out.println("Which Course You Want To Register For? ");
         int answer =input.nextInt();
         Student_courses[NoOfCourses]=courses[answer-1];
-
     }
 
     public void ViewEvents() {
