@@ -6,8 +6,12 @@ public class Admin extends Person{
     public Admin (){}
     public Admin (String Fname,String Lname,int ID){  //>>ID should be string
         super(Fname,Lname);
+<<<<<<< HEAD
         this.ID=ID;
        // this.setID(ID);
+=======
+        this.setID(ID);
+>>>>>>> f9125287521c0270d2d8fcaeaa43ff1f085cce3f
     }
     public void addCourse(Course course)
     {
