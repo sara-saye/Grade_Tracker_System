@@ -10,8 +10,8 @@ public class Course {
     public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
     private StudentGrades grade=new StudentGrades();
-    public Assignment assignedAssignment = new Assignment();
-    public Quiz assignedQuiz = new Quiz();
+    public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
+    public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
 
