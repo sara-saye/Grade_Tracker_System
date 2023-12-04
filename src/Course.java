@@ -14,13 +14,13 @@ public class Course {
     private StudentGrades grade=new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-<<<<<<< HEAD
+
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
-=======
+
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
->>>>>>> f9125287521c0270d2d8fcaeaa43ff1f085cce3f
+
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
