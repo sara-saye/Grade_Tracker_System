@@ -14,10 +14,7 @@ public class Course {
     private StudentGrades grade=new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-
-    public Assignment assignedAssignment = new Assignment();
-    public Quiz assignedQuiz = new Quiz();
-
+    
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
 

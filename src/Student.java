@@ -13,12 +13,6 @@ public class Student extends Person {
 
     public final Course[] Student_courses = new Course[48];
 
-
-    public boolean[] attendance = new boolean[10];
-
-    public final ArrayList<Course> Student_courses = new ArrayList<>();
-
-
     public Student (){
         super();
     }
