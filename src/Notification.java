@@ -49,9 +49,6 @@ public void Display_Notification(){
         System.out.println("Warning content");
     }
 
-
-
-
 }
 
 }

@@ -7,13 +7,17 @@ public class Course {
     public  int credits;  //>>convert it to string while we deal with files
     public String department;
     public  String description;
+    public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
-    public ArrayList<StudentGrades> grades=new ArrayList<>();
+
+    public StudentGrades grades = new StudentGrades();
+
+    private StudentGrades grade=new StudentGrades();
+
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
-
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
     public static int no_of_courses=0;//amr
@@ -32,6 +36,14 @@ public class Course {
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
         no_of_courses++;
+    }
+    public void setGrade(StudentGrades grade)
+    {
+        this.grade=grade;
+    }
+    public StudentGrades getGrade()
+    {
+        return grade;
     }
     public Course(String courseCode,String courseTitle)
     {
@@ -63,7 +75,7 @@ public class Course {
     }
     public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment
     {
-           this.assignedAssignment=assignedAssignment;
+         this.assignedAssignment=assignedAssignment;
     }
     public void addAssignedQuiz(Quiz assignedQuiz) //>>instructor sends me that quiz
     {
@@ -77,10 +89,12 @@ public class Course {
     {
        this.assignedfinal=assignedfinal;
     }
+
     public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
     {
-         grades.add(grade);
+        // grades.add(grade);
     }
+
 
 }
 
