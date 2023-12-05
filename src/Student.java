@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
-    public final ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
+   // public final ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
@@ -22,6 +22,13 @@ public class Student extends Person {
         super(Fname,Lname);
 
     }
+
+    public Student(String Fname, String Lname,int id){
+        super(Fname,Lname);
+        this.setID(id);
+
+    }
+
 
     public void ViewStudentPerformance() {
 

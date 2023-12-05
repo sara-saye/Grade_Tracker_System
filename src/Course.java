@@ -9,7 +9,7 @@ public class Course {
     public  String description;
     public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
-    public StudentGrades grades = new StudentGrades();
+    //public StudentGrades grades = new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
     public Assignment assignedAssignment = new Assignment();

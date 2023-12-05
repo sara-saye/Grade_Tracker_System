@@ -1,4 +1,7 @@
 public class StudentGrades{
+
+        private  int StudentID;
+        private  int CourseID;
         private  double assignmentGrade;
         private  double quizGrade;
         private  double midTermGrade;
