@@ -12,12 +12,16 @@ public class Course {
     //public StudentGrades grades = new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
+<<<<<<< HEAD
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
 
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
 
+=======
+    
+>>>>>>> 60a7191a44d4a56f0f07f03a99c34237d4377e7e
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
@@ -33,8 +37,8 @@ public class Course {
         this.department=department;
         this.description=description;
         this.assignedInstructor=assignedInstructor;
-        //this.assignedAssignment=assignedAssignment;
-        //this.assignedQuiz=assignedQuiz;
+        this.assignedAssignment.add(assignedAssignment);
+        this.assignedQuiz.add(assignedQuiz);
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
         no_of_courses++;
@@ -77,11 +81,11 @@ public class Course {
     }
     public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment
     {
-        // this.assignedAssignment=assignedAssignment;
+        this.assignedAssignment.add(assignedAssignment);
     }
     public void addAssignedQuiz(Quiz assignedQuiz) //>>instructor sends me that quiz
     {
-       // this.assignedQuiz=assignedQuiz;
+       this.assignedQuiz.add(assignedQuiz);
     }
     public void addAssignedMidterm(MidtermExam assignedMidterm) //>>instructor sends me that Mid
     {

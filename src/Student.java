@@ -9,10 +9,9 @@ public class Student extends Person {
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
-
     public boolean[] attendance = new boolean[10];
 
-    public final ArrayList<Course> Student_courses = new ArrayList<>();
+    public final Course[] Student_courses = new Course[48];
 
     public Student (){
         super();
