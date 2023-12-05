@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
-    private final StudentGrades[] grades = new StudentGrades[48];
+    public final ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
     private int NoOfCourses=0;
     private double expenses = 0;
     private boolean expenses_paid = false;
@@ -32,9 +32,9 @@ public class Student extends Person {
         if (NoOfCourses == 0)
             System.out.println("You haven't registered any course");
         else if (expenses_paid) {
-            for (int courseNo = 0; courseNo < NoOfCourses; courseNo++) {
-                System.out.println("Course Title: " + Student_courses[courseNo].courseTitle);
-                grades[courseNo].DisplayReport();
+            for (Course course:Student_courses) {
+                System.out.println("Course Title: " + course.courseTitle);
+              //  grades[courseNo].DisplayReport();
             }
         } else
             System.out.println("Please pay expenses first");
@@ -44,8 +44,8 @@ public class Student extends Person {
         if (NoOfCourses == 0 || expenses_paid)
             System.out.println("No payments to pay");
         else {
-            for (int courseNo = 0; courseNo < NoOfCourses; courseNo++) {
-                expenses += Student_courses[courseNo].credits * 100;
+            for (Course course:Student_courses) {
+                expenses += course.credits * 100;
             }
             do {
                 System.out.println("Please pay " + expenses);
@@ -72,7 +72,7 @@ public class Student extends Person {
         }
         System.out.println("Which Course You Want To Register For? ");
         int answer =input.nextInt();
-        Student_courses[NoOfCourses]=courses[answer-1];
+        Student_courses.add(courses[answer-1]);
     }
 
     public void ViewEvents() {
