@@ -15,9 +15,6 @@ public class Course {
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
     
-   // public Assignment assignedAssignment = new Assignment();
-   // public Quiz assignedQuiz = new Quiz();
-
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
@@ -33,8 +30,8 @@ public class Course {
         this.department=department;
         this.description=description;
         this.assignedInstructor=assignedInstructor;
-        //this.assignedAssignment=assignedAssignment;
-        //this.assignedQuiz=assignedQuiz;
+        this.assignedAssignment.add(assignedAssignment);
+        this.assignedQuiz.add(assignedQuiz);
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
         no_of_courses++;
@@ -77,11 +74,11 @@ public class Course {
     }
     public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment
     {
-        // this.assignedAssignment=assignedAssignment;
+        this.assignedAssignment.add(assignedAssignment);
     }
     public void addAssignedQuiz(Quiz assignedQuiz) //>>instructor sends me that quiz
     {
-       // this.assignedQuiz=assignedQuiz;
+       this.assignedQuiz.add(assignedQuiz);
     }
     public void addAssignedMidterm(MidtermExam assignedMidterm) //>>instructor sends me that Mid
     {
