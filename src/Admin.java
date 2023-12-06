@@ -206,8 +206,13 @@ public class Admin extends Person{
 
                    }
     }
-    public void addEvent()
+    public void addEvent(String eventName,String eventDate,String eventLocation)  //from main when admin choose to add event
     {
-
+        this.eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
     }
+    public void removeEvent()
+    {
+       this.eventDetails="null";
+    }
+
 }

@@ -14,7 +14,7 @@ public class Course {
     private StudentGrades grade=new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-    
+
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
