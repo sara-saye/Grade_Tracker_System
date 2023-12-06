@@ -12,21 +12,15 @@ public class Course {
     //public StudentGrades grades = new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-<<<<<<< HEAD
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
 
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
-
-=======
-    
->>>>>>> 60a7191a44d4a56f0f07f03a99c34237d4377e7e
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
-    public static int no_of_courses=0;//amr
     Course () {}
     Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor,
     Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
