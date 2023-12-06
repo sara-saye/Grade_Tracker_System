@@ -94,7 +94,7 @@ public class Student extends Person {
         System.out.println("1- Profile");
         System.out.println("2- Study Services");
         System.out.println("3- Payments record");
-        if(students.get(ID).getNotification.)
+        if(students.get(ID))
         System.out.println("Press 4 to see notifications");
         int ans = input.nextInt();
         try {
