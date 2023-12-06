@@ -9,17 +9,22 @@ public class Course {
     public  String description;
     public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
-
-    public StudentGrades grades = new StudentGrades();
-    private StudentGrades grade=new StudentGrades();
+    //public StudentGrades grades = new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
+<<<<<<< HEAD
 
+=======
+    public Assignment assignedAssignment = new Assignment();
+    public Quiz assignedQuiz = new Quiz();
+
+   // public Assignment assignedAssignment = new Assignment();
+   // public Quiz assignedQuiz = new Quiz();
+>>>>>>> 6ae197965bed3daee287bbaf67ab9c56087e11ac
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
-    public static int no_of_courses=0;//amr
     Course () {}
     Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor,
     Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)

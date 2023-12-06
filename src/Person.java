@@ -2,6 +2,7 @@ public abstract class Person {
     private String Fname, Lname;
     private int ID;
     private String email, Username, password;
+    //add phone number
     public Person(){
         this.Fname = "unknown";
         this.Lname = "unknown";
