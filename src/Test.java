@@ -34,8 +34,8 @@ public abstract class Test {
     public int getID() {
         return ID;
     }
-    public String getTitle(String title){
-        return title;
+    public String getTitle(){
+        return Title;
     }
 
     public int getMax_score() {
