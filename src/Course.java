@@ -9,9 +9,10 @@ public class Course {
     public  String description;
     public boolean[][] attendance = new boolean[10][2];
     public Instructor assignedInstructor = new Instructor();
-    //public StudentGrades grades = new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
+<<<<<<< HEAD
+=======
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
     private double mean;
@@ -19,51 +20,55 @@ public class Course {
 
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
+>>>>>>> 4bfe1426e9c5509e3b32b7609765d3a658523ccd
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     public String []sessionDates=new String[2];
-    Course () {}
-    Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor,
-    Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    public Course () {}
+    public Course(String courseCode,String courseTitle,int credits,String department,String description)
     {
         this.courseCode=courseCode;
         this.courseTitle=courseTitle;
         this.credits=credits;
         this.department=department;
         this.description=description;
+    }
+   public Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor,
+    Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    {
+        this(courseCode,courseTitle,credits,department,description);
         this.assignedInstructor=assignedInstructor;
         this.assignedAssignment.add(assignedAssignment);
         this.assignedQuiz.add(assignedQuiz);
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
-        no_of_courses++;
-    }
-    public void setGrade(StudentGrades grade)
-    {
-        this.grade=grade;
-    }
-    public StudentGrades getGrade()
-    {
-        return grade;
     }
     public Course(String courseCode,String courseTitle)
     {
         this.courseCode=courseCode;
         this.courseTitle=courseTitle;
-        no_of_courses++;
     }
     public void setCourseCode(String courseCode)
     {
         this.courseCode=courseCode;
     }
-    public String getCourseCode(String courseCode)
+    public String getCourseCode()
     {
         return  courseCode;
     }
-    public void enrollStudent(Student student) //>>student sends me the student and its index
+    public void enrollStudent(Student student) //>>student sends me  that
     {
          enrolledStudents.add(student);
+    }
+    public void viewListOfEnrolledStudents()
+    {
+        for(int enrolledStudentsIndex=0;enrolledStudentsIndex<enrolledStudents.size();enrolledStudentsIndex++)
+        {
+            System.out.println(enrolledStudentsIndex+1+" - "+enrolledStudents.get(enrolledStudentsIndex).getFname()+
+                    " "+enrolledStudents.get(enrolledStudentsIndex).getLname()+"     "+
+                    enrolledStudents.get(enrolledStudentsIndex).getID());
+        }
     }
     public  void dropStudent(int studentIdx) //>>student sends me that index
     {
@@ -75,7 +80,7 @@ public class Course {
             System.out.println(IOBex.getMessage());
         }
     }
-    public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment
+    public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment //remove that function?
     {
         this.assignedAssignment.add(assignedAssignment);
     }
@@ -92,6 +97,8 @@ public class Course {
        this.assignedfinal=assignedfinal;
     }
 
+<<<<<<< HEAD
+=======
     public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
     {
         // grades.add(grade);
@@ -123,5 +130,6 @@ public class Course {
         StandardDeviation=Math.sqrt(sum);
         return StandardDeviation;
     }
+>>>>>>> 4bfe1426e9c5509e3b32b7609765d3a658523ccd
 }
 
