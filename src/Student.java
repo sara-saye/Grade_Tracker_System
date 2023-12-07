@@ -9,11 +9,10 @@ public class Student extends Person {
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
     private double expenses = 0;
     private boolean expenses_paid = false;
-    public boolean[][]attendance = new boolean[10][];
-
     public ArrayList<Course> Student_courses = new ArrayList<>();
 
     private int NoOfCourses = Student_courses.size();
+    public boolean[][]attendance = new boolean[NoOfCourses][10];
 
     private Notification notification = new Notification();
 
