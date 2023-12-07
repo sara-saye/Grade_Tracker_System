@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class StudentGrades{
         private  double assignmentGrade;
         private  double quizGrade;
@@ -92,35 +94,24 @@ public class StudentGrades{
             }
             return letterGrade;
         }
-        public void DisplayReport(String studentName ,int id){
-            double courseGrade=CalcTotalGrade();
-            double courseScale=Calcscale(courseGrade);
-            String courseLetterGrade=CalcLetterGrade(courseGrade);
-            System.out.println("Student Name: " + studentName);
-            System.out.println("Student ID: " + id);
-            System.out.println("Midterm: " + midTermGrade);
-            System.out.println("Assignment: " + assignmentGrade);
-            System.out.println("Quiz: " + quizGrade);
-            System.out.println("Attendance:" + attendanceGrade);
-            System.out.println("Final:" + finalGrade);
-            System.out.println("Total Grade: " +courseGrade);
-            System.out.println("Points: " + courseScale);
-            System.out.println("Letter Grade: " +courseLetterGrade);
+        public void DisplayReport(String studentName , int id, ArrayList<Student>students){
+            for(int i=0;i<students.get(id).getNoOfCourses();i++) {
+                double courseGrade = CalcTotalGrade();
+                double courseScale = Calcscale(courseGrade);
+                String courseLetterGrade = CalcLetterGrade(courseGrade);
+                System.out.println((i+1)+"- Course : " + students.get(id).Student_courses.get(i).courseTitle);
+                System.out.println("Student Name: " + studentName);
+                System.out.println("Student ID: " + id);
+                System.out.println("Midterm: " + students.get(id).Student_Grades.get(i).getMidTermGrade());
+                System.out.println("Assignment: " + students.get(id).Student_Grades.get(i).getAssignmentGrade());
+                System.out.println("Quiz: " + students.get(id).Student_Grades.get(i).getQuizGrade());
+                System.out.println("Attendance:" + students.get(id).Student_Grades.get(i).getAttendanceGrade());
+                System.out.println("Final:" + students.get(id).Student_Grades.get(i).getFinalGrade());
+                System.out.println("Total Grade: " + courseGrade);
+                System.out.println("Points: " + courseScale);
+                System.out.println("Letter Grade: " + courseLetterGrade);
+            }
         }
-
-    public void DisplayReport(){
-        double courseGrade=CalcTotalGrade();
-        double courseScale=Calcscale(courseGrade);
-        String courseLetterGrade=CalcLetterGrade(courseGrade);
-        System.out.println("Midterm: " + midTermGrade);
-        System.out.println("Assignment: " + assignmentGrade);
-        System.out.println("Quiz: " + quizGrade);
-        System.out.println("Attendance:" + attendanceGrade);
-        System.out.println("Final:" + finalGrade);
-        System.out.println("Total Grade: " +courseGrade);
-        System.out.println("Points: " + courseScale);
-        System.out.println("Letter Grade: " +courseLetterGrade);
-    }
     }//class
 
 
