@@ -5,7 +5,6 @@ public class Notification {
 private ArrayList<Assignment> assignment = new ArrayList<Assignment>();
 private  ArrayList<Quiz> quiz = new ArrayList<Quiz>();
 private boolean New_grade;
-
 private boolean attendance;
 private float gpa;
 private String Event;
@@ -48,7 +47,6 @@ public void Display_Notification(){
     }
     if (this.New_grade){
         System.out.println("Your grades have been updated");
-
     }
     if (attendance){
         System.out.println("Warning content");

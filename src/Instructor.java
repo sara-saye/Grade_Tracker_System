@@ -228,6 +228,7 @@ public class Instructor extends Person{
         System.out.println("Report for student "+students[sid].getFname()+" "+students[sid].getLname());
         System.out.println("Number of attended sessions: "+sum);
         System.out.println("Student have "+" exceptions ");
+
     }
     public void generateAttrepforallstud() {
         
