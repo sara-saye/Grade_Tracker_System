@@ -1,6 +1,6 @@
 
 import java.util.ArrayList;
-import java.io.*;
+
 public class Course {
     private   String courseCode;
     public  String courseTitle;
@@ -11,14 +11,9 @@ public class Course {
     public Instructor assignedInstructor = new Instructor();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-
-    public Assignment assignedAssignment = new Assignment();
-    public Quiz assignedQuiz = new Quiz();
     private double mean;
     private double StandardDeviation; //if used
 
-   // public Assignment assignedAssignment = new Assignment();
-   // public Quiz assignedQuiz = new Quiz();
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
@@ -94,12 +89,6 @@ public class Course {
     {
        this.assignedfinal=assignedfinal;
     }
-
-    public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
-    {
-        // grades.add(grade);
-    }
-
     public double CalcMean(){
         double sum=0;
         for (Student student:enrolledStudents) {

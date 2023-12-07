@@ -8,8 +8,6 @@ public class Admin extends Person{
         super(Fname,Lname);
         this.setID(ID);
     }
-    public void addCourse(Course course)
-public class Admin extends Person {
     public void addCourse(String courseCode, String courseTitle, int credits, String department, String description)  //>>pass these parameters from main
     {
         Course course = new Course(courseCode, courseTitle, credits, department, description);
@@ -93,32 +91,28 @@ public class Admin extends Person {
         }
 
     }
-    public  void deleteInstructor(int instructorId)
-    {
+
+    public void deleteInstructor(int instructorId) {
         deleteDeletedInstructorFromTheCourse(instructorId);
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-            if(Main.instructors.get(instrcutorIndex).getID()==instructorId)
-            {
+            if (Main.instructors.get(instrcutorIndex).getID() == instructorId) {
                 Main.instructors.remove(instrcutorIndex);
             }
         }
 
     }
-    public void deleteDeletedInstructorFromTheCourse(int instructorId)
-    {
-      for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++ )
-      {
-          if(Main.courses.get(courseIndex).assignedInstructor.getID()==instructorId)
-          {
-              Main.courses.get(courseIndex).assignedInstructor=null;
-          }
-      }
+
+    public void deleteDeletedInstructorFromTheCourse(int instructorId) {
+        for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
+            if (Main.courses.get(courseIndex).assignedInstructor.getID() == instructorId) {
+                Main.courses.get(courseIndex).assignedInstructor = null;
+            }
+        }
     }
-    public void dropStudent()
-    {
-        Course course=new Course();
-        for(int studentIndex=0;studentIndex<Main.studentsArray.size();studentIndex++)
-        {
+
+    public void dropStudent() {
+        Course course = new Course();
+        for (int studentIndex = 0; studentIndex < Main.studentsArray.size(); studentIndex++) {
            /* if(Main.studentsArray.get(studentIndex).gpaDrop == true ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
            Main.studentsArray.get(studentIndex).attendanceDrop == true)
             {

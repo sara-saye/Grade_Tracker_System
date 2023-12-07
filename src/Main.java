@@ -81,11 +81,9 @@ static ArrayList<Student>studentsArray=new ArrayList<>();
                 instructor.inputGrades();
                 break;
             case 7:
-
-              //  instructor.generateAttRepForIndStud();
-
-                //  instructor.generateAttRepForIndStud();
-
+                System.out.println("Enter student ID");
+                int studentID=input.nextInt();
+                instructor.generateAttRepForIndStud(studentID);
                 break;
             case 8:
                 instructor.generateAttrepforallstud();
