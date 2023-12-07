@@ -10,11 +10,9 @@ public class Student extends Person {
     private double expenses = 0;
     private boolean expenses_paid = false;
     public boolean[][]attendance = new boolean[10][];
-
     public ArrayList<Course> Student_courses = new ArrayList<>();
-
     private int NoOfCourses = Student_courses.size();
-
+   // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
     private Notification notification = new Notification();
 
     public Student (){
@@ -32,10 +30,7 @@ public class Student extends Person {
     }
 
 
-    public void ViewStudentPerformance() {
-
-
-    }
+    public void ViewStudentPerformance() {}
 
     public void ViewGrades() {
         if (NoOfCourses == 0)
@@ -76,6 +71,7 @@ public class Student extends Person {
     }
 
     public void AddCourse(ArrayList<Course> courses) {
+
         for(int i=0;i<courses.size();i++){
             System.out.println((i+1)+":"+courses.get(i).courseTitle);
         }
