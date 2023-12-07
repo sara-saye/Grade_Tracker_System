@@ -233,16 +233,15 @@ public class Instructor extends Person{
         }
     }
     public void generateAttRepForIndStud(int sum, int sid, int cid,int expsum){
-
         System.out.println("Report for student "+students[sid].getFname()+" "+students[sid].getLname());
         System.out.println("Number of attended sessions: "+sum);
         System.out.println("Student have "+expsum +" exeptions ");
 
         //students[sid].Student_courses[cid].
 
-        System.out.println("Report for student " + students[sid].getFname() + " " + students[sid].getLname());
-        System.out.println("Number of attended sessions: " + sum);
-        System.out.println("Student have " + expsum + " exceptions ");
+//        System.out.println("Report for student " + students[sid].getFname() + " " + students[sid].getLname());
+//        System.out.println("Number of attended sessions: " + sum);
+//        System.out.println("Student have " + expsum + " exceptions ");
 
     }
     public void generateAttrepforallstud()
