@@ -10,23 +10,14 @@ public class Student extends Person {
     private double GPA;
     private double expenses = 0;
     private boolean expenses_paid = false;
-<<<<<<< HEAD
     public boolean[][]attendance = new boolean[10][];
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses = Student_courses.size();
    // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
-=======
-    public boolean[][] attendance = new boolean[10][];
-
-    public ArrayList<Course> Student_courses = new ArrayList<>();
 
     public int getNoOfCourses() {
         return NoOfCourses;
     }
-
-    private int NoOfCourses = Student_courses.size();//test
-
->>>>>>> 4bfe1426e9c5509e3b32b7609765d3a658523ccd
     private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
@@ -63,10 +54,6 @@ public class Student extends Person {
         this.setID(id);
     }
 
-<<<<<<< HEAD
-
-    public void ViewStudentPerformance() {}
-=======
     public void DisplayCurrentCourses(){
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i+1)+"- "+Student_courses.get(i).courseTitle);
@@ -92,8 +79,6 @@ public class Student extends Person {
             System.out.println("------------------------------------");
         }
     }
->>>>>>> 4bfe1426e9c5509e3b32b7609765d3a658523ccd
-
     public void ViewGrades() {
         if (NoOfCourses == 0)
             System.out.println("You haven't registered any course");
@@ -144,16 +129,10 @@ public class Student extends Person {
         }
     }
 
-<<<<<<< HEAD
-    public void AddCourse(ArrayList<Course> courses) {
-
-        for(int i=0;i<courses.size();i++){
-            System.out.println((i+1)+":"+courses.get(i).courseTitle);
-=======
     public void RegisterForCourse(ArrayList<Course> courses) {
         for (int i = 0; i < courses.size(); i++) {
             System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
->>>>>>> 4bfe1426e9c5509e3b32b7609765d3a658523ccd
+
         }
         System.out.println("Which Course You Want To Register For? ");
         int answer = input.nextInt();//validation

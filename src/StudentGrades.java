@@ -98,7 +98,7 @@ public class StudentGrades{
         public void DisplayReport(String studentName , int id, ArrayList<Student>students){
             for(int i=0;i<students.get(id).getNoOfCourses();i++) {
                 double courseGrade = CalcTotalGrade();
-                double courseScale = Calcscale(courseGrade);
+                double courseScale = Calcscale();
                 String courseLetterGrade = CalcLetterGrade(courseGrade);
                 System.out.println((i+1)+"- Course : " + students.get(id).Student_courses.get(i).courseTitle);
                 System.out.println("Student Name: " + studentName);
@@ -116,15 +116,4 @@ public class StudentGrades{
     }//class
 
 
-//    public double CalcGpa(double creditHour[],double scales[]){
-//        double sum=0; //  sums of (hour*scale)
-//        double totalHours =0;
-//        for(int i=0;i<creditHour.length;i++){
-//          sum=sum + (creditHour[i]*scales[i]);
-//        }
-//        for(int i=0;i<creditHour.length;i++){
-//            totalHours+=creditHour[i];
-//        }
-//        return (sum/totalHours);
-//    }
 

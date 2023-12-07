@@ -11,8 +11,7 @@ public class Course {
     public Instructor assignedInstructor = new Instructor();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-<<<<<<< HEAD
-=======
+
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
     private double mean;
@@ -20,7 +19,6 @@ public class Course {
 
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
->>>>>>> 4bfe1426e9c5509e3b32b7609765d3a658523ccd
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
@@ -97,8 +95,6 @@ public class Course {
        this.assignedfinal=assignedfinal;
     }
 
-<<<<<<< HEAD
-=======
     public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
     {
         // grades.add(grade);
@@ -130,6 +126,5 @@ public class Course {
         StandardDeviation=Math.sqrt(sum);
         return StandardDeviation;
     }
->>>>>>> 4bfe1426e9c5509e3b32b7609765d3a658523ccd
 }
 
