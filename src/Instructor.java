@@ -1,4 +1,4 @@
-import java.time.LocalDate;
+ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Instructor extends Person{
@@ -189,7 +189,7 @@ public class Instructor extends Person{
 
                 students[sid].Student_courses[cid].grades.setAssignmentGrade(a);
 
-                students[sid].Student_courses[cid].grade.setAssignmentGrade(a);
+                students[sid].Student_courses[cid].getGrade().setAssignmentGrade(a);
 
                 break;
             case 2: //Quiz
@@ -198,7 +198,7 @@ public class Instructor extends Person{
 
                 students[sid].Student_courses[cid].grades.setQuizGrade(q);
 
-                students[sid].Student_courses[cid].grade.setQuizGrade(q);
+                students[sid].Student_courses[cid].getGrade().setQuizGrade(q);
 
                 break;
             case 3: //Midterm
@@ -207,7 +207,7 @@ public class Instructor extends Person{
 
                 students[sid].Student_courses[cid].grades.setMidTermGrade(m);
 
-                students[sid].Student_courses[cid].grade.setMidTermGrade(m);
+                students[sid].Student_courses[cid].getGrade().setMidTermGrade(m);
 
                 break;
             case 4: //Practical
@@ -225,7 +225,7 @@ public class Instructor extends Person{
 
                 students[sid].Student_courses[cid].grades.setFinalGrade(f);
 
-                students[sid].Student_courses[cid].grade.setFinalGrade(f);
+                students[sid].Student_courses[cid].getGrade().setFinalGrade(f);
 
                 break;
             default:
@@ -308,7 +308,7 @@ public class Instructor extends Person{
 
             students[sid].Student_courses[cid].grades.setAttendanceGrade(0);
 
-            students[sid].Student_courses[cid].grade.setAttendanceGrade(0);
+            students[sid].Student_courses[cid].getGrade().setAttendanceGrade(0);
 
         }
         generateAttRepForIndStud(attsum,sid,cid,expsum);
