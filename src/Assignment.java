@@ -27,8 +27,8 @@ public class Assignment extends Test {
         return Assignment_startDate;
     }
 
-    public void set_Assignment_deadline(String assignment_Deadline) {
-        Assignment_Deadline = LocalDate.parse(assignment_Deadline);
+    public void set_Assignment_deadline(LocalDate assignment_Deadline) {
+        Assignment_Deadline = assignment_Deadline;
     }
 
     public LocalDate getAssignment_Deadline() {

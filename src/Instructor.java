@@ -1,8 +1,8 @@
-
- import java.time.LocalDate;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
 import java.util.Scanner;
 import java.util.stream.Collectors;
 public class Instructor extends Person{
@@ -113,6 +113,7 @@ public class Instructor extends Person{
         }
     }
     public void setAssessmentsToCourse(){
+
         System.out.println("Enter course ID");
         int cid = input.nextInt();
         System.out.println("Adding assessment to " + course.courseTitle);
@@ -122,6 +123,7 @@ public class Instructor extends Person{
             case 1:
                 //add Assignment
                 Assignment assignment=new Assignment();
+                System.out.println( "How many assignments ? / 1 0r 2 " );
                 System.out.println("Assignment number: ");
                 assignment.setID(input.nextInt());
                 System.out.print("Title: ");
@@ -129,12 +131,13 @@ public class Instructor extends Person{
                 System.out.print("Mark: ");
                 assignment.setMax_score(input.nextInt());
                 System.out.print("Deadline: ");
-                assignment.set_Assignment_deadline(input.next());
+               // assignment.set_Assignment_deadline(input.next());
                 course.addAssignedAssignment(assignment);
                 break;
             case 2:
                 //add Quiz
                 Quiz quiz =new Quiz();
+                System.out.println( "How many quizes ? / 1 0r 2 " );
                 System.out.println("Quiz number: ");
                 quiz.setID(input.nextInt());
                 System.out.print("Title: ");
@@ -283,13 +286,21 @@ public class Instructor extends Person{
         }
     }
     public void setDEadlinesandReminders(){
-    // LocalDate deadline = LocalDate.now();
-     //System.out.println( "Assignmet deadline at : "+deadline.plusDays(10));
-        LocalDate Assignment_startDate = LocalDate.of(2023, 12, 10); // Set the start date for the assignment
-        LocalDate Assignment_Deadline = Assignment_startDate.plusDays(10); // Set the assignment deadline 10 from the start date
-        Assignment assignment = new Assignment();
-        System.out.println("Start Date: " + assignment.getAssignment_Deadline());
-        System.out.println("Deadline: " + assignment.getAssignment_Deadline());
+
+        System.out.println("Enter Assignment date like this format yyyy-MM-dd ");
+        String date=input.next();
+        System.out.println("Enter Assignment duration ");
+        int x = input.nextInt();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate Date = LocalDate.parse(date, formatter);
+        course.assignedAssignment.setAssignment_startDate(Date); // Set the start date for the assignment
+        System.out.println("Start Date: " + course.assignedAssignment.getAssignment_startDate());
+        course.assignedAssignment.set_Assignment_deadline(LocalDate.parse(course.assignedAssignment.getAssignment_startDate().plusDays(x).toString())); // Set the assignment deadline 10 from the start date
+        System.out.println("Deadline: " + course.assignedAssignment.getAssignment_Deadline());
+        Duration diff = Duration.between( course.assignedAssignment.getAssignment_startDate().atStartOfDay(),  course.assignedAssignment.getAssignment_Deadline().atStartOfDay());
+        long diffDays = diff.toDays();
+        System.out.println("Assignment ends at "+diffDays + " days");
+
    }
     private void trackingStudentsAttendanceGrades(Student student,int []indexs) {
         int attndance_sum = 0;
@@ -310,6 +321,5 @@ public class Instructor extends Person{
         }
 
     }
-
    private void findindexs(int[] index){}
 }

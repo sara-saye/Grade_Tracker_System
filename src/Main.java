@@ -8,6 +8,9 @@ static ArrayList<Student>studentsArray=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+        Instructor i=new Instructor();
+        i.setDEadlinesandReminders();
+        /*
        int studentNo = 0, instructorNo = 0;
 
         Student  [] students = new Student[100];
@@ -69,7 +72,7 @@ static ArrayList<Student>studentsArray=new ArrayList<>();
                 instructor.display();
                 break;
             case 3:
-                instructor.viewEnrolledStudents();
+               // instructor.viewEnrolledStudents();
                 break;
             case 4:
                 instructor.setAssessmentsToCourse();
