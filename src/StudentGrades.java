@@ -48,8 +48,9 @@ public class StudentGrades{
             double totalMark=(assignmentGrade + quizGrade + midTermGrade + finalGrade + attendanceGrade);
             return totalMark;
         }
-        public double Calcscale(double totalMark){
+        public double Calcscale(){//esraa
             double scale;
+            double totalMark=this.CalcTotalGrade();
             if(totalMark<=100 && totalMark>=93){
                 scale=4.0;
             } else if (totalMark<93 && totalMark>=89) {
