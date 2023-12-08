@@ -2,6 +2,7 @@ public abstract class Person {
     private String Fname, Lname;
     private int ID;
     private String email, Username, password;
+    private String PhoneNumber;
     //add phone number
     public Person(){
         this.Fname = "unknown";
@@ -52,4 +53,6 @@ public abstract class Person {
     public String getPassword() {
         return password;
     }
+    public String getPhoneNumber() { return PhoneNumber; }
+    public void setPhoneNumber(String phoneNumber) {PhoneNumber = phoneNumber;}
 }
