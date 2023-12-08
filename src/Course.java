@@ -12,15 +12,13 @@ public class Course {
     //public StudentGrades grades = new StudentGrades();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-<<<<<<< HEAD
 
-=======
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
 
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
->>>>>>> 6ae197965bed3daee287bbaf67ab9c56087e11ac
+
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
