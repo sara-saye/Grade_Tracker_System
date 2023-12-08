@@ -11,7 +11,7 @@ public class Course {
     public Instructor assignedInstructor = new Instructor();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-<<<<<<< HEAD
+
 
     public Assignment assignedAssignment = new Assignment();
     public Quiz assignedQuiz = new Quiz();
@@ -19,11 +19,8 @@ public class Course {
    // public Assignment assignedAssignment = new Assignment();
    // public Quiz assignedQuiz = new Quiz();
 
-=======
     private double mean;
     private double StandardDeviation; //if used
-
->>>>>>> 11afc6b899c4a5b5b86d7ef958feb35d9502edd1
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
