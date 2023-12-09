@@ -11,14 +11,6 @@ public class Course {
     public Instructor assignedInstructor = new Instructor();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-
-
-    public Assignment assignedAssignment = new Assignment();
-    public Quiz assignedQuiz = new Quiz();
-
-   // public Assignment assignedAssignment = new Assignment();
-   // public Quiz assignedQuiz = new Quiz();
-
     private double mean;
     private double StandardDeviation; //if used
     public MidtermExam assignedMidterm = new MidtermExam();

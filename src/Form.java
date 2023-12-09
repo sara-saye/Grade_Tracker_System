@@ -34,9 +34,9 @@
                 instructor.setEmail(Email);
                 instructor.setUsername(UserName+"@Instructor");
                 instructor.setPassword(Password);
-                instructor.setID(instructorNo);
+                //instructor.setID(instructorNo);
+                instructor.forSignUp();
                 instructors[instructorNo] = instructor;
-
             } else if(who==2){
                 studentNo++;
                 Student student = new Student();

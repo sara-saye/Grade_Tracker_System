@@ -34,19 +34,4 @@ public class Assignment extends Test {
     public LocalDate getAssignment_Deadline() {
         return Assignment_Deadline;
     }
-    public void setMax_score(int max_score) {
-        while (true) {
-            System.out.println("Enter a grade for this assignment that doesn't exceed 20 marks ");
-            if( max_score<= 20 ) {
-                setMax_score(max_score);
-                break;
-            }
-            else if (max_score > 20 ) {
-                System.out.println("Invalid Grade Please try again ! ");
-            }
-
-        }
-    }
-
-
 }
