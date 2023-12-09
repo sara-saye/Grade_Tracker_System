@@ -1,22 +1,25 @@
 public class Admin extends Person {
-    public void addCourse(String courseCode, String courseTitle, int credits, String department, String description)  //>>pass these parameters from main
+
+    public static void addCourse(String courseCode, String courseTitle, int credits, String department, String description,
+                                 String []sessionDates)  //>>pass these parameters from main
     {
-        Course course = new Course(courseCode, courseTitle, credits, department, description);
+        Course course = new Course(courseCode, courseTitle, credits, department, description,sessionDates);
         Main.courses.add(course);
     }
-
-    public void updateCourse(String courseCode, String newCourseCode, String newCourseTitle, int newCredits, String newDepartment, String newDescription) {
-        Course course = new Course(newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription);
+    public void updateCourse(String courseCode, String newCourseCode, String newCourseTitle, int newCredits,
+                             String newDepartment, String newDescription,String []newSessionDtes) {
+        Course course = new Course(newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription,newSessionDtes);
         for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
             if (Main.courses.get(courseIndex).getCourseCode().equals(courseCode)) {
                 Main.courses.set(courseIndex, course);
             }
         }
-        updateUpdatedCourseInInstructor(courseCode, newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription);
+        updateUpdatedCourseInInstructor(courseCode, newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription,newSessionDtes);
     }
 
-    public void updateUpdatedCourseInInstructor(String courseCode, String newCourseCode, String newCourseTitle, int newCredits, String newDepartment, String newDescription) {
-        Course course = new Course(newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription);
+    public void updateUpdatedCourseInInstructor(String courseCode, String newCourseCode, String newCourseTitle, int newCredits,
+                                                String newDepartment, String newDescription,String []newSessionDtes) {
+        Course course = new Course(newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription,newSessionDtes);
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
             if (Main.instructors.get(instrcutorIndex).course.getCourseCode().equals(courseCode)) {
                 Main.instructors.get(instrcutorIndex).course = course;

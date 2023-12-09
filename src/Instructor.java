@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class Instructor extends Person{
     Scanner input = new Scanner(System.in);
     private String office_location, department;
-    private int numOfSections = 0;
     public static int instructor_ID = 202212000;
     Course course = new Course();
     Student students[] = new Student[10];
