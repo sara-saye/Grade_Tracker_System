@@ -7,8 +7,10 @@ public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
+    private double GPA;
     private double expenses = 0;
     private boolean expenses_paid = false;
+<<<<<<< HEAD
 
     public boolean[][]attendance = new boolean[10][];
     public ArrayList<Course> Student_courses = new ArrayList<>();
@@ -16,18 +18,43 @@ public class Student extends Person {
    // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
 
     public boolean[][] attendance = new boolean[10][];
-
+=======
     public ArrayList<Course> Student_courses = new ArrayList<>();
+    private int NoOfCourses = Student_courses.size();
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
+
+    public boolean[][]attendance = new boolean[NoOfCourses][10];
 
     public int getNoOfCourses() {
         return NoOfCourses;
     }
+<<<<<<< HEAD
 
     private int NoOfCourses = Student_courses.size();//test
 
+=======
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
+    private boolean attendanceDrop;
+    private boolean gpaDrop;
 
+
+    public boolean isAttendanceDrop() {
+        return attendanceDrop;
+    }
+
+    public void setAttendanceDrop(boolean attendanceDrop) {
+        this.attendanceDrop = attendanceDrop;
+    }
+
+    public boolean isGpaDrop() {
+        return gpaDrop;
+    }
+
+    public void setGpaDrop(boolean gpaDrop) {
+        this.gpaDrop = gpaDrop;
+    }
 
     public Student() {
         super();
@@ -43,10 +70,13 @@ public class Student extends Person {
         this.setID(id);
     }
 
+<<<<<<< HEAD
 
 
     public void ViewStudentPerformance() {}
 
+=======
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     public void DisplayCurrentCourses(){
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i+1)+"- "+Student_courses.get(i).courseTitle);
@@ -72,8 +102,11 @@ public class Student extends Person {
             System.out.println("------------------------------------");
         }
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     public void ViewGrades() {
         if (NoOfCourses == 0)
             System.out.println("You haven't registered any course");
@@ -81,7 +114,7 @@ public class Student extends Person {
             for (int i = 0; i < NoOfCourses; i++) {
                 System.out.println((i+1)+"- Course : " + Student_courses.get(i).courseTitle);
                 double courseGrade=Student_Grades.get(i).CalcTotalGrade();
-                double courseScale=Student_Grades.get(i).Calcscale(courseGrade);
+                double courseScale=Student_Grades.get(i).Calcscale();
                 String courseLetterGrade=Student_Grades.get(i).CalcLetterGrade(courseGrade);
                 System.out.println("Student Name: " + this.getFname()+" "+this.getLname());
                 System.out.println("Student ID: " + this.getID());
@@ -124,12 +157,15 @@ public class Student extends Person {
         }
     }
 
+<<<<<<< HEAD
 
     public void AddCourse(ArrayList<Course> courses) {
 
         for(int i=0;i<courses.size();i++){
             System.out.println((i+1)+":"+courses.get(i).courseTitle);
 
+=======
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     public void RegisterForCourse(ArrayList<Course> courses) {
         for (int i = 0; i < courses.size(); i++) {
             System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
@@ -141,10 +177,8 @@ public class Student extends Person {
         courses.get(answer - 1).enrollStudent(this);//test
     }
 
-    public void ViewEvents() {//aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakjjjjj
-        for (Course course : Student_courses) {
-
-        }
+    public void ViewEvents() {
+        notification.Display_Notification();
     }
 
     public void setNotification(Notification notification) {
@@ -209,6 +243,19 @@ public class Student extends Person {
             ZScore.add((Student_Grades.get(i).CalcTotalGrade()-Student_courses.get(i).CalcMean())/Student_courses.get(i).CalcStandardDeviation());
         }
     }
+    public double CalcGpa(){
+        double sum=0; //  sums of (hour*scale)
+        double totalHours =0;
+        for(int i=0;i<NoOfCourses;i++){
+          sum=sum + (Student_courses.get(i).credits*Student_Grades.get(i).Calcscale());
+            totalHours+=Student_courses.get(i).credits;
+        }
+        GPA=(sum/totalHours);
+        return GPA;
+    }
+
+
+
 //    public void Student_AfterLogin(int ID){
 //        System.out.println("1- Profile");
 //        System.out.println("2- Study Services");

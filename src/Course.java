@@ -1,6 +1,6 @@
 
 import java.util.ArrayList;
-import java.io.*;
+
 public class Course {
     private   String courseCode;
     public  String courseTitle;
@@ -11,10 +11,15 @@ public class Course {
     public Instructor assignedInstructor = new Instructor();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
+<<<<<<< HEAD
 
     private double mean;
     private double StandardDeviation; //if used
 
+=======
+    private double mean;
+    private double StandardDeviation; //if used
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
@@ -92,7 +97,10 @@ public class Course {
     {
        this.assignedfinal=assignedfinal;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     public double CalcMean(){
         double sum=0;
         for (Student student:enrolledStudents) {
@@ -119,6 +127,9 @@ public class Course {
         StandardDeviation=Math.sqrt(sum);
         return StandardDeviation;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
 }
 
