@@ -12,5 +12,9 @@ public class Quiz extends Test {
     public int getQuiz_Duration() {
         return Quiz_Duration;
     }
+    public  String toString()
+    {
+        return  getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+getQuiz_Duration();
+    }
 }
 

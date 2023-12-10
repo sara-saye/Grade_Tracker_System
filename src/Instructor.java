@@ -6,20 +6,26 @@ import java.time.format.DateTimeFormatter;
 public class Instructor extends Person{
     Scanner input = new Scanner(System.in);
     private String office_location, department;
-<<<<<<< HEAD
+
     public static int instructor_ID = 202212000;
     Course course = new Course();
     Student students[] = new Student[10];
     public Instructor(){}
-    public Instructor(String F, String L, String OFFL, String dep, int ns){
-        super(F,L);
+    public Instructor(String F, String L, String OFFL, String dep, int ns) {
+        super(F, L);
         this.office_location = OFFL;
         this.department = dep;
-        this.numOfSections = ns;
 
-      //  this.ID = instructor_ID;
+        //  this.ID = instructor_ID;
+    }
+    public Instructor(int ID,String Fname,String Lname,String email,String password,String PhoneNumber
+            ,String office_location,String department)
+    {
+        super(ID,Fname,Lname,email,password,PhoneNumber);
+        this.office_location=office_location;
+        this.department=department;
+    }
 
-=======
     public static int instructor_ID = 0;
     public  Course course = new Course();
     public ArrayList <Student> students = (ArrayList<Student>) Main.studentsArray.stream()
@@ -29,7 +35,7 @@ public class Instructor extends Person{
         super();
         this.office_location = "Unknown";
         this.department = "Unknown";
->>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
+
         this.setID(instructor_ID);
         instructor_ID++;
     }
@@ -513,5 +519,10 @@ public class Instructor extends Person{
         else if(course.assignedfinal.getID() == -1){
            System.out.println("This course doesn't have final yet");
         }
+   }
+
+   public String toString()
+   {
+      return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getPassword()+","+PhoneNumber+","+office_location+","+department;
    }
 }

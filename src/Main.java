@@ -4,6 +4,10 @@ public class Main {
 static ArrayList<Course>courses=new ArrayList<>();
 static ArrayList<Instructor>instructors=new ArrayList<>();
 static ArrayList<Student>studentsArray=new ArrayList<>();
+    static ArrayList<FinalExam>finalExams=new ArrayList<>();
+    static ArrayList<MidtermExam>midtermExams=new ArrayList<>();
+    static ArrayList<Assignment>assignments=new ArrayList<>();
+    static ArrayList<Quiz>quizzes=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
         /*

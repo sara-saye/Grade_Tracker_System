@@ -34,4 +34,8 @@ public class Assignment extends Test {
     public LocalDate getAssignment_Deadline() {
         return Assignment_Deadline;
     }
+    public String toString()
+    {
+       return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline;
+    }
 }
