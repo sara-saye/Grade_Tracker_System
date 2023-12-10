@@ -2,7 +2,7 @@ public abstract class Person {
     private String Fname, Lname;
     private int ID;
     private String email, Username, password;
-    private String PhoneNumber;
+    public String PhoneNumber;
     //add phone number
     public Person(){
         this.Fname = "unknown";
@@ -12,6 +12,14 @@ public abstract class Person {
     public Person(String Fname, String Lname) {
         this.Fname = Fname;
         this.Lname = Lname;
+    }
+    public Person(int ID,String Fname, String Lname,String email,String password,String PhoneNumber) {
+
+        this(Fname,Lname);
+        this.ID=ID;
+        this.email=email;
+        this.password=password;
+        this.PhoneNumber=PhoneNumber;
     }
     public void display(){
         System.out.println("Name: " + this.Fname + " " + this.Lname);

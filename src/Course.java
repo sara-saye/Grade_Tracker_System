@@ -1,44 +1,59 @@
 
 import java.util.ArrayList;
-import java.io.*;
+
 public class Course {
     private   String courseCode;
     public  String courseTitle;
     public  int credits;  //>>convert it to string while we deal with files
     public String department;
     public  String description;
-    public boolean[][] attendance = new boolean[10][2];
+    public String []sessionDates=new String[2];
     public Instructor assignedInstructor = new Instructor();
+    public MidtermExam assignedMidterm = new MidtermExam();
+    public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-
-    public Assignment assignedAssignment = new Assignment();
-    public Quiz assignedQuiz = new Quiz();
+    public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     private double mean;
     private double StandardDeviation; //if used
 
-   // public Assignment assignedAssignment = new Assignment();
-   // public Quiz assignedQuiz = new Quiz();
-    public MidtermExam assignedMidterm = new MidtermExam();
-    public FinalExam assignedfinal = new FinalExam();
-    public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
-    public String []sessionDates=new String[2];
+
     public Course () {}
-    public Course(String courseCode,String courseTitle,int credits,String department,String description)
+    public Course(String courseCode,String courseTitle,int credits,String department,String description
+            ,String []sessionDates)
     {
         this.courseCode=courseCode;
         this.courseTitle=courseTitle;
         this.credits=credits;
         this.department=department;
         this.description=description;
+        this.sessionDates=sessionDates;
     }
-   public Course (String courseCode,String courseTitle,int credits,String department,String description,Instructor assignedInstructor,
-    Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
-        this(courseCode,courseTitle,credits,department,description);
+        this(courseCode,courseTitle,credits,department,description,sessionDates);
+        this.assignedInstructor=assignedInstructor;
+        this.assignedfinal=assignedfinal;
+        this.assignedMidterm=assignedMidterm;
+    }
+   public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
+    Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    {
+        this(courseCode,courseTitle,credits,department,description,sessionDates);
         this.assignedInstructor=assignedInstructor;
         this.assignedAssignment.add(assignedAssignment);
         this.assignedQuiz.add(assignedQuiz);
+        this.assignedfinal=assignedfinal;
+        this.assignedMidterm=assignedMidterm;
+    }
+
+    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
+                  ArrayList <Assignment> assignedAssignment,ArrayList<Quiz> assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    {
+        this(courseCode,courseTitle,credits,department,description,sessionDates);
+        this.assignedInstructor=assignedInstructor;
+        this.assignedAssignment=assignedAssignment;
+        this.assignedQuiz=assignedQuiz;
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
     }
@@ -55,7 +70,7 @@ public class Course {
     {
         return  courseCode;
     }
-    public void enrollStudent(Student student) //>>student sends me  that
+    public void enrollStudent(Student student)   //>>student sends me  that
     {
          enrolledStudents.add(student);
     }
@@ -95,11 +110,6 @@ public class Course {
        this.assignedfinal=assignedfinal;
     }
 
-    public void setGrades(StudentGrades grade)    //>>Main will send it to me    //array or just a variable?
-    {
-        // grades.add(grade);
-    }
-
     public double CalcMean(){
         double sum=0;
         for (Student student:enrolledStudents) {
@@ -126,5 +136,11 @@ public class Course {
         StandardDeviation=Math.sqrt(sum);
         return StandardDeviation;
     }
+public String toString()
+{
+    return courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1] + "," +
+                assignedInstructor.getID() + "," + assignedfinal.getID() + "," + assignedMidterm.getID() ;
+
+}
 }
 

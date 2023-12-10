@@ -21,5 +21,9 @@ public class FinalExam extends Test {
     public String getLocation() {
         return Location;
     }
+    public  String toString()
+    {
+        return getID()+","+getTitle()+","+getMax_score()+","+Location+","+Exam_Time;
+    }
 }
 

@@ -10,14 +10,29 @@ public class Student extends Person {
     private double GPA;
     private double expenses = 0;
     private boolean expenses_paid = false;
+
+
     public boolean[][]attendance = new boolean[10][];
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses = Student_courses.size();
    // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
 
+    public boolean[][] attendance = new boolean[10][];
+
+    public ArrayList<Course> Student_courses = new ArrayList<>();
+    private int NoOfCourses = Student_courses.size();
+
+
+    public boolean[][]attendance = new boolean[NoOfCourses][10];
+
     public int getNoOfCourses() {
         return NoOfCourses;
     }
+
+
+    private int NoOfCourses = Student_courses.size();//test
+
+
     private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
@@ -54,6 +69,8 @@ public class Student extends Person {
         this.setID(id);
     }
 
+    public void ViewStudentPerformance() {}
+
     public void DisplayCurrentCourses(){
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i+1)+"- "+Student_courses.get(i).courseTitle);
@@ -79,6 +96,7 @@ public class Student extends Person {
             System.out.println("------------------------------------");
         }
     }
+
     public void ViewGrades() {
         if (NoOfCourses == 0)
             System.out.println("You haven't registered any course");
@@ -128,6 +146,12 @@ public class Student extends Person {
             } while (true);
         }
     }
+
+    public void AddCourse(ArrayList<Course> courses) {
+
+        for(int i=0;i<courses.size();i++){
+            System.out.println((i+1)+":"+courses.get(i).courseTitle);
+
 
     public void RegisterForCourse(ArrayList<Course> courses) {
         for (int i = 0; i < courses.size(); i++) {
