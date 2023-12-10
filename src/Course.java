@@ -9,19 +9,14 @@ public class Course {
     public  String description;
     public String []sessionDates=new String[2];
     public Instructor assignedInstructor = new Instructor();
-    public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
-    public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
-
-
-    private double mean;
-    private double StandardDeviation; //if used
-
-    private double mean;
-    private double StandardDeviation; //if used
-
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
+    public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
+    public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
+    private double mean;
+    private double StandardDeviation; //if used
+
 
     public Course () {}
     public Course(String courseCode,String courseTitle,int credits,String department,String description
@@ -34,13 +29,31 @@ public class Course {
         this.description=description;
         this.sessionDates=sessionDates;
     }
+    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    {
+        this(courseCode,courseTitle,credits,department,description,sessionDates);
+        this.assignedInstructor=assignedInstructor;
+        this.assignedfinal=assignedfinal;
+        this.assignedMidterm=assignedMidterm;
+    }
    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
-    Assignment assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates);
         this.assignedInstructor=assignedInstructor;
         this.assignedAssignment.add(assignedAssignment);
         this.assignedQuiz.add(assignedQuiz);
+        this.assignedfinal=assignedfinal;
+        this.assignedMidterm=assignedMidterm;
+    }
+
+    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
+                  ArrayList <Assignment> assignedAssignment,ArrayList<Quiz> assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    {
+        this(courseCode,courseTitle,credits,department,description,sessionDates);
+        this.assignedInstructor=assignedInstructor;
+        this.assignedAssignment=assignedAssignment;
+        this.assignedQuiz=assignedQuiz;
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
     }
@@ -125,7 +138,9 @@ public class Course {
     }
 public String toString()
 {
-    return courseCode+","+courseTitle+","+credits+","+department+","+description+","+sessionDates[0]+"-"+sessionDates[1];
+    return courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1] + "," +
+                assignedInstructor.getID() + "," + assignedfinal.getID() + "," + assignedMidterm.getID() ;
+
 }
 }
 

@@ -10,7 +10,7 @@ public class Student extends Person {
     private double GPA;
     private double expenses = 0;
     private boolean expenses_paid = false;
-<<<<<<< HEAD
+
 
     public boolean[][]attendance = new boolean[10][];
     public ArrayList<Course> Student_courses = new ArrayList<>();
@@ -18,22 +18,21 @@ public class Student extends Person {
    // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
 
     public boolean[][] attendance = new boolean[10][];
-=======
+
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses = Student_courses.size();
->>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
+
 
     public boolean[][]attendance = new boolean[NoOfCourses][10];
 
     public int getNoOfCourses() {
         return NoOfCourses;
     }
-<<<<<<< HEAD
+
 
     private int NoOfCourses = Student_courses.size();//test
 
-=======
->>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
+
     private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
@@ -70,13 +69,8 @@ public class Student extends Person {
         this.setID(id);
     }
 
-<<<<<<< HEAD
-
-
     public void ViewStudentPerformance() {}
 
-=======
->>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     public void DisplayCurrentCourses(){
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i+1)+"- "+Student_courses.get(i).courseTitle);
@@ -102,11 +96,7 @@ public class Student extends Person {
             System.out.println("------------------------------------");
         }
     }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
     public void ViewGrades() {
         if (NoOfCourses == 0)
             System.out.println("You haven't registered any course");
@@ -157,15 +147,12 @@ public class Student extends Person {
         }
     }
 
-<<<<<<< HEAD
-
     public void AddCourse(ArrayList<Course> courses) {
 
         for(int i=0;i<courses.size();i++){
             System.out.println((i+1)+":"+courses.get(i).courseTitle);
 
-=======
->>>>>>> 17d94834a240e83568e76a8467e915a849a4d3d0
+
     public void RegisterForCourse(ArrayList<Course> courses) {
         for (int i = 0; i < courses.size(); i++) {
             System.out.println((i + 1) + ":" + courses.get(i).courseTitle);

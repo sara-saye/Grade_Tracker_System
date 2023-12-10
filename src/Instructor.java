@@ -10,7 +10,6 @@ public class Instructor extends Person{
     public static int instructor_ID = 202212000;
     Course course = new Course();
     Student students[] = new Student[10];
-    public Instructor(){}
     public Instructor(String F, String L, String OFFL, String dep, int ns) {
         super(F, L);
         this.office_location = OFFL;
@@ -31,7 +30,7 @@ public class Instructor extends Person{
     public ArrayList <Student> students = (ArrayList<Student>) Main.studentsArray.stream()
             .filter(Student -> Student.Student_courses.equals(course))
             .collect(Collectors.toList());
-    public Instructor(){
+    public  Instructor( ){
         super();
         this.office_location = "Unknown";
         this.department = "Unknown";

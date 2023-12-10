@@ -1,6 +1,10 @@
 
 public class Admin extends Person {
 
+    public static void login()
+    {
+        
+    }
     public static void addCourse(String courseCode, String courseTitle, int credits, String department, String description,
                                  String []sessionDates)  //>>pass these parameters from main
     {

@@ -44,5 +44,6 @@ public abstract class Test {
     public LocalDate getDate() {
         return Date;
     }
+
 }
 
