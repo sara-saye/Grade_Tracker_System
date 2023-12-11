@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Course {
     private   String courseCode;
     public  String courseTitle;
-    public  int credits;  //>>convert it to string while we deal with files
+    public  int credits;
     public String department;
     public  String description;
     public String []sessionDates=new String[2];
@@ -29,7 +29,8 @@ public class Course {
         this.description=description;
         this.sessionDates=sessionDates;
     }
-    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
+    public Course (String courseCode,String courseTitle,int credits,String department,String description,
+                   String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates);
         this.assignedInstructor=assignedInstructor;
@@ -39,12 +40,9 @@ public class Course {
    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
     Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
-        this(courseCode,courseTitle,credits,department,description,sessionDates);
-        this.assignedInstructor=assignedInstructor;
+        this(courseCode,courseTitle,credits,department,description,sessionDates,assignedInstructor,assignedMidterm,assignedfinal);
         this.assignedAssignment.add(assignedAssignment);
         this.assignedQuiz.add(assignedQuiz);
-        this.assignedfinal=assignedfinal;
-        this.assignedMidterm=assignedMidterm;
     }
 
     public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
@@ -83,31 +81,26 @@ public class Course {
                     enrolledStudents.get(enrolledStudentsIndex).getID());
         }
     }
-    public  void dropStudent(int studentIdx) //>>student sends me that index
-    {
-        try {
-            enrolledStudents.remove(studentIdx);
-            }
-        catch (IndexOutOfBoundsException IOBex)
-        {
-            System.out.println(IOBex.getMessage());
-        }
-    }
-    public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment //remove that function?
+
+    public void addAssignedAssignment(Assignment assignedAssignment)
     {
         this.assignedAssignment.add(assignedAssignment);
+        Main.assignments.add(assignedAssignment);
     }
-    public void addAssignedQuiz(Quiz assignedQuiz) //>>instructor sends me that quiz
+    public void addAssignedQuiz(Quiz assignedQuiz)
     {
        this.assignedQuiz.add(assignedQuiz);
+       Main.quizzes.add(assignedQuiz);
     }
-    public void addAssignedMidterm(MidtermExam assignedMidterm) //>>instructor sends me that Mid
+    public void addAssignedMidterm(MidtermExam assignedMidterm)
     {
         this.assignedMidterm=assignedMidterm;
+        Main.midtermExams.add(assignedMidterm);
     }
-    public void addAssignedFinal(FinalExam assignedfinal) //>>instructor sends me that finalExam
+    public void addAssignedFinal(FinalExam assignedfinal)
     {
        this.assignedfinal=assignedfinal;
+       Main.finalExams.add(assignedfinal);
     }
 
     public double CalcMean(){
