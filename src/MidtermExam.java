@@ -20,8 +20,25 @@ public class MidtermExam extends Test {
     public String getExam_Location() {
         return Exam_Location;
     }
+<<<<<<< Updated upstream
     public String toString()
     {
         return  getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+Exam_Location+","+Exam_Duration;
     }
+=======
+    public void setMax_score(int max_score) {
+        while (true) {
+            System.out.println("Enter a grade for this midterm exam that doesn't exceed 15 marks ");
+            if( max_score<= 15 ) {
+                setMax_score(max_score);
+                break;
+            }
+            else if (max_score > 15 ) {
+                System.out.println("Invalid Grade Please try again ! ");
+            }
+
+        }
+    }
+
+>>>>>>> Stashed changes
 }

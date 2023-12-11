@@ -13,11 +13,21 @@ public class Course {
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
     public ArrayList<Quiz>assignedQuiz =  new ArrayList<>();
+<<<<<<< Updated upstream
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     private double mean;
     private double StandardDeviation; //if used
 
 
+=======
+    private double mean;
+    private double StandardDeviation; //if used
+
+    public MidtermExam assignedMidterm = new MidtermExam();
+    public FinalExam assignedfinal = new FinalExam();
+    public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
+    public String []sessionDates=new String[2];
+>>>>>>> Stashed changes
     public Course () {}
     public Course(String courseCode,String courseTitle,int credits,String department,String description
             ,String []sessionDates)
@@ -100,9 +110,13 @@ public class Course {
     public void addAssignedFinal(FinalExam assignedfinal)
     {
        this.assignedfinal=assignedfinal;
+<<<<<<< Updated upstream
        Main.finalExams.add(assignedfinal);
     }
 
+=======
+    }
+>>>>>>> Stashed changes
     public double CalcMean(){
         double sum=0;
         for (Student student:enrolledStudents) {

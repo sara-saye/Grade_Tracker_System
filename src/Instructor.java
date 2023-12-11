@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -25,16 +26,42 @@ public class Instructor extends Person{
         this.department=department;
     }
 
+=======
+
+ import java.time.LocalDate;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import java.util.Scanner;
+import java.util.stream.Collectors;
+public class Instructor extends Person{
+    Scanner input = new Scanner(System.in);
+    private String office_location, department;
+>>>>>>> Stashed changes
     public static int instructor_ID = 0;
     public  Course course = new Course();
     public ArrayList <Student> students = (ArrayList<Student>) Main.studentsArray.stream()
             .filter(Student -> Student.Student_courses.equals(course))
             .collect(Collectors.toList());
+<<<<<<< Updated upstream
     public  Instructor( ){
         super();
         this.office_location = "Unknown";
         this.department = "Unknown";
 
+=======
+    public Instructor(){
+        super();
+        this.office_location = "Unknown";
+        this.department = "Unknown";
+        this.setID(instructor_ID);
+        instructor_ID++;
+    }
+    public Instructor(String Fname, String Lname, String office_location, String department){
+        super(Fname,Lname);
+        this.office_location = office_location;
+        this.department = department;
+>>>>>>> Stashed changes
         this.setID(instructor_ID);
         instructor_ID++;
     }
@@ -109,7 +136,11 @@ public class Instructor extends Person{
     public void display() {
         super.display();
         System.out.println("Department: " + this.department);
+<<<<<<< Updated upstream
         System.out.println("Responsible for course: " + this.course.courseTitle);
+=======
+        System.out.println("Email: " + this.getEmail());
+>>>>>>> Stashed changes
     }
     public String getOffice_location() {
         return office_location;
@@ -120,11 +151,19 @@ public class Instructor extends Person{
     public String getDepartment() {
         return department;
     }
+<<<<<<< Updated upstream
     public void setDepartment(String department) {
         this.department = department; }
     public void editInfo(){
         System.out.println("Select what you want change");
         System.out.println("1-Name\n2-Email\nPassword");
+=======
+    public void setDepartment(String department) { this.department = department; }
+
+    public void editInfo(){
+        System.out.println("Select what you want change");
+        System.out.println("1-Name\n2-Email\n3-Username or Password");
+>>>>>>> Stashed changes
         System.out.println("4-Office location\n5-Department");
         int choice = input.nextInt();
         switch (choice){
@@ -162,6 +201,7 @@ public class Instructor extends Person{
         }
     }
     public void trackAttendance(){
+<<<<<<< Updated upstream
         for (Student student:students) {
             int courseIndex = findindexs(student);
             System.out.println("Student name: " + student.getFname() + " " + student.getLname());
@@ -179,6 +219,31 @@ public class Instructor extends Person{
                     if (ch == 'Y' || ch == 'y') {
                         student.attendance[courseIndex][i] = true;
                     }
+=======
+        System.out.println("Enter section number");
+        int section_number = input.nextInt();
+        for (Student student:students) {
+            int i = 0;
+            for (Course course : student.Student_courses) {
+                if(course.equals(this.course)) {
+                    break;
+                }
+                i++;
+            }
+            int cid = i;
+            System.out.println("Student name: " + student.getFname() + " " + student.getLname());
+            System.out.println("Student ID: " + student.getID());
+            System.out.println("Did this student attend?(y/n)");
+            char ch = input.next().charAt(0);
+            if (ch == 'Y' || ch == 'y') {
+                student.attendance[cid][section_number] = true;
+            } else {
+                student.attendance[cid][section_number] = false;
+                System.out.println("Are there any exception?");
+                ch = input.next().charAt(0);
+                if (ch == 'Y' || ch == 'y') {
+                    student.attendance[cid][section_number] = true;
+>>>>>>> Stashed changes
                 }
             }
             trackingStudentsAttendanceGrades(student);
@@ -186,15 +251,22 @@ public class Instructor extends Person{
         }
     }
     public void setAssessmentsToCourse(){
+<<<<<<< Updated upstream
         System.out.println("Adding assessment to " + course.courseTitle);
         checkIfExist();
         System.out.println("What do you want to add");
+=======
+        System.out.println("Enter course ID");
+        int cid = input.nextInt();
+        System.out.println("Adding assessment to " + course.courseTitle);
+>>>>>>> Stashed changes
         System.out.println("1-Assignment\n2-Quiz\n3-Midterm\n4-Final\n5-Practical");
         int choice =input.nextInt();
         switch (choice){
             case 1:
                 //add Assignment
                 Assignment assignment=new Assignment();
+<<<<<<< Updated upstream
                 System.out.println("How many assignments?1 0r 2 " );
                 System.out.println("If 1 assignment mark will be 20");
                 System.out.println("If 2 the sum of two assignments will be 20");
@@ -227,6 +299,17 @@ public class Instructor extends Person{
                 }
                 else
                     System.out.println("Invalid input");
+=======
+                System.out.println("Assignment number: ");
+                assignment.setID(input.nextInt());
+                System.out.print("Title: ");
+                assignment.setTitle(input.next());
+                System.out.print("Mark: ");
+                assignment.setMax_score(input.nextInt());
+                System.out.print("Deadline: ");
+                assignment.set_Assignment_deadline(input.next());
+                course.addAssignedAssignment(assignment);
+>>>>>>> Stashed changes
                 break;
             case 2:
                 //add Quiz
@@ -246,6 +329,7 @@ public class Instructor extends Person{
                 System.out.print("Duration: ");
                 quiz.setQuiz_Duration(input.nextInt());
                 course.addAssignedQuiz(quiz);
+<<<<<<< Updated upstream
                 } else if (numOfQuiz == 2) {
                     for(int i = 0; i < 2; i++){
                         System.out.println("Quiz number: ");
@@ -267,6 +351,8 @@ public class Instructor extends Person{
                         quiz.setQuiz_Duration(input.nextInt());
                     }
                 }
+=======
+>>>>>>> Stashed changes
                 break;
             case 3:
                 //add Midterm
@@ -319,6 +405,7 @@ public class Instructor extends Person{
         }
     }
     public void inputGrades(){
+<<<<<<< Updated upstream
         for (Student student : students) {
             int courseIndex = findindexs(student);
             System.out.println("What do you want track");
@@ -424,6 +511,67 @@ public class Instructor extends Person{
         int courseIndex = findindexs(students.get(student_ID));
         int j = 0, attndance_sum = 0;
         //reset for instructor student array
+=======
+        System.out.println("Enter student ID");
+        int student_ID = input.nextInt(), i = 0,j = 0;
+        for (Student student : students) {
+           if(student.getID() == student_ID){
+               break;
+           }
+            j++;
+        }
+        student_ID = j;
+        for (Course course : students.get(student_ID).Student_courses) {
+            if(course.equals(this.course)) {
+                break;
+            }
+            i++;
+        }
+        int cid = i;
+        System.out.println("What do you want track");
+        System.out.println("1-Assignment\n2-Quiz\n3-Midterm\n4-Practical\n5-Final");
+        int choice = input.nextInt();
+        switch (choice){
+            case 1: //Assignment
+                System.out.println("Enter assignment number");
+                int x = input.nextInt()- 1;
+                System.out.println("Enter grade");
+                double a = input.nextDouble();
+        students.get(student_ID).Student_Grades.get(cid).setAssignmentGrade(x,a);
+
+                break;
+            case 2: //Quiz
+                System.out.println("Enter quiz number");
+                int y = input.nextInt()- 1;
+                System.out.println("Enter grade");
+                double q = input.nextDouble();
+                students.get(student_ID).Student_Grades.get(cid).setQuizGrade(y,q);
+
+                break;
+            case 3: //Midterm
+                System.out.println("Enter grade");
+                double m = input.nextDouble();
+                students.get(student_ID).Student_Grades.get(cid).setMidTermGrade(m);
+
+                break;
+            case 4: //Practical
+                System.out.println("Enter grade");
+                double p = input.nextDouble();
+              //  students[sid].Student_courses[cid].grades.se(p);
+                break;
+            case 5: //final
+                System.out.println("Enter grade");
+                double f = input.nextDouble();
+                students.get(student_ID).Student_Grades.get(cid).setFinalGrade(f);
+                break;
+            default:
+                System.out.println("Invalid choice");
+        }
+    }
+    public void generateAttRepForIndStud(int student_ID) {
+        int[] indexs = new int[2];//first index for attendance times & second index for course id
+        int j = 0, i = 0;
+>>>>>>> Stashed changes
         for (Student student : students) {
             if (student.getID() == student_ID) {
                 break;
@@ -431,6 +579,7 @@ public class Instructor extends Person{
             j++;
         }
         student_ID = j;
+<<<<<<< Updated upstream
         for (int i = 0; i < 10; i++) {
             if (students.get(student_ID).attendance[courseIndex][i]) {
                 attndance_sum++;
@@ -440,12 +589,58 @@ public class Instructor extends Person{
         System.out.println("Student ID: " + students.get(student_ID).getID());
         System.out.println("Number of attended sessions: " + attndance_sum);
         System.out.println("Attendance grade: " + students.get(student_ID).Student_Grades.get(courseIndex).getAttendanceGrade());
+=======
+        for (Course course : students.get(student_ID).Student_courses) {
+            if (course.equals(this.course)) {
+                break;
+            }
+            i++;
+        }
+        indexs[1] = i;
+        trackingStudentsAttendanceGrades(students.get(student_ID), indexs);
+        System.out.println("Report for student " + students.get(student_ID).getFname() + " " + students.get(student_ID).getLname());
+        System.out.println("Student ID: " + students.get(student_ID).getID());
+        System.out.println("Number of attended sessions: " + indexs[0]);
+        System.out.println("Attendance grade: " + students.get(student_ID).Student_Grades.get(indexs[1]).getAttendanceGrade());
+>>>>>>> Stashed changes
     }
     public void generateAttrepforallstud() {
         for(Student student:students){
         generateAttRepForIndStud(student.getID());
+<<<<<<< Updated upstream
+=======
         }
     }
+    public void setDEadlinesandReminders(){
+    // LocalDate deadline = LocalDate.now();
+     //System.out.println( "Assignmet deadline at : "+deadline.plusDays(10));
+        LocalDate Assignment_startDate = LocalDate.of(2023, 12, 10); // Set the start date for the assignment
+        LocalDate Assignment_Deadline = Assignment_startDate.plusDays(10); // Set the assignment deadline 10 from the start date
+        Assignment assignment = new Assignment();
+        System.out.println("Start Date: " + assignment.getAssignment_Deadline());
+        System.out.println("Deadline: " + assignment.getAssignment_Deadline());
+   }
+    private void trackingStudentsAttendanceGrades(Student student,int []indexs) {
+        int attndance_sum = 0;
+        for (int i = 0; i < 10; i++) {
+            if (student.attendance[indexs[1]][i]) {
+                attndance_sum++;
+            }
+>>>>>>> Stashed changes
+        }
+        if (attndance_sum <= 5 && attndance_sum >= 3) {
+            Notification notification = new Notification();
+            notification.addAttendance(true);
+            student.setNotification(notification);
+            student.Student_Grades.get(indexs[1]).setAttendanceGrade(2);
+        } else if (attndance_sum < 3) {
+            student.Student_Grades.get(indexs[1]).setAttendanceGrade(0);
+        } else {
+            student.Student_Grades.get(indexs[1]).setAttendanceGrade(5);
+        }
+
+    }
+<<<<<<< Updated upstream
     public void viewEnrolledStudents(){
         course.viewListOfEnrolledStudents();
     }
@@ -524,4 +719,8 @@ public class Instructor extends Person{
    {
       return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getPassword()+","+PhoneNumber+","+office_location+","+department;
    }
+=======
+
+   private void findindexs(int[] index){}
+>>>>>>> Stashed changes
 }
