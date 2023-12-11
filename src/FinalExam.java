@@ -21,12 +21,11 @@ public class FinalExam extends Test {
     public String getLocation() {
         return Location;
     }
-<<<<<<< Updated upstream
     public  String toString()
     {
         return getID()+","+getTitle()+","+getMax_score()+","+Location+","+Exam_Time;
     }
-=======
+
     public void setMax_score(int max_score) {
         while (true) {
             System.out.println("Enter a grade for this exam that doesn't exceed 50 marks ");
@@ -41,6 +40,5 @@ public class FinalExam extends Test {
         }
     }
 
->>>>>>> Stashed changes
 }
 

@@ -26,13 +26,10 @@ public class Instructor extends Person{
         this.office_location=office_location;
         this.department=department;
     }
-
-<<<<<<< HEAD
     //public static int instructor_ID = 0;
    // public  Course course = new Course();
     public ArrayList <Student> students = (ArrayList<Student>) Main.students.stream()
-=======
-=======
+
 
  import java.time.LocalDate;
 import java.time.LocalDate;
@@ -43,20 +40,15 @@ import java.util.stream.Collectors;
 public class Instructor extends Person{
     Scanner input = new Scanner(System.in);
     private String office_location, department;
->>>>>>> Stashed changes
+
     public static int instructor_ID = 0;
     public  Course course = new Course();
-    public ArrayList <Student> students = (ArrayList<Student>) Main.studentsArray.stream()
->>>>>>> b9502fbb8fd58385fcf464faeede8ac598722155
-            .filter(Student -> Student.Student_courses.equals(course))
-            .collect(Collectors.toList());
-<<<<<<< Updated upstream
+    public ArrayList <Student> students = (ArrayList<Student>) Main.studentsArray.stream().filter(Student -> Student.Student_courses.equals(course)).collect(Collectors.toList());
+
     public  Instructor( ){
         super();
         this.office_location = "Unknown";
         this.department = "Unknown";
-
-=======
     public Instructor(){
         super();
         this.office_location = "Unknown";
@@ -67,8 +59,7 @@ public class Instructor extends Person{
     public Instructor(String Fname, String Lname, String office_location, String department){
         super(Fname,Lname);
         this.office_location = office_location;
-        this.department = department;
->>>>>>> Stashed changes
+        this.department = department;\
         this.setID(instructor_ID);
         instructor_ID++;
     }
@@ -139,15 +130,14 @@ public class Instructor extends Person{
             }
         }while(choice != 10);
     }
-    @Override
     public void display() {
         super.display();
         System.out.println("Department: " + this.department);
-<<<<<<< Updated upstream
+
         System.out.println("Responsible for course: " + this.course.courseTitle);
-=======
+
         System.out.println("Email: " + this.getEmail());
->>>>>>> Stashed changes
+
     }
     public String getOffice_location() {
         return office_location;
@@ -158,19 +148,18 @@ public class Instructor extends Person{
     public String getDepartment() {
         return department;
     }
-<<<<<<< Updated upstream
     public void setDepartment(String department) {
         this.department = department; }
     public void editInfo(){
         System.out.println("Select what you want change");
         System.out.println("1-Name\n2-Email\nPassword");
-=======
+
     public void setDepartment(String department) { this.department = department; }
 
     public void editInfo(){
         System.out.println("Select what you want change");
         System.out.println("1-Name\n2-Email\n3-Username or Password");
->>>>>>> Stashed changes
+
         System.out.println("4-Office location\n5-Department");
         int choice = input.nextInt();
         switch (choice){
@@ -327,7 +316,7 @@ public class Instructor extends Person{
                 System.out.print("Duration: ");
                 quiz.setQuiz_Duration(input.nextInt());
                 course.addAssignedQuiz(quiz);
-<<<<<<< Updated upstream
+
                 } else if (numOfQuiz == 2) {
                     for(int i = 0; i < 2; i++){
                         System.out.println("Quiz number: ");
@@ -349,8 +338,7 @@ public class Instructor extends Person{
                         quiz.setQuiz_Duration(input.nextInt());
                     }
                 }
-=======
->>>>>>> Stashed changes
+
                 break;
             case 3:
                 //add Midterm

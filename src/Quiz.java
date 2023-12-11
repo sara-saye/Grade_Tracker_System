@@ -17,12 +17,12 @@ public class Quiz extends Test {
     public int getQuiz_Duration() {
         return Quiz_Duration;
     }
-<<<<<<< Updated upstream
+
     public  String toString()
     {
         return  getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+getQuiz_Duration();
     }
-=======
+
     public void setMax_score(int max_score) {
         while (true) {
             System.out.println("Enter a grade for this quiz that doesn't exceed 20 marks ");
@@ -37,6 +37,6 @@ public class Quiz extends Test {
         }
     }
 
->>>>>>> Stashed changes
+
 }
 
