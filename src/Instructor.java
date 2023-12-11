@@ -9,7 +9,8 @@ public class Instructor extends Person{
 
     public static int instructor_ID = 202212000;
     Course course = new Course();
-    Student students[] = new Student[10];
+
+//    Student students[] = new Student[10];
     public Instructor(String F, String L, String OFFL, String dep, int ns) {
         super(F, L);
         this.office_location = OFFL;
@@ -25,9 +26,9 @@ public class Instructor extends Person{
         this.department=department;
     }
 
-    public static int instructor_ID = 0;
-    public  Course course = new Course();
-    public ArrayList <Student> students = (ArrayList<Student>) Main.studentsArray.stream()
+    //public static int instructor_ID = 0;
+   // public  Course course = new Course();
+    public ArrayList <Student> students = (ArrayList<Student>) Main.students.stream()
             .filter(Student -> Student.Student_courses.equals(course))
             .collect(Collectors.toList());
     public  Instructor( ){

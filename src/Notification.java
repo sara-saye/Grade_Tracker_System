@@ -7,7 +7,7 @@ private ArrayList<Assignment> assignment = new ArrayList<Assignment>();
 private  ArrayList<Quiz> quiz = new ArrayList<Quiz>();
 private boolean New_grade;
 private boolean attendance;
-private float gpa;
+private double gpa;
 private String Event;
 
     public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment
@@ -29,7 +29,7 @@ private String Event;
     public void addAttendance(boolean attendance){
         this.attendance=attendance;
     }
-    public void addGpa(float gpa){
+    public void addGpa(double gpa){
         this.gpa=gpa;
     }
     public void addEvent(String event){
@@ -39,16 +39,20 @@ private String Event;
 
 
 public void Display_Notification(){
-    for (int i=0;i <= this.assignment.size();i++) {
-        System.out.println(assignment.get(i).getTitle());
-        System.out.println("Start Date: " + assignment.get(i).getAssignment_startDate());
-        System.out.println("Deadline: " + assignment.get(i).getAssignment_Deadline());
-        Duration diff = Duration.between(assignment.get(i).getAssignment_startDate().atStartOfDay(),assignment.get(i).getAssignment_Deadline().atStartOfDay());
-        long diffDays = diff.toDays();
-        System.out.println("Assignment ends at "+diffDays + " days");
-    }
-    for (int i=0;i<= this.quiz.size();i++) {
-        System.out.println(quiz.get(i).getTitle()+" "+ quiz.get(i).getDate());
+        if(!assignment.isEmpty()) {
+            for (int i = 0; i <= this.assignment.size(); i++) {
+                System.out.println(assignment.get(i).getTitle());
+                System.out.println("Start Date: " + assignment.get(i).getAssignment_startDate());
+                System.out.println("Deadline: " + assignment.get(i).getAssignment_Deadline());
+                Duration diff = Duration.between(assignment.get(i).getAssignment_startDate().atStartOfDay(), assignment.get(i).getAssignment_Deadline().atStartOfDay());
+                long diffDays = diff.toDays();
+                System.out.println("Assignment ends at " + diffDays + " days");
+            }
+        }
+    if(!quiz.isEmpty()) {
+        for (int i = 0; i <= this.quiz.size(); i++) {
+            System.out.println(quiz.get(i).getTitle() + " " + quiz.get(i).getDate());
+        }
     }
     if (this.New_grade){
         System.out.println("Your grades have been updated");
@@ -56,10 +60,10 @@ public void Display_Notification(){
     if (attendance){
         System.out.println("Warning content");
     }
-    if (gpa <= 1.5){
+    if (gpa <= 1.5&&gpa!=-1){
         System.out.println("Warning content");
     }
-    if (!Event.equals("NULL")){
+    if (Event != null){
         System.out.println(Event);
     }
 

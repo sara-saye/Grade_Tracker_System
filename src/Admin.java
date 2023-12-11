@@ -223,20 +223,20 @@ static Scanner input=new Scanner(System.in);
     public static void dropStudent()
     {
         Course course=new Course();
-        for(int studentIndex=0;studentIndex<Main.studentsArray.size();studentIndex++)
+        for(int studentIndex=0;studentIndex<Main.students.size();studentIndex++)
         {
-            if(Main.studentsArray.get(studentIndex).isGpaDrop() ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
-                    Main.studentsArray.get(studentIndex).isAttendanceDrop())
+            if(Main.students.get(studentIndex).isGpaDrop() ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
+                    Main.students.get(studentIndex).isAttendanceDrop())
             {
                 for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
                 {
                     for(int enrolledStudentsIndex=0;enrolledStudentsIndex<course.enrolledStudents.size();enrolledStudentsIndex++) {
-                        if (Main.courses.get(courseIndex).enrolledStudents.get(enrolledStudentsIndex).getID()==Main.studentsArray.get(studentIndex).getID()){
+                        if (Main.courses.get(courseIndex).enrolledStudents.get(enrolledStudentsIndex).getID()==Main.students.get(studentIndex).getID()){
                             Main.courses.get(courseIndex).enrolledStudents.remove(enrolledStudentsIndex);
                         }
                     }
                 }
-                Main.studentsArray.remove(studentIndex);
+                Main.students.remove(studentIndex);
             }
             else {
                 System.out.println(" No students to drop ");

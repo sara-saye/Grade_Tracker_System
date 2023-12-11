@@ -4,20 +4,17 @@ import java.util.Scanner;
 public class Main {
 static ArrayList<Course>courses=new ArrayList<>();
 static ArrayList<Instructor>instructors=new ArrayList<>();
-static ArrayList<Student>studentsArray=new ArrayList<>();
+static ArrayList<Student>students=new ArrayList<>();
     static ArrayList<FinalExam>finalExams=new ArrayList<>();
     static ArrayList<MidtermExam>midtermExams=new ArrayList<>();
     static ArrayList<Assignment>assignments=new ArrayList<>();
     static ArrayList<Quiz>quizzes=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
+     int studentId = 0, instructorId = 0;
         /*
         \\\\login by  id////
          */
-      int studentNo = 0, instructorNo = 0;
-
-        Student  [] students = new Student[100];
-        Instructor [] instructors = new Instructor[100];
 
         System.out.println("Already have an account?");
         System.out.println("1- Yes");
@@ -26,7 +23,7 @@ static ArrayList<Student>studentsArray=new ArrayList<>();
 
         if (account == 1) {
 
-            Form.LogIn(students,instructors,studentNo,instructorNo);
+            Form.LogIn(students,instructors);
 
         } else if (account == 2) {
             int who;
@@ -39,15 +36,23 @@ static ArrayList<Student>studentsArray=new ArrayList<>();
                     break;
                 System.out.println("Invalid Choice!Try Again.");
             }while (true);
-            if(who==1)
-                studentNo++;
-            else
-                instructorNo++;
+            Form.Registration(who,students,instructors,studentId,instructorId);
+            if (who==1){
+                instructors.get(instructorId).forSignIn();
+                instructorId++;
+            }else {
+                for (Student student:students) {
+                    System.out.println(student.getID());
+                    System.out.println(student.getUsername());
 
-            Form.Registration(who,students,instructors,studentNo,instructorNo);
+                }
+             //   Form.LogIn(students,instructors);
+                Student.Student_AfterLogin(studentId,students,courses);
+                        studentId++;
+            }
 
         } else {
-
+            System.out.println("Invalid Choice!Try Again.");
         }
       /*  Course course = new Course();
         course.courseTitle = "OOP";

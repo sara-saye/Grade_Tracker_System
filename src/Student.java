@@ -7,7 +7,7 @@ public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
-    private double GPA;
+    private double GPA=-1;
     private double expenses = 0;
     private boolean expenses_paid = false;
     public ArrayList<Course> Student_courses = new ArrayList<>();
@@ -130,9 +130,11 @@ public class Student extends Person {
     }
 
     public void RegisterForCourse(ArrayList<Course> courses) {
-        for (int i = 0; i < courses.size(); i++) {
-            System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
+        if(!courses.isEmpty()) {
+            for (int i = 0; i < courses.size(); i++) {
+                System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
 
+            }
         }
         System.out.println("Which Course You Want To Register For? ");
         int answer = input.nextInt();//validation
@@ -160,7 +162,7 @@ public class Student extends Person {
         System.out.println("Phone Number:");
         System.out.println(this.getPhoneNumber());
         System.out.println("User Name:");
-        System.out.println(this.getUsername());
+        System.out.println(this.getUsername().replaceAll("@Student",""));
         System.out.println("ID:");
         System.out.println(this.getID());
     }
@@ -214,12 +216,13 @@ public class Student extends Person {
             totalHours+=Student_courses.get(i).credits;
         }
         GPA=(sum/totalHours);
+        this.notification.addGpa(GPA);
         return GPA;
     }
 
 
 
-    public void Student_AfterLogin(int ID,ArrayList<Student> Students,ArrayList<Course> courses){
+    public static void Student_AfterLogin(int ID,ArrayList<Student> Students,ArrayList<Course> courses){
         int ans,ans1,ans2;
         do{
             System.out.println("1- Profile");
