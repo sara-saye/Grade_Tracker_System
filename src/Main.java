@@ -11,11 +11,8 @@ static ArrayList<Assignment>assignments=new ArrayList<>();
 static ArrayList<Quiz>quizzes=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
-     int studentId = 0, instructorId = 0;
-        /*
-        \\\\login by  id////
-         */
 
+     int studentId = 0, instructorId = 0;
         System.out.println("Already have an account?");
         System.out.println("1- Yes");
         System.out.println("2- No\n");

@@ -6,22 +6,49 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
-    public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
     private double GPA=-1;
     private double expenses = 0;
     private boolean expenses_paid = false;
     public ArrayList<Course> Student_courses = new ArrayList<>();
-   // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
-    private int NoOfCourses = Student_courses.size();//test
-    public boolean[][]attendance = new boolean[NoOfCourses][10];
-    public int getNoOfCourses() {
-        return NoOfCourses;
-    }
-    private Notification notification = new Notification();
-    public ArrayList<Double> ZScore = new ArrayList<Double>();
+    private int NoOfCourses = Student_courses.size();  //test
+    public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();   //lsa
+    // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
+    public boolean[][]attendance = new boolean[NoOfCourses][10];   // lsa
+    private Notification notification = new Notification();   //lsa
+    public ArrayList<Double> ZScore = new ArrayList<Double>();   //lsa
     private boolean attendanceDrop;
     private boolean gpaDrop;
 
+
+    public void setNoOfCourses(int noOfCourses) {
+        NoOfCourses = noOfCourses;
+    }
+
+    public double getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(double expenses) {
+        this.expenses = expenses;
+    }
+    public boolean isExpenses_paid() {
+        return expenses_paid;
+    }
+
+    public void setExpenses_paid(boolean expenses_paid) {
+        this.expenses_paid = expenses_paid;
+    }
+    public double getGPA() {
+        return GPA;
+    }
+
+    public void setGPA(double GPA) {
+        this.GPA = GPA;
+    }
+
+    public int getNoOfCourses() {
+        return NoOfCourses;
+    }
 
     public boolean isAttendanceDrop() {
         return attendanceDrop;
@@ -220,8 +247,6 @@ public class Student extends Person {
         return GPA;
     }
 
-
-
     public static void Student_AfterLogin(int ID,ArrayList<Student> Students,ArrayList<Course> courses){
         int ans,ans1,ans2;
         do{
@@ -286,11 +311,14 @@ public class Student extends Person {
                 System.out.println("Error! Please enter numeric values");
             }}while (ans<1||ans>4);
     }
-    public  String toString()
+    public String toString()
     {
-        return  getFname()+","+getLname()+","+getID()+","+getEmail()+","+getUsername()+","+getPassword()+
+        String s=getFname()+","+getLname()+","+getID()+","+getEmail()+","+getUsername()+","+getPassword()+
                 ","+getPhoneNumber()+","+GPA+","+expenses+","+expenses_paid+","+gpaDrop+","+attendanceDrop+
                 ","+NoOfCourses;
-
+        for (Course course:Student_courses) {
+            s+=(","+course.getCourseCode());
+        }
+        return s;
     }
 }

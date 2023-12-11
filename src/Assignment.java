@@ -4,9 +4,9 @@ public class Assignment extends Test {
     private LocalDate Assignment_startDate;
     private LocalDate Assignment_Deadline;
 
-    public Assignment() {
-    }
+   public Assignment(){
 
+   }
     public Assignment(LocalDate Assignment_startDate, LocalDate Assignment_Deadline) {
         this.Assignment_startDate = Assignment_startDate;
         this.Assignment_Deadline = Assignment_Deadline;
