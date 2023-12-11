@@ -1,8 +1,21 @@
+
 import java.util.Scanner;
 
 public class Admin extends Person {
 static Scanner input=new Scanner(System.in);
     public static void login()
+import java.util.ArrayList;
+public class Admin extends Person{
+    String eventDetails;
+    ArrayList<Course>courses=new ArrayList<>();
+    ArrayList<Instructor>instructors=new ArrayList<>();
+    public Admin (){}
+    public Admin (String Fname,String Lname,int ID){  //>>ID should be string
+        super(Fname,Lname);
+        this.setID(ID);
+    }
+    public void addCourse(String courseCode, String courseTitle, int credits, String department, String description)  //>>pass these parameters from main
+>>>>>>> Stashed changes
     {
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
@@ -199,17 +212,22 @@ static Scanner input=new Scanner(System.in);
         }
 
     }
+<<<<<<< Updated upstream
     public  static void dropInstructor(int instructorId)
     {
+=======
+
+    public void deleteInstructor(int instructorId) {
+>>>>>>> Stashed changes
         deleteDeletedInstructorFromTheCourse(instructorId);
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-            if(Main.instructors.get(instrcutorIndex).getID()==instructorId)
-            {
+            if (Main.instructors.get(instrcutorIndex).getID() == instructorId) {
                 Main.instructors.remove(instrcutorIndex);
             }
         }
 
     }
+<<<<<<< Updated upstream
     public static void deleteDeletedInstructorFromTheCourse(int instructorId)
     {
         for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++ )
@@ -225,8 +243,29 @@ static Scanner input=new Scanner(System.in);
         Course course=new Course();
         for(int studentIndex=0;studentIndex<Main.students.size();studentIndex++)
         {
+<<<<<<< HEAD
             if(Main.students.get(studentIndex).isGpaDrop() ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
                     Main.students.get(studentIndex).isAttendanceDrop())
+=======
+            if(Main.studentsArray.get(studentIndex).isGpaDrop() ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
+                    Main.studentsArray.get(studentIndex).isAttendanceDrop())
+=======
+
+    public void deleteDeletedInstructorFromTheCourse(int instructorId) {
+        for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
+            if (Main.courses.get(courseIndex).assignedInstructor.getID() == instructorId) {
+                Main.courses.get(courseIndex).assignedInstructor = null;
+            }
+        }
+    }
+
+    public void dropStudent() {
+        Course course = new Course();
+        for (int studentIndex = 0; studentIndex < Main.studentsArray.size(); studentIndex++) {
+           /* if(Main.studentsArray.get(studentIndex).gpaDrop == true ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
+           Main.studentsArray.get(studentIndex).attendanceDrop == true)
+>>>>>>> Stashed changes
+>>>>>>> b9502fbb8fd58385fcf464faeede8ac598722155
             {
                 for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
                 {
