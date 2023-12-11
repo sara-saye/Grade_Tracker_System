@@ -286,4 +286,11 @@ public class Student extends Person {
                 System.out.println("Error! Please enter numeric values");
             }}while (ans<1||ans>4);
     }
+    public  String toString()
+    {
+        return  getFname()+","+getLname()+","+getID()+","+getEmail()+","+getUsername()+","+getPassword()+
+                ","+getPhoneNumber()+","+GPA+","+expenses+","+expenses_paid+","+gpaDrop+","+attendanceDrop+
+                ","+NoOfCourses;
+
+    }
 }

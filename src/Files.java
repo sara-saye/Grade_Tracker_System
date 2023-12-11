@@ -12,7 +12,7 @@ public class Files   {
     static File midtermExamFile =new File("midtermExam.txt");
     static File assignmentFile =new File("assignment.txt");
     static File quizFile =new File("quiz.txt");
-
+    static File StudentFile =new File("Student.txt");
 
     public static void readInstructor () throws IOException {
         StringTokenizer token = null;
@@ -339,6 +339,17 @@ public class Files   {
         quizBW.flush();
         quizBW.close();
     }
+    public  static void writeStudent() throws IOException {
+        BufferedWriter quizBW=new BufferedWriter(new FileWriter(StudentFile));
+        for(Student student:Main.students)
+        {
+            quizBW.write(.toString());
+            quizBW.newLine();
+        }
+        quizBW.flush();
+        quizBW.close();
+    }
+
 
 
 }
