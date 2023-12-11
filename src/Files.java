@@ -13,6 +13,7 @@ public class Files   {
     static File assignmentFile =new File("assignment.txt");
     static File quizFile =new File("quiz.txt");
     static File StudentFile =new File("Student.txt");
+    static File GradesFile =new File("Grades.txt");
 
     public static void readInstructor () throws IOException {
         StringTokenizer token = null;
@@ -349,23 +350,19 @@ public class Files   {
         StudentBW.flush();
         StudentBW.close();
     }
+    public  static void writeGrades() throws IOException {
+        BufferedWriter gradesBW=new BufferedWriter(new FileWriter(GradesFile));
+        for(Student student:Main.students)
+        {
+            gradesBW.write(student.GradesToString());
+            gradesBW.newLine();
+        }
+        gradesBW.flush();
+        gradesBW.close();
+    }
     public static void readStudents() throws IOException {
         StringTokenizer token = null;
         BufferedReader StudentBR=new BufferedReader(new FileReader(StudentFile));
-
-//        String firstName="";
-//        String lastName="";
-//        int id=0;
-//        String email="";
-//        String UserName="";
-//        String password="";
-//        String PhoneNumber="";
-//        double GPA;
-//        double expenses;
-//        boolean expensesPaid;
-//        boolean GpaDrop;
-//        boolean AttendanceDrop;
-//        int NoOfCourses;
         String line="" ;
         int i=0;
         while((line = StudentBR.readLine())!=null)
@@ -386,6 +383,39 @@ public class Files   {
             student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
             student.setNoOfCourses(Integer.parseInt(token.nextToken()));
             Main.students.add(student);
+            i++;
+        }
+        StudentBR.close();
+    }
+    public static void readGrades() throws IOException {
+        StringTokenizer token = null;
+        BufferedReader StudentBR=new BufferedReader(new FileReader(GradesFile));
+        String line="" ;
+        int i=0;
+        int id;
+        int corsecode;
+
+        while((line = StudentBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            StudentGrades studentGrade=new StudentGrades();
+            id=Integer.parseInt(token.nextToken());
+            corsecode=Integer.parseInt(token.nextToken());
+
+            studentGrade.(token.nextToken());
+            student.setLname(token.nextToken());
+            student.setID(Integer.parseInt(token.nextToken()));
+            student.setEmail(token.nextToken());
+            student.setUsername(token.nextToken());
+            student.setPassword(token.nextToken());
+            student.setPhoneNumber(token.nextToken());
+            student.setGPA(Double.parseDouble(token.nextToken()));
+            student.setExpenses(Double.parseDouble(token.nextToken()));
+            student.setExpenses_paid(Boolean.parseBoolean(token.nextToken()));
+            student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
+            student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
+            student.setNoOfCourses(Integer.parseInt(token.nextToken()));
+            Main.students.get(i).Student_Grades.add(studentGrade);
             i++;
         }
         StudentBR.close();

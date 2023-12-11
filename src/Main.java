@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,7 +12,8 @@ static ArrayList<MidtermExam>midtermExams=new ArrayList<>();
 static ArrayList<Assignment>assignments=new ArrayList<>();
 static ArrayList<Quiz>quizzes=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Files.readStudents();
 
      int studentId = 0, instructorId = 0;
         System.out.println("Already have an account?");
@@ -82,6 +85,7 @@ static ArrayList<Quiz>quizzes=new ArrayList<>();
         int num=input.nextInt();
         Instructor instructor= new Instructor(n,l,off,dep,num);
         instructorMenu(instructor);*/
+        Files.writeStudents();
     }
     public static void instructorMenu(Instructor instructor){
         System.out.println("1-Show your information\n2-Edit your information");
@@ -125,6 +129,8 @@ static ArrayList<Quiz>quizzes=new ArrayList<>();
             default:
                 System.out.println("Invalid choice");
         }
+
     }
+
 
 }

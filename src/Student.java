@@ -11,11 +11,10 @@ public class Student extends Person {
     private boolean expenses_paid = false;
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses = Student_courses.size();  //test
-    public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();   //lsa
-    // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
+    public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
     public boolean[][]attendance = new boolean[NoOfCourses][10];   // lsa
     private Notification notification = new Notification();   //lsa
-    public ArrayList<Double> ZScore = new ArrayList<Double>();   //lsa
+    public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
     private boolean gpaDrop;
 
@@ -320,5 +319,17 @@ public class Student extends Person {
             s+=(","+course.getCourseCode());
         }
         return s;
+    }
+    public String GradesToString(){
+        String a=null;
+        if(!Student_Grades.isEmpty()) {
+            for (  int i=0;i<Student_Grades.size();i++) {
+
+                a =getID()+","+Student_courses.get(i).getCourseCode()+","+ Student_Grades.get(i).getMidTermGrade()
+                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAssignmentGrade()
+                        + ","+ ZScore.get(i);
+            }
+        }
+        return a;
     }
 }
