@@ -22,29 +22,33 @@
             System.out.println("Email : ");
             String Email = input.next();
 
-            System.out.println("Username : ");
+            System.out.println("Username : "); // check if username exist
             String UserName = input.next();
 
             System.out.println("Password : ");
             String Password = input.next();
 
+            System.out.println("Phone Number : ");
+            String PhoneNo = input.next();
+
             if(who==1) {
-                instructorNo++;
                 Instructor instructor = new Instructor();
                 instructor.setEmail(Email);
                 instructor.setUsername(UserName+"@Instructor");
                 instructor.setPassword(Password);
+                instructor.setPhoneNumber(PhoneNo);
                 //instructor.setID(instructorNo);
                 instructor.forSignUp();
                 instructors[instructorNo] = instructor;
+                instructorNo++;
             } else if(who==2){
-                studentNo++;
                 Student student = new Student();
                 student.setEmail(Email);
                 student.setUsername(UserName+"@Student");
                 student.setPassword(Password);
                 student.setID(studentNo);
                 students[studentNo] = student;
+                studentNo++;
             }
         }
 

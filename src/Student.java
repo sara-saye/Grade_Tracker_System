@@ -10,29 +10,13 @@ public class Student extends Person {
     private double GPA;
     private double expenses = 0;
     private boolean expenses_paid = false;
-
-
-    public boolean[][]attendance = new boolean[10][];
     public ArrayList<Course> Student_courses = new ArrayList<>();
-    private int NoOfCourses = Student_courses.size();
    // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
-
-    public boolean[][] attendance = new boolean[10][];
-
-    public ArrayList<Course> Student_courses = new ArrayList<>();
-    private int NoOfCourses = Student_courses.size();
-
-
+    private int NoOfCourses = Student_courses.size();//test
     public boolean[][]attendance = new boolean[NoOfCourses][10];
-
     public int getNoOfCourses() {
         return NoOfCourses;
     }
-
-
-    private int NoOfCourses = Student_courses.size();//test
-
-
     private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
@@ -68,8 +52,6 @@ public class Student extends Person {
         super(Fname, Lname);
         this.setID(id);
     }
-
-    public void ViewStudentPerformance() {}
 
     public void DisplayCurrentCourses(){
         for (int i = 0; i < NoOfCourses; i++) {
@@ -146,12 +128,6 @@ public class Student extends Person {
             } while (true);
         }
     }
-
-    public void AddCourse(ArrayList<Course> courses) {
-
-        for(int i=0;i<courses.size();i++){
-            System.out.println((i+1)+":"+courses.get(i).courseTitle);
-
 
     public void RegisterForCourse(ArrayList<Course> courses) {
         for (int i = 0; i < courses.size(); i++) {
@@ -243,41 +219,68 @@ public class Student extends Person {
 
 
 
-//    public void Student_AfterLogin(int ID){
-//        System.out.println("1- Profile");
-//        System.out.println("2- Study Services");
-//        System.out.println("3- Payments record");
-//        if(students.get(ID))
-//            System.out.println("Press 4 to see notifications");
-//        int ans = input.nextInt();
-//        try {
-//            switch (ans){
-//                case 1:
-//                    System.out.println("Name:");
-//                    System.out.println(students.get(ID).getFname+" "+students.get(ID).getLname);
-//                    System.out.println("Email:");
-//                    System.out.println(students.get(ID).getEmail);
-//                    System.out.println("Phone Number:");
-//                    System.out.println();
-//                    System.out.println("User Name:");
-//                    System.out.println(students.get(ID).getUsername);
-//                    System.out.println("ID:");
-//                    System.out.println(ID);
-//                    System.out.println("Press 1 to edit information");
-//                    break;
-//                case 2:
-//                    System.out.println("1- Current Course");
-//                    System.out.println("2- Grades");
-//                    System.out.println("3- Course Registration");
-//                    System.out.println("4- Performance ");// stat analysis,attendance report,comments and feedback
-//
-//
-//                case 3:
-//
-//            }
-//        }catch (InputMismatchException exception){
-//            System.out.println("Error! Please enter numeric values");
-//        }
-//    }
-
+    public void Student_AfterLogin(int ID,ArrayList<Student> Students,ArrayList<Course> courses){
+        int ans,ans1,ans2;
+        do{
+            System.out.println("1- Profile");
+            System.out.println("2- Study Services");
+            System.out.println("3- Payments record");
+            if(Students.get(ID).getNotification()!=null) {
+                Students.get(ID).ViewEvents();
+            }
+            ans = input.nextInt();
+            try {
+                switch (ans) {
+                    case 1:
+                        Students.get(ID).DisplayInfo();
+                        do {
+                            System.out.println("Press 1 to edit information");
+                            System.out.println("Press 2 to return to list");
+                            ans1 = input.nextInt();
+                            switch (ans1) {
+                                case 1:
+                                    Students.get(ID).Edit_Info();
+                                    break;
+                                case 2:
+                                    Student_AfterLogin(ID,Students,courses);
+                                    break;
+                                default:
+                                    System.out.println("Invalid! Try Again.");
+                            }
+                        }while (ans1!=1&&ans1!=2);
+                        break;
+                    case 2:
+                        do {
+                            System.out.println("1- Current Course");
+                            System.out.println("2- Grades");
+                            System.out.println("3- Course Registration");
+                            System.out.println("4- Performance ");// stat analysis,attendance report,comments and feedback
+                            ans2 = input.nextInt();
+                            switch (ans2) {
+                                case 1:
+                                    Students.get(ID).DisplayCurrentCourses();
+                                    break;
+                                case 2:
+                                    Students.get(ID).ViewGrades();
+                                    break;
+                                case 3:
+                                    Students.get(ID).RegisterForCourse(courses);
+                                    break;
+                                case 4:
+                                    Students.get(ID).ViewStudentPerformance();
+                                    break;
+                                default:
+                                    System.out.println("Invalid Choice!Try Again.");
+                            }
+                        }while (ans2<1||ans2>4);
+                    case 3:
+                        Students.get(ID).Payment();
+                        break;
+                    default:
+                        System.out.println("Invalid Choice!Try Again.");
+                }
+            }catch (InputMismatchException exception){
+                System.out.println("Error! Please enter numeric values");
+            }}while (ans<1||ans>4);
+    }
 }

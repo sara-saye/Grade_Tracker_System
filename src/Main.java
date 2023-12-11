@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Main {
 static ArrayList<Course>courses=new ArrayList<>();
@@ -72,5 +73,7 @@ static ArrayList<Student>studentsArray=new ArrayList<>();
         student1.ViewGrades();
         student2.ViewGrades();
         student3.ViewGrades();*/
+
     }
+
 }
