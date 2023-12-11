@@ -318,7 +318,7 @@ public class Instructor extends Person{
                             if (assignmentGrade > 20) {
                                 System.out.println("Invalid grade\nEnter grade less than or equal 20");
                             } else if (assignmentGrade <= 20) {
-                                student.Student_Grades[courseIndex].setAssignmentGrade(0, assignmentGrade);
+                            //    student.Student_Grades[courseIndex].setAssignmentGrade(0, assignmentGrade);
                                 break;
                             }
                         }
@@ -333,7 +333,7 @@ public class Instructor extends Person{
                                 System.out.println("Invalid grade\nEnter grade less than or equal " + assignmentgrade);
                             }
                             if (assignmentGrade <= assignmentgrade) {
-                                student.Student_Grades[courseIndex].setAssignmentGrade(assignmentNumber, assignmentGrade);
+                              //  student.Student_Grades[courseIndex].setAssignmentGrade(assignmentNumber, assignmentGrade);
                                 break;
                             }
                         }
@@ -348,7 +348,7 @@ public class Instructor extends Person{
                             if (quizGrade > 20) {
                                 System.out.println("Invalid grade\nEnter grade less than or equal 10");
                             } else if (quizGrade <= 20) {
-                                student.Student_Grades[courseIndex].setQuizGrade(0, quizGrade);
+                              //  student.Student_Grades[courseIndex].setQuizGrade(0, quizGrade);
                                 break;
                             }
                         }
@@ -363,7 +363,7 @@ public class Instructor extends Person{
                                 System.out.println("Invalid grade\nEnter grade less than or equal " + quizgrade);
                             }
                             if (quizGrade <= quizgrade) {
-                                student.Student_Grades[courseIndex].setQuizGrade(quizNumber, quizGrade);
+                            //    student.Student_Grades[courseIndex].setQuizGrade(quizNumber, quizGrade);
                                 break;
                             }
                         }
@@ -376,7 +376,7 @@ public class Instructor extends Person{
                         if (midtermGrade > 15) {
                             System.out.println("Invalid grade\nEnter grade less than or equal 15");
                         } else if (midtermGrade <= 15) {
-                            student.Student_Grades[courseIndex].setMidTermGrade(midtermGrade);
+                        //    student.Student_Grades[courseIndex].setMidTermGrade(midtermGrade);
                             break;
                         }
                     }
@@ -393,7 +393,7 @@ public class Instructor extends Person{
                         if (finalGrade > 50) {
                             System.out.println("Invalid grade\nEnter grade less than or equal 50");
                         } else if (finalGrade <= 50) {
-                            student.Student_Grades[courseIndex].setFinalGrade(finalGrade);
+                        //    student.Student_Grades[courseIndex].setFinalGrade(finalGrade);
                             break;
                         }
                     }
@@ -481,11 +481,11 @@ public class Instructor extends Person{
             //Notification notification = new Notification();
             //notification.addAttendance(true);
             //  student.setNotification(notification);
-            student.Student_Grades[0].setAttendanceGrade(2);
+            //student.Student_Grades[0].setAttendanceGrade(2);
         } else if (attndance_sum < 3) {
-            student.Student_Grades[0].setAttendanceGrade(0);
+           // student.Student_Grades[0].setAttendanceGrade(0);
         } else {
-            student.Student_Grades[0].setAttendanceGrade(5);
+           // student.Student_Grades[0].setAttendanceGrade(5);
         }
     }
     private int findindexs(Student student){
@@ -513,7 +513,7 @@ public class Instructor extends Person{
         }
     }
     private void filterStudents(){
-        for(Student student : Main.studentsArray){
+        for(Student student : Main.students){
             for(Course c:student.Student_courses){
                 if(c.equals(course)){
                     students.add(student);
