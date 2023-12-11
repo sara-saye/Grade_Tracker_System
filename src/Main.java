@@ -54,7 +54,6 @@ static ArrayList<Student>students=new ArrayList<>();
         } else {
             System.out.println("Invalid Choice!Try Again.");
         }
-<<<<<<< Updated upstream
       /*  Course course = new Course();
         course.courseTitle = "OOP";
         course.setCourseCode("5465");
@@ -80,7 +79,7 @@ static ArrayList<Student>students=new ArrayList<>();
         student2.ViewGrades();
         student3.ViewGrades();*/
 
-=======
+
         //test case for Instructor skip
         /*String n=input.next(),l=input.next(),off=input.next(),dep=input.next();
         int num=input.nextInt();
@@ -129,7 +128,6 @@ static ArrayList<Student>students=new ArrayList<>();
             default:
                 System.out.println("Invalid choice");
         }
->>>>>>> Stashed changes
     }
 
 }
