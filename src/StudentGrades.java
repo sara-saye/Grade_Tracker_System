@@ -6,6 +6,7 @@ public class StudentGrades{
     private  double midTermGrade;
     private  double finalGrade;
     private double attendanceGrade;
+
     public StudentGrades(){}
     public StudentGrades(double assignmentGrade, double quizGrade, double midTermGrade, double finalGrade, double attendanceGrade){
 //            this.assignmentGrade=assignmentGrade; //20
