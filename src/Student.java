@@ -12,8 +12,8 @@ public class Student extends Person {
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses = Student_courses.size();  //test
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
-    public boolean[][]attendance = new boolean[NoOfCourses][10];   // lsa
-    private Notification notification = new Notification();   //lsa
+    public boolean[][]attendance = new boolean[NoOfCourses][10];
+    private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
     private boolean gpaDrop;
@@ -321,15 +321,40 @@ public class Student extends Person {
         return s;
     }
     public String GradesToString(){
-        String a=null;
+        String a="";
         if(!Student_Grades.isEmpty()) {
             for (  int i=0;i<Student_Grades.size();i++) {
-
-                a =getID()+","+Student_courses.get(i).getCourseCode()+","+ Student_Grades.get(i).getMidTermGrade()
-                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAssignmentGrade()
+                a =getID()+","+ Student_Grades.get(i).getMidTermGrade()
+                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAttendanceGrade()
                         + ","+ ZScore.get(i);
+                if(!Student_Grades.get(i).assignmentGrade.isEmpty()) {
+                    a+=",";
+                    for (int j=0;j<Student_Grades.get(i).assignmentGrade.size();j++) {
+                        a +=Student_Grades.get(i).assignmentGrade.get(j) ;
+                        if(j!=Student_Grades.get(i).assignmentGrade.size()-1)
+                            a +="-";
+                    }
+                }
+                if(!Student_Grades.get(i).quizGrade.isEmpty()) {
+                    a+=",";
+                    for (int j=0;j<Student_Grades.get(i).quizGrade.size();j++) {
+                        a +=Student_Grades.get(i).quizGrade.get(j) ;
+                        if(j!=Student_Grades.get(i).quizGrade.size()-1)
+                            a +="-";
+                    }
+                }
             }
         }
         return a;
+    }
+
+    public String AttendanceToString(){
+        String s=String.valueOf(getID());
+        for (int i=0;i<NoOfCourses;i++){
+            for(int j=0;j<10;j++){
+                s+=(","+attendance[i][j]);
+            }
+        }
+        return s;
     }
 }

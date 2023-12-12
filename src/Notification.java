@@ -66,8 +66,27 @@ public void Display_Notification(){
     if (Event != null){
         System.out.println(Event);
     }
-
-
 }
+    public String NotificationToString(){
+        String a=New_grade+","+attendance+","+gpa+","+Event;
+        if(!assignment.isEmpty()) {
+            a+=",";
+            for (int j=0;j<assignment.size();j++) {
+                a +=assignment.get(j);
+                if(j!=assignment.size()-1)
+                    a +="-";
+            }
+        }
+        if(!Student_Grades.get(i).quizGrade.isEmpty()) {
+            a+=",";
+            for (int j=0;j<Student_Grades.get(i).quizGrade.size();j++) {
+                a +=Student_Grades.get(i).quizGrade.get(j) ;
+                if(j!=Student_Grades.get(i).quizGrade.size()-1)
+                    a +="-";
+            }
+        }
+
+
+    }
 
 }
