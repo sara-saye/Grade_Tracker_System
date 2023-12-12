@@ -8,13 +8,13 @@ public class StudentGrades{
     private double attendanceGrade;
 
     public StudentGrades(){}
-    public StudentGrades(double assignmentGrade, double quizGrade, double midTermGrade, double finalGrade, double attendanceGrade){
-//            this.assignmentGrade=assignmentGrade; //20
-//            this.quizGrade=quizGrade;             //10
-        this.midTermGrade=midTermGrade;       //15
-        this.finalGrade=finalGrade;           //50
-        this.attendanceGrade=attendanceGrade; //5
-    }
+//    public StudentGrades(double assignmentGrade, double quizGrade, double midTermGrade, double finalGrade, double attendanceGrade){
+////            this.assignmentGrade=assignmentGrade; //20
+////            this.quizGrade=quizGrade;             //10
+//        this.midTermGrade=midTermGrade;       //15
+//        this.finalGrade=finalGrade;           //50
+//        this.attendanceGrade=attendanceGrade; //5
+//    }
     public void setAssignmentGrade(int index,double assgrade) {
         assignmentGrade.add(index,assgrade);
     }
@@ -57,7 +57,7 @@ public class StudentGrades{
         double totalMark=(this.getAssignmentGrade() + this.getQuizGrade() + midTermGrade + finalGrade + attendanceGrade);
         return totalMark;
     }
-    public double Calcscale(){//esraa
+    public double Calcscale(){
         double scale;
         double totalMark=this.CalcTotalGrade();
         if(totalMark<=100 && totalMark>=93){

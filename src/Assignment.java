@@ -3,20 +3,20 @@ import java.time.LocalDate;
 public class Assignment extends Test {
     private LocalDate Assignment_startDate;
     private LocalDate Assignment_Deadline;
-    String courseCode;
-    public Assignment() {}
 
-    public Assignment(LocalDate Assignment_startDate, LocalDate Assignment_Deadline)
-    {
+   public Assignment(){
+
+   }
+    public Assignment(LocalDate Assignment_startDate, LocalDate Assignment_Deadline) {
         this.Assignment_startDate = Assignment_startDate;
         this.Assignment_Deadline = Assignment_Deadline;
+
     }
 
-    public Assignment(int id, String Title, int max_score, String date, String Assignment_startDate, String assignment_Deadline,String courseCode) {
+    public Assignment(int id, String Title, int max_score, String date, String Assignment_startDate, String assignment_Deadline) {
         super(id, Title, max_score, date);
         this.Assignment_startDate = LocalDate.parse(Assignment_startDate);
         this.Assignment_Deadline = LocalDate.parse(assignment_Deadline);
-        this.courseCode=courseCode;
     }
 
     public void setAssignment_startDate(LocalDate assignment_startDate) {
@@ -36,6 +36,6 @@ public class Assignment extends Test {
     }
     public String toString()
     {
-       return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline+","+courseCode;
+        return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline;
     }
 }

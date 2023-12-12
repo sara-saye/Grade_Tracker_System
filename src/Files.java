@@ -12,7 +12,8 @@ public class Files   {
     static File midtermExamFile =new File("midtermExam.txt");
     static File assignmentFile =new File("assignment.txt");
     static File quizFile =new File("quiz.txt");
-
+    static File StudentFile =new File("Student.txt");
+    static File GradesFile =new File("Grades.txt");
 
     public static void readInstructor () throws IOException {
         StringTokenizer token = null;
@@ -178,33 +179,33 @@ public class Files   {
         courseBR.close();
 
     }
-    public static void readAssignment() throws IOException {
-        StringTokenizer token = null;
-        BufferedReader assignmentBR=new BufferedReader(new FileReader(assignmentFile));
-        int ID=0;
-        String Title="" ;
-        int Max_score=0;
-        String Date="";
-        String Assignment_startDate="";
-        String Assignment_Deadline="";
-        String assignmentCourseCode="";
-        String line="";
-        while((line =  assignmentBR.readLine())!=null)
-        {
-            token =new StringTokenizer(line,",");
-            ID = Integer.parseInt(token.nextToken());
-            Title=token.nextToken();
-            Max_score=Integer.parseInt(token.nextToken());
-            Date =token.nextToken();
-            Assignment_startDate= token.nextToken();
-            Assignment_Deadline=token.nextToken();
-            assignmentCourseCode=token.nextToken();
-            Assignment assignment=new Assignment(ID,Title,Max_score,Date,Assignment_startDate,Assignment_Deadline,assignmentCourseCode);
-            Main.assignments.add(assignment);
-        }
-        assignmentBR.close();
-
-    }
+//    public static void readAssignment() throws IOException {
+//        StringTokenizer token = null;
+//        BufferedReader assignmentBR=new BufferedReader(new FileReader(assignmentFile));
+//        int ID=0;
+//        String Title="" ;
+//        int Max_score=0;
+//        String Date="";
+//        String Assignment_startDate="";
+//        String Assignment_Deadline="";
+//        String assignmentCourseCode="";
+//        String line="";
+//        while((line =  assignmentBR.readLine())!=null)
+//        {
+//            token =new StringTokenizer(line,",");
+//            ID = Integer.parseInt(token.nextToken());
+//            Title=token.nextToken();
+//            Max_score=Integer.parseInt(token.nextToken());
+//            Date =token.nextToken();
+//            Assignment_startDate= token.nextToken();
+//            Assignment_Deadline=token.nextToken();
+//            assignmentCourseCode=token.nextToken();
+//            Assignment assignment=new Assignment(ID,Title,Max_score,Date,Assignment_startDate,Assignment_Deadline,assignmentCourseCode);
+//            Main.assignments.add(assignment);
+//        }
+//        assignmentBR.close();
+//
+//    }
 
     public static void readQuiz() throws IOException {
         StringTokenizer token = null;
@@ -244,19 +245,19 @@ public class Files   {
             }
         }
     }
-    public static void assignmentAndCourseRelation()
-    {
-        for(int assignmentIndex=0;assignmentIndex<Main.assignments.size();assignmentIndex++)
-        {
-            for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
-            {
-                if(Main.assignments.get(assignmentIndex).courseCode.equals(Main.courses.get(courseIndex).getCourseCode()))
-                {
-                    Main.courses.get(courseIndex).assignedAssignment.add(Main.assignments.get(assignmentIndex));
-                }
-            }
-        }
-    }
+//    public static void assignmentAndCourseRelation()
+//    {
+//        for(int assignmentIndex=0;assignmentIndex<Main.assignments.size();assignmentIndex++)
+//        {
+//            for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
+//            {
+//                if(Main.assignments.get(assignmentIndex).courseCode.equals(Main.courses.get(courseIndex).getCourseCode()))
+//                {
+//                    Main.courses.get(courseIndex).assignedAssignment.add(Main.assignments.get(assignmentIndex));
+//                }
+//            }
+//        }
+//    }
     public static void quizAndCourseRelation()
     {
         for(int quizIndex=0;quizIndex<Main.quizzes.size();quizIndex++)
@@ -339,6 +340,84 @@ public class Files   {
         quizBW.flush();
         quizBW.close();
     }
+    public  static void writeStudents() throws IOException {
+        BufferedWriter StudentBW=new BufferedWriter(new FileWriter(StudentFile));
+        for(Student student:Main.students)
+        {
+            StudentBW.write(student.toString());
+            StudentBW.newLine();
+        }
+        StudentBW.flush();
+        StudentBW.close();
+    }
+    public  static void writeGrades() throws IOException {
+        BufferedWriter gradesBW=new BufferedWriter(new FileWriter(GradesFile));
+        for(Student student:Main.students)
+        {
+            gradesBW.write(student.GradesToString());
+            gradesBW.newLine();
+        }
+        gradesBW.flush();
+        gradesBW.close();
+    }
+    public static void readStudents() throws IOException {
+        StringTokenizer token = null;
+        BufferedReader StudentBR=new BufferedReader(new FileReader(StudentFile));
+        String line="" ;
+        int i=0;
+        while((line = StudentBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            Student student=new Student();
+            student.setFname(token.nextToken());
+            student.setLname(token.nextToken());
+            student.setID(Integer.parseInt(token.nextToken()));
+            student.setEmail(token.nextToken());
+            student.setUsername(token.nextToken());
+            student.setPassword(token.nextToken());
+            student.setPhoneNumber(token.nextToken());
+            student.setGPA(Double.parseDouble(token.nextToken()));
+            student.setExpenses(Double.parseDouble(token.nextToken()));
+            student.setExpenses_paid(Boolean.parseBoolean(token.nextToken()));
+            student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
+            student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
+            student.setNoOfCourses(Integer.parseInt(token.nextToken()));
+            Main.students.add(student);
+            i++;
+        }
+        StudentBR.close();
+    }
+    public static void readGrades() throws IOException {
+        StringTokenizer token = null;
+        BufferedReader StudentBR=new BufferedReader(new FileReader(GradesFile));
+        String line="" ;
+        int i=0;
+        int id;
+        int corsecode;
 
+        while((line = StudentBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            StudentGrades studentGrade=new StudentGrades();
+            id=Integer.parseInt(token.nextToken());
+            corsecode=Integer.parseInt(token.nextToken());
 
+            studentGrade.(token.nextToken());
+            student.setLname(token.nextToken());
+            student.setID(Integer.parseInt(token.nextToken()));
+            student.setEmail(token.nextToken());
+            student.setUsername(token.nextToken());
+            student.setPassword(token.nextToken());
+            student.setPhoneNumber(token.nextToken());
+            student.setGPA(Double.parseDouble(token.nextToken()));
+            student.setExpenses(Double.parseDouble(token.nextToken()));
+            student.setExpenses_paid(Boolean.parseBoolean(token.nextToken()));
+            student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
+            student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
+            student.setNoOfCourses(Integer.parseInt(token.nextToken()));
+            Main.students.get(i).Student_Grades.add(studentGrade);
+            i++;
+        }
+        StudentBR.close();
+    }
 }

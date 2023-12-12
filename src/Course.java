@@ -16,8 +16,6 @@ public class Course {
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     private double mean;
     private double StandardDeviation; //if used
-
-
     public Course () {}
     public Course(String courseCode,String courseTitle,int credits,String department,String description
             ,String []sessionDates)

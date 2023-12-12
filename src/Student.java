@@ -6,22 +6,48 @@ import java.util.Scanner;
 public class Student extends Person {
 
     static Scanner input = new Scanner(System.in);
-    public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
-    private double GPA;
+    private double GPA=-1;
     private double expenses = 0;
     private boolean expenses_paid = false;
     public ArrayList<Course> Student_courses = new ArrayList<>();
-   // Vector<pair<Integer,Integer>> attendance = new Vector<pair<Integer,Integer>>();
-    private int NoOfCourses = Student_courses.size();//test
-    public boolean[][]attendance = new boolean[NoOfCourses][10];
-    public int getNoOfCourses() {
-        return NoOfCourses;
-    }
-    private Notification notification = new Notification();
+    private int NoOfCourses = Student_courses.size();  //test
+    public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
+    public boolean[][]attendance = new boolean[NoOfCourses][10];   // lsa
+    private Notification notification = new Notification();   //lsa
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
     private boolean gpaDrop;
 
+
+    public void setNoOfCourses(int noOfCourses) {
+        NoOfCourses = noOfCourses;
+    }
+
+    public double getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(double expenses) {
+        this.expenses = expenses;
+    }
+    public boolean isExpenses_paid() {
+        return expenses_paid;
+    }
+
+    public void setExpenses_paid(boolean expenses_paid) {
+        this.expenses_paid = expenses_paid;
+    }
+    public double getGPA() {
+        return GPA;
+    }
+
+    public void setGPA(double GPA) {
+        this.GPA = GPA;
+    }
+
+    public int getNoOfCourses() {
+        return NoOfCourses;
+    }
 
     public boolean isAttendanceDrop() {
         return attendanceDrop;
@@ -130,9 +156,11 @@ public class Student extends Person {
     }
 
     public void RegisterForCourse(ArrayList<Course> courses) {
-        for (int i = 0; i < courses.size(); i++) {
-            System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
+        if(!courses.isEmpty()) {
+            for (int i = 0; i < courses.size(); i++) {
+                System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
 
+            }
         }
         System.out.println("Which Course You Want To Register For? ");
         int answer = input.nextInt();//validation
@@ -160,7 +188,7 @@ public class Student extends Person {
         System.out.println("Phone Number:");
         System.out.println(this.getPhoneNumber());
         System.out.println("User Name:");
-        System.out.println(this.getUsername());
+        System.out.println(this.getUsername().replaceAll("@Student",""));
         System.out.println("ID:");
         System.out.println(this.getID());
     }
@@ -214,12 +242,11 @@ public class Student extends Person {
             totalHours+=Student_courses.get(i).credits;
         }
         GPA=(sum/totalHours);
+        this.notification.addGpa(GPA);
         return GPA;
     }
 
-
-
-    public void Student_AfterLogin(int ID,ArrayList<Student> Students,ArrayList<Course> courses){
+    public static void Student_AfterLogin(int ID,ArrayList<Student> Students,ArrayList<Course> courses){
         int ans,ans1,ans2;
         do{
             System.out.println("1- Profile");
@@ -282,5 +309,27 @@ public class Student extends Person {
             }catch (InputMismatchException exception){
                 System.out.println("Error! Please enter numeric values");
             }}while (ans<1||ans>4);
+    }
+    public String toString()
+    {
+        String s=getFname()+","+getLname()+","+getID()+","+getEmail()+","+getUsername()+","+getPassword()+
+                ","+getPhoneNumber()+","+GPA+","+expenses+","+expenses_paid+","+gpaDrop+","+attendanceDrop+
+                ","+NoOfCourses;
+        for (Course course:Student_courses) {
+            s+=(","+course.getCourseCode());
+        }
+        return s;
+    }
+    public String GradesToString(){
+        String a=null;
+        if(!Student_Grades.isEmpty()) {
+            for (  int i=0;i<Student_Grades.size();i++) {
+
+                a =getID()+","+Student_courses.get(i).getCourseCode()+","+ Student_Grades.get(i).getMidTermGrade()
+                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAssignmentGrade()
+                        + ","+ ZScore.get(i);
+            }
+        }
+        return a;
     }
 }

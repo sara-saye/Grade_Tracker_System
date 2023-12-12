@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Admin extends Person {
-static Scanner input=new Scanner(System.in);
+    static Scanner input=new Scanner(System.in);
     public static void login()
     {
         System.out.println(" 1-Add Course");
@@ -53,7 +53,7 @@ static Scanner input=new Scanner(System.in);
                 System.out.println("Course Title: ");
                 newCourseTitleUpdate=input.next();
                 System.out.println("Credits: ");
-                 newCreditsUpdate=input.nextInt();
+                newCreditsUpdate=input.nextInt();
                 System.out.println("Department: ");
                 newDepartmentUpdate=input.next();
                 System.out.println("Description: ");
@@ -82,10 +82,10 @@ static Scanner input=new Scanner(System.in);
                 isInstructorFreeAndTheCourseEmpty(instructorIdAssign,courseCodeAssign);
                 break;
             case 5:
-                 int instructorIdDrop;
-                 instructorIdDrop=input.nextInt();
-                 dropInstructor(instructorIdDrop);
-                 break;
+                int instructorIdDrop;
+                instructorIdDrop=input.nextInt();
+                dropInstructor(instructorIdDrop);
+                break;
             case 6:
                 dropStudent();
                 break;
@@ -109,7 +109,7 @@ static Scanner input=new Scanner(System.in);
     }
 
     public static void updateCourse(String courseCode, String newCourseCode, String newCourseTitle, int newCredits,
-                             String newDepartment, String newDescription,String []newSessionDtes) {
+                                    String newDepartment, String newDescription,String []newSessionDtes) {
         Course course = new Course(newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription,newSessionDtes);
         for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
             if (Main.courses.get(courseIndex).getCourseCode().equals(courseCode)) {
@@ -120,7 +120,7 @@ static Scanner input=new Scanner(System.in);
     }
 
     public static void updateUpdatedCourseInInstructor(String courseCode, String newCourseCode, String newCourseTitle, int newCredits,
-                                                String newDepartment, String newDescription,String []newSessionDtes) {
+                                                       String newDepartment, String newDescription,String []newSessionDtes) {
         Course course = new Course(newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription,newSessionDtes);
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
             if (Main.instructors.get(instrcutorIndex).course.getCourseCode().equals(courseCode)) {
@@ -223,20 +223,20 @@ static Scanner input=new Scanner(System.in);
     public static void dropStudent()
     {
         Course course=new Course();
-        for(int studentIndex=0;studentIndex<Main.studentsArray.size();studentIndex++)
+        for(int studentIndex=0;studentIndex<Main.students.size();studentIndex++)
         {
-            if(Main.studentsArray.get(studentIndex).isGpaDrop() ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
-                    Main.studentsArray.get(studentIndex).isAttendanceDrop())
+            if(Main.students.get(studentIndex).isGpaDrop() ||            //>>student put gpaDrop and attendanceDrop as boolean attributes that notification toggle it to true
+                    Main.students.get(studentIndex).isAttendanceDrop())
             {
                 for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
                 {
                     for(int enrolledStudentsIndex=0;enrolledStudentsIndex<course.enrolledStudents.size();enrolledStudentsIndex++) {
-                        if (Main.courses.get(courseIndex).enrolledStudents.get(enrolledStudentsIndex).getID()==Main.studentsArray.get(studentIndex).getID()){
+                        if (Main.courses.get(courseIndex).enrolledStudents.get(enrolledStudentsIndex).getID()==Main.students.get(studentIndex).getID()){
                             Main.courses.get(courseIndex).enrolledStudents.remove(enrolledStudentsIndex);
                         }
                     }
                 }
-                Main.studentsArray.remove(studentIndex);
+                Main.students.remove(studentIndex);
             }
             else {
                 System.out.println(" No students to drop ");

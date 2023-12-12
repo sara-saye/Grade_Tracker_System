@@ -25,5 +25,20 @@ public class FinalExam extends Test {
     {
         return getID()+","+getTitle()+","+getMax_score()+","+Location+","+Exam_Time;
     }
+
+    public void setMax_score(int max_score) {
+        while (true) {
+            System.out.println("Enter a grade for this exam that doesn't exceed 50 marks ");
+            if( max_score<= 50 ) {
+                setMax_score(max_score);
+                break;
+            }
+            else if (max_score > 50 ) {
+                System.out.println("Invalid Grade Please try again ! ");
+            }
+
+        }
+    }
+
 }
 
