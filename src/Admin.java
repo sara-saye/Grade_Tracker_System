@@ -60,7 +60,7 @@ public class Admin extends Person {
                 newDescriptionUpdate=input.next();
                 for(int i=0;i<2;i++)
                 {
-                    System.out.println("Session "+ i+1 +" date: ");
+                    System.out.println("Session date: ");
                     newSessionDatesUpdate[i]=input.next();
                 }
                 updateCourse(courseCodeUpdate,newCourseCodeUpdate,newCourseTitleUpdate,newCreditsUpdate,newDepartmentUpdate,
@@ -102,7 +102,7 @@ public class Admin extends Person {
 
     }
     public static void addCourse(String courseCode, String courseTitle, int credits, String department, String description,
-                                 String []sessionDates)  //>>pass these parameters from main
+                                 String []sessionDates)
     {
         Course course = new Course(courseCode, courseTitle, credits, department, description,sessionDates);
         Main.courses.add(course);

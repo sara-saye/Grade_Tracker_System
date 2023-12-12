@@ -179,33 +179,33 @@ public class Files   {
         courseBR.close();
 
     }
-//    public static void readAssignment() throws IOException {
-//        StringTokenizer token = null;
-//        BufferedReader assignmentBR=new BufferedReader(new FileReader(assignmentFile));
-//        int ID=0;
-//        String Title="" ;
-//        int Max_score=0;
-//        String Date="";
-//        String Assignment_startDate="";
-//        String Assignment_Deadline="";
-//        String assignmentCourseCode="";
-//        String line="";
-//        while((line =  assignmentBR.readLine())!=null)
-//        {
-//            token =new StringTokenizer(line,",");
-//            ID = Integer.parseInt(token.nextToken());
-//            Title=token.nextToken();
-//            Max_score=Integer.parseInt(token.nextToken());
-//            Date =token.nextToken();
-//            Assignment_startDate= token.nextToken();
-//            Assignment_Deadline=token.nextToken();
-//            assignmentCourseCode=token.nextToken();
-//            Assignment assignment=new Assignment(ID,Title,Max_score,Date,Assignment_startDate,Assignment_Deadline,assignmentCourseCode);
-//            Main.assignments.add(assignment);
-//        }
-//        assignmentBR.close();
-//
-//    }
+    public static void readAssignment() throws IOException {
+        StringTokenizer token = null;
+        BufferedReader assignmentBR=new BufferedReader(new FileReader(assignmentFile));
+        int ID=0;
+        String Title="" ;
+        int Max_score=0;
+        String Date="";
+        String Assignment_startDate="";
+        String Assignment_Deadline="";
+        String assignmentCourseCode="";
+        String line="";
+        while((line =  assignmentBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            ID = Integer.parseInt(token.nextToken());
+            Title=token.nextToken();
+            Max_score=Integer.parseInt(token.nextToken());
+            Date =token.nextToken();
+            Assignment_startDate= token.nextToken();
+            Assignment_Deadline=token.nextToken();
+            assignmentCourseCode=token.nextToken();
+            Assignment assignment=new Assignment(ID,Title,Max_score,Date,Assignment_startDate,Assignment_Deadline,assignmentCourseCode);
+            Main.assignments.add(assignment);
+        }
+        assignmentBR.close();
+
+    }
 
     public static void readQuiz() throws IOException {
         StringTokenizer token = null;
@@ -245,19 +245,19 @@ public class Files   {
             }
         }
     }
-//    public static void assignmentAndCourseRelation()
-//    {
-//        for(int assignmentIndex=0;assignmentIndex<Main.assignments.size();assignmentIndex++)
-//        {
-//            for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
-//            {
-//                if(Main.assignments.get(assignmentIndex).courseCode.equals(Main.courses.get(courseIndex).getCourseCode()))
-//                {
-//                    Main.courses.get(courseIndex).assignedAssignment.add(Main.assignments.get(assignmentIndex));
-//                }
-//            }
-//        }
-//    }
+    public static void assignmentAndCourseRelation()
+    {
+        for(int assignmentIndex=0;assignmentIndex<Main.assignments.size();assignmentIndex++)
+        {
+            for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
+            {
+                if(Main.assignments.get(assignmentIndex).courseCode.equals(Main.courses.get(courseIndex).getCourseCode()))
+                {
+                    Main.courses.get(courseIndex).assignedAssignment.add(Main.assignments.get(assignmentIndex));
+                }
+            }
+        }
+    }
     public static void quizAndCourseRelation()
     {
         for(int quizIndex=0;quizIndex<Main.quizzes.size();quizIndex++)
