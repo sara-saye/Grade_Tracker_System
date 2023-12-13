@@ -14,12 +14,12 @@ public class Assignment extends Test {
 
     }
 
-    public Assignment(int id, String Title, int max_score, String date, String Assignment_startDate, String assignment_Deadline) {
+    public Assignment(int id, String Title, double max_score, String date, String Assignment_startDate, String assignment_Deadline) {
         super(id, Title, max_score, date);
         this.Assignment_startDate = LocalDate.parse(Assignment_startDate);
         this.Assignment_Deadline = LocalDate.parse(assignment_Deadline);
     }
-    public Assignment(int id, String Title, int max_score, String date, String Assignment_startDate, String assignment_Deadline,String courseCode) {
+    public Assignment(int id, String Title, double max_score, String date, String Assignment_startDate, String assignment_Deadline,String courseCode) {
         this(id, Title, max_score, date,Assignment_startDate,assignment_Deadline);
         this.courseCode=courseCode;
     }

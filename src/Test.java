@@ -12,7 +12,7 @@ public abstract class Test {
         Max_score=0;
         Date=null;
     }
-    public Test (int ID, String Title,int Max_score , String Date ){
+    public Test (int ID, String Title,double Max_score , String Date ){
         this.ID=ID;
         this.Title=Title;
         this.Max_score=Max_score;

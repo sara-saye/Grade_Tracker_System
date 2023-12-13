@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin {
+public class Admin extends Person{
     static Scanner input = new Scanner(System.in);
     public static String eventDetails="null";
     public static void login() {
@@ -11,6 +11,7 @@ public class Admin {
         System.out.println(" 4-assign instructor to course");
         System.out.println(" 5-Drop Instructor");
         System.out.println(" 6-Drop Student");
+        System.out.println(" 7-Exit");
         int choice = 0;
         choice = input.nextInt();
         switch (choice) {
@@ -89,6 +90,8 @@ public class Admin {
                 break;
             case 6:
                 dropStudent();
+                break;
+            case 7:
                 break;
             default:
                 System.out.println("Invalid choice");

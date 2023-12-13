@@ -8,7 +8,7 @@ public class Course {
     public String department;
     public  String description;
     public String []sessionDates=new String[2];
-    ArrayList <Instructor> assignedInstructor = new ArrayList<>();
+    public ArrayList <Instructor> assignedInstructor = new ArrayList<>();
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Course {
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
     }
-   public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
+ /*  public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
     Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates,assignedInstructor,assignedMidterm,assignedfinal);
@@ -57,7 +57,7 @@ public class Course {
     {
         this.courseCode=courseCode;
         this.courseTitle=courseTitle;
-    }
+    }*/
     public void setCourseCode(String courseCode)
     {
         this.courseCode=courseCode;
