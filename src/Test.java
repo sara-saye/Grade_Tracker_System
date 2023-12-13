@@ -1,8 +1,10 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public abstract class Test {
     private int ID;
     private String Title ;
-    private int Max_score;
+    private double Max_score;
     private LocalDate Date ;
     public Test(){
         ID=0;
@@ -24,10 +26,11 @@ public abstract class Test {
     }
 
     public void setDate(String date) {
-        Date = LocalDate.parse(date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Date = LocalDate.parse(date,formatter);
     }
 
-    public void setMax_score(int max_score) {
+    public void setMax_score(double max_score) {
         Max_score = max_score;
     }
 
@@ -38,7 +41,7 @@ public abstract class Test {
         return Title;
     }
 
-    public int getMax_score() {
+    public double getMax_score() {
         return Max_score;
     }
     public LocalDate getDate() {

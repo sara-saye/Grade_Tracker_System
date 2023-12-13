@@ -12,7 +12,7 @@ public class Student extends Person {
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses = Student_courses.size();  //test
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
-    public boolean[][]attendance = new boolean[NoOfCourses][10];
+    public boolean[][]attendance = new boolean[NoOfCourses][5];
     private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
