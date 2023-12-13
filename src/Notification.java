@@ -72,21 +72,23 @@ public void Display_Notification(){
         if(!assignment.isEmpty()) {
             a+=",";
             for (int j=0;j<assignment.size();j++) {
-                a +=assignment.get(j);
-                if(j!=assignment.size()-1)
-                    a +="-";
+                a +=assignment.get(j).getID();
+                if(j!= assignment.size()-1){
+                    a+="-";
+                }
             }
         }
-        if(!Student_Grades.get(i).quizGrade.isEmpty()) {
+        if(!quiz.isEmpty()) {
             a+=",";
-            for (int j=0;j<Student_Grades.get(i).quizGrade.size();j++) {
-                a +=Student_Grades.get(i).quizGrade.get(j) ;
-                if(j!=Student_Grades.get(i).quizGrade.size()-1)
-                    a +="-";
+            for (int j=0;j<quiz.size();j++) {
+                a +=quiz.get(j).getID() ;
+                if(j!= assignment.size()-1){
+                    a+="-";
+                }
             }
         }
 
-
+        return a;
     }
 
 }

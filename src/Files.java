@@ -2,6 +2,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.StringTokenizer;
 
@@ -447,7 +448,14 @@ public class Files   {
             n.addAttendance(Boolean.parseBoolean(token.nextToken()));
             n.addGpa(Double.parseDouble(token.nextToken()));
             n.addEvent((token.nextToken()));
+            String assement=token.nextToken();
+            String quiz=token.nextToken();
+            String []arrquiz= (assement.split("-"));
+            String []arrassement= (assement.split("-"));
+
             Main.students.get(id).setNotification(n);
+
+            for (int i=0;i<)
         }
         NotificationBR.close();
     }
@@ -470,4 +478,3 @@ public class Files   {
         AttendanceBR.close();
     }
 }
-    String [] sessionDates=sessionLine.split("-");
