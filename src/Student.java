@@ -12,8 +12,8 @@ public class Student extends Person {
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses = Student_courses.size();  //test
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
-    public boolean[][]attendance = new boolean[NoOfCourses][10];   // lsa
-    private Notification notification = new Notification();   //lsa
+    public boolean[][]attendance = new boolean[NoOfCourses][10];
+    private Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
     private boolean gpaDrop;
@@ -166,6 +166,8 @@ public class Student extends Person {
         int answer = input.nextInt();//validation
         Student_courses.add(courses.get(answer - 1));
         courses.get(answer - 1).enrollStudent(this);//test
+        StudentGrades grade = new StudentGrades();
+        Student_Grades.add(grade);
     }
 
     public void ViewEvents() {
@@ -315,21 +317,53 @@ public class Student extends Person {
         String s=getFname()+","+getLname()+","+getID()+","+getEmail()+","+getUsername()+","+getPassword()+
                 ","+getPhoneNumber()+","+GPA+","+expenses+","+expenses_paid+","+gpaDrop+","+attendanceDrop+
                 ","+NoOfCourses;
-        for (Course course:Student_courses) {
-            s+=(","+course.getCourseCode());
+        if(!Student_courses.isEmpty()) {
+            s+=",";
+            for (int i = 0; i < Student_courses.size(); i++) {
+                Course course = Student_courses.get(i);
+                s += course.getCourseCode();
+                if (i!=Student_courses.size()-1){
+                    s+='-';
+                }
+            }
         }
         return s;
     }
     public String GradesToString(){
-        String a=null;
+        String a="";
         if(!Student_Grades.isEmpty()) {
             for (  int i=0;i<Student_Grades.size();i++) {
-
-                a =getID()+","+Student_courses.get(i).getCourseCode()+","+ Student_Grades.get(i).getMidTermGrade()
-                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAssignmentGrade()
+                a =getID()+","+ Student_Grades.get(i).getMidTermGrade()
+                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAttendanceGrade()
                         + ","+ ZScore.get(i);
+                if(!Student_Grades.get(i).assignmentGrade.isEmpty()) {
+                    a+=",";
+                    for (int j=0;j<Student_Grades.get(i).assignmentGrade.size();j++) {
+                        a +=Student_Grades.get(i).assignmentGrade.get(j) ;
+                        if(j!=Student_Grades.get(i).assignmentGrade.size()-1)
+                            a +="-";
+                    }
+                }
+                if(!Student_Grades.get(i).quizGrade.isEmpty()) {
+                    a+=",";
+                    for (int j=0;j<Student_Grades.get(i).quizGrade.size();j++) {
+                        a +=Student_Grades.get(i).quizGrade.get(j) ;
+                        if(j!=Student_Grades.get(i).quizGrade.size()-1)
+                            a +="-";
+                    }
+                }
             }
         }
         return a;
+    }
+
+    public String AttendanceToString(){
+        String s=String.valueOf(getID());
+        for (int i=0;i<NoOfCourses;i++){
+            for(int j=0;j<10;j++){
+                s+=(","+attendance[i][j]);
+            }
+        }
+        return s;
     }
 }

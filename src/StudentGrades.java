@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class StudentGrades{
+
+
     public ArrayList<Double>assignmentGrade=new ArrayList<>();
     public ArrayList<Double>quizGrade=new ArrayList<>();
     private  double midTermGrade;
@@ -53,6 +55,8 @@ public class StudentGrades{
     public double getAttendanceGrade() {
         return attendanceGrade;
     }
+
+
     public double CalcTotalGrade(){
         double totalMark=(this.getAssignmentGrade() + this.getQuizGrade() + midTermGrade + finalGrade + attendanceGrade);
         return totalMark;
