@@ -166,6 +166,8 @@ public class Student extends Person {
         int answer = input.nextInt();//validation
         Student_courses.add(courses.get(answer - 1));
         courses.get(answer - 1).enrollStudent(this);//test
+        StudentGrades grade = new StudentGrades();
+        Student_Grades.add(grade);
     }
 
     public void ViewEvents() {
