@@ -80,9 +80,10 @@ public class Notification {
 //
 //            }
 //
-
-        for (int i = 0; i <= course.size(); i++) {
-            System.out.println(course.get(i).assignedQuiz.get(i).getTitle() + " " + course.get(i).assignedQuiz.get(i).getDate());
+        if(!course.isEmpty()) {
+            for (int i = 0; i <= course.size(); i++) {
+                System.out.println(course.get(i).assignedQuiz.get(i).getTitle() + " " + course.get(i).assignedQuiz.get(i).getDate());
+            }
         }
 
         if (this.New_grade) {
@@ -100,7 +101,7 @@ public class Notification {
             System.out.println("Warning content");
         }
 
-        if (!Event.equals("NULL")) {
+        if (Event != null) {
             System.out.println(Event);
         }
 

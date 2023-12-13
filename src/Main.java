@@ -13,7 +13,6 @@ static ArrayList<Assignment>assignments=new ArrayList<>();
 static ArrayList<Quiz>quizzes=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) throws IOException {
-        Files.readStudents();
 
      int studentId = 0, instructorId = 0;
         System.out.println("Already have an account?");
@@ -22,9 +21,15 @@ static ArrayList<Quiz>quizzes=new ArrayList<>();
         int account = input.nextInt();
 
         if (account == 1) {
-
-            Form.LogIn(students,instructors);
-
+            ArrayList who = Form.LogIn(students,instructors);
+            int ID=(Integer) who.get(1);
+            if(who.get(0).equals("Admin")){
+                Admin.login();
+            } else if (who.get(0).equals("Instructor")) {
+                instructors.get(ID).forSignIn();
+            }else {
+                students.get(ID).Student_AfterLogin();
+            }
         } else if (account == 2) {
             int who;
             do {
@@ -38,22 +43,15 @@ static ArrayList<Quiz>quizzes=new ArrayList<>();
             }while (true);
             Form.Registration(who,students,instructors,studentId,instructorId);
             if (who==1){
-                instructors.get(instructorId).forSignIn();
+               instructors.get(instructorId).forSignIn();
                 instructorId++;
             }else {
-                for (Student student:students) {
-                    System.out.println(student.getID());
-                    System.out.println(student.getUsername());
-
-                }
-             //   Form.LogIn(students,instructors);
-                Student.Student_AfterLogin(studentId,students,courses);
+                 students.get(studentId).Student_AfterLogin();
                         studentId++;
             }
 
         } else {
             System.out.println("Invalid Choice!Try Again.");
         }
-        Files.writeStudents();
     }
 }

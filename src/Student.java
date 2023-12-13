@@ -249,30 +249,30 @@ public class Student extends Person {
         return GPA;
     }
 
-    public static void Student_AfterLogin(int ID,ArrayList<Student> Students,ArrayList<Course> courses){
+    public void Student_AfterLogin(){
         int ans,ans1,ans2;
         do{
             System.out.println("1- Profile");
             System.out.println("2- Study Services");
             System.out.println("3- Payments record");
-            if(Students.get(ID).getNotification()!=null) {
-                Students.get(ID).ViewEvents();
+            if(getNotification()!=null) {
+                ViewEvents();
             }
             ans = input.nextInt();
             try {
                 switch (ans) {
                     case 1:
-                        Students.get(ID).DisplayInfo();
+                        DisplayInfo();
                         do {
                             System.out.println("Press 1 to edit information");
                             System.out.println("Press 2 to return to list");
                             ans1 = input.nextInt();
                             switch (ans1) {
                                 case 1:
-                                    Students.get(ID).Edit_Info();
+                                    Edit_Info();
                                     break;
                                 case 2:
-                                    Student_AfterLogin(ID,Students,courses);
+                                    Student_AfterLogin();
                                     break;
                                 default:
                                     System.out.println("Invalid! Try Again.");
@@ -288,23 +288,23 @@ public class Student extends Person {
                             ans2 = input.nextInt();
                             switch (ans2) {
                                 case 1:
-                                    Students.get(ID).DisplayCurrentCourses();
+                                    DisplayCurrentCourses();
                                     break;
                                 case 2:
-                                    Students.get(ID).ViewGrades();
+                                    ViewGrades();
                                     break;
                                 case 3:
-                                    Students.get(ID).RegisterForCourse(courses);
+                                    RegisterForCourse(Main.courses);
                                     break;
                                 case 4:
-                                    Students.get(ID).ViewStudentPerformance();
+                                    ViewStudentPerformance();
                                     break;
                                 default:
                                     System.out.println("Invalid Choice!Try Again.");
                             }
                         }while (ans2<1||ans2>4);
                     case 3:
-                        Students.get(ID).Payment();
+                        Payment();
                         break;
                     default:
                         System.out.println("Invalid Choice!Try Again.");

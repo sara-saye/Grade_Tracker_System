@@ -30,9 +30,6 @@ public class Instructor extends Person {
         instructor_ID++;
     }
     public void forSignUp() {
-        System.out.println("Your first name & last name: ");
-        this.setFname(input.next());
-        this.setLname(input.next());
         this.setID(instructor_ID);
         instructor_ID++;
         System.out.println("Your office Location: ");
