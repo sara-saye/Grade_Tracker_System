@@ -2,6 +2,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.StringTokenizer;
 
@@ -14,6 +15,10 @@ public class Files   {
     static File quizFile =new File("quiz.txt");
     static File StudentFile =new File("Student.txt");
     static File GradesFile =new File("Grades.txt");
+    static File NotificationsFile =new File("Notification.txt");
+
+    static File AttendanceFile =new File("Attendance.txt");
+
 
     public static void readInstructor () throws IOException {
         StringTokenizer token = null;
@@ -360,6 +365,28 @@ public class Files   {
         gradesBW.flush();
         gradesBW.close();
     }
+
+    public  static void writeNotification() throws IOException {
+        BufferedWriter NotificationBW=new BufferedWriter(new FileWriter(NotificationsFile));
+        for(Student student:Main.students)
+        {
+            NotificationBW.write(student.getID()+","+student.getNotification().NotificationToString());
+            NotificationBW.newLine();
+        }
+        NotificationBW.flush();
+        NotificationBW.close();
+    }
+    public  static void writeAttendance() throws IOException {
+        BufferedWriter AttendanceBW=new BufferedWriter(new FileWriter(AttendanceFile));
+        for(Student student:Main.students)
+        {
+            AttendanceBW.write(student.AttendanceToString());
+            AttendanceBW.newLine();
+        }
+        AttendanceBW.flush();
+        AttendanceBW.close();
+    }
+
     public static void readStudents() throws IOException {
         StringTokenizer token = null;
         BufferedReader StudentBR=new BufferedReader(new FileReader(StudentFile));
@@ -387,37 +414,67 @@ public class Files   {
         }
         StudentBR.close();
     }
+
     public static void readGrades() throws IOException {
         StringTokenizer token = null;
         BufferedReader StudentBR=new BufferedReader(new FileReader(GradesFile));
         String line="" ;
-        int i=0;
         int id;
-        int corsecode;
-
         while((line = StudentBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
             StudentGrades studentGrade=new StudentGrades();
             id=Integer.parseInt(token.nextToken());
-            corsecode=Integer.parseInt(token.nextToken());
-
-            studentGrade.(token.nextToken());
-            student.setLname(token.nextToken());
-            student.setID(Integer.parseInt(token.nextToken()));
-            student.setEmail(token.nextToken());
-            student.setUsername(token.nextToken());
-            student.setPassword(token.nextToken());
-            student.setPhoneNumber(token.nextToken());
-            student.setGPA(Double.parseDouble(token.nextToken()));
-            student.setExpenses(Double.parseDouble(token.nextToken()));
-            student.setExpenses_paid(Boolean.parseBoolean(token.nextToken()));
-            student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
-            student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
-            student.setNoOfCourses(Integer.parseInt(token.nextToken()));
-            Main.students.get(i).Student_Grades.add(studentGrade);
-            i++;
+            studentGrade.setMidTermGrade(Double.parseDouble(token.nextToken()));
+            studentGrade.setFinalGrade(Double.parseDouble(token.nextToken()));
+            studentGrade.setAttendanceGrade(Double.parseDouble(token.nextToken()));
+            Main.students.get(id).ZScore.add(Double.parseDouble(token.nextToken()));
+            Main.students.get(id).Student_Grades.add(studentGrade);
         }
         StudentBR.close();
+    }
+
+    public static void readNotification() throws IOException {
+        StringTokenizer token = null;
+        BufferedReader NotificationBR=new BufferedReader(new FileReader(NotificationsFile));
+        String line="" ;
+        int id;
+        while((line = NotificationBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            Notification n = new Notification();
+            id=Integer.parseInt(token.nextToken());
+            n.addStatueOfGrade(Boolean.parseBoolean(token.nextToken()));
+            n.addAttendance(Boolean.parseBoolean(token.nextToken()));
+            n.addGpa(Double.parseDouble(token.nextToken()));
+            n.addEvent((token.nextToken()));
+            String assement=token.nextToken();
+            String quiz=token.nextToken();
+            String []arrquiz= (assement.split("-"));
+            String []arrassement= (assement.split("-"));
+
+            Main.students.get(id).setNotification(n);
+
+            for (int i=0;i<)
+        }
+        NotificationBR.close();
+    }
+    public static void readAttendance() throws IOException {
+        StringTokenizer token = null;
+        BufferedReader AttendanceBR=new BufferedReader(new FileReader(AttendanceFile));
+        String line="" ;
+        int id;
+        while((line = AttendanceBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            Notification n = new Notification();
+            id=Integer.parseInt(token.nextToken());
+            for (int i=0;i<Main.students.get(id).getNoOfCourses();i++) {
+                for (int j = 0; j < 10; j++) {
+                    Main.students.get(id).attendance[i][j]=Boolean.parseBoolean(token.nextToken());
+                }
+            }
+        }
+        AttendanceBR.close();
     }
 }
