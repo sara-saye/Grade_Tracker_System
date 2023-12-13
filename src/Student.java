@@ -255,6 +255,7 @@ public class Student extends Person {
             System.out.println("1- Profile");
             System.out.println("2- Study Services");
             System.out.println("3- Payments record");
+            System.out.println("4- Exit");
             if(getNotification()!=null) {
                 ViewEvents();
             }
@@ -305,6 +306,8 @@ public class Student extends Person {
                         }while (ans2<1||ans2>4);
                     case 3:
                         Payment();
+                        break;
+                    case 4:
                         break;
                     default:
                         System.out.println("Invalid Choice!Try Again.");

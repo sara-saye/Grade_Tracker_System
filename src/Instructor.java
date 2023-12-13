@@ -15,7 +15,6 @@ public class Instructor extends Person {
         this.office_location = "Unknown";
         this.department = "Unknown";
         this.setID(instructor_ID);
-        instructor_ID++;
     }
     public Instructor(int ID, String Fname, String Lname, String email, String password, String PhoneNumber, String office_location, String department) {
         super(ID, Fname, Lname, email, password, PhoneNumber);
@@ -30,8 +29,6 @@ public class Instructor extends Person {
         instructor_ID++;
     }
     public void forSignUp() {
-        this.setID(instructor_ID);
-        instructor_ID++;
         System.out.println("Your office Location: ");
         this.office_location = input.next();
         System.out.println("Your Department: ");
