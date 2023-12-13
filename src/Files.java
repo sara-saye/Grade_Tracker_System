@@ -43,7 +43,7 @@ public class Files   {
             PhoneNumber=token.nextToken();
             office_location=token.nextToken();
             department=token.nextToken();
-            Instructor instructor=new Instructor( id,firstName,lastName,email,password, PhoneNumber, office_location, department);
+            Instructor instructor=new Instructor(id,firstName,lastName,email,password, PhoneNumber, office_location, department);
             Main.instructors.add(instructor);
         }
         instructorBR.close();
@@ -276,15 +276,6 @@ public class Files   {
             }
         }
     }
-
-
-
-
-
-
-
-
-
     public  static void writeCourse() throws IOException {
         BufferedWriter courseBW=new BufferedWriter(new FileWriter(courseFile));
         for(Course course:Main.courses)
@@ -391,7 +382,6 @@ public class Files   {
         StringTokenizer token = null;
         BufferedReader StudentBR=new BufferedReader(new FileReader(StudentFile));
         String line="" ;
-        int i=0;
         while((line = StudentBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
@@ -409,8 +399,26 @@ public class Files   {
             student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
             student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
             student.setNoOfCourses(Integer.parseInt(token.nextToken()));
+            String [] coursecode = token.nextToken().split("-");
+            for (String code:coursecode) {
+                for (int i=0;i<Main.courses.size();i++){
+                  if(code.equals(Main.courses.get(i).getCourseCode())){
+                      student.Student_courses.add(Main.courses.get(i));
+                  }
+                }
+            }
+            student.setNoOfCourses(Integer.parseInt(token.nextToken())); //noOfcourses= size so read studentcourses first or increment noOfcourses in registerforcourse
             Main.students.add(student);
-            i++;
+        }
+        // mkanha s7??
+        for (Student student1:Main.students) {
+            for (Course course:student1.Student_courses) {
+                for (Course Maincourse:Main.courses){
+                    if(course.getCourseCode().equals(Maincourse.getCourseCode())){
+                        Maincourse.enrolledStudents.add(student1);
+                    }
+                }
+            }
         }
         StudentBR.close();
     }
@@ -429,6 +437,15 @@ public class Files   {
             studentGrade.setFinalGrade(Double.parseDouble(token.nextToken()));
             studentGrade.setAttendanceGrade(Double.parseDouble(token.nextToken()));
             Main.students.get(id).ZScore.add(Double.parseDouble(token.nextToken()));
+            String[] assignmentGrades = token.nextToken().split("-");
+            String [] quizGrades = token.nextToken().split("-");
+            for (String assignmentGrade : assignmentGrades) {
+                studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
+            }
+            for (String quizGrade : quizGrades) {
+                studentGrade.quizGrade.add(Double.valueOf(quizGrade));
+            }
+
             Main.students.get(id).Student_Grades.add(studentGrade);
         }
         StudentBR.close();
@@ -448,14 +465,26 @@ public class Files   {
             n.addAttendance(Boolean.parseBoolean(token.nextToken()));
             n.addGpa(Double.parseDouble(token.nextToken()));
             n.addEvent((token.nextToken()));
-            String assement=token.nextToken();
+            String assignment=token.nextToken();
             String quiz=token.nextToken();
-            String []arrquiz= (assement.split("-"));
-            String []arrassement= (assement.split("-"));
+            String []assignmentarr= (assignment.split("-"));
+            String []quizarr= (quiz.split("-"));
+            for (String s : assignmentarr) {
+                for (int j = 0; j < Main.assignments.size(); j++) {
+                    if (Integer.parseInt(s) == (Main.assignments.get(j).getID())) {
+                        n.addAssignedAssignment(Main.assignments.get(j));
+                    }
+                }
+            }
+            for (String s : quizarr) {
+                for (int j = 0; j < Main.quizzes.size(); j++) {
+                    if (Integer.parseInt(s) == (Main.quizzes.get(j).getID())) {
+                        n.addAssignedQuiz(Main.quizzes.get(j));
+                    }
+                }
+            }
 
             Main.students.get(id).setNotification(n);
-
-            for (int i=0;i<)
         }
         NotificationBR.close();
     }

@@ -315,8 +315,15 @@ public class Student extends Person {
         String s=getFname()+","+getLname()+","+getID()+","+getEmail()+","+getUsername()+","+getPassword()+
                 ","+getPhoneNumber()+","+GPA+","+expenses+","+expenses_paid+","+gpaDrop+","+attendanceDrop+
                 ","+NoOfCourses;
-        for (Course course:Student_courses) {
-            s+=(","+course.getCourseCode());
+        if(!Student_courses.isEmpty()) {
+            s+=",";
+            for (int i = 0; i < Student_courses.size(); i++) {
+                Course course = Student_courses.get(i);
+                s += course.getCourseCode();
+                if (i!=Student_courses.size()-1){
+                    s+='-';
+                }
+            }
         }
         return s;
     }
