@@ -89,6 +89,7 @@ public class Student extends Person {
             System.out.println("------------------------------------");
         }
     }
+
     public void ViewStudentPerformance() {
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i+1)+"- Course : " + Student_courses.get(i).courseTitle);
@@ -171,7 +172,7 @@ public class Student extends Person {
     }
 
     public void ViewEvents() {
-        notification.Display_Notification();
+        notification.Display_Notification(Student_courses);
     }
 
     public void setNotification(Notification notification) {
