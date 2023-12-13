@@ -238,9 +238,9 @@ public class Files   {
         {
             for(int instructorIndex=0;instructorIndex<Main.instructors.size();instructorIndex++)
             {
-                if(Main.courses.get(courseIndex).assignedInstructor.getID()==Main.instructors.get(instructorIndex).getID())
+                if(Main.courses.get(courseIndex).assignedInstructor.get(0).getID()==Main.instructors.get(instructorIndex).getID())
                 {
-                    Main.instructors.get(instructorIndex).course=Main.courses.get(courseIndex);
+                    Main.instructors.get(instructorIndex).course.add(Main.courses.get(courseIndex));
                 }
             }
         }

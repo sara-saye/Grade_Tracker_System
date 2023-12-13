@@ -7,8 +7,9 @@ public class Instructor extends Person{
     Scanner input = new Scanner(System.in);
     private String office_location, department;
     public static int instructor_ID = 0;
-    public  Course course = new Course();
+    public  ArrayList<Course> course = new ArrayList<>();
     public ArrayList <Student> students = new ArrayList<>();
+
     public Instructor(){
         super();
         this.office_location = "Unknown";

@@ -8,7 +8,7 @@ public class Course {
     public String department;
     public  String description;
     public String []sessionDates=new String[2];
-    public Instructor assignedInstructor = new Instructor();
+    ArrayList <Instructor> assignedInstructor = new ArrayList<>();
     public MidtermExam assignedMidterm = new MidtermExam();
     public FinalExam assignedfinal = new FinalExam();
     public ArrayList<Assignment> assignedAssignment = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Course {
                    String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates);
-        this.assignedInstructor=assignedInstructor;
+        this.assignedInstructor.add(assignedInstructor);
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
     }
@@ -47,7 +47,7 @@ public class Course {
                   ArrayList <Assignment> assignedAssignment,ArrayList<Quiz> assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates);
-        this.assignedInstructor=assignedInstructor;
+        this.assignedInstructor.add(assignedInstructor);
         this.assignedAssignment=assignedAssignment;
         this.assignedQuiz=assignedQuiz;
         this.assignedfinal=assignedfinal;
@@ -74,7 +74,7 @@ public class Course {
     {
         for(int enrolledStudentsIndex=0;enrolledStudentsIndex<enrolledStudents.size();enrolledStudentsIndex++)
         {
-            System.out.println(enrolledStudentsIndex+1+" - "+enrolledStudents.get(enrolledStudentsIndex).getFname()+
+            System.out.println(enrolledStudents.get(enrolledStudentsIndex).getFname()+
                     " "+enrolledStudents.get(enrolledStudentsIndex).getLname()+"     "+
                     enrolledStudents.get(enrolledStudentsIndex).getID());
         }
@@ -83,22 +83,22 @@ public class Course {
     public void addAssignedAssignment(Assignment assignedAssignment)
     {
         this.assignedAssignment.add(assignedAssignment);
-        Main.assignments.add(assignedAssignment);
+        Main.assignments.add(assignedAssignment);                //>>Is any one add that ????
     }
     public void addAssignedQuiz(Quiz assignedQuiz)
     {
        this.assignedQuiz.add(assignedQuiz);
-       Main.quizzes.add(assignedQuiz);
+       Main.quizzes.add(assignedQuiz);                           //>>Is any one add that ????
     }
     public void addAssignedMidterm(MidtermExam assignedMidterm)
     {
         this.assignedMidterm=assignedMidterm;
-        Main.midtermExams.add(assignedMidterm);
+        Main.midtermExams.add(assignedMidterm);                 //>>Is any one add that ????
     }
     public void addAssignedFinal(FinalExam assignedfinal)
     {
        this.assignedfinal=assignedfinal;
-       Main.finalExams.add(assignedfinal);
+       Main.finalExams.add(assignedfinal);                    //>>Is any one add that ????
     }
 
     public double CalcMean(){
@@ -130,7 +130,7 @@ public class Course {
 public String toString()
 {
     return courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1] + "," +
-                assignedInstructor.getID() + "," + assignedfinal.getID() + "," + assignedMidterm.getID() ;
+                assignedInstructor.get(0).getID() + "," + assignedfinal.getID() + "," + assignedMidterm.getID() ;
 
 }
 }
