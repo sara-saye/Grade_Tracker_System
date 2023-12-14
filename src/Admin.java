@@ -36,8 +36,15 @@ public class Admin extends Person{
                 sessionDatesAdd[0] = input.next();
                 System.out.println("Session 2 date: ");
                 sessionDatesAdd[1] = input.next();
-
                 addCourse(courseCodeAdd, courseTitleAdd, creditsAdd, departmentAdd, descriptionAdd, sessionDatesAdd);
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice1=input.nextInt();
+                if(moreOperationsChoice1==1)
+                {
+                            login();
+                }
                 break;
             case 2:
                 String courseCodeUpdate;
@@ -49,7 +56,7 @@ public class Admin extends Person{
                 String[] newSessionDatesUpdate = new String[2];
                 System.out.println("Input code of the course you want to update: ");
                 courseCodeUpdate = input.next();
-                System.out.println("Course Code: ");
+                System.out.println("New Course Code: ");
                 newCourseCodeUpdate = input.next();
                 System.out.println("Course Title: ");
                 newCourseTitleUpdate = input.next();
@@ -66,12 +73,28 @@ public class Admin extends Person{
 
                 updateCourse(courseCodeUpdate, newCourseCodeUpdate, newCourseTitleUpdate, newCreditsUpdate,
                         newDepartmentUpdate, newDescriptionUpdate, newSessionDatesUpdate);
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice2=input.nextInt();
+                if(moreOperationsChoice2==1)
+                {
+                    login();
+                }
                 break;
             case 3:
                 System.out.println("Code of the course you want to delete: ");
                 String courseCodeDelete;
                 courseCodeDelete = input.next();
                 deleteCourse(courseCodeDelete);
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice3=input.nextInt();
+                if(moreOperationsChoice3==1)
+                {
+                    login();
+                }
                 break;
             case 4:
                 int instructorIdAssign;
@@ -81,15 +104,39 @@ public class Admin extends Person{
                 System.out.println("Course Code: ");
                 courseCodeAssign = input.next();
                 isInstructorFreeAndTheCourseEmpty(instructorIdAssign, courseCodeAssign);
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice4=input.nextInt();
+                if(moreOperationsChoice4==1)
+                {
+                    login();
+                }
                 break;
             case 5:
                 int instructorIdDrop;
                 System.out.println("ID of instructor yow want to drop: ");
                 instructorIdDrop = input.nextInt();
                 dropInstructor(instructorIdDrop);
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice5=input.nextInt();
+                if(moreOperationsChoice5==1)
+                {
+                    login();
+                }
                 break;
             case 6:
                 dropStudent();
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice6=input.nextInt();
+                if(moreOperationsChoice6==1)
+                {
+                    login();
+                }
                 break;
             case 7:
                 break;
@@ -162,7 +209,7 @@ public class Admin extends Person{
     //once admin choose to assign instructor to course, we just call  isInstructorFree()
     public static void isInstructorFreeAndTheCourseEmpty(int instructorID, String courseCode) {
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-            if (Main.instructors.get(instrcutorIndex).instructor_ID== instructorID) {
+            if (Main.instructors.get(instrcutorIndex).getID() == instructorID) {
                 if (!(Main.instructors.get(instrcutorIndex).course.isEmpty())) {
 
                     System.out.println("Dr." + Main.instructors.get(instrcutorIndex).getFname() + " " +
@@ -190,7 +237,7 @@ public class Admin extends Person{
 
     public static void assignCoursesToInstructors(String courseCode, int instructorID) {
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-            if (Main.instructors.get(instrcutorIndex).instructor_ID == instructorID) {
+            if (Main.instructors.get(instrcutorIndex).getID() == instructorID) {
                 for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
                     if (Main.courses.get(courseIndex).getCourseCode().equals(courseCode)) {
                         Main.instructors.get(instrcutorIndex).course.add(Main.courses.get(courseIndex));
@@ -204,7 +251,7 @@ public class Admin extends Person{
         for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
             if (Main.courses.get(courseIndex).getCourseCode().equals(courseCode)) {
                 for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-                    if (Main.instructors.get(instrcutorIndex).instructor_ID == instructorID) {
+                    if (Main.instructors.get(instrcutorIndex).getID() == instructorID) {
                         Main.courses.get(courseIndex).assignedInstructor.add(Main.instructors.get(instrcutorIndex));
                     }
                 }
@@ -217,7 +264,7 @@ public class Admin extends Person{
     public static void dropInstructor(int instructorId) {
         deleteDeletedInstructorFromTheCourse(instructorId);
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-            if (Main.instructors.get(instrcutorIndex).instructor_ID == instructorId) {
+            if (Main.instructors.get(instrcutorIndex).getID() == instructorId) {
                 Main.instructors.remove(instrcutorIndex);
             }
         }
@@ -227,7 +274,7 @@ public class Admin extends Person{
     public static void deleteDeletedInstructorFromTheCourse(int instructorId) {
         for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
             try{
-                if (Main.courses.get(courseIndex).assignedInstructor.get(0).instructor_ID == instructorId) {
+                if (Main.courses.get(courseIndex).assignedInstructor.get(0).getID() == instructorId) {
                     Main.courses.get(courseIndex).assignedInstructor.remove(0);
                 }
             }

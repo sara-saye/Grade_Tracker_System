@@ -129,8 +129,20 @@ public class Course {
     }
 public String toString()
 {
-    return courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1] + "," +
-                assignedInstructor.get(0).getID() + "," + assignedfinal.getID() + "," + assignedMidterm.getID() ;
+    String courseData=courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1];
+    if(!this.assignedInstructor.isEmpty())
+    {
+        courseData+=","+assignedInstructor.get(0).getID();
+    }
+    if(this.assignedfinal.getID()!=0)
+    {
+        courseData+=","+this.assignedfinal.getID();
+    }
+    if(this.assignedMidterm.getID()!=0)
+    {
+        courseData+=","+this.assignedMidterm.getID();
+    }
+    return courseData;
 
 }
 }

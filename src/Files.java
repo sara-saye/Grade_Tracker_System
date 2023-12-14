@@ -124,9 +124,18 @@ public class Files   {
             department=token.nextToken();
             description=token.nextToken();
             String sessionLine=token.nextToken();
-            instructorId=Integer.parseInt(token.nextToken());
-            assignedFinalExamId=Integer.parseInt(token.nextToken());
-            assignedMidtermExamId=Integer.parseInt(token.nextToken());
+            if(token.hasMoreTokens()) {
+                instructorId = Integer.parseInt(token.nextToken());
+            }
+
+            if(token.hasMoreTokens()&&token.nextToken().startsWith("1"))      //Take care, FinalExamId always starts with 1
+            {
+                assignedFinalExamId = Integer.parseInt(token.nextToken());
+            }
+             if(token.hasMoreTokens()&&token.nextToken().startsWith("2")) {   //Take care, MidtermExamId always starts with 2
+                 assignedMidtermExamId = Integer.parseInt(token.nextToken());
+             }
+
             String [] sessionDates=sessionLine.split("-");
 
 
