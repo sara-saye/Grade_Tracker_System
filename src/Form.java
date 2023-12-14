@@ -7,7 +7,7 @@
 
             ArrayList login = new ArrayList();
             Scanner input = new Scanner(System.in);
-            String who=null;
+            String who="noOne";
             int ID = 0;
 
             System.out.println("Username : ");
@@ -40,7 +40,7 @@
                 }
             }
 
-            if(who == null){
+            if(who .equals("noOne")){
                 System.out.println("Wrong User Name Or Password!Try Again.");
                 LogIn(students,instructors);
             }else {
