@@ -2,6 +2,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Instructor extends Person {
     Scanner input = new Scanner(System.in);
@@ -508,21 +509,28 @@ public class Instructor extends Person {
         return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getUsername()+","+getPassword()+","+PhoneNumber+","+office_location+","+department;
     }
     private void setDeadlineassignment(Assignment assignment) {
-        System.out.println("Enter Assignment start date like this format yyyy-MM-dd ");
-        String date = input.next();
-        System.out.println("Enter Assignment duration in days");
-        int x = input.nextInt();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        try {
-            LocalDate Date = LocalDate.parse(date, formatter);
-            assignment.setAssignment_startDate(Date); // Set the start date for the assignment
-            assignment.set_Assignment_deadline(LocalDate.parse(assignment.getAssignment_startDate().plusDays(x).toString()));
-            System.out.println("Assignment deadline will be at "+assignment.getAssignment_Deadline());
-        }catch (DateTimeException dt){
-            System.out.println("Invalid Date, you entered past date");
-        }
-        catch (Exception e) {
-            System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+        while (true) {
+            try {
+                System.out.println("Enter Assignment start date like this format yyyy-MM-dd ");
+                String date = input.next();
+                System.out.println("Enter Assignment duration in days");
+                int x = input.nextInt();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate Date = LocalDate.parse(date, formatter);
+                assignment.setAssignment_startDate(Date); // Set the start date for the assignment
+                assignment.set_Assignment_deadline(LocalDate.parse(assignment.getAssignment_startDate().plusDays(x).toString()));
+                System.out.println("Assignment deadline will be at " + assignment.getAssignment_Deadline());
+                break;
+            } catch (DateTimeException dt) {
+                System.out.println("Invalid Date, you entered past date");
+            }catch (InputMismatchException ime){
+                System.out.println("Invalid Date, Please enter a valid date.");
+                input.nextLine();
+            }
+            catch (Exception e) {
+                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                input.nextLine();
+            }
         }
     }
     private void trackingStudentsAttendanceGrades(Student student) {
