@@ -13,8 +13,21 @@ static ArrayList<Assignment>assignments=new ArrayList<>();
 static ArrayList<Quiz>quizzes=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) throws IOException {
+        Files.readInstructor();
+        Files.readFinalExam();
+        Files.readMidtermExam();
+        Files.readCourse();
+        Files.readAssignment();
+        Files.readQuiz();
+        Files.instructorAndCourseRelation();
+        Files.assignmentAndCourseRelation();
+        Files.quizAndCourseRelation();
+        Files.readGrades();
+        Files.readStudents();
+        Files.readAttendance();
+        Files.StudentCourseRelation();
 
-     int studentId = 0, instructorId = 0;
+       int studentId = students.size(), instructorId = instructors.size();
         System.out.println("Already have an account?");
         System.out.println("1- Yes");
         System.out.println("2- No\n");
@@ -53,5 +66,14 @@ static ArrayList<Quiz>quizzes=new ArrayList<>();
         } else {
             System.out.println("Invalid Choice!Try Again.");
         }
+        Files.writeInstructor();
+        Files.writeFinalExam();
+        Files.writeMidtermExam();
+        Files.writeCourse();
+        Files.writeAssignment();
+        Files.writeQuiz();
+        Files.writeStudents();
+        Files.writeGrades();
+        Files.writeAttendance();
     }
 }

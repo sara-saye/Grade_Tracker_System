@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Admin extends Person{
     static Scanner input = new Scanner(System.in);
-    public static String eventDetails="null";
+    public static String eventDetails=null;
     public static void login() {
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
@@ -297,7 +297,7 @@ public class Admin extends Person{
     }
     public static void deleteEvent()
     {
-        eventDetails="null";
+        eventDetails=null;
     }
 
 }

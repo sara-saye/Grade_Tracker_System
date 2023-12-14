@@ -3,12 +3,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Notification {
-//    private ArrayList<Assignment> assignment = new ArrayList<Assignment>();
+    //    private ArrayList<Assignment> assignment = new ArrayList<Assignment>();
 //    private  ArrayList<Quiz> quiz = new ArrayList<Quiz>();
     private boolean New_grade;
 //    private boolean attendance;
     private double gpa;
-    private String Event;
+
+
+    public boolean isNew_grade() {
+        return New_grade;
+    }
+
+    public void setNew_grade(boolean new_grade) {
+        New_grade = new_grade;
+    }
+
 //    public int warningCounter = 0;
 
 
@@ -57,9 +66,6 @@ public class Notification {
         this.gpa = gpa;
     }
 
-    public void addEvent(String event) {
-        this.Event = event;
-    }
 
     public void Display_Notification(ArrayList<Course> course) {
 
@@ -101,8 +107,8 @@ public class Notification {
             System.out.println("Warning content");
         }
 
-        if (Event != null) {
-            System.out.println(Event);
+        if (Admin.eventDetails != null) {
+            System.out.println(Admin.eventDetails);
         }
 
     }

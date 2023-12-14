@@ -15,7 +15,7 @@ public class Files   {
     static File quizFile =new File("quiz.txt");
     static File StudentFile =new File("Student.txt");
     static File GradesFile =new File("Grades.txt");
-    static File NotificationsFile =new File("Notification.txt");
+   // static File NotificationsFile =new File("Notification.txt");
 
     static File AttendanceFile =new File("Attendance.txt");
 
@@ -31,6 +31,7 @@ public class Files   {
         String PhoneNumber="";
         String office_location="";
         String department=" ";
+        String username=" ";
         String line="" ;
         while((line = instructorBR.readLine())!=null)
         {
@@ -39,11 +40,12 @@ public class Files   {
             firstName=token.nextToken();
             lastName=token.nextToken();
             email=token.nextToken();
+            username=token.nextToken();
             password=token.nextToken();
             PhoneNumber=token.nextToken();
             office_location=token.nextToken();
             department=token.nextToken();
-            Instructor instructor=new Instructor(id,firstName,lastName,email,password, PhoneNumber, office_location, department);
+            Instructor instructor=new Instructor(id,firstName,lastName,email,username,password, PhoneNumber, office_location, department);
             Main.instructors.add(instructor);
         }
         instructorBR.close();
@@ -137,11 +139,12 @@ public class Files   {
                     String firstName=Main.instructors.get(instructorIndex).getFname();
                     String lastName=Main.instructors.get(instructorIndex).getLname();
                     String email=Main.instructors.get(instructorIndex).getEmail();
+                    String username=Main.instructors.get(instructorIndex).getUsername();
                     String password=Main.instructors.get(instructorIndex).getPassword();
                     String PhoneNumber=Main.instructors.get(instructorIndex).getPhoneNumber();
                     String office_location=Main.instructors.get(instructorIndex).getOffice_location();
                     String instructorDepartment=Main.instructors.get(instructorIndex).getDepartment();
-                    instructor=new Instructor( id,firstName,lastName,email,password, PhoneNumber,
+                    instructor=new Instructor( id,firstName,lastName,email,username,password, PhoneNumber,
                             office_location, instructorDepartment);
                 }
             }
@@ -348,15 +351,17 @@ public class Files   {
     }
     public  static void writeGrades() throws IOException {
         BufferedWriter gradesBW=new BufferedWriter(new FileWriter(GradesFile));
+
         for(Student student:Main.students)
         {
-            gradesBW.write(student.GradesToString());
-            gradesBW.newLine();
+            if(!student.Student_Grades.isEmpty()) {
+                gradesBW.write(student.GradesToString());
+                gradesBW.newLine();
+            }
         }
         gradesBW.flush();
         gradesBW.close();
     }
-
 //    public  static void writeNotification() throws IOException {
 //        BufferedWriter NotificationBW=new BufferedWriter(new FileWriter(NotificationsFile));
 //        for(Student student:Main.students)
@@ -377,7 +382,6 @@ public class Files   {
         AttendanceBW.flush();
         AttendanceBW.close();
     }
-
     public static void readStudents() throws IOException {
         StringTokenizer token = null;
         BufferedReader StudentBR=new BufferedReader(new FileReader(StudentFile));
@@ -398,37 +402,29 @@ public class Files   {
             student.setExpenses_paid(Boolean.parseBoolean(token.nextToken()));
             student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
             student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
+            student.getNotification().setNew_grade(Boolean.parseBoolean(token.nextToken()));
             student.setNoOfCourses(Integer.parseInt(token.nextToken()));
-            String [] coursecode = token.nextToken().split("-");
-            for (String code:coursecode) {
-                for (int i=0;i<Main.courses.size();i++){
-                  if(code.equals(Main.courses.get(i).getCourseCode())){
-                      student.Student_courses.add(Main.courses.get(i));
-                  }
-                }
-            }
-            student.setNoOfCourses(Integer.parseInt(token.nextToken())); //noOfcourses= size so read studentcourses first or increment noOfcourses in registerforcourse
-            Main.students.add(student);
-        }
-        // mkanha s7??
-        for (Student student1:Main.students) {
-            for (Course course:student1.Student_courses) {
-                for (Course Maincourse:Main.courses){
-                    if(course.getCourseCode().equals(Maincourse.getCourseCode())){
-                        Maincourse.enrolledStudents.add(student1);
+            if(student.getNoOfCourses()!=0) {
+                String[] coursecode = token.nextToken().split("-");
+
+                for (String code : coursecode) {
+                    for (int i = 0; i < Main.courses.size(); i++) {
+                        if (code.equals(Main.courses.get(i).getCourseCode())) {
+                            student.Student_courses.add(Main.courses.get(i));
+                        }
                     }
                 }
             }
+            Main.students.add(student);
         }
         StudentBR.close();
     }
-
     public static void readGrades() throws IOException {
         StringTokenizer token = null;
-        BufferedReader StudentBR=new BufferedReader(new FileReader(GradesFile));
+        BufferedReader GradesBR=new BufferedReader(new FileReader(GradesFile));
         String line="" ;
         int id;
-        while((line = StudentBR.readLine())!=null)
+        while((line = GradesBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
             StudentGrades studentGrade=new StudentGrades();
@@ -448,7 +444,7 @@ public class Files   {
 
             Main.students.get(id).Student_Grades.add(studentGrade);
         }
-        StudentBR.close();
+        GradesBR.close();
     }
 
 //    public static void readNotification() throws IOException {
@@ -505,5 +501,17 @@ public class Files   {
             }
         }
         AttendanceBR.close();
+    }
+
+    public static void StudentCourseRelation(){
+        for (Student student1:Main.students) {
+            for (Course course:student1.Student_courses) {
+                for (Course Maincourse:Main.courses){
+                    if(course.getCourseCode().equals(Maincourse.getCourseCode())){
+                        Maincourse.enrolledStudents.add(student1);
+                    }
+                }
+            }
+        }
     }
 }

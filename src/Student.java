@@ -319,7 +319,7 @@ public class Student extends Person {
     public String toString()
     {
         String s=getFname()+","+getLname()+","+getID()+","+getEmail()+","+getUsername()+","+getPassword()+
-                ","+getPhoneNumber()+","+GPA+","+expenses+","+expenses_paid+","+gpaDrop+","+attendanceDrop+
+                ","+getPhoneNumber()+","+GPA+","+expenses+","+expenses_paid+","+gpaDrop+","+attendanceDrop+","+notification.isNew_grade()+
                 ","+NoOfCourses;
         if(!Student_courses.isEmpty()) {
             s+=",";

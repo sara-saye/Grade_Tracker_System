@@ -16,11 +16,20 @@ public class Instructor extends Person {
         this.department = "Unknown";
         this.setID(instructor_ID);
     }
-    public Instructor(int ID, String Fname, String Lname, String email, String password, String PhoneNumber, String office_location, String department) {
-        super(ID, Fname, Lname, email, password, PhoneNumber);
+    public Instructor(int ID, String Fname, String Lname, String email,String username, String password, String PhoneNumber, String office_location, String department) {
+        super(ID, Fname, Lname, email,username,password, PhoneNumber);
         this.office_location = office_location;
         this.department = department;
     }
+
+    public Instructor(int ID, String Fname, String Lname, String email, String username,String password, String PhoneNumber) {
+        super(ID, Fname, Lname, email,username, password, PhoneNumber);
+        this.office_location = office_location;
+        this.department = department;
+    }
+
+
+
     public Instructor(String Fname, String Lname, String office_location, String department) {
         super(Fname, Lname);
         this.office_location = office_location;
@@ -87,13 +96,20 @@ public class Instructor extends Person {
                     System.out.println("Invalid choice");
                     break;
             }
-        } while (choice != 10);
+            if(choice==10)
+                break;
+        } while (true);
     }
     @Override
     public void display() {
-        super.display();
+        System.out.println("Name: " + this.getFname() + " " + this.getLname());
+        System.out.println("ID: " + this.getID());
         System.out.println("Department: " + this.department);
-        System.out.println("Responsible for course: " + this.course.get(0).courseTitle);
+        try {
+            System.out.println("Responsible for course: " + this.course.get(0).courseTitle);
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Responsible for no course ");
+        }
     }
     public String getOffice_location() {
         return office_location;
@@ -485,7 +501,7 @@ public class Instructor extends Person {
         }
     }
     public String toString(){
-        return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getPassword()+","+PhoneNumber+","+office_location+","+department;
+        return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getUsername()+","+getPassword()+","+PhoneNumber+","+office_location+","+department;
     }
     private void setDeadlineassignment(Assignment assignment) {
         System.out.println("Enter Assignment start date like this format yyyy-MM-dd ");

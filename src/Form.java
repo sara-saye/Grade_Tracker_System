@@ -86,15 +86,8 @@
             String PhoneNo = input.next();
 
             if(who==1) {
-                Instructor instructor = new Instructor();
+                Instructor instructor = new Instructor(instructorId,Fname,Lname,Email,UserName+"@Instructor",Password,PhoneNo);
                 instructor.forSignUp();
-                instructor.setEmail(Email);
-                instructor.setUsername(UserName+"@Instructor");
-                instructor.setPassword(Password);
-                instructor.setPhoneNumber(PhoneNo);
-                instructor.setFname(Fname);
-                instructor.setLname(Lname);
-                instructor.setID(instructorId);
                 instructors.add(instructor);
             } else if(who==2){
                 Student student = new Student();

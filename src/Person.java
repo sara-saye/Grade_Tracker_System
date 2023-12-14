@@ -21,6 +21,16 @@ public abstract class Person {
         this.password=password;
         this.PhoneNumber=PhoneNumber;
     }
+
+    public Person(int ID,String Fname, String Lname,String email,String username,String password,String PhoneNumber) {
+
+        this(Fname,Lname);
+        this.ID=ID;
+        this.Username=username;
+        this.email=email;
+        this.password=password;
+        this.PhoneNumber=PhoneNumber;
+    }
     public void display(){
         System.out.println("Name: " + this.Fname + " " + this.Lname);
         System.out.println("ID: " + this.ID);
