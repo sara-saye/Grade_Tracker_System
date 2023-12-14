@@ -213,7 +213,7 @@ public class Admin extends Person{
                 if (!(Main.instructors.get(instrcutorIndex).course.isEmpty())) {
 
                     System.out.println("Dr." + Main.instructors.get(instrcutorIndex).getFname() + " " +
-                            Main.instructors.get(instrcutorIndex).getFname() +
+                            Main.instructors.get(instrcutorIndex).getLname() +
                             " already has a course! ");
                 }
                 else {
@@ -222,10 +222,12 @@ public class Admin extends Person{
                             if (!(Main.courses.get(courseIndex).assignedInstructor.isEmpty())) {
                                 System.out.println(Main.courses.get(courseIndex).courseTitle +
                                         " Course already has an instructor!");
+
                             } else {
                                 assignCoursesToInstructors(courseCode, instructorID);
                                 assignInstructorsToCourses(courseCode, instructorID);
                                 System.out.println("Done Successfully.");
+                                break;
                             }
                         }
                     }

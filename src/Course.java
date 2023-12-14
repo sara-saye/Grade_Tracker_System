@@ -31,7 +31,9 @@ public class Course {
                    String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates);
-        this.assignedInstructor.add(assignedInstructor);
+        if(assignedInstructor!=null) {
+            this.assignedInstructor.add(assignedInstructor);
+        }
         this.assignedfinal=assignedfinal;
         this.assignedMidterm=assignedMidterm;
     }

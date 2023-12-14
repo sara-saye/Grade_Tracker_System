@@ -111,9 +111,9 @@ public class Files   {
         int credits=0;
         String department="";
         String description="";
-        int instructorId=0;
-        int assignedFinalExamId=0;
-        int assignedMidtermExamId=0;
+        int instructorId=-1;
+        int assignedFinalExamId=-1;
+        int assignedMidtermExamId=-1;
         String line="" ;
         while((line = courseBR.readLine())!=null)
         {
@@ -124,7 +124,7 @@ public class Files   {
             department=token.nextToken();
             description=token.nextToken();
             String sessionLine=token.nextToken();
-            if(token.hasMoreTokens()) {
+            if(token.hasMoreTokens() ) {                                  //>>Take care, FinalExamId always starts with 1
                 instructorId = Integer.parseInt(token.nextToken());
             }
 
@@ -139,7 +139,7 @@ public class Files   {
             String [] sessionDates=sessionLine.split("-");
 
 
-            Instructor instructor=new Instructor();
+            Instructor instructor=null;
             for(int instructorIndex=0;instructorIndex<Main.instructors.size();instructorIndex++)
             {
                 if(instructorId==Main.instructors.get(instructorIndex).getID())
@@ -255,7 +255,7 @@ public class Files   {
         {
             for(int instructorIndex=0;instructorIndex<Main.instructors.size();instructorIndex++)
             {
-                if(Main.courses.get(courseIndex).assignedInstructor.get(0).getID()==Main.instructors.get(instructorIndex).getID())
+                if((!Main.courses.get(courseIndex).assignedInstructor.isEmpty())&&(Main.courses.get(courseIndex).assignedInstructor.get(0).getID()==Main.instructors.get(instructorIndex).getID()))
                 {
                     Main.instructors.get(instructorIndex).course.add(Main.courses.get(courseIndex));
                 }
