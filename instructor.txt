@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 1,sara,eslam,sara,sara@Instructor,123456,568,cis,cs
+=======
+5,nrmeen,araby,nrmeen,nrmeen@Instructor,1234,123,mmmm,cs
+>>>>>>> f604824e6c4d373222af0cf9190b5fe661589799

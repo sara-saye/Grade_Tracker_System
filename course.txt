@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f604824e6c4d373222af0cf9190b5fe661589799
 15,oop,3,cs,pppppppp,1-2
 20,logic,5,ccc,ddddd,3-2
-101,data,4,sc,wwww,4-5
+=======
+15,oop,3,cs,pppppppp,1-2,5
+20,logic,5,ccc,ddddd,3-2,5
+101,data,4,sc,wwww,4-5,5
+30,sp,3,is,skuhdnc,12-12-2023-15-12,1
+>>>>>>> d9d51565b9bc3f459ecb1cfcc3640405535d81ef
