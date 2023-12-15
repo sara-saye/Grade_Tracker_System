@@ -40,6 +40,7 @@ public class Instructor extends Person {
         this.department = input.next();
         System.out.println("Data entered successfully!");
         System.out.println("Your ID is: " + this.getID());
+        instructor_ID++;
         System.out.println("you will use it for login next time");
         forSignIn();
     }
