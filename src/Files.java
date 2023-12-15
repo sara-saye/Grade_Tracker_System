@@ -173,7 +173,7 @@ public class Files   {
                        finalExam =new FinalExam(ID,Title,Max_score,StringDate,Location,Exam_Time);
                    }
             }
-            MidtermExam midtermExam=new MidtermExam();
+            MidtermExam midtermExam=null;
             for(int midtermIndex=0;midtermIndex<Main.midtermExams.size();midtermIndex++)
             {
                 if(assignedMidtermExamId==Main.midtermExams.get(midtermIndex).getID())

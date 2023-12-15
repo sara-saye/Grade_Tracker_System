@@ -34,8 +34,12 @@ public class Course {
         if(assignedInstructor!=null) {
             this.assignedInstructor.add(assignedInstructor);
         }
-        this.assignedfinal=assignedfinal;
-        this.assignedMidterm=assignedMidterm;
+        if(assignedfinal!=null) {
+            this.assignedfinal = assignedfinal;
+        }
+        if(assignedMidterm!=null) {
+            this.assignedMidterm = assignedMidterm;
+        }
     }
  /*  public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
     Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)

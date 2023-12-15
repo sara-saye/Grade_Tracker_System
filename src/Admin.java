@@ -11,7 +11,9 @@ public class Admin extends Person{
         System.out.println(" 4-assign instructor to course");
         System.out.println(" 5-Drop Instructor");
         System.out.println(" 6-Drop Student");
-        System.out.println(" 7-Exit");
+        System.out.println(" 7-Add Event");
+        System.out.println(" 8-Delete Event");
+        System.out.println(" 9-Exit");
         int choice = 0;
         choice = input.nextInt();
         switch (choice) {
@@ -139,6 +141,37 @@ public class Admin extends Person{
                 }
                 break;
             case 7:
+                String eventName;
+                String eventDate;
+                String eventLocation;
+                System.out.println("Event Name: ");
+                eventName=input.next();
+                System.out.println("Event Date: ");
+                eventDate=input.next();
+                System.out.println("Event Location: ");
+                eventLocation=input.next();
+                addEvent(eventName,eventDate,eventLocation);
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice7=input.nextInt();
+                if(moreOperationsChoice7==1)
+                {
+                    login();
+                }
+                break;
+            case 8:
+                deleteEvent();
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice8=input.nextInt();
+                if(moreOperationsChoice8==1)
+                {
+                    login();
+                }
+                break;
+            case 9:
                 break;
             default:
                 System.out.println("Invalid choice");
@@ -276,7 +309,7 @@ public class Admin extends Person{
     public static void deleteDeletedInstructorFromTheCourse(int instructorId) {
         for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
             try{
-                if (Main.courses.get(courseIndex).assignedInstructor.get(0).getID() == instructorId) {
+                if ((!Main.courses.get(courseIndex).assignedInstructor.isEmpty())&&(Main.courses.get(courseIndex).assignedInstructor.get(0).getID() == instructorId)) {
                     Main.courses.get(courseIndex).assignedInstructor.remove(0);
                 }
             }
