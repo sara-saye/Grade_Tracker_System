@@ -191,6 +191,9 @@ public class Files   {
             }
 
             Course course=new Course(courseCode,courseTitle,credits,department,description,sessionDates,instructor,midtermExam,finalExam);
+            instructorId=-1;
+            assignedFinalExamId=-1;
+            assignedMidtermExamId=-1;
             Main.courses.add(course);
         }
         courseBR.close();
@@ -503,11 +506,14 @@ public class Files   {
             token =new StringTokenizer(line,",");
             Notification n = new Notification();
             id=Integer.parseInt(token.nextToken());
-            for (int i=0;i<Main.students.get(id).getNoOfCourses();i++) {
-                for (int j = 0; j < 10; j++) {
-                    Main.students.get(id).attendance[i][j]=Boolean.parseBoolean(token.nextToken());
+
+                for (int i = 0; i < Main.students.get(id).getNoOfCourses(); i++) {
+                    for (int j = 0; j < 10; j++) {
+                        Main.students.get(id).attendance[i][j] = Boolean.parseBoolean(token.nextToken());
+                    }
                 }
-            }
+
+
         }
         AttendanceBR.close();
     }

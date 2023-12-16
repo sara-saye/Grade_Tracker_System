@@ -204,7 +204,7 @@ public class Admin extends Person{
         Course course = new Course(newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription, newSessionDates);
         try{
             for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-                if (Main.instructors.get(instrcutorIndex).course.get(0).getCourseCode().equals(courseCode)) {
+                if ( (!Main.instructors.get(instrcutorIndex).course.isEmpty()) &&(Main.instructors.get(instrcutorIndex).course.get(0).getCourseCode().equals(courseCode))) {
                     Main.instructors.get(instrcutorIndex).course.set(0, course);
                 }
             }
@@ -227,7 +227,7 @@ public class Admin extends Person{
     public static void deleteCourseFromInstructor(String courseCode) {
         try {
             for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
-                if (Main.instructors.get(instrcutorIndex).course.get(0).getCourseCode().equals(courseCode)) {
+                if ( (!Main.instructors.get(instrcutorIndex).course.isEmpty()) &&(Main.instructors.get(instrcutorIndex).course.get(0).getCourseCode().equals(courseCode))) {
                     Main.instructors.get(instrcutorIndex).course.remove(0);
                 }
             }
