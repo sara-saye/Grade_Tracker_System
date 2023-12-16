@@ -211,13 +211,13 @@ public class Instructor extends Person {
                     case 1:
                         //add Assignment
                         Assignment assignment = new Assignment();
-                        System.out.println("How many assignments?1 0r 2 ");
+                        System.out.println("How many assignments?1 or 2 ");
                         System.out.println("If 1 assignment mark will be 20");
                         System.out.println("If 2 the sum of two assignments will be 20");
                         int numOfAssignment = input.nextInt();
                         if (numOfAssignment == 1) {
                             assignment.courseCode = course.get(0).getCourseCode();
-                            System.out.println("Assignment number: ");
+                            System.out.println("Assignment ID: ");
                             assignment.setID(input.nextInt());
                             System.out.print("Title: ");
                             assignment.setTitle(input.next());
@@ -228,7 +228,7 @@ public class Instructor extends Person {
                             for (int i = 0; i < 2; i++) {
                                 Assignment assignments = new Assignment();
                                 assignments.courseCode = course.get(0).getCourseCode();
-                                System.out.println("Assignment number: ");
+                                System.out.println("Assignment ID: ");
                                 assignments.setID(input.nextInt());
                                 System.out.print("Title: ");
                                 assignments.setTitle(input.next());
@@ -254,7 +254,7 @@ public class Instructor extends Person {
                         int numOfQuiz = input.nextInt();
                         if (numOfQuiz == 1) {
                             quiz.courseCode = course.get(0).getCourseCode();
-                            System.out.println("Quiz number: ");
+                            System.out.println("Quiz ID: ");
                             quiz.setID(input.nextInt());
                             System.out.print("Title: ");
                             quiz.setTitle(input.next());
@@ -268,7 +268,7 @@ public class Instructor extends Person {
                             Quiz quizzes = new Quiz();
                             for (int i = 0; i < 2; i++) {
                                 quizzes.courseCode = course.get(0).getCourseCode();
-                                System.out.println("Quiz number: ");
+                                System.out.println("Quiz ID: ");
                                 quizzes.setID(input.nextInt());
                                 System.out.print("Title: ");
                                 quizzes.setTitle(input.next());
@@ -335,8 +335,8 @@ public class Instructor extends Person {
                 System.out.println("Student name: " + student.getFname() + " " + student.getLname());
                 System.out.println("Student ID: " + student.getID());
                 int choice;
-                StudentGrades g = new StudentGrades();
-                student.Student_Grades.add(g);
+               // StudentGrades g = new StudentGrades();
+              //  student.Student_Grades.add(g);
                 do {
                     System.out.println("--------------------------------------");
                     System.out.println("What do you want set");
@@ -557,10 +557,10 @@ public class Instructor extends Person {
             student.Student_Grades.get(courseIndex).setAttendanceGrade(5);
         }
     }
-    private int findindexs(Student student){
+    private int findindexs(Student student) {
         int i = 0;
         for (Course course : student.Student_courses) {
-            if(course.equals(this.course)) {
+            if (course.equals(this.course)) {
                 break;
             }
             i++;

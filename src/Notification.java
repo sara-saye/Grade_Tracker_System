@@ -53,7 +53,7 @@ public class Notification {
 //        }
 //    }
 
-    public void addStatueOfGrade(boolean new_grade) //>>I get it from Grades class
+    public void addStatueOfGrade(boolean new_grade) //>>I get it from instructor class
     {
         this.New_grade = new_grade;
     }
