@@ -11,6 +11,7 @@ public abstract class Main {
     static ArrayList<MidtermExam> midtermExams = new ArrayList<>();
     static ArrayList<Assignment> assignments = new ArrayList<>();
     static ArrayList<Quiz> quizzes = new ArrayList<>();
+    static ArrayList<Admin>eventDetails=new ArrayList<>();
     static Scanner input = new Scanner(System.in);
     static boolean first = true;
 
@@ -31,6 +32,7 @@ public abstract class Main {
             Files.readStudents();
             Files.readAttendance();
             Files.StudentCourseRelation();
+            Files.readEventDetails();
             first = false;
         }
         int studentId = students.size(), instructorId = instructors.size();
@@ -90,6 +92,7 @@ public abstract class Main {
         Files.writeStudents();
         Files.writeGrades();
         Files.writeAttendance();
+        Files.writeEvent();
 
     }
 }

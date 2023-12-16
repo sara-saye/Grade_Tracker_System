@@ -115,8 +115,8 @@ public class Notification {
             System.out.println("Warning content");
         }
 
-        if (Admin.eventDetails != null) {
-            System.out.println(Admin.eventDetails);
+        if (!Main.eventDetails.isEmpty()) {
+            System.out.println(Main.eventDetails.get(0));
         }
 
     }

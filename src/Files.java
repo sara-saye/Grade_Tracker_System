@@ -18,6 +18,7 @@ public class Files   {
    // static File NotificationsFile =new File("Notification.txt");
 
     static File AttendanceFile =new File("Attendance.txt");
+    static File eventDetailsFile=new File("event.txt");
 
 
     public static void readInstructor () throws IOException {
@@ -252,6 +253,26 @@ public class Files   {
         quizBR.close();
 
     }
+    public static void readEventDetails()throws IOException
+    {
+        StringTokenizer token=null;
+        BufferedReader eventDetailsBR=new BufferedReader(new FileReader(eventDetailsFile));
+        String eventName;
+        String eventDate;
+        String eventLocation;
+        String line="";
+        line=eventDetailsBR.readLine();
+        if(line!=null) {
+            token = new StringTokenizer(line, ",");
+            eventName = token.nextToken();
+            eventDate = token.nextToken();
+            eventLocation = token.nextToken();
+            Admin event=new Admin(eventName,eventDate,eventLocation);
+            Main.eventDetails.add(event);
+        }
+        eventDetailsBR.close();
+        
+    }
     public static void instructorAndCourseRelation()
     {
         for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
@@ -350,6 +371,16 @@ public class Files   {
         }
         quizBW.flush();
         quizBW.close();
+    }
+    public static void writeEvent()throws IOException{
+        BufferedWriter eventDetailsBW=new BufferedWriter(new FileWriter(eventDetailsFile));
+        for(Admin event:Main.eventDetails)
+        {
+            eventDetailsBW.write(event.toString());
+            eventDetailsBW.newLine();
+        }
+        eventDetailsBW.flush();
+        eventDetailsBW.close();
     }
     public  static void writeStudents() throws IOException {
         BufferedWriter StudentBW=new BufferedWriter(new FileWriter(StudentFile));
@@ -501,30 +532,30 @@ public class Files   {
         BufferedReader AttendanceBR=new BufferedReader(new FileReader(AttendanceFile));
         String line="" ;
         int id;
-        while((line = AttendanceBR.readLine())!=null)
-        {
-            token =new StringTokenizer(line,",");
+        while((line = AttendanceBR.readLine())!=null) {
+            token = new StringTokenizer(line, ",");
             Notification n = new Notification();
-            id=Integer.parseInt(token.nextToken());
+            id = Integer.parseInt(token.nextToken());
 
 
-                for (int i = 0; i < Main.students.get(id).getNoOfCourses(); i++) {
-                    for (int j = 0; j < 10; j++) {
-                        Main.students.get(id).attendance[i][j] = Boolean.parseBoolean(token.nextToken());
-                    }
+            for (int i = 0; i < Main.students.get(id).getNoOfCourses(); i++) {
+                for (int j = 0; j < 10; j++) {
+                    Main.students.get(id).attendance[i][j] = Boolean.parseBoolean(token.nextToken());
+                }
+            }
 
-            for (int i=0;i<Main.students.get(id).getNoOfCourses();i++) {
+            for (int i = 0; i < Main.students.get(id).getNoOfCourses(); i++) {
                 for (int j = 0; j < 5; j++) {
-                    Main.students.get(id).attendance[i][j]=Boolean.parseBoolean(token.nextToken());
+                    Main.students.get(id).attendance[i][j] = Boolean.parseBoolean(token.nextToken());
 
                 }
-
-
+            }
         }
-        AttendanceBR.close();
+            AttendanceBR.close();
+
     }
 
-    public static void StudentCourseRelation(){
+    public static void StudentCourseRelation() {
         for (Student student1:Main.students) {
             for (Course course:student1.Student_courses) {
                 for (Course Maincourse:Main.courses){
@@ -536,3 +567,4 @@ public class Files   {
         }
     }
 }
+

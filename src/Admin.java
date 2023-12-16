@@ -5,6 +5,16 @@ import java.util.Scanner;
 public class Admin extends Person{
     static Scanner input = new Scanner(System.in);
     public static String eventDetails=null;
+    String eventName;
+    String eventDate;
+    String eventLocation;
+    public Admin(String eventName,String eventDate,String eventLocation)
+    {
+        this.eventName=eventName;
+        this.eventDate=eventDate;
+        this.eventLocation=eventLocation;
+        eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
+    }
     public static void login() throws IOException {
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
@@ -384,6 +394,10 @@ public class Admin extends Person{
     public static void deleteEvent()
     {
         eventDetails=null;
+    }
+    public String toString()
+    {
+        return eventName+","+eventDate+","+eventLocation;
     }
 
 }
