@@ -405,14 +405,12 @@ public class Student extends Person {
 
     public String AttendanceToString(){
         String s="";
-        if(NoOfCourses>0) {
              s = String.valueOf(getID());
             for (int i = 0; i < NoOfCourses; i++) {
                 for (int j = 0; j < 5; j++) {
                     s += ("," + attendance[i][j]);
                 }
             }
-        }
         return s;
     }
 }
