@@ -1,10 +1,11 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin extends Person{
     static Scanner input = new Scanner(System.in);
     public static String eventDetails=null;
-    public static void login() {
+    public static void login() throws IOException {
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
         System.out.println(" 3-Delete Course");
@@ -13,7 +14,8 @@ public class Admin extends Person{
         System.out.println(" 6-Drop Student");
         System.out.println(" 7-Add Event");
         System.out.println(" 8-Delete Event");
-        System.out.println(" 9-Exit");
+        System.out.println(" 9-Logout");
+        System.out.println(" 10-Exit");
         int choice = 0;
         choice = input.nextInt();
         switch (choice) {
@@ -172,6 +174,8 @@ public class Admin extends Person{
                 }
                 break;
             case 9:
+                Main.main(null);
+            case 10:
                 break;
             default:
                 System.out.println("Invalid choice");

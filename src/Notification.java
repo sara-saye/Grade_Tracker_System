@@ -70,13 +70,17 @@ public class Notification {
     public void Display_Notification(ArrayList<Course> course) {
 
         if (!course.isEmpty()) {
-            for (int i = 0; i <= course.size(); i++) {
-                System.out.println(course.get(i).assignedAssignment.get(i).getTitle());
-                System.out.println("Start Date: " + course.get(i).assignedAssignment.get(i).getAssignment_startDate());
-                System.out.println("Deadline: " + course.get(i).assignedAssignment.get(i).getAssignment_Deadline());
-                Duration diff = Duration.between(course.get(i).assignedAssignment.get(i).getAssignment_startDate().atStartOfDay(), course.get(i).assignedAssignment.get(i).getAssignment_Deadline().atStartOfDay());
-                long diffDays = diff.toDays();
-                System.out.println("Assignment ends at " + diffDays + " days");
+            for (int i = 0; i < course.size(); i++) {
+                if(!course.get(i).assignedAssignment.isEmpty()) {
+                    for (int j=0;j<course.get(i).assignedAssignment.size();j++) {
+                        System.out.println(course.get(i).assignedAssignment.get(j).getTitle());
+                        System.out.println("Start Date: " + course.get(i).assignedAssignment.get(j).getAssignment_startDate());
+                        System.out.println("Deadline: " + course.get(i).assignedAssignment.get(j).getAssignment_Deadline());
+                        Duration diff = Duration.between(course.get(i).assignedAssignment.get(j).getAssignment_startDate().atStartOfDay(), course.get(i).assignedAssignment.get(j).getAssignment_Deadline().atStartOfDay());
+                        long diffDays = diff.toDays();
+                        System.out.println("Assignment ends at " + diffDays + " days");
+                    }
+                }
             }
         }
 
@@ -87,8 +91,12 @@ public class Notification {
 //            }
 //
         if(!course.isEmpty()) {
-            for (int i = 0; i <= course.size(); i++) {
-                System.out.println(course.get(i).assignedQuiz.get(i).getTitle() + " " + course.get(i).assignedQuiz.get(i).getDate());
+            for (int i = 0; i < course.size(); i++) {
+                if (!course.get(i).assignedQuiz.isEmpty()) {
+                    for (int j = 0; j < course.get(i).assignedQuiz.size(); j++) {
+                        System.out.println(course.get(i).assignedQuiz.get(j).getTitle() + " " + course.get(i).assignedQuiz.get(j).getDate());
+                    }
+                }
             }
         }
 

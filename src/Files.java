@@ -507,10 +507,16 @@ public class Files   {
             Notification n = new Notification();
             id=Integer.parseInt(token.nextToken());
 
+
                 for (int i = 0; i < Main.students.get(id).getNoOfCourses(); i++) {
                     for (int j = 0; j < 10; j++) {
                         Main.students.get(id).attendance[i][j] = Boolean.parseBoolean(token.nextToken());
                     }
+
+            for (int i=0;i<Main.students.get(id).getNoOfCourses();i++) {
+                for (int j = 0; j < 5; j++) {
+                    Main.students.get(id).attendance[i][j]=Boolean.parseBoolean(token.nextToken());
+
                 }
 
 

@@ -10,7 +10,7 @@ public class Student extends Person {
     private double expenses = 0;
     private boolean expenses_paid = false;
     public ArrayList<Course> Student_courses = new ArrayList<>();
-    private int NoOfCourses = Student_courses.size();  //test
+    private int NoOfCourses ;  //test
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
     public boolean[][]attendance = new boolean[NoOfCourses][5];
     private Notification notification = new Notification();
@@ -80,13 +80,17 @@ public class Student extends Person {
     }
 
     public void DisplayCurrentCourses(){
-        for (int i = 0; i < NoOfCourses; i++) {
-            System.out.println((i+1)+"- "+Student_courses.get(i).courseTitle);
-            System.out.println(Student_courses.get(i).department);
-            System.out.println(Student_courses.get(i).description);
-            System.out.println(Student_courses.get(i).credits);
-            System.out.println(Student_courses.get(i).assignedInstructor);
-            System.out.println("------------------------------------");
+        if(!Student_courses.isEmpty()) {
+            for (int i = 0; i < Student_courses.size(); i++) {
+                System.out.println((i + 1) + "- " + Student_courses.get(i).courseTitle);
+                System.out.println(Student_courses.get(i).department);
+                System.out.println(Student_courses.get(i).description);
+                System.out.println(Student_courses.get(i).credits);
+                System.out.println(Student_courses.get(i).assignedInstructor.get(0));
+                System.out.println("------------------------------------");
+            }
+        }else {
+            System.out.println("You haven't registered any course");
         }
     }
 
@@ -110,22 +114,26 @@ public class Student extends Person {
         if (NoOfCourses == 0)
             System.out.println("You haven't registered any course");
         else if (expenses_paid) {
-            for (int i = 0; i < NoOfCourses; i++) {
-                System.out.println((i+1)+"- Course : " + Student_courses.get(i).courseTitle);
-                double courseGrade=Student_Grades.get(i).CalcTotalGrade();
-                double courseScale=Student_Grades.get(i).Calcscale();
-                String courseLetterGrade=Student_Grades.get(i).CalcLetterGrade(courseGrade);
-                System.out.println("Student Name: " + this.getFname()+" "+this.getLname());
-                System.out.println("Student ID: " + this.getID());
-                System.out.println("Midterm: " +Student_Grades.get(i).getMidTermGrade() );
-                System.out.println("Assignment: " + Student_Grades.get(i).getAssignmentGrade());
-                System.out.println("Quiz: " + Student_Grades.get(i).getQuizGrade());
-                System.out.println("Attendance:" + Student_Grades.get(i).getAttendanceGrade());
-                System.out.println("Final:" + Student_Grades.get(i).getFinalGrade());
-                System.out.println("Total Grade: " +courseGrade);
-                System.out.println("Points: " + courseScale);
-                System.out.println("Letter Grade: " +courseLetterGrade);
+            if(notification.isNew_grade()) {
+                for (int i = 0; i < NoOfCourses; i++) {
+                    System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
+                    double courseGrade = Student_Grades.get(i).CalcTotalGrade();
+                    double courseScale = Student_Grades.get(i).Calcscale();
+                    String courseLetterGrade = Student_Grades.get(i).CalcLetterGrade(courseGrade);
+                    System.out.println("Student Name: " + this.getFname() + " " + this.getLname());
+                    System.out.println("Student ID: " + this.getID());
+                    System.out.println("Midterm: " + Student_Grades.get(i).getMidTermGrade());
+                    System.out.println("Assignment: " + Student_Grades.get(i).getAssignmentGrade());
+                    System.out.println("Quiz: " + Student_Grades.get(i).getQuizGrade());
+                    System.out.println("Attendance:" + Student_Grades.get(i).getAttendanceGrade());
+                    System.out.println("Final:" + Student_Grades.get(i).getFinalGrade());
+                    System.out.println("Total Grade: " + courseGrade);
+                    System.out.println("Points: " + courseScale);
+                    System.out.println("Letter Grade: " + courseLetterGrade);
+                }
             }
+            else
+                System.out.println("Unavailable Grades");
         } else
             System.out.println("Please pay expenses first");
     }
@@ -160,15 +168,17 @@ public class Student extends Person {
         if(!courses.isEmpty()) {
             for (int i = 0; i < courses.size(); i++) {
                 System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
-
             }
+            System.out.println("Which Course You Want To Register For? ");
+            int answer = input.nextInt();//validation
+            Student_courses.add(courses.get(answer - 1));
+            courses.get(answer - 1).enrollStudent(this);//test
+            StudentGrades grade = new StudentGrades();
+            Student_Grades.add(grade);
+            CalcZScore();
+            NoOfCourses++;
+            System.out.println("Registration Done");
         }
-        System.out.println("Which Course You Want To Register For? ");
-        int answer = input.nextInt();//validation
-        Student_courses.add(courses.get(answer - 1));
-        courses.get(answer - 1).enrollStudent(this);//test
-        StudentGrades grade = new StudentGrades();
-        Student_Grades.add(grade);
     }
 
     public void ViewEvents() {
@@ -197,39 +207,58 @@ public class Student extends Person {
     }
 
     public void Edit_Info() {
-        System.out.println("Select what you want change");
-        System.out.println("1-Name\n2-Email\n3-Phone Number\n4-Username or Password");
-        int choice = input.nextInt();
-        switch (choice) {
-            case 1:
-                System.out.println("Enter new first and last name");
-                this.setFname(input.next());
-                this.setLname(input.next());
-                break;
-            case 2:
-                System.out.println("Enter new Email");
-                String s = input.next();
-                this.setEmail(s);
-                break;
-            case 3:
-                System.out.println("Enter new Phone Number");
-                String s1 = input.next();
-                this.setPhoneNumber(s1);
-                break;
-            case 4:
-                System.out.println("Enter your current username and password");
-                String t1 = input.next(), t2 = input.next();
-                if (this.getUsername().equals(t1) && this.getPassword().equals(t2)) {
-                    System.out.println("Enter new username and password");
-                    t1 = input.next();
-                    t2 = input.next();
-                    this.setUsername(t1);
-                    this.setPassword(t2);
-                    //validation
+        int choice;
+        boolean success=false;
+        while (!success) {
+            try {
+                System.out.println("Select what you want change");
+                System.out.println("1-Name\n2-Email\n3-Phone Number\n4-Username or Password");
+                choice = input.nextInt();
+                switch (choice) {
+                    case 1:
+                        System.out.println("Enter new first name");
+                        this.setFname(input.next());
+                        System.out.println("Enter new last name");
+                        this.setLname(input.next());
+                        break;
+                    case 2:
+                        System.out.println("Enter new Email");
+                        String s = input.next();
+                        this.setEmail(s);
+                        break;
+                    case 3:
+                        System.out.println("Enter new Phone Number");
+                        String s1 = input.next();
+                        this.setPhoneNumber(s1);
+                        break;
+                    case 4:
+                        System.out.println("Enter your current username");
+                        String t1 = input.next();
+                        System.out.println("Enter your current password");
+                        String t2 = input.next();
+                        if (this.getUsername().replaceAll("@Student", "").equals(t1) && this.getPassword().equals(t2)) {
+                            System.out.println("Enter new username: ");
+                            t1 = input.next();
+                            System.out.println("Enter new password: ");
+                            t2 = input.next();
+                            this.setUsername(t1 + "@Student");
+                            this.setPassword(t2);
+                        }
+                        break;
+                    default:
+                        System.out.println("Invalid! Try Again.");
                 }
-                break;
-            //validation
+              if(choice>=1&&choice<=4) {
+                  success=true;
+                  System.out.println("Edit Done Successfully.");
+              }
+            } catch (InputMismatchException exception) {
+                System.out.println("Error! Please enter numeric values");
+                input.next();
+            }
         }
+
+
     }
 
     public void CalcZScore(){
@@ -249,18 +278,20 @@ public class Student extends Person {
         return GPA;
     }
 
-    public void Student_AfterLogin(){
-        int ans,ans1,ans2;
-        do{
+    public void Student_AfterLogin() throws IOException {
+        int ans, ans1, ans2;
+        boolean success = false;
+        while (!success) {
+            try {
             System.out.println("1- Profile");
             System.out.println("2- Study Services");
             System.out.println("3- Payments record");
-            System.out.println("4- Exit");
-            if(getNotification()!=null) {
+            System.out.println("4- Logout");
+            System.out.println("5- Exit");
+            if (getNotification() != null) {
                 ViewEvents();
             }
             ans = input.nextInt();
-            try {
                 switch (ans) {
                     case 1:
                         DisplayInfo();
@@ -271,6 +302,7 @@ public class Student extends Person {
                             switch (ans1) {
                                 case 1:
                                     Edit_Info();
+                                    Student_AfterLogin();
                                     break;
                                 case 2:
                                     Student_AfterLogin();
@@ -278,7 +310,7 @@ public class Student extends Person {
                                 default:
                                     System.out.println("Invalid! Try Again.");
                             }
-                        }while (ans1!=1&&ans1!=2);
+                        } while (ans1 != 1 && ans1 != 2);
                         break;
                     case 2:
                         do {
@@ -303,18 +335,28 @@ public class Student extends Person {
                                 default:
                                     System.out.println("Invalid Choice!Try Again.");
                             }
-                        }while (ans2<1||ans2>4);
+                        } while (ans2 < 1 || ans2 > 4);
+                        Student_AfterLogin();
+                        break;
                     case 3:
                         Payment();
+                        Student_AfterLogin();
                         break;
                     case 4:
+                        Main.main(null);
+                        break;
+                    case 5:
                         break;
                     default:
                         System.out.println("Invalid Choice!Try Again.");
                 }
-            }catch (InputMismatchException exception){
+                if (ans >= 1 && ans <= 5)
+                    success = true;
+            } catch (InputMismatchException exception) {
                 System.out.println("Error! Please enter numeric values");
-            }}while (ans<1||ans>4);
+                input.next();
+            }
+        }
     }
     public String toString()
     {
@@ -362,12 +404,13 @@ public class Student extends Person {
     }
 
     public String AttendanceToString(){
-        String s=String.valueOf(getID());
-        for (int i=0;i<NoOfCourses;i++){
-            for(int j=0;j<10;j++){
-                s+=(","+attendance[i][j]);
+        String s="";
+             s = String.valueOf(getID());
+            for (int i = 0; i < NoOfCourses; i++) {
+                for (int j = 0; j < 5; j++) {
+                    s += ("," + attendance[i][j]);
+                }
             }
-        }
         return s;
     }
 }

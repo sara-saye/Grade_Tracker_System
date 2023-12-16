@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,7 +34,7 @@ public class Instructor extends Person {
         this.setID(instructor_ID);
         instructor_ID++;
     }
-    public void forSignUp() {
+    public void forSignUp() throws IOException {
         System.out.println("Your office Location: ");
         this.office_location = input.next();
         System.out.println("Your Department: ");
@@ -44,7 +45,7 @@ public class Instructor extends Person {
         System.out.println("you will use it for login next time");
         forSignIn();
     }
-    public void forSignIn() {
+    public void forSignIn() throws IOException {
         filterStudents();
         int choice = 0;
         do {
@@ -54,7 +55,7 @@ public class Instructor extends Person {
             System.out.println("5-Take attendance\n6-Input students Grades");
             System.out.println("7-Make report for attendance specific student");
             System.out.println("8-Make report for attendance all students");
-            System.out.println("9-Generate Report for attendance by sections\n10-Exit");
+            System.out.println("9-Generate Report for attendance by sections\n10-Logout\n11-Exit");
             System.out.println("Enter your choice");
             choice = input.nextInt();
             switch (choice) {
@@ -88,12 +89,14 @@ public class Instructor extends Person {
                     this.reportForSectionsAttendance();
                     break;
                 case 10:
+                    Main.main(null);
+                case 11:
                     break;
                 default:
                     System.out.println("Invalid choice");
                     break;
             }
-            if(choice==10)
+            if(choice==11)
                 break;
         } while (true);
     }
@@ -139,11 +142,15 @@ public class Instructor extends Person {
                     this.setEmail(s);
                     break;
                 case 3:
-                    System.out.println("Enter your ID current password");
-                    int IID = input.nextInt();
+                    System.out.println("Enter your current username");
+                    String username = input.next();
+                    System.out.println("Enter your current password");
                     String IPassword = input.next();
-                    if (this.getID() == IID && this.getPassword().equals(IPassword)) {
-                        System.out.println("Enter new username and password");
+                    if (this.getUsername().replaceAll("@Instructor","").equals(username) && this.getPassword().equals(IPassword)) {
+                        System.out.println("Enter new username");
+                        String Nusername = input.next();
+                        this.setUsername(Nusername+"@Instructor");
+                        System.out.println("Enter new password");
                         IPassword = input.next();
                         this.setPassword(IPassword);
                     }
