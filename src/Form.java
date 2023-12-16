@@ -1,12 +1,13 @@
 
+    import java.io.IOException;
     import java.util.ArrayList;
     import java.util.Scanner;
 
     public class Form {
+        static  Scanner input = new Scanner(System.in);
         public static ArrayList LogIn(ArrayList<Student>students, ArrayList<Instructor> instructors) {
 
             ArrayList login = new ArrayList();
-            Scanner input = new Scanner(System.in);
             String who="noOne";
             int ID = 0;
 
@@ -42,7 +43,6 @@
 
             if(who .equals("noOne")){
                 System.out.println("Wrong User Name Or Password!Try Again.");
-                LogIn(students,instructors);
             }else {
                 System.out.println("Logged In Successfully");
             }
@@ -51,9 +51,8 @@
             return login;
         }
 
-        public static void Registration(int who,ArrayList<Student>students, ArrayList<Instructor> instructors, int studentId, int instructorId) {
+        public static void Registration(int who,ArrayList<Student>students, ArrayList<Instructor> instructors, int studentId, int instructorId) throws IOException {
 
-            Scanner input = new Scanner(System.in);
             boolean found;
             String UserName;
 
@@ -100,10 +99,6 @@
                 student.setLname(Lname);
                 students.add(student);
             }
-        }
-
-        public static void LogOut() {
-
         }
 
         public static boolean CheckInstructorUsername(ArrayList<Instructor> instructors, String UserName){
