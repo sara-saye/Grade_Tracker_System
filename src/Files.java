@@ -170,7 +170,7 @@ public class Files   {
                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
                        String StringDate = Date.format(formatter);
                        String Location=Main.finalExams.get(finalExamIndex).getLocation();
-                       double Exam_Time=Main.finalExams.get(finalExamIndex).getExam_Time();
+                       double Exam_Time=Main.finalExams.get(finalExamIndex).getDuration();
                        finalExam =new FinalExam(ID,Title,Max_score,StringDate,Location,Exam_Time);
                    }
             }
@@ -186,7 +186,7 @@ public class Files   {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
                     String StringDate = Date.format(formatter);
                     String Exam_Location=Main.midtermExams.get(midtermIndex).getExam_Location();
-                    double Exam_Duration=Main.midtermExams.get(midtermIndex).getExam_Duration();
+                    double Exam_Duration=Main.midtermExams.get(midtermIndex).getDuration();
                     midtermExam=new MidtermExam(ID,Title,Max_score,StringDate,Exam_Location,Exam_Duration);
                 }
             }

@@ -95,4 +95,5 @@ public abstract class Main {
         Files.writeEvent();
 
     }
+    public static void forMatchingException(){}
 }

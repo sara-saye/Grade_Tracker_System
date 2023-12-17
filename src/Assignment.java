@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDate;
 
 public class Assignment extends Test {
@@ -41,6 +42,6 @@ public class Assignment extends Test {
     }
     public String toString()
     {
-        return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline;
+        return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline+","+getDuration();
     }
 }

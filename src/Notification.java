@@ -6,7 +6,7 @@ public class Notification {
     //    private ArrayList<Assignment> assignment = new ArrayList<Assignment>();
 //    private  ArrayList<Quiz> quiz = new ArrayList<Quiz>();
     private boolean New_grade;
-//    private boolean attendance;
+   private boolean attendance;
     private double gpa;
 
 
@@ -58,9 +58,9 @@ public class Notification {
         this.New_grade = new_grade;
     }
 
-//    public void addAttendance(boolean attendance) {
-//        this.attendance = attendance;
-//    }
+    public void addAttendance(boolean attendance) {
+        this.attendance = attendance;
+   }
 
     public void addGpa(double gpa) {
         this.gpa = gpa;
@@ -104,12 +104,11 @@ public class Notification {
             System.out.println("Your grades have been updated!");
             this.New_grade = false;
         }
-
-//        if (attendance) {
-//            System.out.println("Warning content");
-//            warningCounter++;
-//            this.attendance = false;
-//        }
+        if (attendance) {
+            System.out.println("Warning content");
+            //warningCounter++;
+           this.attendance = false;
+      }
 
         if (this.gpa <= 1.5) {
             System.out.println("Warning content");
