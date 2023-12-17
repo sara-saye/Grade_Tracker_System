@@ -11,7 +11,7 @@ public class Files   {
     static File instructorFile =new File("instructor.txt");
     static File finalExamFile =new File("finalExam.txt");
     static File midtermExamFile =new File("midtermExam.txt");
-    static File assignmentFile =new File("assignment.txt");
+    static File assignmentFile =new File("Assignment.txt");
     static File quizFile =new File("quiz.txt");
     static File StudentFile =new File("Student.txt");
     static File GradesFile =new File("Grades.txt");
@@ -112,9 +112,9 @@ public class Files   {
         int credits=0;
         String department="";
         String description="";
-        int instructorId=-1;
-        int assignedFinalExamId=-1;
-        int assignedMidtermExamId=-1;
+        int instructorId=-2;
+        int assignedFinalExamId=-2;
+        int assignedMidtermExamId=-2;
         String line="" ;
         while((line = courseBR.readLine())!=null)
         {
@@ -158,7 +158,7 @@ public class Files   {
                             office_location, instructorDepartment);
                 }
             }
-            FinalExam finalExam=new FinalExam();
+            FinalExam finalExam=null;
             for(int finalExamIndex=0;finalExamIndex<Main.finalExams.size();finalExamIndex++)
             {
                    if(assignedFinalExamId==Main.finalExams.get(finalExamIndex).getID())
@@ -192,9 +192,9 @@ public class Files   {
             }
 
             Course course=new Course(courseCode,courseTitle,credits,department,description,sessionDates,instructor,midtermExam,finalExam);
-            instructorId=-1;
-            assignedFinalExamId=-1;
-            assignedMidtermExamId=-1;
+            instructorId=-2;
+            assignedFinalExamId=-2;
+            assignedMidtermExamId=-2;
             Main.courses.add(course);
         }
         courseBR.close();
@@ -210,13 +210,13 @@ public class Files   {
         String Assignment_startDate="";
         String Assignment_Deadline="";
         String assignmentCourseCode="";
-        String line="";
-        while((line =  assignmentBR.readLine())!=null)
+        String line=null;
+        while((line =assignmentBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
             ID = Integer.parseInt(token.nextToken());
             Title=token.nextToken();
-            Max_score=Integer.parseInt(token.nextToken());
+            Max_score=Double.parseDouble(token.nextToken());
             Date =token.nextToken();
             Assignment_startDate= token.nextToken();
             Assignment_Deadline=token.nextToken();

@@ -390,10 +390,12 @@ public class Admin extends Person{
     public static void addEvent(String eventName,String eventDate,String eventLocation)  //from main when admin choose to add event
     {
         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
+        Admin event=new Admin(eventName,eventDate,eventLocation);
+        Main.eventDetails.add(event);
     }
     public static void deleteEvent()
     {
-        eventDetails=null;
+        Main.eventDetails.remove(0);
     }
     public String toString()
     {
