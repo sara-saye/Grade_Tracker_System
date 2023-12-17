@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Scanner;
+
+
+// use get notification and return notification 
 public class Instructor extends Person {
     Scanner input = new Scanner(System.in);
     private String office_location, department;
@@ -49,7 +52,7 @@ public class Instructor extends Person {
     public void forSignIn() throws IOException {
         filterStudents();
         int choice = 0;
-        while (choice != 10) {
+        while (choice != 11&&choice!=10) {
             System.out.println("-------------------------");
             System.out.println("1-Show your information\n2-Edit your information");
             if (!isNotResponsibleForCourse()) {
@@ -60,6 +63,7 @@ public class Instructor extends Person {
                 System.out.println("9-Generate Report for attendance by sections");
             }
             System.out.println("10-Logout");
+            System.out.println("11-Exit");
             System.out.println("Enter your choice");
             choice = input.nextInt();
             switch (choice) {
@@ -93,6 +97,9 @@ public class Instructor extends Person {
                     this.reportForSectionsAttendance();
                     break;
                 case 10:
+                   Main.main(null);
+                   break;
+                case 11:
                     break;
                 default:
                     System.out.println("Invalid choice");

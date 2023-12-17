@@ -278,20 +278,21 @@ public class Student extends Person {
         return GPA;
     }
 
+
     public void Student_AfterLogin() throws IOException {
         int ans, ans1, ans2;
         boolean success = false;
         while (!success) {
             try {
-            System.out.println("1- Profile");
-            System.out.println("2- Study Services");
-            System.out.println("3- Payments record");
-            System.out.println("4- Logout");
-            System.out.println("5- Exit");
-            if (getNotification() != null) {
-                ViewEvents();
-            }
-            ans = input.nextInt();
+                System.out.println("1- Profile");
+                System.out.println("2- Study Services");
+                System.out.println("3- Payments record");
+                System.out.println("4- Logout");
+                System.out.println("5- Exit");
+                if (getNotification() != null) {
+                    ViewEvents();
+                }
+                ans = input.nextInt();
                 switch (ans) {
                     case 1:
                         DisplayInfo();
