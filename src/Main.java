@@ -35,7 +35,7 @@ public abstract class Main {
             Files.readEventDetails();
             first = false;
         }
-        int studentId = students.size(), instructorId = instructors.size();
+            int studentId = students.size(), instructorId = instructors.size();
 
 
         System.out.println("Already have an account?");

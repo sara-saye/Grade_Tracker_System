@@ -72,7 +72,7 @@ public class Course {
     {
         return  courseCode;
     }
-    public void enrollStudent(Student student)   //>>student sends me  that
+    public void enrollStudent(Student student)
     {
          enrolledStudents.add(student);
     }
@@ -140,11 +140,11 @@ public String toString()
     {
         courseData+=","+assignedInstructor.get(0).getID();
     }
-    if(this.assignedfinal.getID()!=0)
+    if(this.assignedfinal!=null)
     {
         courseData+=","+this.assignedfinal.getID();
     }
-    if(this.assignedMidterm.getID()!=0)
+    if(this.assignedMidterm!=null)
     {
         courseData+=","+this.assignedMidterm.getID();
     }
