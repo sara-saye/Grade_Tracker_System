@@ -8,13 +8,15 @@ import java.util.Objects;
 import java.util.Scanner;
 
 
-// use get notification and return notification 
+// use get notification and return notification
 public class Instructor extends Person {
     Scanner input = new Scanner(System.in);
     private String office_location, department;
     public static int instructor_ID = 0;
     public ArrayList<Course> course = new ArrayList<>();
     public ArrayList<Student> students = new ArrayList<>();
+
+    private int allgradesAssigned=0;
     public Instructor() {
         super();
         this.office_location = "Unknown";
@@ -46,8 +48,7 @@ public class Instructor extends Person {
         System.out.println("Data entered successfully!");
         System.out.println("Your ID is: " + this.getID());
         instructor_ID++;
-        System.out.println("you will use it for login next time");
-        forSignIn();
+//        forSignIn();
     }
     public void forSignIn() throws IOException {
         filterStudents();
@@ -507,6 +508,7 @@ public class Instructor extends Person {
                         System.out.println("Invalid grade\nEnter grade less than or equal 20");
                     } else if (assignmentGrade <= 20) {
                         student.Student_Grades.get(courseIndex).setAssignmentGrade(0, assignmentGrade);
+                        allgradesAssigned++;
                         student.notification.addStatueOfGrade(true);
                         break;
                     }
@@ -523,6 +525,7 @@ public class Instructor extends Person {
                     }
                     if (assignmentGrade <= assignmentgrade) {
                         student.Student_Grades.get(courseIndex).setAssignmentGrade(assignmentNumber, assignmentGrade);
+                        allgradesAssigned++;
                         break;
                     }
                 }
@@ -543,6 +546,7 @@ public class Instructor extends Person {
                     System.out.println("Invalid grade\nEnter grade less than or equal 10");
                 } else if (quizGrade <= 20) {
                     student.Student_Grades.get(courseIndex).setQuizGrade(0, quizGrade);
+                    allgradesAssigned++;
                     break;
                 }
             }
@@ -559,6 +563,7 @@ public class Instructor extends Person {
                 }
                 if (quizGrade <= quizgrade) {
                     student.Student_Grades.get(courseIndex).setQuizGrade(quizNumber, quizGrade);
+                    allgradesAssigned++;
                     break;
                 }
             }
@@ -576,6 +581,7 @@ public class Instructor extends Person {
                     System.out.println("Invalid grade\nEnter grade less than or equal 15");
                 } else if (midtermGrade <= 15) {
                     student.Student_Grades.get(courseIndex).setMidTermGrade(midtermGrade);
+                    allgradesAssigned++;
                     break;
                 }
             }
@@ -593,10 +599,14 @@ public class Instructor extends Person {
                     System.out.println("Invalid grade\nEnter grade less than or equal 50");
                 } else if (finalGrade <= 50) {
                     student.Student_Grades.get(courseIndex).setFinalGrade(finalGrade);
+                    allgradesAssigned++;
                     break;
                 }
             }
             student.notification.addStatueOfGrade(true);
         }
+    }
+    public int getAllgradesAssigned() {
+        return allgradesAssigned;
     }
 }

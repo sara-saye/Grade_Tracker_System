@@ -9,7 +9,7 @@
 
             ArrayList login = new ArrayList();
             String who="noOne";
-            int ID = 0;
+            int index = 0;
 
             System.out.println("Username : ");
             String UserName = input.next();
@@ -24,19 +24,19 @@
             if(UserName.equalsIgnoreCase("Admin2023")&&Password.equals("88888888"))
                 who="Admin";
 
-            for (Instructor instructor:instructors) {
-                if(instructor.getUsername().equals(IUserName)){
-                    if(instructor.getPassword().equals(Password)){
+            for (int i=0;i<instructors.size();i++) {
+                if(instructors.get(i).getUsername().equals(IUserName)){
+                    if(instructors.get(i).getPassword().equals(Password)){
                         who="Instructor";
-                        ID=instructor.getID();
+                        index=i;
                     }
                 }
             }
-            for (Student student:students) {
-                if(student.getUsername().equals(SUserName)){
-                    if(student.getPassword().equals(Password)){
+            for (int i =0;i<students.size();i++) {
+                if(students.get(i).getUsername().equals(SUserName)){
+                    if(students.get(i).getPassword().equals(Password)){
                         who="Student";
-                        ID=student.getID();
+                        index=i;
                     }
                 }
             }
@@ -44,17 +44,18 @@
             if(who .equals("noOne")){
                 System.out.println("Wrong User Name Or Password!Try Again.");
             }else {
-                System.out.println("Logged In Successfully");
+                System.out.println("\nLogged In Successfully");
             }
             login.add(who);
-            login.add(ID);
+            login.add(index);
             return login;
         }
 
-        public static void Registration(int who,ArrayList<Student>students, ArrayList<Instructor> instructors, int studentId, int instructorId) throws IOException {
+        public static int Registration(int who,ArrayList<Student>students, ArrayList<Instructor> instructors, int studentId, int instructorId) throws IOException {
 
             boolean found;
             String UserName;
+            int index = 0;
 
             System.out.println("Email : ");
             String Email = input.next();
@@ -67,10 +68,10 @@
                 } else {
                     found = CheckStudentUsername(students, UserName);
                 }
-                if (found == true) {
+                if (found) {
                     System.out.println("User Name Already exists.Try another one");
                 }
-            }while (found==true);
+            }while (found);
 
             System.out.println("Password : ");
             String Password = input.next();
@@ -83,11 +84,12 @@
 
             System.out.println("Phone Number : ");
             String PhoneNo = input.next();
-
+           
             if(who==1) {
                 Instructor instructor = new Instructor(instructorId,Fname,Lname,Email,UserName+"@Instructor",Password,PhoneNo);
                 instructor.forSignUp();
                 instructors.add(instructor);
+               index= Main.instructors.size()-1;
             } else if(who==2){
                 Student student = new Student();
                 student.setEmail(Email);
@@ -98,12 +100,14 @@
                 student.setFname(Fname);
                 student.setLname(Lname);
                 students.add(student);
+                index =Main.students.size()-1;
             }
+            return index;
         }
 
         public static boolean CheckInstructorUsername(ArrayList<Instructor> instructors, String UserName){
             for (Instructor instructor:instructors) {
-                if(instructor.getUsername().equals(UserName)){
+                if(instructor.getUsername().replaceAll("@Instructor","").equals(UserName)){
                     return true;
                 }
             }
@@ -112,7 +116,7 @@
 
         public static boolean CheckStudentUsername(ArrayList<Student> students, String UserName){
             for (Student student:students) {
-                if(student.getUsername().equals(UserName)){
+                if(student.getUsername().replaceAll("@Student","").equals(UserName)){
                     return true;
                 }
             }

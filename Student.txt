@@ -1,4 +1,4 @@
-alia,mohamed,0,alia,alia89@Student,14587,01256,-1.0,0.0,false,false,false,false,0
-amr,f,0,amr,amr@Student,1,4,-1.0,0.0,false,false,false,false,0
-arwa,jj,1,arwa,arwa@Student,4,4,-1.0,0.0,false,false,false,false,0
-es,es,3,es,es@Student,12,11,-1.0,0.0,false,false,false,false,0
+Esraa,Bassiouny,1000,esraa,esraa@Student,123,01033251941,-1.0,0.0,true,false,false,false,2,15-30
+amr,Ibrahim,1001,amr,amr@Student,111,01011232877,-1.0,0.0,false,false,false,false,2,45-15
+arwa,zlima,1002,arwa,arwa@Student,222,0108888888,-1.0,0.0,false,false,false,false,0
+eman,mohamed,1003,eman,eman@Student,4,22,-1.0,0.0,false,false,false,false,0

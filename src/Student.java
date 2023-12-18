@@ -80,14 +80,18 @@ public class Student extends Person {
     }
 
     public void DisplayCurrentCourses(){
+        setStatus();
         if(!Student_courses.isEmpty()) {
+            System.out.println("------------------------------------");
             for (int i = 0; i < Student_courses.size(); i++) {
-                System.out.println((i + 1) + "- " + Student_courses.get(i).courseTitle);
-                System.out.println(Student_courses.get(i).department);
-                System.out.println(Student_courses.get(i).description);
-                System.out.println(Student_courses.get(i).credits);
-                System.out.println(Student_courses.get(i).assignedInstructor.get(0));
-                System.out.println("------------------------------------");
+                if(!Student_courses.get(i).isStatus()) {
+                    System.out.println((i + 1) + "- " + Student_courses.get(i).courseTitle);
+                    System.out.println(Student_courses.get(i).department);
+                    System.out.println(Student_courses.get(i).description);
+                    System.out.println(Student_courses.get(i).credits);
+                    if(!Student_courses.get(i).assignedInstructor.isEmpty())
+                    System.out.println(Student_courses.get(i).assignedInstructor.get(0)+"\n");
+                }
             }
         }else {
             System.out.println("You haven't registered any course");
@@ -95,16 +99,19 @@ public class Student extends Person {
     }
 
     public void ViewStudentPerformance() {
+        CalcZScore();
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i+1)+"- Course : " + Student_courses.get(i).courseTitle);
-           // System.out.println(Student_courses.get(i).assignedInstructor.generateAttRepForIndStud(1,this.getID(),i,1));
-            if(ZScore.get(i)>0){
-                System.out.println("Your Performance in "+Student_courses.get(i).courseTitle+" is Great");
-            } else if (ZScore.get(i)==0) {
-                System.out.println("Your Performance in "+Student_courses.get(i).courseTitle+" is Good");
-            }
-            else {
-                System.out.println("Your Performance in "+Student_courses.get(i).courseTitle+" is Weak");
+            if(!Student_courses.get(i).assignedInstructor.isEmpty())
+            Student_courses.get(i).assignedInstructor.get(0).generateAttRepForIndStud(getID());
+            if(!ZScore.isEmpty()) {
+                if (ZScore.get(i) > 0) {
+                    System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Great");
+                } else if (ZScore.get(i) == 0) {
+                    System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Good");
+                } else {
+                    System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Weak");
+                }
             }
             System.out.println("------------------------------------");
         }
@@ -153,9 +160,10 @@ public class Student extends Person {
                 if (ans == 1) {
                     System.out.println("Payment Completed.");
                     expenses_paid = true;
+                    expenses=0;
                     break;
                 } else if (ans == 2) {
-                    //return back
+                    expenses=0;
                     break;
                 } else {
                     System.out.println("Invalid Choice!Try Again.");
@@ -175,7 +183,6 @@ public class Student extends Person {
             courses.get(answer - 1).enrollStudent(this);//test
             StudentGrades grade = new StudentGrades();
             Student_Grades.add(grade);
-            CalcZScore();
             NoOfCourses++;
             System.out.println("Registration Done");
         }
@@ -193,19 +200,20 @@ public class Student extends Person {
         return this.notification;
     }
 
-    public void DisplayInfo() {
-        System.out.println("Name:");
+    public void display(){
+        System.out.println("------------------------------------");
+        System.out.print("Name: ");
         System.out.println(this.getFname() + " " + this.getLname());
-        System.out.println("Email:");
+        System.out.print("Email: ");
         System.out.println(this.getEmail());
-        System.out.println("Phone Number:");
+        System.out.print("Phone Number: ");
         System.out.println(this.getPhoneNumber());
-        System.out.println("User Name:");
+        System.out.print("User Name: ");
         System.out.println(this.getUsername().replaceAll("@Student",""));
-        System.out.println("ID:");
+        System.out.print("ID: ");
         System.out.println(this.getID());
+        System.out.println("------------------------------------");
     }
-
     public void Edit_Info() {
         int choice;
         boolean success=false;
@@ -253,7 +261,7 @@ public class Student extends Person {
                   System.out.println("Edit Done Successfully.");
               }
             } catch (InputMismatchException exception) {
-                System.out.println("Error! Please enter numeric values");
+                System.out.println("Invalid! Please enter numeric values");
                 input.next();
             }
         }
@@ -263,6 +271,7 @@ public class Student extends Person {
 
     public void CalcZScore(){
         for(int i=0;i<NoOfCourses;i++){
+            if(!Student_Grades.isEmpty())
             ZScore.add((Student_Grades.get(i).CalcTotalGrade()-Student_courses.get(i).CalcMean())/Student_courses.get(i).CalcStandardDeviation());
         }
     }
@@ -279,23 +288,25 @@ public class Student extends Person {
     }
 
 
-    public void Student_AfterLogin() throws IOException {
+    public void StudentAfterLogin() throws IOException {
         int ans, ans1, ans2;
         boolean success = false;
         while (!success) {
             try {
+                System.out.println("------------------------------------");
                 System.out.println("1- Profile");
                 System.out.println("2- Study Services");
                 System.out.println("3- Payments record");
-                System.out.println("4- Logout");
-                System.out.println("5- Exit");
-                if (getNotification() != null) {
-                    ViewEvents();
-                }
+                System.out.println("4- Notifications");
+                System.out.println("5- Logout");
+                System.out.println("6- Exit");
+                System.out.println("------------------------------------");
+                System.out.print("Enter Your Choice : ");
                 ans = input.nextInt();
+                System.out.println();
                 switch (ans) {
                     case 1:
-                        DisplayInfo();
+                        display();
                         do {
                             System.out.println("Press 1 to edit information");
                             System.out.println("Press 2 to return to list");
@@ -303,10 +314,10 @@ public class Student extends Person {
                             switch (ans1) {
                                 case 1:
                                     Edit_Info();
-                                    Student_AfterLogin();
+                                    StudentAfterLogin();
                                     break;
                                 case 2:
-                                    Student_AfterLogin();
+                                    StudentAfterLogin();
                                     break;
                                 default:
                                     System.out.println("Invalid! Try Again.");
@@ -337,24 +348,33 @@ public class Student extends Person {
                                     System.out.println("Invalid Choice!Try Again.");
                             }
                         } while (ans2 < 1 || ans2 > 4);
-                        Student_AfterLogin();
+                        StudentAfterLogin();
                         break;
                     case 3:
                         Payment();
-                        Student_AfterLogin();
+                        StudentAfterLogin();
                         break;
                     case 4:
-                        Main.main(null);
+                        if(notification==null) {
+                            System.out.println("You don't have notification");
+                        }
+                        else {
+                            ViewEvents();
+                        }
+                        StudentAfterLogin();
                         break;
                     case 5:
+                        Main.main(null);
+                        break;
+                    case 6:
                         break;
                     default:
                         System.out.println("Invalid Choice!Try Again.");
                 }
-                if (ans >= 1 && ans <= 5)
+                if (ans >= 1 && ans <=6)
                     success = true;
             } catch (InputMismatchException exception) {
-                System.out.println("Error! Please enter numeric values");
+                System.out.println("Invalid! Please enter numeric values");
                 input.next();
             }
         }
@@ -381,8 +401,11 @@ public class Student extends Person {
         if(!Student_Grades.isEmpty()) {
             for (  int i=0;i<Student_Grades.size();i++) {
                 a =getID()+","+ Student_Grades.get(i).getMidTermGrade()
-                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAttendanceGrade()
-                        + ","+ ZScore.get(i);
+                        + "," + Student_Grades.get(i).getFinalGrade()+ "," + Student_Grades.get(i).getAttendanceGrade();
+                if(ZScore.size()<i)
+                {
+                    a+=","+ ZScore.get(i);
+                }
                 if(!Student_Grades.get(i).assignmentGrade.isEmpty()) {
                     a+=",";
                     for (int j=0;j<Student_Grades.get(i).assignmentGrade.size();j++) {
@@ -409,9 +432,22 @@ public class Student extends Person {
              s = String.valueOf(getID());
             for (int i = 0; i < NoOfCourses; i++) {
                 for (int j = 0; j < 5; j++) {
+                    if(attendance.length>0)
                     s += ("," + attendance[i][j]);
                 }
             }
         return s;
+    }
+
+    public  void setStatus(){
+        if(!Student_courses.isEmpty()) {
+            for (int i = 0; i < Student_Grades.size(); i++) {
+                if(!Student_courses.get(i).assignedInstructor.isEmpty()) {
+                    if (Student_courses.get(i).assignedInstructor.get(0).getAllgradesAssigned() == 4 && Student_Grades.get(i).CalcTotalGrade() >= 60) {
+                        Student_courses.get(i).setStatus(true);
+                    }
+                }
+            }
+        }
     }
 }
