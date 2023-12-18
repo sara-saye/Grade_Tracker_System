@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.StringTokenizer;
 
+<<<<<<< HEAD
 public class Files {
     static File courseFile = new File("course.txt");
     static File instructorFile = new File("instructor.txt");
@@ -16,6 +17,18 @@ public class Files {
     static File StudentFile = new File("Student.txt");
     static File GradesFile = new File("Grades.txt");
     // static File NotificationsFile =new File("Notification.txt");
+=======
+public class Files   {
+    static File courseFile =new File("course.txt");
+    static File instructorFile =new File("instructor.txt");
+    static File finalExamFile =new File("finalExam.txt");
+    static File midtermExamFile =new File("midtermExam.txt");
+    static File assignmentFile =new File("Assignment.txt");
+    static File quizFile =new File("quiz.txt");
+    static File StudentFile =new File("Student.txt");
+    static File GradesFile =new File("Grades.txt");
+   // static File NotificationsFile =new File("Notification.txt");
+>>>>>>> 093d5c1b14546eb9b5f471186e1a6e4b4c94b105
 
     static File AttendanceFile = new File("Attendance.txt");
     static File eventDetailsFile = new File("event.txt");
@@ -102,6 +115,7 @@ public class Files {
 
     }
 
+<<<<<<< HEAD
     public static void readCourse() throws IOException {
         StringTokenizer token = null;
 
@@ -124,6 +138,28 @@ public class Files {
             description = token.nextToken();
             String sessionLine = token.nextToken();
             if (token.hasMoreTokens()) {                                  //>>Take care, FinalExamId always starts with 1
+=======
+        BufferedReader courseBR=new BufferedReader(new FileReader(courseFile));
+        String courseCode="";
+        String courseTitle="";
+        int credits=0;
+        String department="";
+        String description="";
+        int instructorId=-2;
+        int assignedFinalExamId=-2;
+        int assignedMidtermExamId=-2;
+        String line="" ;
+        while((line = courseBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            courseCode =token.nextToken();
+            courseTitle=token.nextToken();
+            credits=Integer.parseInt(token.nextToken());
+            department=token.nextToken();
+            description=token.nextToken();
+            String sessionLine=token.nextToken();
+            if(token.hasMoreTokens() ) {                                  //>>Take care, FinalExamId always starts with 1
+>>>>>>> 093d5c1b14546eb9b5f471186e1a6e4b4c94b105
                 instructorId = Integer.parseInt(token.nextToken());
             }
 
@@ -154,6 +190,7 @@ public class Files {
                             office_location, instructorDepartment);
                 }
             }
+<<<<<<< HEAD
             FinalExam finalExam = new FinalExam();
             for (int finalExamIndex = 0; finalExamIndex < Main.finalExams.size(); finalExamIndex++) {
                 if (assignedFinalExamId == Main.finalExams.get(finalExamIndex).getID()) {
@@ -161,6 +198,33 @@ public class Files {
                     String Title = Main.finalExams.get(finalExamIndex).getTitle();
                     double Max_score = Main.finalExams.get(finalExamIndex).getMax_score();
                     LocalDate Date = Main.finalExams.get(finalExamIndex).getDate();
+=======
+            FinalExam finalExam=null;
+            for(int finalExamIndex=0;finalExamIndex<Main.finalExams.size();finalExamIndex++)
+            {
+                   if(assignedFinalExamId==Main.finalExams.get(finalExamIndex).getID())
+                   {
+                       int ID=Main.finalExams.get(finalExamIndex).getID();
+                       String Title=Main.finalExams.get(finalExamIndex).getTitle() ;
+                       double Max_score=Main.finalExams.get(finalExamIndex).getMax_score();
+                       LocalDate Date= Main.finalExams.get(finalExamIndex).getDate();
+                       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+                       String StringDate = Date.format(formatter);
+                       String Location=Main.finalExams.get(finalExamIndex).getLocation();
+                       double Exam_Time=Main.finalExams.get(finalExamIndex).getDuration();
+                       finalExam =new FinalExam(ID,Title,Max_score,StringDate,Location,Exam_Time);
+                   }
+            }
+            MidtermExam midtermExam=null;
+            for(int midtermIndex=0;midtermIndex<Main.midtermExams.size();midtermIndex++)
+            {
+                if(assignedMidtermExamId==Main.midtermExams.get(midtermIndex).getID())
+                {
+                    int ID=Main.midtermExams.get(midtermIndex).getID();
+                    String Title=Main.midtermExams.get(midtermIndex).getTitle() ;
+                    double Max_score=Main.midtermExams.get(midtermIndex).getMax_score();
+                    LocalDate Date= Main.midtermExams.get(midtermIndex).getDate();
+>>>>>>> 093d5c1b14546eb9b5f471186e1a6e4b4c94b105
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
                     String StringDate = Date.format(formatter);
                     String Location = Main.finalExams.get(finalExamIndex).getLocation();
@@ -183,10 +247,17 @@ public class Files {
                 }
             }
 
+<<<<<<< HEAD
             Course course = new Course(courseCode, courseTitle, credits, department, description, sessionDates, instructor, midtermExam, finalExam);
             instructorId = -1;
             assignedFinalExamId = -1;
             assignedMidtermExamId = -1;
+=======
+            Course course=new Course(courseCode,courseTitle,credits,department,description,sessionDates,instructor,midtermExam,finalExam);
+            instructorId=-2;
+            assignedFinalExamId=-2;
+            assignedMidtermExamId=-2;
+>>>>>>> 093d5c1b14546eb9b5f471186e1a6e4b4c94b105
             Main.courses.add(course);
         }
         courseBR.close();
@@ -195,6 +266,7 @@ public class Files {
 
     public static void readAssignment() throws IOException {
         StringTokenizer token = null;
+<<<<<<< HEAD
         BufferedReader assignmentBR = new BufferedReader(new FileReader(assignmentFile));
         int ID = 0;
         String Title = "";
@@ -214,6 +286,28 @@ public class Files {
             Assignment_Deadline = token.nextToken();
             assignmentCourseCode = token.nextToken();
             Assignment assignment = new Assignment(ID, Title, Max_score, Date, Assignment_startDate, Assignment_Deadline, assignmentCourseCode);
+=======
+        BufferedReader assignmentBR=new BufferedReader(new FileReader(assignmentFile));
+        int ID=0;
+        String Title="" ;
+        double Max_score=0;
+        String Date="";
+        String Assignment_startDate="";
+        String Assignment_Deadline="";
+        String assignmentCourseCode="";
+        String line=null;
+        while((line =assignmentBR.readLine())!=null)
+        {
+            token =new StringTokenizer(line,",");
+            ID = Integer.parseInt(token.nextToken());
+            Title=token.nextToken();
+            Max_score=Double.parseDouble(token.nextToken());
+            Date =token.nextToken();
+            Assignment_startDate= token.nextToken();
+            Assignment_Deadline=token.nextToken();
+            assignmentCourseCode=token.nextToken();
+            Assignment assignment=new Assignment(ID,Title,Max_score,Date,Assignment_startDate,Assignment_Deadline,assignmentCourseCode);
+>>>>>>> 093d5c1b14546eb9b5f471186e1a6e4b4c94b105
             Main.assignments.add(assignment);
         }
         assignmentBR.close();

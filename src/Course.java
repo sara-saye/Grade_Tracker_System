@@ -81,7 +81,7 @@ public class Course {
     {
         return  courseCode;
     }
-    public void enrollStudent(Student student)   //>>student sends me  that
+    public void enrollStudent(Student student)
     {
          enrolledStudents.add(student);
     }
@@ -98,22 +98,22 @@ public class Course {
     public void addAssignedAssignment(Assignment assignedAssignment)
     {
         this.assignedAssignment.add(assignedAssignment);
-        Main.assignments.add(assignedAssignment);                //>>Is any one add that ????
+        Main.assignments.add(assignedAssignment);
     }
     public void addAssignedQuiz(Quiz assignedQuiz)
     {
        this.assignedQuiz.add(assignedQuiz);
-       Main.quizzes.add(assignedQuiz);                           //>>Is any one add that ????
+       Main.quizzes.add(assignedQuiz);
     }
     public void addAssignedMidterm(MidtermExam assignedMidterm)
     {
         this.assignedMidterm=assignedMidterm;
-        Main.midtermExams.add(assignedMidterm);                 //>>Is any one add that ????
+        Main.midtermExams.add(assignedMidterm);
     }
     public void addAssignedFinal(FinalExam assignedfinal)
     {
        this.assignedfinal=assignedfinal;
-       Main.finalExams.add(assignedfinal);                    //>>Is any one add that ????
+      Main.finalExams.add(assignedfinal);
     }
 
     public double CalcMean(){

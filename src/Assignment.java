@@ -42,6 +42,6 @@ public class Assignment extends Test {
     }
     public String toString()
     {
-        return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline+","+getDuration();
+        return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline+","+getDuration()+","+courseCode;
     }
 }

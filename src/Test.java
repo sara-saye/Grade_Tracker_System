@@ -7,13 +7,13 @@ import java.util.Scanner;
 
 public abstract class Test {
     Scanner input=new Scanner(System.in);
-    private int ID = -1;
+    private int ID;
     private String Title ;
     private double Max_score;
     private LocalDate Date ;
     private double Duration;
     public Test(){
-        ID=-1;
+        ID=0;
         Title=null;
         Max_score=0;
         Date=null;

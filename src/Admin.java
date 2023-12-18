@@ -13,7 +13,7 @@ public class Admin extends Person{
         this.eventName=eventName;
         this.eventDate=eventDate;
         this.eventLocation=eventLocation;
-        eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
+         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
     }
     public static void login() throws IOException {
         System.out.println(" 1-Add Course");
@@ -193,6 +193,7 @@ public class Admin extends Person{
         }
 
     }
+
 
     public static void addCourse(String courseCode, String courseTitle, int credits, String department,
                                  String description, String[] sessionDates)  //>>pass these parameters from main
@@ -390,10 +391,12 @@ public class Admin extends Person{
     public static void addEvent(String eventName,String eventDate,String eventLocation)  //from main when admin choose to add event
     {
         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
+        Admin event=new Admin(eventName,eventDate,eventLocation);
+        Main.eventDetails.add(event);
     }
     public static void deleteEvent()
     {
-        eventDetails=null;
+        Main.eventDetails.remove(0);
     }
     public String toString()
     {

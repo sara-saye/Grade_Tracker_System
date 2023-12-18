@@ -35,6 +35,7 @@ public abstract class Main {
             Files.readEventDetails();
             first = false;
         }
+<<<<<<< HEAD
         int studentId = students.size()+1000, instructorId = instructors.size()+1000;
         int account = 0;
         do {
@@ -43,6 +44,9 @@ public abstract class Main {
             System.out.println("1- Yes");
             System.out.println("2- No");
             account = input.nextInt();
+=======
+            int studentId = students.size(), instructorId = instructors.size();
+>>>>>>> 093d5c1b14546eb9b5f471186e1a6e4b4c94b105
 
             if (account == 1) {
                 boolean logged;
