@@ -13,7 +13,7 @@ public abstract class Test {
     private LocalDate Date ;
     private double Duration;
     public Test(){
-        ID=-1;
+        ID=0;
         Title=null;
         Max_score=0;
         Date=null;

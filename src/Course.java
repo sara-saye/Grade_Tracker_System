@@ -89,22 +89,22 @@ public class Course {
     public void addAssignedAssignment(Assignment assignedAssignment)
     {
         this.assignedAssignment.add(assignedAssignment);
-        Main.assignments.add(assignedAssignment);                //>>Is any one add that ????
+        Main.assignments.add(assignedAssignment);
     }
     public void addAssignedQuiz(Quiz assignedQuiz)
     {
        this.assignedQuiz.add(assignedQuiz);
-       Main.quizzes.add(assignedQuiz);                           //>>Is any one add that ????
+       Main.quizzes.add(assignedQuiz);
     }
     public void addAssignedMidterm(MidtermExam assignedMidterm)
     {
         this.assignedMidterm=assignedMidterm;
-        Main.midtermExams.add(assignedMidterm);                 //>>Is any one add that ????
+        Main.midtermExams.add(assignedMidterm);
     }
     public void addAssignedFinal(FinalExam assignedfinal)
     {
        this.assignedfinal=assignedfinal;
-       Main.finalExams.add(assignedfinal);                    //>>Is any one add that ????
+      Main.finalExams.add(assignedfinal);
     }
 
     public double CalcMean(){
@@ -140,11 +140,11 @@ public String toString()
     {
         courseData+=","+assignedInstructor.get(0).getID();
     }
-    if(this.assignedfinal!=null)
+    if(this.assignedfinal.getID()!=0)
     {
         courseData+=","+this.assignedfinal.getID();
     }
-    if(this.assignedMidterm!=null)
+    if(this.assignedMidterm.getID()!=0)
     {
         courseData+=","+this.assignedMidterm.getID();
     }
