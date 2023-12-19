@@ -25,6 +25,11 @@ public abstract class Test {
         this.Max_score=Max_score;
         this.Date= LocalDate.parse(Date);
     }
+    public Test (int ID, String Title,double Max_score){
+        this.ID=ID;
+        this.Title=Title;
+        this.Max_score=Max_score;
+    }
     public void setID(int id){
         ID=id;
     }

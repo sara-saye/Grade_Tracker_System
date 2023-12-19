@@ -206,7 +206,6 @@ public class Files   {
         int ID=0;
         String Title="" ;
         double Max_score=0;
-        String Date="";
         String Assignment_startDate="";
         String Assignment_Deadline="";
         String assignmentCourseCode="";
@@ -217,11 +216,10 @@ public class Files   {
             ID = Integer.parseInt(token.nextToken());
             Title=token.nextToken();
             Max_score=Double.parseDouble(token.nextToken());
-            Date =token.nextToken();
             Assignment_startDate= token.nextToken();
             Assignment_Deadline=token.nextToken();
             assignmentCourseCode=token.nextToken();
-            Assignment assignment=new Assignment(ID,Title,Max_score,Date,Assignment_startDate,Assignment_Deadline,assignmentCourseCode);
+            Assignment assignment=new Assignment(ID,Title,Max_score,Assignment_startDate,Assignment_Deadline,assignmentCourseCode);
             Main.assignments.add(assignment);
         }
         assignmentBR.close();

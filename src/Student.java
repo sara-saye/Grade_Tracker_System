@@ -70,6 +70,11 @@ public class Student extends Person {
 
     public Student() {
         super();
+        for(int i=0;i<NoOfCourses;i++){
+            for(int j=0;j<5;j++){
+                attendance[i][j] = false;
+            }
+        }
     }
 
     public Student(String Fname, String Lname) {
@@ -84,6 +89,7 @@ public class Student extends Person {
 
     public Student(int ID, String Fname, String Lname, String email, String username,String password, String PhoneNumber){
         super(ID,Fname,Lname,email,username,password,PhoneNumber);
+
     }
 
     public void Register(){
@@ -205,10 +211,10 @@ public class Student extends Person {
                 if (!courses.isEmpty()) {
                     int index=1;
                     for (int i = 0; i < courses.size(); i++) {
-                        if(courses.get(i).department.equals(department)) {
+                       // if(courses.get(i).department.equals(department)) {
                             System.out.println((index) + ":" + courses.get(i).courseTitle);
                             index++;
-                        }
+
                     }
                     int answer = 0;
                     System.out.println("Which Course You Want To Register For? ");

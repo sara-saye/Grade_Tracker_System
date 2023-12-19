@@ -6,22 +6,22 @@ public class Assignment extends Test {
     private LocalDate Assignment_Deadline;
     public String courseCode;
 
-   public Assignment(){
+    public Assignment(){
 
-   }
+    }
     public Assignment(LocalDate Assignment_startDate, LocalDate Assignment_Deadline) {
         this.Assignment_startDate = Assignment_startDate;
         this.Assignment_Deadline = Assignment_Deadline;
 
     }
 
-    public Assignment(int id, String Title, double max_score, String date, String Assignment_startDate, String assignment_Deadline) {
-        super(id, Title, max_score, date);
+    public Assignment(int id, String Title, double max_score,String Assignment_startDate, String assignment_Deadline) {
+        super(id, Title, max_score);
         this.Assignment_startDate = LocalDate.parse(Assignment_startDate);
         this.Assignment_Deadline = LocalDate.parse(assignment_Deadline);
     }
-    public Assignment(int id, String Title, double max_score, String date, String Assignment_startDate, String assignment_Deadline,String courseCode) {
-        this(id, Title, max_score, date,Assignment_startDate,assignment_Deadline);
+    public Assignment(int id, String Title, double max_score,String Assignment_startDate, String assignment_Deadline,String courseCode) {
+        this(id, Title, max_score,Assignment_startDate,assignment_Deadline);
         this.courseCode=courseCode;
     }
 
