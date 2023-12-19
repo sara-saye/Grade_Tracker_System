@@ -1,4 +1,2 @@
-0,sara,eslam,sara,sara@Instructor,123456,568,cis,cs
-1,nrmeen,araby,nrmeen,nrmeen@Instructor,1234,123,mmmm,cs
-2,e,e,e,e@Instructor,e,e,e,e
-1003,sara,darwish,sara,sara1@Instructor,555,0102222222,genedy,cs
+1000,f,f,s,nrmeen@Instructor,1234,4,f,f
+1001,sara,ss,sara,sara@Instructor,111,s,s,s

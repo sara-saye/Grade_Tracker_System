@@ -47,16 +47,16 @@ public abstract class Main {
                 boolean logged;
                 do {
                     ArrayList who = Form.LogIn(Main.students, Main.instructors);
-                    int ID = (Integer) who.get(1);
+                    int index = (Integer) who.get(1);
                     if (who.get(0).equals("Admin")) {
                         logged = true;
                         Admin.login();
                     } else if (who.get(0).equals("Instructor")) {
                         logged = true;
-                        Main.instructors.get(ID).forSignIn();
+                        Main.instructors.get(index).forSignIn();
                     } else if (who.get(0).equals("Student")) {
                         logged = true;
-                        Main.students.get(ID).StudentAfterLogin();
+                        Main.students.get(index).StudentAfterLogin();
                     } else {
                         logged = false;
                     }

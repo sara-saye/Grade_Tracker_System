@@ -51,7 +51,7 @@ public class Instructor extends Person {
 //        forSignIn();
     }
     public void forSignIn() throws IOException {
-        filterStudents();
+        //filterStudents();
         int choice = 0;
         while (choice != 11&&choice!=10) {
             System.out.println("-------------------------");
