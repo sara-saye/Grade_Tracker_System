@@ -91,7 +91,6 @@ public class Admin extends Person{
                 newSessionDatesUpdate[0] = input.next();
                 System.out.println("Session 2 date: ");
                 newSessionDatesUpdate[1] = input.next();
-
                 updateCourse(courseCodeUpdate, newCourseCodeUpdate, newCourseTitleUpdate, newCreditsUpdate,
                         newDepartmentUpdate, newDescriptionUpdate, newSessionDatesUpdate);
                 System.out.println("Do you want more operations?");
@@ -331,10 +330,11 @@ public static void showCoursesInformation()
 
 }
     public static void addCourse(String courseCode, String courseTitle, int credits, String department,
-                                 String description, String[] sessionDates)  //>>pass these parameters from main
+                                 String description, String[] sessionDates)
     {
         Course course = new Course(courseCode, courseTitle, credits, department, description, sessionDates);
         Main.courses.add(course);
+        System.out.println("Course has been Added Successfully");
     }
 
     public static void updateCourse(String courseCode, String newCourseCode, String newCourseTitle,
@@ -346,6 +346,7 @@ public static void showCoursesInformation()
             }
         }
         updateUpdatedCourseInInstructor(courseCode, newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription, newSessionDtes);
+        System.out.println("Course has been updated Successfully");
     }
 
     public static void updateUpdatedCourseInInstructor(String courseCode, String newCourseCode, String newCourseTitle,
@@ -370,6 +371,7 @@ public static void showCoursesInformation()
         for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
             if (Main.courses.get(courseIndex).getCourseCode().equals(courseCode)) {
                 Main.courses.remove(courseIndex);
+                System.out.println("Course deleted Successfully");
             }
         }
     }
@@ -409,7 +411,7 @@ public static void showCoursesInformation()
                             } else {
                                 assignCoursesToInstructors(courseCode, instructorID);
                                 assignInstructorsToCourses(courseCode, instructorID);
-                                System.out.println("Done Successfully.");
+                                System.out.println("Done Successfully");
                                 break;
                             }
                         }
@@ -451,6 +453,7 @@ public static void showCoursesInformation()
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
             if (Main.instructors.get(instrcutorIndex).getID() == instructorId) {
                 Main.instructors.remove(instrcutorIndex);
+                System.out.println("Instructor has been dropped successfully");
             }
         }
 
@@ -496,6 +499,7 @@ public static void showCoursesInformation()
             for (int studentIndex2 = 0; studentIndex2 < Main.students.size(); studentIndex2++) {
                 if (studentsId.get(studentsIdIndex) == Main.students.get(studentIndex2).getID()) {
                     Main.students.remove(studentIndex2);
+                    System.out.println("Students have been dropped successfully");
                     flag = 1;
                     break;
                 }
@@ -528,10 +532,12 @@ public static void showCoursesInformation()
         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
         Admin event=new Admin(eventName,eventDate,eventLocation);
         Main.eventDetails.add(event);
+        System.out.println("Event has been added successfully");
     }
     public static void deleteEvent()
     {
         Main.eventDetails.remove(0);
+        System.out.println("Event has been deleted successfully");
     }
     public String toString()
     {
