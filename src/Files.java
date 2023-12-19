@@ -58,21 +58,23 @@ public class Files   {
         BufferedReader finalExamBR=new BufferedReader(new FileReader(finalExamFile));
         int ID=0;
         String Title="" ;
-        int Max_score=0;
+        double Max_score=0;
         String Date;
         String Location;
         double Exam_Time;
         String line="";
+        String finalExamCourseCode="";
         while((line =  finalExamBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
             ID = Integer.parseInt(token.nextToken());
             Title=token.nextToken();
-            Max_score=Integer.parseInt(token.nextToken());
+            Max_score=Double.parseDouble(token.nextToken());
             Date =token.nextToken();
             Location=token.nextToken();
             Exam_Time= Double.parseDouble(token.nextToken());
-            FinalExam finalExam=new FinalExam(ID,Title,Max_score,Date,Location,Exam_Time);
+            finalExamCourseCode=token.nextToken();
+            FinalExam finalExam=new FinalExam(ID,Title,Max_score,Date,Location,Exam_Time,finalExamCourseCode);
             Main.finalExams.add(finalExam);
         }
         finalExamBR.close();
@@ -86,18 +88,20 @@ public class Files   {
         double Max_score=0;
         String Date;
         String Exam_Location;
-        int Exam_Duration;
+        double Exam_Duration;
+        String midtermCourseCode="";
         String line="";
         while((line =  midtermExamBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
             ID = Integer.parseInt(token.nextToken());
             Title=token.nextToken();
-            Max_score=Integer.parseInt(token.nextToken());
+            Max_score=Double.parseDouble(token.nextToken());
             Date =token.nextToken();
             Exam_Location= token.nextToken();
-            Exam_Duration=Integer.parseInt(token.nextToken());
-            MidtermExam midtermExam=new MidtermExam(ID,Title,Max_score,Date,Exam_Location,Exam_Duration);
+            Exam_Duration=Double.parseDouble(token.nextToken());
+            midtermCourseCode=token.nextToken();
+            MidtermExam midtermExam=new MidtermExam(ID,Title,Max_score,Date,Exam_Location,Exam_Duration,midtermCourseCode);
             Main.midtermExams.add(midtermExam);
         }
         midtermExamBR.close();
@@ -113,8 +117,8 @@ public class Files   {
         String department="";
         String description="";
         int instructorId=-2;
-        int assignedFinalExamId=-2;
-        int assignedMidtermExamId=-2;
+       // int assignedFinalExamId=-2;
+       // int assignedMidtermExamId=-2;
         String line="" ;
         while((line = courseBR.readLine())!=null)
         {
@@ -128,16 +132,8 @@ public class Files   {
             if(token.hasMoreTokens() ) {                                  //>>Take care, FinalExamId always starts with 1
                 instructorId = Integer.parseInt(token.nextToken());
             }
-
-            if(token.hasMoreTokens()&&token.nextToken().startsWith("1"))      //Take care, FinalExamId always starts with 1
-            {
-                assignedFinalExamId = Integer.parseInt(token.nextToken());
-            }
-            if(token.hasMoreTokens()&&token.nextToken().startsWith("2")) {   //Take care, MidtermExamId always starts with 2
-                assignedMidtermExamId = Integer.parseInt(token.nextToken());
-            }
-
             String [] sessionDates=sessionLine.split("-");
+
 
 
             Instructor instructor=null;
@@ -158,43 +154,8 @@ public class Files   {
                             office_location, instructorDepartment);
                 }
             }
-            FinalExam finalExam=null;
-            for(int finalExamIndex=0;finalExamIndex<Main.finalExams.size();finalExamIndex++)
-            {
-                if(assignedFinalExamId==Main.finalExams.get(finalExamIndex).getID())
-                {
-                    int ID=Main.finalExams.get(finalExamIndex).getID();
-                    String Title=Main.finalExams.get(finalExamIndex).getTitle() ;
-                    double Max_score=Main.finalExams.get(finalExamIndex).getMax_score();
-                    LocalDate Date= Main.finalExams.get(finalExamIndex).getDate();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-                    String StringDate = Date.format(formatter);
-                    String Location=Main.finalExams.get(finalExamIndex).getLocation();
-                    double Exam_Time=Main.finalExams.get(finalExamIndex).getDuration();
-                    finalExam =new FinalExam(ID,Title,Max_score,StringDate,Location,Exam_Time);
-                }
-            }
-            MidtermExam midtermExam=null;
-            for(int midtermIndex=0;midtermIndex<Main.midtermExams.size();midtermIndex++)
-            {
-                if(assignedMidtermExamId==Main.midtermExams.get(midtermIndex).getID())
-                {
-                    int ID=Main.midtermExams.get(midtermIndex).getID();
-                    String Title=Main.midtermExams.get(midtermIndex).getTitle() ;
-                    double Max_score=Main.midtermExams.get(midtermIndex).getMax_score();
-                    LocalDate Date= Main.midtermExams.get(midtermIndex).getDate();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-                    String StringDate = Date.format(formatter);
-                    String Exam_Location=Main.midtermExams.get(midtermIndex).getExam_Location();
-                    double Exam_Duration=Main.midtermExams.get(midtermIndex).getDuration();
-                    midtermExam=new MidtermExam(ID,Title,Max_score,StringDate,Exam_Location,Exam_Duration);
-                }
-            }
-
-            Course course=new Course(courseCode,courseTitle,credits,department,description,sessionDates,instructor,midtermExam,finalExam);
+            Course course=new Course(courseCode,courseTitle,credits,department,description,sessionDates,instructor);
             instructorId=-2;
-            assignedFinalExamId=-2;
-            assignedMidtermExamId=-2;
             Main.courses.add(course);
         }
         courseBR.close();
@@ -241,9 +202,9 @@ public class Files   {
             token =new StringTokenizer(line,",");
             ID = Integer.parseInt(token.nextToken());
             Title=token.nextToken();
-            Max_score=Integer.parseInt(token.nextToken());
+            Max_score=Double.parseDouble(token.nextToken());
             Date =token.nextToken();
-            Quiz_Duration=Integer.parseInt(token.nextToken());
+            Quiz_Duration=Double.parseDouble(token.nextToken());
             quizCourseCode=token.nextToken();
             Quiz quiz=new Quiz(ID,Title,Max_score,Date,Quiz_Duration,quizCourseCode);
             Main.quizzes.add(quiz);
@@ -306,6 +267,32 @@ public class Files   {
                 if(Main.quizzes.get(quizIndex).courseCode.equals(Main.courses.get(courseIndex).getCourseCode()))
                 {
                     Main.courses.get(courseIndex).assignedQuiz.add(Main.quizzes.get(quizIndex));
+                }
+            }
+        }
+    }
+    public static void finalExamAndCourseRelation()
+    {
+        for(int finalExamIndex=0;finalExamIndex<Main.finalExams.size();finalExamIndex++)
+        {
+            for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
+            {
+                if(Main.finalExams.get(finalExamIndex).courseCode.equals(Main.courses.get(courseIndex).getCourseCode()))
+                {
+                    Main.courses.get(courseIndex).assignedfinal=Main.finalExams.get(finalExamIndex);
+                }
+            }
+        }
+    }
+    public static void midtermExamAndCourseRelation()
+    {
+        for(int midtermExamIndex=0;midtermExamIndex<Main.midtermExams.size();midtermExamIndex++)
+        {
+            for(int courseIndex=0;courseIndex<Main.courses.size();courseIndex++)
+            {
+                if(Main.midtermExams.get(midtermExamIndex).courseCode.equals(Main.courses.get(courseIndex).getCourseCode()))
+                {
+                    Main.courses.get(courseIndex).assignedMidterm=Main.midtermExams.get(midtermExamIndex);
                 }
             }
         }

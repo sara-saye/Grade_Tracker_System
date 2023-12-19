@@ -29,6 +29,15 @@ public class Course {
         this.sessionDates=sessionDates;
     }
     public Course (String courseCode,String courseTitle,int credits,String department,String description,
+                   String []sessionDates,Instructor assignedInstructor)
+    {
+        this(courseCode,courseTitle,credits,department,description,sessionDates);
+        if(assignedInstructor!=null) {
+            this.assignedInstructor.add(assignedInstructor);
+        }
+
+    }
+   /* public Course (String courseCode,String courseTitle,int credits,String department,String description,
                    String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates);
@@ -40,8 +49,10 @@ public class Course {
         }
         if(assignedMidterm!=null) {
             this.assignedMidterm = assignedMidterm;
+
         }
-    }
+    }*/
+
  /*  public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
     Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
@@ -83,7 +94,7 @@ public class Course {
     }
     public void enrollStudent(Student student)
     {
-         enrolledStudents.add(student);
+        enrolledStudents.add(student);
     }
     public void viewListOfEnrolledStudents()
     {
@@ -102,8 +113,8 @@ public class Course {
     }
     public void addAssignedQuiz(Quiz assignedQuiz)
     {
-       this.assignedQuiz.add(assignedQuiz);
-       Main.quizzes.add(assignedQuiz);
+        this.assignedQuiz.add(assignedQuiz);
+        Main.quizzes.add(assignedQuiz);
     }
     public void addAssignedMidterm(MidtermExam assignedMidterm)
     {
@@ -112,8 +123,8 @@ public class Course {
     }
     public void addAssignedFinal(FinalExam assignedfinal)
     {
-       this.assignedfinal=assignedfinal;
-      Main.finalExams.add(assignedfinal);
+        this.assignedfinal=assignedfinal;
+        Main.finalExams.add(assignedfinal);
     }
 
     public double CalcMean(){
@@ -122,7 +133,7 @@ public class Course {
             for (int i=0;i<student.getNoOfCourses();i++) {
                 if(student.Student_courses.get(i).courseCode.equals(this.courseCode)){
                     if(!student.Student_Grades.isEmpty())
-                    sum+=student.Student_Grades.get(i).CalcTotalGrade();
+                        sum+=student.Student_Grades.get(i).CalcTotalGrade();
                 }
             }
         }
@@ -136,7 +147,7 @@ public class Course {
             for (int i=0;i<student.getNoOfCourses();i++) {
                 if(student.Student_courses.get(i).courseCode.equals(this.courseCode)){
                     if(!student.Student_Grades.isEmpty())
-                    sum+=Math.pow(student.Student_Grades.get(i).CalcTotalGrade()-mean,2);
+                        sum+=Math.pow(student.Student_Grades.get(i).CalcTotalGrade()-mean,2);
                 }
             }
         }
@@ -144,23 +155,81 @@ public class Course {
         StandardDeviation=Math.sqrt(sum);
         return StandardDeviation;
     }
-public String toString()
-{
-    String courseData=courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1];
-    if(!this.assignedInstructor.isEmpty())
+    public void displayInfo()
     {
-        courseData+=","+assignedInstructor.get(0).getID();
-    }
-    if(this.assignedfinal.getID()!=0)
-    {
-        courseData+=","+this.assignedfinal.getID();
-    }
-    if(this.assignedMidterm.getID()!=0)
-    {
-        courseData+=","+this.assignedMidterm.getID();
-    }
-    return courseData;
+        System.out.println("Course Title: "+this.courseTitle);
+        System.out.println("Course Code: "+this.courseCode);
+        System.out.println("Credits: "+this.credits);
+        System.out.println("Department: "+this.department);
+        System.out.println("Description: "+this.description);
+        System.out.println("First session Date: "+sessionDates[0]);
+        System.out.println("Second session Date: "+sessionDates[1]);
+        if(this.assignedInstructor.isEmpty())
+        {
+            System.out.println("Course's Instuctor: "+"No assigned Instructor");
+        }
+        else
+        {
+            System.out.println("Course's Instuctor: "+this.assignedInstructor.get(0).getFname()+" "+this.assignedInstructor.get(0).getLname()
+                    + "  "+this.assignedInstructor.get(0).getID());
+        }
+        if(this.assignedfinal.getID()==0)
+        {
+            System.out.println("Final Exam's ID "+"No assigned Final Exam");
+        }
+        else {
+            System.out.println("Final Exam's ID "+this.assignedfinal.getID());
+        }
+        if(this.assignedMidterm.getID()==0)
+        {
+            System.out.println("Midterm Exam's ID "+"No assigned Midterm Exam");
+        }
+        else {
+            System.out.println("Midterm Exam's ID "+this.assignedMidterm.getID());
+        }
+        if(this.assignedAssignment.isEmpty())
+        {
+            System.out.println("Assignment's ID "+"No assigned Assignments");
+        }
+        else {
+            int assignmentNumber=1;
+            for(Assignment assignment:this.assignedAssignment)
+            {
+                System.out.println("Assignment "+assignmentNumber+" ID: "+assignment.getID());
+                assignmentNumber=assignmentNumber+1;
+            }
+        }
+        if(this.assignedQuiz.isEmpty())
+        {
+            System.out.println("quiz's ID "+"No assigned Assignments");
+        }
+        else {
+            int quizNumber=1;
+            for(Quiz quiz:this.assignedQuiz)
+            {
+                System.out.println("Quiz "+quizNumber+" ID: "+quiz.getID());
+                quizNumber=quizNumber+1;
+            }
+        }
 
-}
-}
 
+    }
+    public String toString()
+    {
+        String courseData=courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1];
+        if(!this.assignedInstructor.isEmpty())
+        {
+            courseData+=","+assignedInstructor.get(0).getID();
+        }
+        if(this.assignedfinal.getID()!=0)
+        {
+            courseData+=","+this.assignedfinal.getID();
+        }
+        if(this.assignedMidterm.getID()!=0)
+        {
+            courseData+=","+this.assignedMidterm.getID();
+        }
+        return courseData;
+
+    }
+}

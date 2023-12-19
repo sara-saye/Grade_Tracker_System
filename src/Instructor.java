@@ -263,6 +263,7 @@ public class Instructor extends Person {
                     System.out.println("Location: ");
                     ((MidtermExam) test).setExam_Location(input.next());
                     course.get(0).addAssignedMidterm((MidtermExam) test);
+                    course.get(0).assignedMidterm.courseCode=course.get(0).getCourseCode();
                     break;
                 case 4:
                     //add Final
@@ -270,6 +271,7 @@ public class Instructor extends Person {
                     System.out.println("Final exam mark will be 50");
                     forAddAssessment(test, 50);
                     course.get(0).addAssignedFinal((FinalExam) test);
+                    course.get(0).assignedfinal.courseCode=course.get(0).getCourseCode();
                     break;
                 case 5:
                     break;
