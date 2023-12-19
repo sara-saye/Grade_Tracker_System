@@ -205,6 +205,25 @@ public class Student extends Person {
         System.out.println("ID:");
         System.out.println(this.getID());
     }
+    public void DisplayForAdminClass() {
+        System.out.println("Name: "+this.getFname() + " " + this.getLname());
+        System.out.println("ID: "+this.getID());
+        System.out.println("Email: "+this.getEmail());
+        System.out.println("Phone Number: "+this.getPhoneNumber());
+        System.out.println("User Name: "+this.getUsername().replaceAll("@Student",""));
+        if(this.Student_courses.isEmpty())
+        {
+            System.out.println("No Registered Courses");
+        }
+        else {
+            System.out.println("Registered Courses: ");
+            for(Course course:this.Student_courses)
+            {
+                System.out.println(course.courseTitle+" "+course.getCourseCode());
+            }
+        }
+
+    }
 
     public void Edit_Info() {
         int choice;
