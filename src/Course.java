@@ -94,7 +94,7 @@ public class Course {
     }
     public void enrollStudent(Student student)
     {
-         enrolledStudents.add(student);
+        enrolledStudents.add(student);
     }
     public void viewListOfEnrolledStudents()
     {
@@ -113,8 +113,8 @@ public class Course {
     }
     public void addAssignedQuiz(Quiz assignedQuiz)
     {
-       this.assignedQuiz.add(assignedQuiz);
-       Main.quizzes.add(assignedQuiz);
+        this.assignedQuiz.add(assignedQuiz);
+        Main.quizzes.add(assignedQuiz);
     }
     public void addAssignedMidterm(MidtermExam assignedMidterm)
     {
@@ -123,8 +123,8 @@ public class Course {
     }
     public void addAssignedFinal(FinalExam assignedfinal)
     {
-       this.assignedfinal=assignedfinal;
-      Main.finalExams.add(assignedfinal);
+        this.assignedfinal=assignedfinal;
+        Main.finalExams.add(assignedfinal);
     }
 
     public double CalcMean(){
@@ -133,7 +133,7 @@ public class Course {
             for (int i=0;i<student.getNoOfCourses();i++) {
                 if(student.Student_courses.get(i).courseCode.equals(this.courseCode)){
                     if(!student.Student_Grades.isEmpty())
-                    sum+=student.Student_Grades.get(i).CalcTotalGrade();
+                        sum+=student.Student_Grades.get(i).CalcTotalGrade();
                 }
             }
         }
@@ -147,7 +147,7 @@ public class Course {
             for (int i=0;i<student.getNoOfCourses();i++) {
                 if(student.Student_courses.get(i).courseCode.equals(this.courseCode)){
                     if(!student.Student_Grades.isEmpty())
-                    sum+=Math.pow(student.Student_Grades.get(i).CalcTotalGrade()-mean,2);
+                        sum+=Math.pow(student.Student_Grades.get(i).CalcTotalGrade()-mean,2);
                 }
             }
         }
@@ -214,23 +214,22 @@ public class Course {
 
 
     }
-public String toString()
-{
-    String courseData=courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1];
-    if(!this.assignedInstructor.isEmpty())
+    public String toString()
     {
-        courseData+=","+assignedInstructor.get(0).getID();
-    }
-    if(this.assignedfinal.getID()!=0)
-    {
-        courseData+=","+this.assignedfinal.getID();
-    }
-    if(this.assignedMidterm.getID()!=0)
-    {
-        courseData+=","+this.assignedMidterm.getID();
-    }
-    return courseData;
+        String courseData=courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1];
+        if(!this.assignedInstructor.isEmpty())
+        {
+            courseData+=","+assignedInstructor.get(0).getID();
+        }
+        if(this.assignedfinal.getID()!=0)
+        {
+            courseData+=","+this.assignedfinal.getID();
+        }
+        if(this.assignedMidterm.getID()!=0)
+        {
+            courseData+=","+this.assignedMidterm.getID();
+        }
+        return courseData;
 
+    }
 }
-}
-

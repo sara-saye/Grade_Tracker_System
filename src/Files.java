@@ -431,6 +431,7 @@ public class Files   {
             student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
             student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
             student.getNotification().setNew_grade(Boolean.parseBoolean(token.nextToken()));
+            student.setDepartment(token.nextToken());
             student.setNoOfCourses(Integer.parseInt(token.nextToken()));
             if(student.getNoOfCourses()!=0) {
                 String[] coursecode = token.nextToken().split("-");
@@ -452,25 +453,31 @@ public class Files   {
         BufferedReader GradesBR=new BufferedReader(new FileReader(GradesFile));
         String line="" ;
         int id;
+        int index = 0;
+        StudentGrades studentGrade=new StudentGrades(0);
         while((line = GradesBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
-            StudentGrades studentGrade=new StudentGrades();
             id=Integer.parseInt(token.nextToken());
             studentGrade.setMidTermGrade(Double.parseDouble(token.nextToken()));
             studentGrade.setFinalGrade(Double.parseDouble(token.nextToken()));
             studentGrade.setAttendanceGrade(Double.parseDouble(token.nextToken()));
-            Main.students.get(id).ZScore.add(Double.parseDouble(token.nextToken()));
-            String[] assignmentGrades = token.nextToken().split("-");
-            String [] quizGrades = token.nextToken().split("-");
-            for (String assignmentGrade : assignmentGrades) {
-                studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
+            for(int i=0;i<Main.students.size();i++){
+                if(Main.students.get(i).getID()==id) {
+                    index = i;
+                }
             }
-            for (String quizGrade : quizGrades) {
-                studentGrade.quizGrade.add(Double.valueOf(quizGrade));
-            }
+                Main.students.get(index).ZScore.add(Double.parseDouble(token.nextToken()));
+                String[] assignmentGrades = token.nextToken().split("-");
+                String[] quizGrades = token.nextToken().split("-");
+                for (String assignmentGrade : assignmentGrades) {
+                    studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
+                }
+                for (String quizGrade : quizGrades) {
+                    studentGrade.quizGrade.add(Double.valueOf(quizGrade));
+                }
 
-            Main.students.get(id).Student_Grades.add(studentGrade);
+                Main.students.get(index).Student_Grades.add(studentGrade);
         }
         GradesBR.close();
     }

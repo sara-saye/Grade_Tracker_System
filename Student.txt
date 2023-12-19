@@ -1,5 +1,1 @@
-Esraa,Bassiouny,1000,esraa,esraa@Student,123,01033251941,-1.0,0.0,true,false,false,false,2,15
-amr,Ibrahim,1001,amr,amr@Student,111,01011232877,-1.0,0.0,false,false,false,false,2,45-15
-arwa,zlima,1002,arwa,arwa@Student,222,0108888888,-1.0,0.0,false,false,false,false,0
-eman,mohamed,1003,eman,eman@Student,4,22,-1.0,0.0,false,false,false,false,0
-ndifv,vndi,1004,dbkcd,ss@Student,ss,ndic,-1.0,0.0,true,false,false,true,1,30
+a,a,1000,a,a@Student,a,a,0.0,-0.0,false,false,false,false,cs,1,15

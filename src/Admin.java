@@ -13,7 +13,7 @@ public class Admin extends Person{
         this.eventName=eventName;
         this.eventDate=eventDate;
         this.eventLocation=eventLocation;
-         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
+        eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
     }
     public static void login() throws IOException {
         System.out.println(" 1-Add Course");
@@ -60,11 +60,11 @@ public class Admin extends Person{
                 int moreOperationsChoice1=input.nextInt();
                 if(moreOperationsChoice1==1)
                 {
-                            login();
+                    login();
                 }
                 else
                 {
-                 Main.main(null);
+                    Main.main(null);
                 }
                 break;
             case 2:
@@ -285,56 +285,63 @@ public class Admin extends Person{
 
     }
 
-public  static void showInstructorsInformation()
-{
-    int counter =1;
-    if(Main.instructors.isEmpty())
+    public  static void showInstructorsInformation()
     {
-        System.out.println("No instructors to display");
-    }
-    else {
-        for (Instructor instructor : Main.instructors) {
-            System.out.println(counter + " : ");
-            instructor.display();
-            System.out.println();
-            counter = counter + 1;
-        }
-    }
-}
-public  static void  showStudentsInformation()
-{
-    int counter=1;
-    if(Main.students.isEmpty())
-    {
-        System.out.println("No Students to display");
-    }
-    else {
-        for (Student student : Main.students) {
-            System.out.println(counter + " : ");
-            student.DisplayForAdminClass();
-            System.out.println();
-            counter = counter + 1;
-        }
-    }
-}
-public static void showCoursesInformation()
-{
-    int counter=1;
-    if(Main.courses.isEmpty())
-    {
-        System.out.println("No Courses to display");
-    }
-    else {
-        for(Course course:Main.courses)
+        int counter =1;
+        if(Main.instructors.isEmpty())
         {
+<<<<<<< HEAD
             System.out.println(counter+" : ");
             course.displayInfo();
             System.out.println();
             counter = counter + 1;
+=======
+            System.out.println("No instructors to display");
+        }
+        else {
+            for (Instructor instructor : Main.instructors) {
+                System.out.println(counter + " : ");
+                instructor.display();
+                System.out.println();
+                counter = counter + 1;
+            }
+>>>>>>> c637c36f720a9099dc815fd154ba2d4cbcf58f5c
         }
     }
+    public  static void  showStudentsInformation()
+    {
+        int counter=1;
+        if(Main.students.isEmpty())
+        {
+            System.out.println("No Students to display");
+        }
+        else {
+            for (Student student : Main.students) {
+                System.out.println(counter + " : ");
+                student.DisplayForAdminClass();
+                System.out.println();
+                counter = counter + 1;
+            }
+        }
+    }
+    public static void showCoursesInformation()
+    {
+        int counter=1;
+        if(Main.courses.isEmpty())
+        {
+            System.out.println("No Courses to display");
+        }
+        else {
+            for(Course course:Main.courses)
+            {
+                System.out.println(counter+" : ");
+                course.displayInfo();
+                System.out.println();
+                counter = counter + 1;
+            }
+        }
 
-}
+    }
     public static void addCourse(String courseCode, String courseTitle, int credits, String department,
                                  String description, String[] sessionDates)
     {
@@ -551,6 +558,3 @@ public static void showCoursesInformation()
     }
 
 }
-
-
-
