@@ -189,6 +189,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 8:
                 int instructorIdDrop;
                 System.out.println("ID of instructor yow want to drop: ");
@@ -206,6 +207,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 9:
                 dropStudent();
                 System.out.println("Do you want more operations?");
@@ -220,6 +222,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 10:
                 String eventName;
                 String eventDate;
@@ -243,6 +246,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 11:
                 deleteEvent();
                 System.out.println("Do you want more operations?");
@@ -257,8 +261,10 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 12:
                 Main.main(null);
+                break;
             case 13:
                 break;
             default:
