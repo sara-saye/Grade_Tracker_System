@@ -19,13 +19,16 @@ public class Admin extends Person{
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
         System.out.println(" 3-Delete Course");
-        System.out.println(" 4-assign instructor to course");
-        System.out.println(" 5-Drop Instructor");
-        System.out.println(" 6-Drop Student");
-        System.out.println(" 7-Add Event");
-        System.out.println(" 8-Delete Event");
-        System.out.println(" 9-Logout");
-        System.out.println(" 10-Exit");
+        System.out.println(" 4-View instructors information");
+        System.out.println(" 5-View students information");
+        System.out.println(" 6-View courses information");
+        System.out.println(" 7-assign instructor to course");
+        System.out.println(" 8-Drop Instructor");
+        System.out.println(" 9-Drop Student");
+        System.out.println(" 10-Add Event");
+        System.out.println(" 11-Delete Event");
+        System.out.println(" 12-Logout");
+        System.out.println(" 13-Exit");
         int choice = 0;
         choice = input.nextInt();
         switch (choice) {
@@ -58,6 +61,10 @@ public class Admin extends Person{
                 if(moreOperationsChoice1==1)
                 {
                             login();
+                }
+                else
+                {
+                 Main.main(null);
                 }
                 break;
             case 2:
@@ -95,6 +102,10 @@ public class Admin extends Person{
                 {
                     login();
                 }
+                else
+                {
+                    Main.main(null);
+                }
                 break;
             case 3:
                 System.out.println("Code of the course you want to delete: ");
@@ -109,8 +120,57 @@ public class Admin extends Person{
                 {
                     login();
                 }
+                else
+                {
+                    Main.main(null);
+                }
                 break;
             case 4:
+                showInstructorsInformation();
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice4=input.nextInt();
+                if(moreOperationsChoice4==1)
+                {
+                    login();
+                }
+                else
+                {
+                    Main.main(null);
+                }
+                break;
+            case 5:
+                showStudentsInformation();
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice5=input.nextInt();
+                if(moreOperationsChoice5==1)
+                {
+                    login();
+                }
+                else
+                {
+                    Main.main(null);
+                }
+                break;
+            case 6:
+                showCoursesInformation();
+                System.out.println("Do you want more operations?");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice6=input.nextInt();
+                if(moreOperationsChoice6==1)
+                {
+                    login();
+                }
+                else
+                {
+                    Main.main(null);
+                }
+                break;
+            case 7:
                 int instructorIdAssign;
                 String courseCodeAssign;
                 System.out.println("Instructor ID: ");
@@ -121,13 +181,16 @@ public class Admin extends Person{
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice4=input.nextInt();
-                if(moreOperationsChoice4==1)
+                int moreOperationsChoice7=input.nextInt();
+                if(moreOperationsChoice7==1)
                 {
                     login();
                 }
-                break;
-            case 5:
+                else
+                {
+                    Main.main(null);
+                }
+            case 8:
                 int instructorIdDrop;
                 System.out.println("ID of instructor yow want to drop: ");
                 instructorIdDrop = input.nextInt();
@@ -135,24 +198,30 @@ public class Admin extends Person{
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice5=input.nextInt();
-                if(moreOperationsChoice5==1)
+                int moreOperationsChoice8=input.nextInt();
+                if(moreOperationsChoice8==1)
                 {
                     login();
                 }
-                break;
-            case 6:
+                else
+                {
+                    Main.main(null);
+                }
+            case 9:
                 dropStudent();
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice6=input.nextInt();
-                if(moreOperationsChoice6==1)
+                int moreOperationsChoice9=input.nextInt();
+                if(moreOperationsChoice9==1)
                 {
                     login();
                 }
-                break;
-            case 7:
+                else
+                {
+                    Main.main(null);
+                }
+            case 10:
                 String eventName;
                 String eventDate;
                 String eventLocation;
@@ -166,35 +235,101 @@ public class Admin extends Person{
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice7=input.nextInt();
-                if(moreOperationsChoice7==1)
+                int moreOperationsChoice10=input.nextInt();
+                if(moreOperationsChoice10==1)
                 {
                     login();
                 }
-                break;
-            case 8:
+                else
+                {
+                    Main.main(null);
+                }
+            case 11:
                 deleteEvent();
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice8=input.nextInt();
-                if(moreOperationsChoice8==1)
+                int moreOperationsChoice11=input.nextInt();
+                if(moreOperationsChoice11==1)
                 {
                     login();
                 }
-                break;
-            case 9:
+                else
+                {
+                    Main.main(null);
+                }
+            case 12:
                 Main.main(null);
-            case 10:
+            case 13:
                 break;
             default:
                 System.out.println("Invalid choice");
-                break;
+                System.out.println("Do you want to try again? ");
+                System.out.println("1-yes");
+                System.out.println("2-No");
+                int moreOperationsChoice777=input.nextInt();
+                if(moreOperationsChoice777==1)
+                {
+                    login();
+                }
+                else
+                {
+                    Main.main(null);
+                }
         }
 
     }
 
+public  static void showInstructorsInformation()
+{
+    int counter =1;
+    if(Main.instructors.isEmpty())
+    {
+        System.out.println("No instructors to display");
+    }
+    else {
+        for (Instructor instructor : Main.instructors) {
+            System.out.println(counter + " : ");
+            instructor.display();
+            System.out.println();
+            counter = counter + 1;
+        }
+    }
+}
+public  static void  showStudentsInformation()
+{
+    int counter=1;
+    if(Main.students.isEmpty())
+    {
+        System.out.println("No Students to display");
+    }
+    else {
+        for (Student student : Main.students) {
+            System.out.println(counter + " : ");
+            student.DisplayForAdminClass();
+            System.out.println();
+            counter = counter + 1;
+        }
+    }
+}
+public static void showCoursesInformation()
+{
+    int counter=1;
+    if(Main.courses.isEmpty())
+    {
+        System.out.println("No Courses to display");
+    }
+    else {
+        for(Course course:Main.courses)
+        {
+            System.out.println(counter+" : ");
+            course.dispalyInfo();
+            System.out.println();
+            counter = counter + 1;
+        }
+    }
 
+}
     public static void addCourse(String courseCode, String courseTitle, int credits, String department,
                                  String description, String[] sessionDates)  //>>pass these parameters from main
     {

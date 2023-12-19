@@ -106,13 +106,16 @@ public class Instructor extends Person {
     public void display() {
         System.out.println("Name: " + this.getFname() + " " + this.getLname());
         System.out.println("ID: " + this.getID());
+        System.out.println("Email: "+this.getEmail());
         System.out.println("Department: " + this.department);
+        System.out.println("Office Location: "+this.office_location);
         try {
             System.out.println("Responsible for course: " + this.course.get(0).courseTitle);
         }catch (IndexOutOfBoundsException e){
             System.out.println("Responsible for no course ");
         }
     }
+
     public String getOffice_location() {
         return office_location;
     }
