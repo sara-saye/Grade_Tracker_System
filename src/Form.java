@@ -91,14 +91,8 @@
                 instructors.add(instructor);
                index= Main.instructors.size()-1;
             } else if(who==2){
-                Student student = new Student();
-                student.setEmail(Email);
-                student.setUsername(UserName+"@Student");
-                student.setPassword(Password);
-                student.setID(studentId);
-                student.setPhoneNumber(PhoneNo);
-                student.setFname(Fname);
-                student.setLname(Lname);
+                Student student = new Student(studentId,Fname,Lname,Email,UserName+"@Student",Password,PhoneNo);
+                student.Register();
                 students.add(student);
                 index =Main.students.size()-1;
             }

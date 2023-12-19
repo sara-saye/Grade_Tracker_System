@@ -9,6 +9,7 @@ public class Student extends Person {
     private double GPA = -1;
     private double expenses = 0;
     private boolean expenses_paid = false;
+    private String department;
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses;  //test
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
@@ -81,6 +82,29 @@ public class Student extends Person {
         this.setID(id);
     }
 
+    public Student(int ID, String Fname, String Lname, String email, String username,String password, String PhoneNumber){
+        super(ID,Fname,Lname,email,username,password,PhoneNumber);
+    }
+
+    public void Register(){
+        do {
+            try {
+                for (int i = 0; i < Main.courses.size(); i++) {
+                    System.out.println((i + 1)+"- " + Main.courses.get(i).department);
+                }
+                System.out.println("Choose your department: ");
+                int answer = input.nextInt();
+                department = Main.courses.get(answer - 1).department;
+                break;
+            }catch (IndexOutOfBoundsException exception) {
+                    System.out.println("Invalid Choice!Try Again.");
+                } catch (InputMismatchException exception) {
+                    System.out.println("Invalid! Please enter numeric values.");
+                    input.next();
+                }
+            } while (true);
+
+    }
     public void DisplayCurrentCourses() {
         setStatus();
         if (!Student_courses.isEmpty()) {
@@ -179,8 +203,12 @@ public class Student extends Person {
         do {
             try {
                 if (!courses.isEmpty()) {
+                    int index=1;
                     for (int i = 0; i < courses.size(); i++) {
-                        System.out.println((i + 1) + ":" + courses.get(i).courseTitle);
+                        if(courses.get(i).department.equals(department)) {
+                            System.out.println((index) + ":" + courses.get(i).courseTitle);
+                            index++;
+                        }
                     }
                     int answer = 0;
                     System.out.println("Which Course You Want To Register For? ");
