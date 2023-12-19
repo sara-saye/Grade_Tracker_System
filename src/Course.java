@@ -29,6 +29,15 @@ public class Course {
         this.sessionDates=sessionDates;
     }
     public Course (String courseCode,String courseTitle,int credits,String department,String description,
+                   String []sessionDates,Instructor assignedInstructor)
+    {
+        this(courseCode,courseTitle,credits,department,description,sessionDates);
+        if(assignedInstructor!=null) {
+            this.assignedInstructor.add(assignedInstructor);
+        }
+
+    }
+   /* public Course (String courseCode,String courseTitle,int credits,String department,String description,
                    String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {
         this(courseCode,courseTitle,credits,department,description,sessionDates);
@@ -40,8 +49,10 @@ public class Course {
         }
         if(assignedMidterm!=null) {
             this.assignedMidterm = assignedMidterm;
+
         }
-    }
+    }*/
+
  /*  public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
     Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
     {

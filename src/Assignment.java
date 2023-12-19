@@ -14,7 +14,6 @@ public class Assignment extends Test {
         this.Assignment_Deadline = Assignment_Deadline;
 
     }
-
     public Assignment(int id, String Title, double max_score,String Assignment_startDate, String assignment_Deadline) {
         super(id, Title, max_score);
         this.Assignment_startDate = LocalDate.parse(Assignment_startDate);
@@ -42,6 +41,6 @@ public class Assignment extends Test {
     }
     public String toString()
     {
-        return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline+","+getDuration()+","+courseCode;
+        return  getID()+","+getTitle()+","+getMax_score()+","+Assignment_startDate+","+Assignment_Deadline+","+courseCode;
     }
 }
