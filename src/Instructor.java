@@ -45,7 +45,7 @@ public class Instructor extends Person {
         instructor_ID++;
     }
     public void forSignIn() throws IOException {
-        filterStudents();
+//        filterStudents();
         int choice = 0;
         while (choice != 11&&choice!=10) {
             System.out.println("-------------------------");
@@ -312,23 +312,23 @@ public class Instructor extends Person {
     }
     public void generateAttRepForIndStud(int student_ID) {
         int j = 0, attndance_sum = 0;
-        for (Student student : students) {
+        for (Student student : Main.students) {
             if (student.getID() == student_ID) {
                 break;
             }
             j++;
         }
         student_ID = j;
-        int courseIndex = findindexs(students.get(student_ID));
+        int courseIndex = findindexs(Main.students.get(student_ID));
         for (int i = 0; i < 5; i++) {
-            if (students.get(student_ID).attendance[courseIndex][i]) {
+            if (Main.students.get(student_ID).attendance[courseIndex][i]) {
                 attndance_sum++;
             }
         }
-        System.out.println("Report for student " + students.get(student_ID).getFname() + " " + students.get(student_ID).getLname());
-        System.out.println("Student ID: " + students.get(student_ID).getID());
+        System.out.println("Report for student " + Main.students.get(student_ID).getFname() + " " + Main.students.get(student_ID).getLname());
+        System.out.println("Student ID: " + Main.students.get(student_ID).getID());
         System.out.println("Number of attended sessions: " + attndance_sum);
-        System.out.println("Attendance grade: " + students.get(student_ID).Student_Grades.get(courseIndex).getAttendanceGrade());
+        System.out.println("Attendance grade: " + Main.students.get(student_ID).Student_Grades.get(courseIndex).getAttendanceGrade());
         System.out.println("--------------------------------------");
 
     }
@@ -402,13 +402,13 @@ public class Instructor extends Person {
     }
     private int findindexs(Student student) {
         int i = 0;
-        for (Course course : student.Student_courses) {
-            if (course.equals(this.course)) {
+        for (Course c : student.Student_courses) {
+            if (c.equals(this.course.get(0))) {
                 break;
             }
             i++;
         }
-        return (i-1);
+        return (i);
     }
     private int checkIfExist(){
         System.out.println("--------------------------------------");

@@ -5,14 +5,18 @@ public class StudentGrades{
     private  double midTermGrade;
     private  double finalGrade;
     private double attendanceGrade;
-    public StudentGrades(){}
-//    public StudentGrades(double assignmentGrade, double quizGrade, double midTermGrade, double finalGrade, double attendanceGrade){
-////            this.assignmentGrade=assignmentGrade; //20
-////            this.quizGrade=quizGrade;             //10
-//        this.midTermGrade=midTermGrade;       //15
-//        this.finalGrade=finalGrade;           //50
-//        this.attendanceGrade=attendanceGrade; //5
-//    }
+    public StudentGrades(){
+            this.assignmentGrade.add(0.0); //20
+        this.assignmentGrade.add(0.0);
+            this.quizGrade.add(0.0);
+        this.quizGrade.add(0.0);   //10
+        this.midTermGrade=0.0;       //15
+        this.finalGrade=0.0;           //50
+        this.attendanceGrade=0.0; //5
+    }
+    public StudentGrades(int i){
+    }
+
     public void setAssignmentGrade(int index,double assgrade) {
         assignmentGrade.add(index,assgrade);
     }

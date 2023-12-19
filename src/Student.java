@@ -9,11 +9,16 @@ public class Student extends Person {
     private double GPA = -1;
     private double expenses = 0;
     private boolean expenses_paid = false;
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     private String department;
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses;  //test
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
-    public boolean[][] attendance = new boolean[NoOfCourses][5];
+    public boolean[][] attendance = new boolean[6][5];
     public Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
     private boolean attendanceDrop;
@@ -132,11 +137,13 @@ public class Student extends Person {
     }
 
     public void ViewStudentPerformance() {
-        CalcZScore();
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
-            if (!Student_courses.get(i).assignedInstructor.isEmpty())
-                Student_courses.get(i).assignedInstructor.get(0).generateAttRepForIndStud(getID());
+            if (!Student_courses.get(i).assignedInstructor.isEmpty()) {
+                System.out.println(getID());
+               // System.out.println(Student_courses.get(i).assignedInstructor.get(0).course.get(0).courseTitle);
+                Student_courses.get(i).assignedInstructor.get(0).generateAttRepForIndStud(this.getID());
+            }
             if (!ZScore.isEmpty()) {
                 if (ZScore.get(i) > 0) {
                     System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Great");
@@ -192,7 +199,6 @@ public class Student extends Person {
                 if (ans == 1) {
                     System.out.println("Payment Completed.");
                     expenses_paid = true;
-                    expenses = 0;
                     break;
                 } else if (ans == 2) {
                     expenses = 0;
@@ -209,23 +215,28 @@ public class Student extends Person {
         do {
             try {
                 if (!courses.isEmpty()) {
-                    int index=1;
+                    int arr[] = new int [Main.courses.size()];
+                    int index=0;
                     for (int i = 0; i < courses.size(); i++) {
-                       // if(courses.get(i).department.equals(department)) {
-                            System.out.println((index) + ":" + courses.get(i).courseTitle);
+                        if(courses.get(i).department.equals(department)) {
+                            System.out.println((index+1) + ":" + courses.get(i).courseTitle);
+                            arr[index]=i;
                             index++;
-
+                        }
                     }
                     int answer = 0;
                     System.out.println("Which Course You Want To Register For? ");
                     answer = input.nextInt();
-                    if(!Student_courses.contains(courses.get(answer - 1))) {
-                        Student_courses.add(courses.get(answer - 1));
-                        courses.get(answer - 1).enrollStudent(this);//test
+                    if(!Student_courses.contains(courses.get(arr[answer - 1]))) {
+                        Student_courses.add(courses.get(arr[answer - 1]));
+                        courses.get(arr[answer - 1]).enrollStudent(this);//test
                         StudentGrades grade = new StudentGrades();
                         Student_Grades.add(grade);
+                        ZScore.add(0.0);
                         NoOfCourses++;
                         System.out.println("Registration Done.");
+                        expenses = -expenses;
+                        expenses_paid=false;
                     }
                     else {
                         System.out.println("You have already registered for this course.");
@@ -371,6 +382,12 @@ public class Student extends Person {
 
 
     public void StudentAfterLogin() throws IOException {
+        try {
+            CalcGpa();
+            CalcZScore();
+        }catch (IndexOutOfBoundsException e){
+
+        }
         int ans, ans1 = 0, ans2 = 0;
         boolean success = false;
         while (!success) {
@@ -473,7 +490,7 @@ public class Student extends Person {
 
     public String toString() {
         String s = getFname() + "," + getLname() + "," + getID() + "," + getEmail() + "," + getUsername() + "," + getPassword() +
-                "," + getPhoneNumber() + "," + GPA + "," + expenses + "," + expenses_paid + "," + gpaDrop + "," + attendanceDrop + "," + notification.isNew_grade() +
+                "," + getPhoneNumber() + "," + GPA + "," + expenses + "," + expenses_paid + "," + gpaDrop + "," + attendanceDrop + "," + notification.isNew_grade() +","+department+
                 "," + NoOfCourses;
         if (!Student_courses.isEmpty()) {
             s += ",";
@@ -494,9 +511,7 @@ public class Student extends Person {
             for (int i = 0; i < Student_Grades.size(); i++) {
                 a = getID() + "," + Student_Grades.get(i).getMidTermGrade()
                         + "," + Student_Grades.get(i).getFinalGrade() + "," + Student_Grades.get(i).getAttendanceGrade();
-                if (ZScore.size() < i) {
                     a += "," + ZScore.get(i);
-                }
                 if (!Student_Grades.get(i).assignmentGrade.isEmpty()) {
                     a += ",";
                     for (int j = 0; j < Student_Grades.get(i).assignmentGrade.size(); j++) {

@@ -28,8 +28,8 @@ public abstract class Main {
             Files.instructorAndCourseRelation();
             Files.assignmentAndCourseRelation();
             Files.quizAndCourseRelation();
-            Files.readGrades();
             Files.readStudents();
+            Files.readGrades();
             Files.readAttendance();
             Files.StudentCourseRelation();
             Files.readEventDetails();

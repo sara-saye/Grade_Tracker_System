@@ -144,65 +144,6 @@ public class Course {
         StandardDeviation=Math.sqrt(sum);
         return StandardDeviation;
     }
-    public void dispalyInfo()
-    {
-        System.out.println("Course Title: "+this.courseTitle);
-        System.out.println("Course Code: "+this.courseCode);
-        System.out.println("Credits: "+this.credits);
-        System.out.println("Department: "+this.department);
-        System.out.println("Description: "+this.description);
-        System.out.println("First session Date: "+sessionDates[0]);
-        System.out.println("Second session Date: "+sessionDates[1]);
-        if(this.assignedInstructor.isEmpty())
-        {
-            System.out.println("Course's Instuctor: "+"No assigned Instructor");
-        }
-        else
-        {
-            System.out.println("Course's Instuctor: "+this.assignedInstructor.get(0).getFname()+" "+this.assignedInstructor.get(0).getLname()
-                    + "  "+this.assignedInstructor.get(0).getID());
-        }
-        if(this.assignedfinal.getID()==0)
-        {
-            System.out.println("Final Exam's ID "+"No assigned Final Exam");
-        }
-        else {
-            System.out.println("Final Exam's ID "+this.assignedfinal.getID());
-        }
-        if(this.assignedMidterm.getID()==0)
-        {
-            System.out.println("Midterm Exam's ID "+"No assigned Midterm Exam");
-        }
-        else {
-            System.out.println("Midterm Exam's ID "+this.assignedMidterm.getID());
-        }
-        if(this.assignedAssignment.isEmpty())
-        {
-            System.out.println("Assignment's ID "+"No assigned Assignments");
-        }
-        else {
-            int assignmentNumber=1;
-            for(Assignment assignment:this.assignedAssignment)
-            {
-                System.out.println("Assignment "+assignmentNumber+" ID: "+assignment.getID());
-                assignmentNumber=assignmentNumber+1;
-            }
-        }
-        if(this.assignedQuiz.isEmpty())
-        {
-            System.out.println("quiz's ID "+"No assigned Assignments");
-        }
-        else {
-            int quizNumber=1;
-            for(Quiz quiz:this.assignedQuiz)
-            {
-                System.out.println("Quiz "+quizNumber+" ID: "+quiz.getID());
-                quizNumber=quizNumber+1;
-            }
-        }
-
-
-    }
 public String toString()
 {
     String courseData=courseCode + "," + courseTitle + "," + credits + "," + department + "," + description + "," + sessionDates[0] + "-" + sessionDates[1];
