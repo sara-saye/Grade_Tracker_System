@@ -71,6 +71,7 @@ public class Notification {
 
         if (!course.isEmpty()) {
             for (int i = 0; i < course.size(); i++) {
+                System.out.println(course.get(i).courseTitle);
                 if(!course.get(i).assignedAssignment.isEmpty()) {
                     for (int j=0;j<course.get(i).assignedAssignment.size();j++) {
                         System.out.println(course.get(i).assignedAssignment.get(j).getTitle());
@@ -92,6 +93,7 @@ public class Notification {
 //
         if(!course.isEmpty()) {
             for (int i = 0; i < course.size(); i++) {
+                System.out.println(course.get(i).courseTitle);
                 if (!course.get(i).assignedQuiz.isEmpty()) {
                     for (int j = 0; j < course.get(i).assignedQuiz.size(); j++) {
                         System.out.println(course.get(i).assignedQuiz.get(j).getTitle() + " " + course.get(i).assignedQuiz.get(j).getDate());

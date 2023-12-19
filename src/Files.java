@@ -15,7 +15,7 @@ public class Files   {
     static File quizFile =new File("quiz.txt");
     static File StudentFile =new File("Student.txt");
     static File GradesFile =new File("Grades.txt");
-   // static File NotificationsFile =new File("Notification.txt");
+    // static File NotificationsFile =new File("Notification.txt");
 
     static File AttendanceFile =new File("Attendance.txt");
     static File eventDetailsFile=new File("event.txt");
@@ -95,7 +95,7 @@ public class Files   {
             Title=token.nextToken();
             Max_score=Integer.parseInt(token.nextToken());
             Date =token.nextToken();
-           Exam_Location= token.nextToken();
+            Exam_Location= token.nextToken();
             Exam_Duration=Integer.parseInt(token.nextToken());
             MidtermExam midtermExam=new MidtermExam(ID,Title,Max_score,Date,Exam_Location,Exam_Duration);
             Main.midtermExams.add(midtermExam);
@@ -133,9 +133,9 @@ public class Files   {
             {
                 assignedFinalExamId = Integer.parseInt(token.nextToken());
             }
-             if(token.hasMoreTokens()&&token.nextToken().startsWith("2")) {   //Take care, MidtermExamId always starts with 2
-                 assignedMidtermExamId = Integer.parseInt(token.nextToken());
-             }
+            if(token.hasMoreTokens()&&token.nextToken().startsWith("2")) {   //Take care, MidtermExamId always starts with 2
+                assignedMidtermExamId = Integer.parseInt(token.nextToken());
+            }
 
             String [] sessionDates=sessionLine.split("-");
 
@@ -161,18 +161,18 @@ public class Files   {
             FinalExam finalExam=null;
             for(int finalExamIndex=0;finalExamIndex<Main.finalExams.size();finalExamIndex++)
             {
-                   if(assignedFinalExamId==Main.finalExams.get(finalExamIndex).getID())
-                   {
-                       int ID=Main.finalExams.get(finalExamIndex).getID();
-                       String Title=Main.finalExams.get(finalExamIndex).getTitle() ;
-                       double Max_score=Main.finalExams.get(finalExamIndex).getMax_score();
-                       LocalDate Date= Main.finalExams.get(finalExamIndex).getDate();
-                       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-                       String StringDate = Date.format(formatter);
-                       String Location=Main.finalExams.get(finalExamIndex).getLocation();
-                       double Exam_Time=Main.finalExams.get(finalExamIndex).getDuration();
-                       finalExam =new FinalExam(ID,Title,Max_score,StringDate,Location,Exam_Time);
-                   }
+                if(assignedFinalExamId==Main.finalExams.get(finalExamIndex).getID())
+                {
+                    int ID=Main.finalExams.get(finalExamIndex).getID();
+                    String Title=Main.finalExams.get(finalExamIndex).getTitle() ;
+                    double Max_score=Main.finalExams.get(finalExamIndex).getMax_score();
+                    LocalDate Date= Main.finalExams.get(finalExamIndex).getDate();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+                    String StringDate = Date.format(formatter);
+                    String Location=Main.finalExams.get(finalExamIndex).getLocation();
+                    double Exam_Time=Main.finalExams.get(finalExamIndex).getDuration();
+                    finalExam =new FinalExam(ID,Title,Max_score,StringDate,Location,Exam_Time);
+                }
             }
             MidtermExam midtermExam=null;
             for(int midtermIndex=0;midtermIndex<Main.midtermExams.size();midtermIndex++)
@@ -271,7 +271,7 @@ public class Files   {
             Main.eventDetails.add(event);
         }
         eventDetailsBR.close();
-        
+
     }
     public static void instructorAndCourseRelation()
     {
@@ -405,7 +405,7 @@ public class Files   {
         gradesBW.flush();
         gradesBW.close();
     }
-//    public  static void writeNotification() throws IOException {
+    //    public  static void writeNotification() throws IOException {
 //        BufferedWriter NotificationBW=new BufferedWriter(new FileWriter(NotificationsFile));
 //        for(Student student:Main.students)
 //        {
@@ -490,7 +490,7 @@ public class Files   {
         GradesBR.close();
     }
 
-//    public static void readNotification() throws IOException {
+    //    public static void readNotification() throws IOException {
 //        StringTokenizer token = null;
 //        BufferedReader NotificationBR=new BufferedReader(new FileReader(NotificationsFile));
 //        String line="" ;
@@ -529,32 +529,28 @@ public class Files   {
 //    }
     public static void readAttendance() throws IOException {
         StringTokenizer token = null;
-        BufferedReader AttendanceBR=new BufferedReader(new FileReader(AttendanceFile));
-        String line="" ;
+        BufferedReader AttendanceBR = new BufferedReader(new FileReader(AttendanceFile));
+        String line = "";
         int id;
-        while((line = AttendanceBR.readLine())!=null) {
+        while ((line = AttendanceBR.readLine()) != null) {
             token = new StringTokenizer(line, ",");
             Notification n = new Notification();
             id = Integer.parseInt(token.nextToken());
 
-
-            for (int i = 0; i < Main.students.get(id).getNoOfCourses(); i++) {
-                for (int j = 0; j < 10; j++) {
-                    Main.students.get(id).attendance[i][j] = Boolean.parseBoolean(token.nextToken());
-                }
-            }
-
-            for (int i = 0; i < Main.students.get(id).getNoOfCourses(); i++) {
-                for (int j = 0; j < 5; j++) {
-                    Main.students.get(id).attendance[i][j] = Boolean.parseBoolean(token.nextToken());
-
-                }
+            for (Student student : Main.students) {
+                if (student.getID() == id)
+                    for (int i = 0; i < student.getNoOfCourses(); i++) {
+                        if(student.attendance.length>0) {
+                            for (int j = 0; j < 5; j++) {
+                                student.attendance[i][j] = Boolean.parseBoolean(token.nextToken());
+                            }
+                        }
+                    }
             }
         }
-            AttendanceBR.close();
+        AttendanceBR.close();
 
     }
-
     public static void StudentCourseRelation() {
         for (Student student1:Main.students) {
             for (Course course:student1.Student_courses) {
@@ -567,4 +563,3 @@ public class Files   {
         }
     }
 }
-

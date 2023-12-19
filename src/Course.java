@@ -16,6 +16,7 @@ public class Course {
     public ArrayList<Student>enrolledStudents=new ArrayList<Student>();
     private double mean;
     private double StandardDeviation; //if used
+    private boolean status;
     public Course () {}
     public Course(String courseCode,String courseTitle,int credits,String department,String description
             ,String []sessionDates)
@@ -64,6 +65,14 @@ public class Course {
         this.courseCode=courseCode;
         this.courseTitle=courseTitle;
     }*/
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     public void setCourseCode(String courseCode)
     {
         this.courseCode=courseCode;
@@ -112,6 +121,7 @@ public class Course {
         for (Student student:enrolledStudents) {
             for (int i=0;i<student.getNoOfCourses();i++) {
                 if(student.Student_courses.get(i).courseCode.equals(this.courseCode)){
+                    if(!student.Student_Grades.isEmpty())
                     sum+=student.Student_Grades.get(i).CalcTotalGrade();
                 }
             }
@@ -125,6 +135,7 @@ public class Course {
         for (Student student:enrolledStudents) {
             for (int i=0;i<student.getNoOfCourses();i++) {
                 if(student.Student_courses.get(i).courseCode.equals(this.courseCode)){
+                    if(!student.Student_Grades.isEmpty())
                     sum+=Math.pow(student.Student_Grades.get(i).CalcTotalGrade()-mean,2);
                 }
             }
