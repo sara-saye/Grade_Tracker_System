@@ -328,7 +328,7 @@ public static void showCoursesInformation()
         for(Course course:Main.courses)
         {
             System.out.println(counter+" : ");
-            course.dispalyInfo();
+            course.displayInfo();
             System.out.println();
             counter = counter + 1;
         }

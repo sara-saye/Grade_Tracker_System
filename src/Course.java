@@ -155,7 +155,7 @@ public class Course {
         StandardDeviation=Math.sqrt(sum);
         return StandardDeviation;
     }
-    public void dispalyInfo()
+    public void displayInfo()
     {
         System.out.println("Course Title: "+this.courseTitle);
         System.out.println("Course Code: "+this.courseCode);
