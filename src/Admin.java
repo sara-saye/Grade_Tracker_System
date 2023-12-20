@@ -326,7 +326,7 @@ public class Admin extends Person {
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice9 = input.nextInt();
+                int moreOperationsChoice9 = -1;
                 boolean read91 = false;
                 do {
                     try {
@@ -359,7 +359,7 @@ public class Admin extends Person {
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice10 = input.nextInt();
+                int moreOperationsChoice10 = -1;
                 boolean read10 = false;
                 do {
                     try {
@@ -383,7 +383,7 @@ public class Admin extends Person {
                 System.out.println("Do you want more operations?");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice11 = input.nextInt();
+                int moreOperationsChoice11 = -1;
                 boolean read111 = false;
                 do {
                     try {
@@ -412,7 +412,7 @@ public class Admin extends Person {
                 System.out.println("Do you want to try again? ");
                 System.out.println("1-yes");
                 System.out.println("2-No");
-                int moreOperationsChoice777 = input.nextInt();
+                int moreOperationsChoice777 = -1;
                 boolean read131 = false;
                 do {
                     try {

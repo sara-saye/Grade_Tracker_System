@@ -25,7 +25,6 @@ public class Student extends Person {
 
     private boolean gpaDrop;
 
-
     public void setNoOfCourses(int noOfCourses) {
         NoOfCourses = noOfCourses;
     }

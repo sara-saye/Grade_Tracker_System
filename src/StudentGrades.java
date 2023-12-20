@@ -6,13 +6,13 @@ public class StudentGrades{
     private  double finalGrade;
     private double attendanceGrade;
     public StudentGrades(){
-            this.assignmentGrade.add(0.0); //20
-        this.assignmentGrade.add(0.0);
-            this.quizGrade.add(0.0);
-        this.quizGrade.add(0.0);   //10
-        this.midTermGrade=0.0;       //15
-        this.finalGrade=0.0;           //50
-        this.attendanceGrade=0.0; //5
+            this.assignmentGrade.add(-1.0); //20
+        this.assignmentGrade.add(-1.0);
+            this.quizGrade.add(-1.0);
+        this.quizGrade.add(-1.0);   //10
+        this.midTermGrade=-1.0;       //15
+        this.finalGrade=-1.0;           //50
+        this.attendanceGrade=-1.0; //5
     }
     public StudentGrades(int i){
     }

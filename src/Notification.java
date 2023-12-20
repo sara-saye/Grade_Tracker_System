@@ -110,8 +110,6 @@ public class Notification {
                     Main.students.get(studentID).setGpaDrop(true);
                 }
             }
-
-
         }
     }
 }
