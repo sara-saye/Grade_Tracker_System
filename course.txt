@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 15,oop,3,cs,integrationOfSoftwareComponents,1-2,1000
 13,Database,3,general,monitoringAdministrationAndMaintenanceofDatabases,4-5,1001
 30,sp,3,is,encouragesDividingAnApplicationProgramIntoAHierarchyOfModules,12-12,1002
 45,physics,3,science,kkkkk,3-7
 100,logic,3,cs,gfjade,28-4
+=======
+10,oop,3,cs,integration Of Software Components,1-2
+15,Database,3,general,monitoring Administration And Maintenance of Databases,4-5
+20,sp,3,is,Encourages Dividing An Application Program Into A Hierarchy Of Modules,12-12
+25,Logic,3,general,Basics Of Formal Logic,3-4
+30,Report Writing,2,general,Soft Skills Improvement,1-2
+>>>>>>> b2aee9ef6de6b51a024ea9f4e1b4388412de5ab2

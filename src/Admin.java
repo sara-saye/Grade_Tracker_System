@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Admin extends Person{
     static Scanner input = new Scanner(System.in);
+    static Scanner DescriptionInput = new Scanner(System.in);
     public static String eventDetails=null;
     String eventName;
     String eventDate;
@@ -16,6 +17,7 @@ public class Admin extends Person{
         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
     }
     public static void login() throws IOException {
+        DescriptionInput.useDelimiter("\n");
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
         System.out.println(" 3-Delete Course");
@@ -42,13 +44,13 @@ public class Admin extends Person{
                 System.out.println("Course Code: ");
                 courseCodeAdd = input.next();
                 System.out.println("Course Title: ");
-                courseTitleAdd = input.next();
+                courseTitleAdd = DescriptionInput.next();
                 System.out.println("Credits: ");
                 creditsAdd = input.nextInt();
                 System.out.println("Department: ");
                 departmentAdd = input.next();
                 System.out.println("Description: ");
-                descriptionAdd = input.next();
+                descriptionAdd = DescriptionInput.next();
                 System.out.println("Session 1 date: ");
                 sessionDatesAdd[0] = input.next();
                 System.out.println("Session 2 date: ");
@@ -80,13 +82,13 @@ public class Admin extends Person{
                 System.out.println("New Course Code: ");
                 newCourseCodeUpdate = input.next();
                 System.out.println("Course Title: ");
-                newCourseTitleUpdate = input.next();
+                newCourseTitleUpdate = DescriptionInput.next();
                 System.out.println("Credits: ");
                 newCreditsUpdate = input.nextInt();
                 System.out.println("Department: ");
                 newDepartmentUpdate = input.next();
                 System.out.println("Description: ");
-                newDescriptionUpdate = input.next();
+                newDescriptionUpdate = DescriptionInput.next();
                 System.out.println("Session 1 date: ");
                 newSessionDatesUpdate[0] = input.next();
                 System.out.println("Session 2 date: ");
