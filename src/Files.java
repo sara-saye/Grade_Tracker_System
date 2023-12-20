@@ -49,7 +49,8 @@ public class Files   {
             department=token.nextToken();
             gradesAssigned= Integer.parseInt(token.nextToken());
             Instructor instructor=new Instructor(id,firstName,lastName,email,username,password, PhoneNumber, office_location, department);
-            instructor.setAllGradesAssigned(gradesAssigned);
+            instructor.setAllgradesAssigned(gradesAssigned);
+            System.out.println(instructor.getAllgradesAssigned());
             Main.instructors.add(instructor);
         }
         instructorBR.close();
@@ -382,7 +383,7 @@ public class Files   {
         BufferedWriter gradesBW=new BufferedWriter(new FileWriter(GradesFile));
 
         for(Student student:Main.students)
-        {System.out.println(student.Student_Grades.size());
+        {
             if(!student.Student_Grades.isEmpty()) {
                 for(int i=0;i<student.Student_Grades.size();i++){
                     gradesBW.write(student.GradesToString(student.Student_Grades.get(i),student.ZScore.get(i)));
@@ -457,9 +458,9 @@ public class Files   {
         String line="" ;
         int id;
         int index = 0;
-        StudentGrades studentGrade=new StudentGrades(0);
         while((line = GradesBR.readLine())!=null)
         {
+            StudentGrades studentGrade=new StudentGrades(0);
             token =new StringTokenizer(line,",");
             id=Integer.parseInt(token.nextToken());
             studentGrade.setMidTermGrade(Double.parseDouble(token.nextToken()));
