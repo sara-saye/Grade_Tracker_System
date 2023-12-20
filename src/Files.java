@@ -50,7 +50,6 @@ public class Files   {
             gradesAssigned= Integer.parseInt(token.nextToken());
             Instructor instructor=new Instructor(id,firstName,lastName,email,username,password, PhoneNumber, office_location, department);
             instructor.setAllgradesAssigned(gradesAssigned);
-            System.out.println(instructor.getAllgradesAssigned());
             Main.instructors.add(instructor);
         }
         instructorBR.close();
