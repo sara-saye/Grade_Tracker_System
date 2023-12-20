@@ -437,6 +437,9 @@ public class Instructor extends Person {
             }
         }
     }
+    public int getAllgradesAssigned() {
+        return allgradesAssigned;
+    }
     private void setassignment(Assignment assignment,int number,int i) {
         assignment.courseCode = course.get(0).getCourseCode();
         System.out.println("Assignment ID: ");
@@ -535,11 +538,11 @@ public class Instructor extends Person {
     private void setAssignmentDate(Assignment assignment){
         while (true) {
             try {
-                System.out.println("Enter Assignment start date like this format yyyy-MM-dd ");
+                System.out.println("Enter Assignment start date like this format dd-MM-yyyy ");
                 String date = input.next();
                 System.out.println("Enter Assignment duration in days");
                 assignment.setDuration(input.nextDouble());
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 LocalDate Date = LocalDate.parse(date, formatter);
                 assignment.setAssignment_startDate(Date); // Set the start date for the assignment
                 assignment.set_Assignment_deadline(LocalDate.parse(assignment.getAssignment_startDate().plusDays((long) assignment.getDuration()).toString()));
@@ -551,7 +554,7 @@ public class Instructor extends Person {
                 System.out.println("Invalid Date, Please enter a valid date.");
                 input.nextLine();
             } catch (Exception e) {
-                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                System.out.println("Invalid date format. Please enter the date in dd-MM-yyyy format.");
                 input.nextLine();
             }
         }
@@ -795,8 +798,5 @@ public class Instructor extends Person {
                 }
             }
         }
-    }
-    public int getAllgradesAssigned() {
-        return allgradesAssigned;
     }
 }
