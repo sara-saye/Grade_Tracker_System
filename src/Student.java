@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Student extends Person {
@@ -16,7 +17,7 @@ public class Student extends Person {
 
     private String department;
     public ArrayList<Course> Student_courses = new ArrayList<>();
-    private int NoOfCourses;  //test
+    private int NoOfCourses;
     public ArrayList<StudentGrades> Student_Grades = new ArrayList<>();
     public boolean[][] attendance = new boolean[6][5];
     public Notification notification = new Notification();
@@ -98,36 +99,29 @@ public class Student extends Person {
     }
 
     public void Register(){
+        ArrayList<String> Departments = new ArrayList<>();
+        for (int i = 0; i < Main.courses.size(); i++) {
+            if(!Departments.contains(Main.courses.get(i).department))
+                Departments.add(Main.courses.get(i).department);
+        }
         do {
             try {
-               /* boolean Check=false;
-                for (int i = 0; i < Main.courses.size(); i++) {
-                    Check=false;
-                    for (int j=0;j<Main.courses.size();j++) {
-                        if (i==j){continue;}
-                        else {
-                            if (Main.courses.get(i).department == Main.courses.get(j).department) {
-                                System.out.println((i + 1) + "- " + Main.courses.get(i).department);
-                                Check = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (!Check){
-                        System.out.println((i + 1) + "- " + Main.courses.get(i).department);
-                    }
-                }*/
+                int index=1;
+                for(String department:Departments){
+                    System.out.println((index)+"- "+department);
+                    index++;
+                }
                 System.out.println("Choose your department: ");
                 int answer = input.nextInt();
-                department = Main.courses.get(answer - 1).department;
+                department = Departments.get(answer-1);
                 break;
             }catch (IndexOutOfBoundsException exception) {
-                    System.out.println("Invalid Choice!Try Again.");
-                } catch (InputMismatchException exception) {
-                    System.out.println("Invalid! Please enter numeric values.");
-                    input.next();
-                }
-            } while (true);
+                System.out.println("Invalid Choice!Try Again.");
+            } catch (InputMismatchException exception) {
+                System.out.println("Invalid! Please enter numeric values.");
+                input.next();
+            }
+        } while (true);
 
     }
 
@@ -163,8 +157,8 @@ public class Student extends Person {
                 }
                 System.out.println("Number of attended sessions: " + attndance_sum);
                 System.out.println("Attendance grade: " + Student_Grades.get(i).getAttendanceGrade());
-            }
-            if (Student_courses.get(i).isStatus()) {
+                //            if (Student_courses.get(i).assignedInstructor.get(0).getAllgradesAssigned() == 4) {
+                System.out.println(ZScore.get(i));
                 if (ZScore.get(i) > 0) {
                     System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Great");
                 } else if (ZScore.get(i) == 0) {
@@ -172,8 +166,9 @@ public class Student extends Person {
                 } else {
                     System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Weak");
                 }
+//            }
+                System.out.println("------------------------------------");
             }
-            System.out.println("------------------------------------");
         }
 
     }
@@ -183,8 +178,9 @@ public class Student extends Person {
             System.out.println("You haven't registered any course");
         else if (expenses_paid) {
             if (notification.isNew_grade()) {
-                for (int i = 0; i < NoOfCourses; i++) {
+                for (int i = 0; i < Student_courses.size(); i++) {
                     System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
+                    System.out.println((Student_Grades.get(i)));
                     double courseGrade = Student_Grades.get(i).CalcTotalGrade();
                     double courseScale = Student_Grades.get(i).Calcscale();
                     String courseLetterGrade = Student_Grades.get(i).CalcLetterGrade(courseGrade);
@@ -198,6 +194,7 @@ public class Student extends Person {
                     System.out.println("Total Grade: " + courseGrade);
                     System.out.println("Points: " + courseScale);
                     System.out.println("Letter Grade: " + courseLetterGrade);
+                    System.out.println("\n*********************\n");
                 }
             } else
                 System.out.println("Unavailable Grades");
@@ -250,10 +247,11 @@ public class Student extends Person {
                     answer = input.nextInt();
                     if(!Student_courses.contains(courses.get(arr[answer - 1]))) {
                         Student_courses.add(courses.get(arr[answer - 1]));
-                        courses.get(arr[answer - 1]).enrollStudent(this);//test
                         StudentGrades grade = new StudentGrades();
                         Student_Grades.add(grade);
+                        System.out.println(Student_Grades.size());
                         ZScore.add(0.0);
+                        courses.get(arr[answer - 1]).enrollStudent(this);
                         NoOfCourses++;
                         System.out.println("Registration Done.");
                         expenses = -expenses;
@@ -384,8 +382,14 @@ public class Student extends Person {
 
     public void CalcZScore() {
         for (int i = 0; i < NoOfCourses; i++) {
-            if (!Student_Grades.isEmpty())
-                ZScore.add((Student_Grades.get(i).CalcTotalGrade() - Student_courses.get(i).CalcMean()) / Student_courses.get(i).CalcStandardDeviation());
+            if (!Student_Grades.isEmpty()) {
+                if(Student_courses.get(i).CalcStandardDeviation()!=0.0) {
+                    double z=(Student_Grades.get(i).CalcTotalGrade()-Student_courses.get(i).CalcMean()) / Student_courses.get(i).CalcStandardDeviation();
+                    ZScore.add(z);
+                }
+                else
+                    ZScore.add(0.0);
+            }
         }
     }
 
@@ -531,31 +535,27 @@ public class Student extends Person {
         return s;
     }
 
-    public String GradesToString() {
+    public String GradesToString(StudentGrades grade,double zscore) {
         String a = "";
-        if (!Student_Grades.isEmpty()) {
-            for (int i = 0; i < Student_Grades.size(); i++) {
-                a = getID() + "," + Student_Grades.get(i).getMidTermGrade()
-                        + "," + Student_Grades.get(i).getFinalGrade() + "," + Student_Grades.get(i).getAttendanceGrade();
-                    a += "," + ZScore.get(i);
-                if (!Student_Grades.get(i).assignmentGrade.isEmpty()) {
+                a = getID() + "," + grade.getMidTermGrade()
+                        + "," + grade.getFinalGrade() + "," + grade.getAttendanceGrade();
+                    a += "," + zscore;
+                if (!grade.assignmentGrade.isEmpty()) {
                     a += ",";
-                    for (int j = 0; j < Student_Grades.get(i).assignmentGrade.size(); j++) {
-                        a += Student_Grades.get(i).assignmentGrade.get(j);
-                        if (j != Student_Grades.get(i).assignmentGrade.size() - 1)
+                    for (int j = 0; j < 2; j++) {
+                        a += grade.assignmentGrade.get(j);
+                        if (j != grade.assignmentGrade.size() - 1)
                             a += "-";
                     }
                 }
-                if (!Student_Grades.get(i).quizGrade.isEmpty()) {
+                if (!grade.quizGrade.isEmpty()) {
                     a += ",";
-                    for (int j = 0; j < Student_Grades.get(i).quizGrade.size(); j++) {
-                        a += Student_Grades.get(i).quizGrade.get(j);
-                        if (j != Student_Grades.get(i).quizGrade.size() - 1)
+                    for (int j = 0; j <2; j++) {
+                        a += grade.quizGrade.get(j);
+                        if (j != grade.quizGrade.size() - 1)
                             a += "-";
                     }
                 }
-            }
-        }
         return a;
     }
 

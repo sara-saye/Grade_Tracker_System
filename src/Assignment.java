@@ -4,7 +4,6 @@ import java.time.LocalDate;
 public class Assignment extends Test {
     private LocalDate Assignment_startDate;
     private LocalDate Assignment_Deadline;
-    public String courseCode;
 
     public Assignment(){
 

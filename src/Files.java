@@ -34,6 +34,7 @@ public class Files   {
         String department=" ";
         String username=" ";
         String line="" ;
+        int gradesAssigned;
         while((line = instructorBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
@@ -46,7 +47,10 @@ public class Files   {
             PhoneNumber=token.nextToken();
             office_location=token.nextToken();
             department=token.nextToken();
+            gradesAssigned= Integer.parseInt(token.nextToken());
             Instructor instructor=new Instructor(id,firstName,lastName,email,username,password, PhoneNumber, office_location, department);
+            instructor.setAllgradesAssigned(gradesAssigned);
+            System.out.println(instructor.getAllgradesAssigned());
             Main.instructors.add(instructor);
         }
         instructorBR.close();
@@ -238,7 +242,6 @@ public class Files   {
             {
                 if((!Main.courses.get(courseIndex).assignedInstructor.isEmpty())&&(Main.courses.get(courseIndex).assignedInstructor.get(0).getID()==Main.instructors.get(instructorIndex).getID()))
                 {
-                    System.out.println("am here");
                     Main.instructors.get(instructorIndex).course.add(Main.courses.get(courseIndex));
                 }
             }
@@ -382,8 +385,10 @@ public class Files   {
         for(Student student:Main.students)
         {
             if(!student.Student_Grades.isEmpty()) {
-                gradesBW.write(student.GradesToString());
-                gradesBW.newLine();
+                for(int i=0;i<student.Student_Grades.size();i++){
+                    gradesBW.write(student.GradesToString(student.Student_Grades.get(i),student.ZScore.get(i)));
+                    gradesBW.newLine();
+                }
             }
         }
         gradesBW.flush();
@@ -453,9 +458,9 @@ public class Files   {
         String line="" ;
         int id;
         int index = 0;
-        StudentGrades studentGrade=new StudentGrades(0);
         while((line = GradesBR.readLine())!=null)
         {
+            StudentGrades studentGrade=new StudentGrades(0);
             token =new StringTokenizer(line,",");
             id=Integer.parseInt(token.nextToken());
             studentGrade.setMidTermGrade(Double.parseDouble(token.nextToken()));

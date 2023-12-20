@@ -1,6 +1,5 @@
 
 public class Quiz extends Test {
-    public String courseCode;
     public Quiz(){}
     public Quiz(int id, String Title,double max_score, String date,double quiz_Duration){
         super(id,Title,max_score,date);
@@ -12,7 +11,7 @@ public class Quiz extends Test {
     }
     public  String toString()
     {
-        return  getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+getDuration();
+        return  getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+getDuration()+","+courseCode;
     }
 }
 
