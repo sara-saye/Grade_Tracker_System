@@ -2,7 +2,6 @@
 public class MidtermExam extends Test {
     private String Exam_Location;
     private double Exam_Duration;
-    public String courseCode;
     public MidtermExam (){}
     public MidtermExam(int id, String Title,double max_score , String date,String location,double Exam_Duration){
         super(id,Title,max_score,date);

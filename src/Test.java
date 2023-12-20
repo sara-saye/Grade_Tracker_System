@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public abstract class Test {
     Scanner input=new Scanner(System.in);
+    public String courseCode;
     private int ID;
     private String Title ;
     private double Max_score;

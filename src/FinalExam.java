@@ -2,7 +2,6 @@
 
 public class FinalExam extends Test {
     private String Location;
-    public String courseCode;
     public FinalExam (){}
     public FinalExam(int id, String Title,double max_score , String date,String location,double exam_Time){
         super(id,Title,max_score,date);
