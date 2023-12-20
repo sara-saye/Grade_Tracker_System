@@ -22,7 +22,7 @@ public class Student extends Person {
     public boolean[][] attendance = new boolean[6][5];
     public Notification notification = new Notification();
     public ArrayList<Double> ZScore = new ArrayList<Double>();
-    private boolean attendanceDrop;
+
     private boolean gpaDrop;
 
 
@@ -58,13 +58,6 @@ public class Student extends Person {
         return NoOfCourses;
     }
 
-    public boolean isAttendanceDrop() {
-        return attendanceDrop;
-    }
-
-    public void setAttendanceDrop(boolean attendanceDrop) {
-        this.attendanceDrop = attendanceDrop;
-    }
 
     public boolean isGpaDrop() {
         return gpaDrop;
@@ -520,7 +513,7 @@ public class Student extends Person {
 
     public String toString() {
         String s = getFname() + "," + getLname() + "," + getID() + "," + getEmail() + "," + getUsername() + "," + getPassword() +
-                "," + getPhoneNumber() + "," + GPA + "," + expenses + "," + expenses_paid + "," + gpaDrop + "," + attendanceDrop + "," + notification.isNew_grade() +","+department+
+                "," + getPhoneNumber() + "," + GPA + "," + expenses + "," + expenses_paid + "," + gpaDrop +"," + notification.isNew_grade() +","+department+
                 "," + NoOfCourses;
         if (!Student_courses.isEmpty()) {
             s += ",";

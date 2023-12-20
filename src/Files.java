@@ -50,7 +50,6 @@ public class Files   {
             gradesAssigned= Integer.parseInt(token.nextToken());
             Instructor instructor=new Instructor(id,firstName,lastName,email,username,password, PhoneNumber, office_location, department);
             instructor.setAllgradesAssigned(gradesAssigned);
-            System.out.println(instructor.getAllgradesAssigned());
             Main.instructors.add(instructor);
         }
         instructorBR.close();
@@ -433,7 +432,6 @@ public class Files   {
             student.setExpenses(Double.parseDouble(token.nextToken()));
             student.setExpenses_paid(Boolean.parseBoolean(token.nextToken()));
             student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
-            student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
             student.getNotification().setNew_grade(Boolean.parseBoolean(token.nextToken()));
             student.setDepartment(token.nextToken());
             student.setNoOfCourses(Integer.parseInt(token.nextToken()));
