@@ -117,8 +117,6 @@ public class Files   {
         String department="";
         String description="";
         int instructorId=-2;
-       // int assignedFinalExamId=-2;
-       // int assignedMidtermExamId=-2;
         String line="" ;
         while((line = courseBR.readLine())!=null)
         {

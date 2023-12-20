@@ -100,9 +100,23 @@ public class Student extends Person {
     public void Register(){
         do {
             try {
+               /* boolean Check=false;
                 for (int i = 0; i < Main.courses.size(); i++) {
-                    System.out.println((i + 1)+"- " + Main.courses.get(i).department);
-                }
+                    Check=false;
+                    for (int j=0;j<Main.courses.size();j++) {
+                        if (i==j){continue;}
+                        else {
+                            if (Main.courses.get(i).department == Main.courses.get(j).department) {
+                                System.out.println((i + 1) + "- " + Main.courses.get(i).department);
+                                Check = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!Check){
+                        System.out.println((i + 1) + "- " + Main.courses.get(i).department);
+                    }
+                }*/
                 System.out.println("Choose your department: ");
                 int answer = input.nextInt();
                 department = Main.courses.get(answer - 1).department;

@@ -1,1 +1,2 @@
-a,a,1000,a,a@Student,a,a,-1.0,-0.0,false,false,false,false,cs,1,15
+Amr,Mohamed,1000,Amr37@gmail.com,Amr@Student,111,01125400593,-1.0,0.0,false,false,false,false,cs,0
+Esraa,Bassiouny,1001,Esraa28@gmail.com,esraa@Student,111,01033251941,-1.0,0.0,false,false,false,false,general,0

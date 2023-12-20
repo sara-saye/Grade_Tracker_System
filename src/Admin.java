@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Admin extends Person{
     static Scanner input = new Scanner(System.in);
+    static Scanner DescriptionInput = new Scanner(System.in);
     public static String eventDetails=null;
     String eventName;
     String eventDate;
@@ -16,6 +17,7 @@ public class Admin extends Person{
         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
     }
     public static void login() throws IOException {
+        DescriptionInput.useDelimiter("\n");
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
         System.out.println(" 3-Delete Course");
@@ -42,13 +44,13 @@ public class Admin extends Person{
                 System.out.println("Course Code: ");
                 courseCodeAdd = input.next();
                 System.out.println("Course Title: ");
-                courseTitleAdd = input.next();
+                courseTitleAdd = DescriptionInput.next();
                 System.out.println("Credits: ");
                 creditsAdd = input.nextInt();
                 System.out.println("Department: ");
                 departmentAdd = input.next();
                 System.out.println("Description: ");
-                descriptionAdd = input.next();
+                descriptionAdd = DescriptionInput.next();
                 System.out.println("Session 1 date: ");
                 sessionDatesAdd[0] = input.next();
                 System.out.println("Session 2 date: ");
@@ -80,17 +82,18 @@ public class Admin extends Person{
                 System.out.println("New Course Code: ");
                 newCourseCodeUpdate = input.next();
                 System.out.println("Course Title: ");
-                newCourseTitleUpdate = input.next();
+                newCourseTitleUpdate = DescriptionInput.next();
                 System.out.println("Credits: ");
                 newCreditsUpdate = input.nextInt();
                 System.out.println("Department: ");
                 newDepartmentUpdate = input.next();
                 System.out.println("Description: ");
-                newDescriptionUpdate = input.next();
+                newDescriptionUpdate = DescriptionInput.next();
                 System.out.println("Session 1 date: ");
                 newSessionDatesUpdate[0] = input.next();
                 System.out.println("Session 2 date: ");
                 newSessionDatesUpdate[1] = input.next();
+
                 updateCourse(courseCodeUpdate, newCourseCodeUpdate, newCourseTitleUpdate, newCreditsUpdate,
                         newDepartmentUpdate, newDescriptionUpdate, newSessionDatesUpdate);
                 System.out.println("Do you want more operations?");
@@ -189,7 +192,6 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
-                break;
             case 8:
                 int instructorIdDrop;
                 System.out.println("ID of instructor yow want to drop: ");
@@ -207,7 +209,6 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
-                break;
             case 9:
                 dropStudent();
                 System.out.println("Do you want more operations?");
@@ -222,7 +223,6 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
-                break;
             case 10:
                 String eventName;
                 String eventDate;
@@ -246,7 +246,6 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
-                break;
             case 11:
                 deleteEvent();
                 System.out.println("Do you want more operations?");
@@ -261,10 +260,8 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
-                break;
             case 12:
                 Main.main(null);
-                break;
             case 13:
                 break;
             default:
@@ -290,12 +287,6 @@ public class Admin extends Person{
         int counter =1;
         if(Main.instructors.isEmpty())
         {
-<<<<<<< HEAD
-            System.out.println(counter+" : ");
-            course.displayInfo();
-            System.out.println();
-            counter = counter + 1;
-=======
             System.out.println("No instructors to display");
         }
         else {
@@ -305,7 +296,6 @@ public class Admin extends Person{
                 System.out.println();
                 counter = counter + 1;
             }
->>>>>>> c637c36f720a9099dc815fd154ba2d4cbcf58f5c
         }
     }
     public  static void  showStudentsInformation()
@@ -343,11 +333,10 @@ public class Admin extends Person{
 
     }
     public static void addCourse(String courseCode, String courseTitle, int credits, String department,
-                                 String description, String[] sessionDates)
+                                 String description, String[] sessionDates)  //>>pass these parameters from main
     {
         Course course = new Course(courseCode, courseTitle, credits, department, description, sessionDates);
         Main.courses.add(course);
-        System.out.println("Course has been Added Successfully");
     }
 
     public static void updateCourse(String courseCode, String newCourseCode, String newCourseTitle,
@@ -359,7 +348,6 @@ public class Admin extends Person{
             }
         }
         updateUpdatedCourseInInstructor(courseCode, newCourseCode, newCourseTitle, newCredits, newDepartment, newDescription, newSessionDtes);
-        System.out.println("Course has been updated Successfully");
     }
 
     public static void updateUpdatedCourseInInstructor(String courseCode, String newCourseCode, String newCourseTitle,
@@ -384,7 +372,6 @@ public class Admin extends Person{
         for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
             if (Main.courses.get(courseIndex).getCourseCode().equals(courseCode)) {
                 Main.courses.remove(courseIndex);
-                System.out.println("Course deleted Successfully");
             }
         }
     }
@@ -424,7 +411,7 @@ public class Admin extends Person{
                             } else {
                                 assignCoursesToInstructors(courseCode, instructorID);
                                 assignInstructorsToCourses(courseCode, instructorID);
-                                System.out.println("Done Successfully");
+                                System.out.println("Done Successfully.");
                                 break;
                             }
                         }
@@ -466,7 +453,6 @@ public class Admin extends Person{
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
             if (Main.instructors.get(instrcutorIndex).getID() == instructorId) {
                 Main.instructors.remove(instrcutorIndex);
-                System.out.println("Instructor has been dropped successfully");
             }
         }
 
@@ -512,7 +498,6 @@ public class Admin extends Person{
             for (int studentIndex2 = 0; studentIndex2 < Main.students.size(); studentIndex2++) {
                 if (studentsId.get(studentsIdIndex) == Main.students.get(studentIndex2).getID()) {
                     Main.students.remove(studentIndex2);
-                    System.out.println("Students have been dropped successfully");
                     flag = 1;
                     break;
                 }
@@ -545,12 +530,10 @@ public class Admin extends Person{
         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
         Admin event=new Admin(eventName,eventDate,eventLocation);
         Main.eventDetails.add(event);
-        System.out.println("Event has been added successfully");
     }
     public static void deleteEvent()
     {
         Main.eventDetails.remove(0);
-        System.out.println("Event has been deleted successfully");
     }
     public String toString()
     {
@@ -558,3 +541,6 @@ public class Admin extends Person{
     }
 
 }
+
+
+
