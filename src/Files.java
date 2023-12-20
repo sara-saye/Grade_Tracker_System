@@ -34,6 +34,7 @@ public class Files   {
         String department=" ";
         String username=" ";
         String line="" ;
+        int gradesAssigned;
         while((line = instructorBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
@@ -46,7 +47,9 @@ public class Files   {
             PhoneNumber=token.nextToken();
             office_location=token.nextToken();
             department=token.nextToken();
+            gradesAssigned= Integer.parseInt(token.nextToken());
             Instructor instructor=new Instructor(id,firstName,lastName,email,username,password, PhoneNumber, office_location, department);
+            instructor.setAllGradesAssigned(gradesAssigned);
             Main.instructors.add(instructor);
         }
         instructorBR.close();
@@ -238,7 +241,6 @@ public class Files   {
             {
                 if((!Main.courses.get(courseIndex).assignedInstructor.isEmpty())&&(Main.courses.get(courseIndex).assignedInstructor.get(0).getID()==Main.instructors.get(instructorIndex).getID()))
                 {
-                    System.out.println("am here");
                     Main.instructors.get(instructorIndex).course.add(Main.courses.get(courseIndex));
                 }
             }
@@ -380,10 +382,12 @@ public class Files   {
         BufferedWriter gradesBW=new BufferedWriter(new FileWriter(GradesFile));
 
         for(Student student:Main.students)
-        {
+        {System.out.println(student.Student_Grades.size());
             if(!student.Student_Grades.isEmpty()) {
-                gradesBW.write(student.GradesToString());
-                gradesBW.newLine();
+                for(int i=0;i<student.Student_Grades.size();i++){
+                    gradesBW.write(student.GradesToString(student.Student_Grades.get(i),student.ZScore.get(i)));
+                    gradesBW.newLine();
+                }
             }
         }
         gradesBW.flush();

@@ -9,7 +9,12 @@ public class Instructor extends Person {
     Scanner input = new Scanner(System.in);
     public static int instructor_ID = 0;
     private String office_location, department;
-    private int allgradesAssigned=0;
+
+    public void setAllGradesAssigned(int allGradesAssigned) {
+        this.allGradesAssigned = allGradesAssigned;
+    }
+
+    private int allGradesAssigned =0;
     public ArrayList<Course> course = new ArrayList<>();
     public ArrayList<Student> students = new ArrayList<>();
     public Instructor() {
@@ -46,7 +51,7 @@ public class Instructor extends Person {
         instructor_ID++;
     }
     public void forSignIn() throws IOException {
-//        filterStudents();
+          filterStudents();
         int choice = 0;
         while (choice != 11&&choice!=10) {
             System.out.println("-------------------------");
@@ -190,7 +195,7 @@ public class Instructor extends Person {
                 if (ch == 'Y' || ch == 'y') {
                     student.attendance[courseIndex][i] = true;
                 } else {
-                    System.out.println("Are there any exception?");
+                    System.out.println("Are there any exception(y/n)?");
                     ch = input.next().charAt(0);
                     if (ch == 'Y' || ch == 'y') {
                         student.attendance[courseIndex][i] = true;
@@ -361,7 +366,7 @@ public class Instructor extends Person {
         }
     }
     public String toString(){
-        return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getUsername()+","+getPassword()+","+PhoneNumber+","+office_location+","+department;
+        return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getUsername()+","+getPassword()+","+PhoneNumber+","+office_location+","+department+","+allGradesAssigned;
     }
     public void editGrades(){//lsa makmlet4
         System.out.println("What grade do you want to edit");
@@ -404,7 +409,6 @@ public class Instructor extends Person {
         }
     }
     private int findindexs(Student student) {
-
         int i = 0;
         for (Course c : student.Student_courses) {
             if (c.getCourseCode().equals(this.course.get(0).getCourseCode())) {
@@ -510,7 +514,7 @@ public class Instructor extends Person {
                         System.out.println("Invalid grade\nEnter grade less than or equal 20");
                     } else if (assignmentGrade <= 20) {
                         student.Student_Grades.get(courseIndex).setAssignmentGrade(0, assignmentGrade);
-                        allgradesAssigned++;
+                        allGradesAssigned++;
                         student.getNotification().addStatueOfGrade(true);
                         break;
                     }
@@ -528,7 +532,7 @@ public class Instructor extends Person {
                     }
                     if (assignmentGrade <= assignmentgrade) {
                         student.Student_Grades.get(courseIndex).setAssignmentGrade(assignmentNumber, assignmentGrade);
-                        allgradesAssigned++;
+                        allGradesAssigned++;
                         break;
                     }
                 }
@@ -552,7 +556,7 @@ public class Instructor extends Person {
                         System.out.println("Invalid grade\nEnter grade less than or equal 10");
                     } else if (quizGrade <= 20) {
                         student.Student_Grades.get(courseIndex).setQuizGrade(0, quizGrade);
-                        allgradesAssigned++;
+                        allGradesAssigned++;
                         break;
                     }
                 }
@@ -569,7 +573,7 @@ public class Instructor extends Person {
                     }
                     if (quizGrade <= quizgrade) {
                         student.Student_Grades.get(courseIndex).setQuizGrade(quizNumber, quizGrade);
-                        allgradesAssigned++;
+                        allGradesAssigned++;
                         break;
                     }
                 }
@@ -589,8 +593,9 @@ public class Instructor extends Person {
                 if (midtermGrade > 15) {
                     System.out.println("Invalid grade\nEnter grade less than or equal 15");
                 } else if (midtermGrade <= 15) {
+                    System.out.println(courseIndex);
                     student.Student_Grades.get(courseIndex).setMidTermGrade(midtermGrade);
-                    allgradesAssigned++;
+                    allGradesAssigned++;
                     break;
                 }
             }
@@ -611,7 +616,7 @@ public class Instructor extends Person {
                     System.out.println("Invalid grade\nEnter grade less than or equal 50");
                 } else if (finalGrade <= 50) {
                     student.Student_Grades.get(courseIndex).setFinalGrade(finalGrade);
-                    allgradesAssigned++;
+                    allGradesAssigned++;
                     break;
                 }
             }
@@ -619,6 +624,6 @@ public class Instructor extends Person {
         }
     }
     public int getAllgradesAssigned() {
-        return allgradesAssigned;
+        return allGradesAssigned;
     }
 }

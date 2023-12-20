@@ -12,7 +12,7 @@ public class Quiz extends Test {
     }
     public  String toString()
     {
-        return  getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+getDuration();
+        return  getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+getDuration()+","+courseCode;
     }
 }
 
