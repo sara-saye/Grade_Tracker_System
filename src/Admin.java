@@ -290,6 +290,12 @@ public class Admin extends Person{
         int counter =1;
         if(Main.instructors.isEmpty())
         {
+<<<<<<< HEAD
+            System.out.println(counter+" : ");
+            course.displayInfo();
+            System.out.println();
+            counter = counter + 1;
+=======
             System.out.println("No instructors to display");
         }
         else {
@@ -299,6 +305,7 @@ public class Admin extends Person{
                 System.out.println();
                 counter = counter + 1;
             }
+>>>>>>> c637c36f720a9099dc815fd154ba2d4cbcf58f5c
         }
     }
     public  static void  showStudentsInformation()
