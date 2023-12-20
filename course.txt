@@ -1,6 +1,12 @@
 10,oop,3,cs,integration Of Software Components,1-2,1000
 15,Database,3,cs,monitoring Administration And Maintenance of Databases,4-5,1001
 20,sp,3,is,Encourages Dividing An Application Program Into A Hierarchy Of Modules,12-12
+<<<<<<< HEAD
 25,Logic,3,general,Basics Of Formal Logic,3-4
 30,Report Writing,2,general,Soft Skills Improvement,1-2
 50,Calc,3,IS,Mathmatics,12-10
+=======
+25,Logic,3,general,Basics Of Formal Logic,3-4,1002
+30,Report Writing,2,general,Soft Skills Improvement,1-2,1003
+50,Calc,3,IS,Mathmatics,12-10
+>>>>>>> 842d88f111ece60f9cbf2c8d752bf41938c4af1d

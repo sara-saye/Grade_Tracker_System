@@ -9,14 +9,12 @@ public class Instructor extends Person {
     Scanner input = new Scanner(System.in);
     public static int instructor_ID = 0;
     private String office_location, department;
-
+    private int allgradesAssigned = 0;
+    public ArrayList<Course> course = new ArrayList<>();
+    public ArrayList<Student> instructor_students = new ArrayList<>();
     public void setAllgradesAssigned(int allgradesAssigned) {
         this.allgradesAssigned = allgradesAssigned;
     }
-
-    private int allgradesAssigned=0;
-    public ArrayList<Course> course = new ArrayList<>();
-    public ArrayList<Student> instructor_students = new ArrayList<>();
     public Instructor() {
         super();
         this.office_location = "Unknown";
@@ -51,20 +49,20 @@ public class Instructor extends Person {
     }
     public void forSignIn() throws IOException {
         filterStudents();
-        System.out.println(allgradesAssigned);
         int choice = 0;
-        while (choice != 11&&choice!=10) {
+        while (choice != 11 && choice != 12) {
             System.out.println("-------------------------");
             System.out.println("1-Show your information\n2-Edit your information");
-            if (!isNotResponsibleForCourse()) {
+
                 System.out.println("3-View students\n4-Assign Assessment");
-                System.out.println("5-Take attendance\n6-Input students Grades");
+                System.out.println("5-Take attendance\n6-Input students grades");
                 System.out.println("7-Make report for attendance specific student");
                 System.out.println("8-Make report for attendance all students");
                 System.out.println("9-Generate Report for attendance by sections");
-            }
-            System.out.println("10-Logout");
-            System.out.println("11-Exit");
+                System.out.println("10-Edit students grades");
+
+            System.out.println("11-Logout");
+            System.out.println("12-Exit");
             System.out.println("Enter your choice");
             choice = input.nextInt();
             switch (choice) {
@@ -75,32 +73,44 @@ public class Instructor extends Person {
                     this.editInfo();
                     break;
                 case 3:
-                    this.viewEnrolledStudents();
+                    if (!isNotResponsibleForCourse()) {
+                        this.viewEnrolledStudents();
+                    }
                     break;
                 case 4:
-                    this.setAssessmentsToCourse();
+                    if (!isNotResponsibleForCourse()){
+                    this.setAssessmentsToCourse();}
                     break;
                 case 5:
-                    this.trackAttendance();
+                    if (!isNotResponsibleForCourse()){
+                    this.trackAttendance();}
                     break;
                 case 6:
-                    this.inputGrades();
+                    if (!isNotResponsibleForCourse()) {
+                        this.inputGrades();
+                    }
                     break;
                 case 7:
+                    if (!isNotResponsibleForCourse()){
                     System.out.println("Enter student ID");
                     int studentID = input.nextInt();
-                    this.generateAttRepForIndStud(studentID);
+                    this.generateAttRepForIndStud(studentID);}
                     break;
                 case 8:
-                    this.generateAttrepforallstud();
+                    if (!isNotResponsibleForCourse()){
+                    this.generateAttrepforallstud();}
                     break;
                 case 9:
-                    this.reportForSectionsAttendance();
+                    if (!isNotResponsibleForCourse()){
+                    this.reportForSectionsAttendance();}
                     break;
                 case 10:
+                    if (!isNotResponsibleForCourse()){
+                    this.editGrades();}
+                case 11:
                     Main.main(null);
                     break;
-                case 11:
+                case 12:
                     break;
                 default:
                     System.out.println("Invalid choice");
@@ -188,16 +198,22 @@ public class Instructor extends Person {
             System.out.println("Student name: " + student.getFname() + " " + student.getLname());
             System.out.println("Student ID: " + student.getID());
             for (int i = 0; i < 5; i++) {
-                System.out.println("section number #" + (i + 1));
-                System.out.println("Did this student attend?(y/n)");
-                char ch = input.next().charAt(0);
-                if (ch == 'Y' || ch == 'y') {
-                    student.attendance[courseIndex][i] = true;
-                } else {
-                    System.out.println("Are there any exception?");
-                    ch = input.next().charAt(0);
+                while(true) {
+                    System.out.println("section number #" + (i + 1));
+                    System.out.println("Did this student attend?(y/n)");
+                    char ch = input.next().charAt(0);
                     if (ch == 'Y' || ch == 'y') {
                         student.attendance[courseIndex][i] = true;
+                        break;
+                    } else if (ch == 'n' || ch == 'N') {
+                        System.out.println("Are there any exception?");
+                        ch = input.next().charAt(0);
+                        if (ch == 'Y' || ch == 'y') {
+                            student.attendance[courseIndex][i] = true;
+                            break;
+                        }
+                    } else {
+                        System.out.println("Invalid input");
                     }
                 }
             }
@@ -362,9 +378,7 @@ public class Instructor extends Person {
         }
     }
     public void viewEnrolledStudents() {
-        for (Student student : instructor_students) {
-            course.get(0).viewListOfEnrolledStudents();
-        }
+        course.get(0).viewListOfEnrolledStudents();
     }
     public void reportForSectionsAttendance() {
         System.out.println("--------------------------------------");
@@ -384,10 +398,45 @@ public class Instructor extends Person {
     public String toString(){
         return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getUsername()+","+getPassword()+","+PhoneNumber+","+office_location+","+department+","+allgradesAssigned;
     }
-    public void editGrades(){//lsa makmlet4
-        System.out.println("What grade do you want to edit");
-        System.out.println("1-Assignment\n2-Quiz\n3-Midterm\n4-Final\n5-Exit");
-        int choice = input.nextInt();
+    public void editGrades() throws IOException {
+        int choice=0;
+        System.out.println("Enter student ID:");
+        int studentID = input.nextInt(), j = 0;
+        for (Student student : instructor_students) {
+            if (student.getID() == studentID) {
+                break;
+            }
+            j++;
+        }
+        int courseIndex = findindexs(instructor_students.get(j));
+        while(choice != 5){
+            System.out.println("What grade do you want to edit");
+            System.out.println("1-Assignment\n2-Quiz\n3-Midterm\n4-Final\n5-Exit");
+            choice = input.nextInt();
+            switch (choice) {
+                case 1: //Assignment
+                    editassignmentCase(instructor_students.get(j), courseIndex);
+                    break;
+                case 2: //Quiz
+                    editquizCase(instructor_students.get(j), courseIndex);
+                    break;
+                case 3: //Midterm
+                    editmidtermCase(instructor_students.get(j), courseIndex);
+                    break;
+                case 4: //final exam
+                    editfinalCase(instructor_students.get(j), courseIndex);
+                    break;
+                case 5:
+                    this.forSignIn();
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
+            }
+        }
+    }
+    public int getAllgradesAssigned() {
+        return allgradesAssigned;
     }
     private void setassignment(Assignment assignment,int number,int i) {
         assignment.courseCode = course.get(0).getCourseCode();
@@ -467,6 +516,7 @@ public class Instructor extends Person {
     }
     private boolean isNotResponsibleForCourse(){
         if(this.course.isEmpty()){
+            System.out.println("You don't have course yet");
             return true;
         }
         return false;
@@ -483,15 +533,14 @@ public class Instructor extends Person {
         System.out.print("Duration in hours: ");
         test.setDuration(input.nextDouble());
     }
-    //for input grades method
     private void setAssignmentDate(Assignment assignment){
         while (true) {
             try {
-                System.out.println("Enter Assignment start date like this format yyyy-MM-dd ");
+                System.out.println("Enter Assignment start date like this format dd-MM-yyyy ");
                 String date = input.next();
                 System.out.println("Enter Assignment duration in days");
                 assignment.setDuration(input.nextDouble());
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 LocalDate Date = LocalDate.parse(date, formatter);
                 assignment.setAssignment_startDate(Date); // Set the start date for the assignment
                 assignment.set_Assignment_deadline(LocalDate.parse(assignment.getAssignment_startDate().plusDays((long) assignment.getDuration()).toString()));
@@ -503,11 +552,12 @@ public class Instructor extends Person {
                 System.out.println("Invalid Date, Please enter a valid date.");
                 input.nextLine();
             } catch (Exception e) {
-                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                System.out.println("Invalid date format. Please enter the date in dd-MM-yyyy format.");
                 input.nextLine();
             }
         }
     }
+    //for input grades method
     private void assignmentCase(Student student,int courseIndex){
         if (course.get(0).assignedAssignment.isEmpty()) {
             System.out.println("This course doesn't have assignment yet");
@@ -531,28 +581,28 @@ public class Instructor extends Person {
                     }
                 }
             } else if (course.get(0).assignedAssignment.size() == 2) {
-                System.out.println("");
-                while (true) {
-                    System.out.println("Enter assignment ID: ");
-                    int assignmentNumber = input.nextInt() - 1;
-                    double assignmentgrade = course.get(0).assignedAssignment.get(assignmentNumber).getMax_score();
-                    System.out.println("Enter grade: ");
-                    assignmentGrade = input.nextDouble();
-                    if (assignmentGrade > assignmentgrade) {
-                        System.out.println("Invalid grade\nEnter grade less than or equal " + assignmentgrade);
-                    }
-                    if (assignmentGrade <= assignmentgrade) {
-                        student.Student_Grades.get(courseIndex).setAssignmentGrade(assignmentNumber, assignmentGrade);
-                        System.out.println("Grade entered successfully");
-                        allgradesAssigned++;
-                        break;
+                for(int i = 0; i < 2; i++) {
+                    System.out.println("Assignment number #"+(i+1));
+                    while (true) {
+                        double assignmentgrade = course.get(0).assignedAssignment.get(i).getMax_score();
+                        System.out.println("Enter grade: ");
+                        assignmentGrade = input.nextDouble();
+                        if (assignmentGrade > assignmentgrade) {
+                            System.out.println("Invalid grade\nEnter grade less than or equal " + assignmentgrade);
+                        }
+                        if (assignmentGrade <= assignmentgrade) {
+                            student.Student_Grades.get(courseIndex).setAssignmentGrade(i, assignmentGrade);
+                            System.out.println("Grade entered successfully");
+                            break;
+                        }
                     }
                 }
+                allgradesAssigned++;
                 student.getNotification().addStatueOfGrade(true);
             }
         }
     }
-    private void quizCase(Student student,int courseIndex){
+    private void quizCase(Student student,int courseIndex) {
         if (course.get(0).assignedQuiz.isEmpty()) {
             System.out.println("This course doesn't have quiz yet");
         } else {
@@ -575,25 +625,26 @@ public class Instructor extends Person {
                 }
                 student.getNotification().addStatueOfGrade(true);
             } else if (course.get(0).assignedQuiz.size() == 2) {
-                while (true) {
-                    System.out.println("Enter quiz number: ");
-                    int quizNumber = input.nextInt() - 1;
-                    double quizgrade = course.get(0).assignedQuiz.get(quizNumber).getMax_score();
-                    System.out.println("Enter grade: ");
-                    quizGrade = input.nextDouble();
-                    if (quizGrade > quizgrade) {
-                        System.out.println("Invalid grade\nEnter grade less than or equal " + quizgrade);
-                    }
-                    if (quizGrade <= quizgrade) {
-                        student.Student_Grades.get(courseIndex).setQuizGrade(quizNumber, quizGrade);
-                        System.out.println("Grade entered successfully");
-                        allgradesAssigned++;
-                        break;
+                for (int i = 0; i < 2; i++) {
+                    while (true) {
+                        double quizgrade = course.get(0).assignedQuiz.get(i).getMax_score();
+                        System.out.println("Enter grade: ");
+                        quizGrade = input.nextDouble();
+                        if (quizGrade > quizgrade) {
+                            System.out.println("Invalid grade\nEnter grade less than or equal " + quizgrade);
+                        }
+                        if (quizGrade <= quizgrade) {
+                            student.Student_Grades.get(courseIndex).setQuizGrade(i, quizGrade);
+                            System.out.println("Grade entered successfully");
+                            break;
+                        }
                     }
                 }
+                allgradesAssigned++;
                 student.getNotification().addStatueOfGrade(true);
             }
-        }}
+        }
+    }
     private void midtermCase(Student student,int courseIndex){
         if (course.get(0).assignedMidterm.getMax_score() == 0) {
             System.out.println("This course doesn't have midterm yet");
@@ -638,7 +689,112 @@ public class Instructor extends Person {
             student.getNotification().addStatueOfGrade(true);
         }
     }
-    public int getAllgradesAssigned() {
-        return allgradesAssigned;
+    //for Edit grades method
+    private void editassignmentCase(Student student,int courseIndex){
+        if (course.get(0).assignedAssignment.isEmpty()) {
+            System.out.println("This course doesn't have assignment yet");
+        } else {
+            double assignmentGrade = 0.0;
+            if (course.get(0).assignedAssignment.size() == 1) {
+                while (true) {
+                    System.out.println("Enter grade: ");
+                    assignmentGrade = input.nextDouble();
+                    if (assignmentGrade > 20) {
+                        System.out.println("Invalid grade\nEnter grade less than or equal 20");
+                    } else if (assignmentGrade <= 20) {
+                        student.Student_Grades.get(courseIndex).assignmentGrade.set(0,assignmentGrade);
+                        System.out.println("Grade entered successfully");
+                        break;
+                    }
+                }
+            } else if (course.get(0).assignedAssignment.size() == 2) {
+                for(int i = 0; i < 2; i++) {
+                    System.out.println("Assignment number #"+(i+1));
+                    while (true) {
+                        double assignmentgrade = course.get(0).assignedAssignment.get(i).getMax_score();
+                        System.out.println("Enter grade: ");
+                        assignmentGrade = input.nextDouble();
+                        if (assignmentGrade > assignmentgrade) {
+                            System.out.println("Invalid grade\nEnter grade less than or equal " + assignmentgrade);
+                        }
+                        if (assignmentGrade <= assignmentgrade) {
+                            student.Student_Grades.get(courseIndex).assignmentGrade.set(i,assignmentGrade);
+                            System.out.println("Grade entered successfully");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private void editquizCase(Student student,int courseIndex) {
+        if (course.get(0).assignedQuiz.isEmpty()) {
+            System.out.println("This course doesn't have quiz yet");
+        } else {
+            double quizGrade = 0.0;
+            if (course.get(0).assignedQuiz.size() == 1) {
+                while (true) {
+                    System.out.println("Enter grade: ");
+                    quizGrade = input.nextDouble();
+                    if (quizGrade > 20) {
+                        System.out.println("Invalid grade\nEnter grade less than or equal 10");
+                    } else if (quizGrade <= 20) {
+                        student.Student_Grades.get(courseIndex).quizGrade.set(0, quizGrade);
+                        System.out.println("Grade entered successfully");
+                        break;
+                    }
+                }
+            } else if (course.get(0).assignedQuiz.size() == 2) {
+                for (int i = 0; i < 2; i++) {
+                    while (true) {
+                        double quizgrade = course.get(0).assignedQuiz.get(i).getMax_score();
+                        System.out.println("Enter grade: ");
+                        quizGrade = input.nextDouble();
+                        if (quizGrade > quizgrade) {
+                            System.out.println("Invalid grade\nEnter grade less than or equal " + quizgrade);
+                        }
+                        if (quizGrade <= quizgrade) {
+                            student.Student_Grades.get(courseIndex).quizGrade.set(i, quizGrade);
+                            System.out.println("Grade entered successfully");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private void editmidtermCase(Student student,int courseIndex){
+        if (course.get(0).assignedMidterm.getMax_score() == 0) {
+            System.out.println("This course doesn't have midterm yet");
+        } else {
+            while (true) {
+                System.out.println("Enter grade");
+                double midtermGrade = input.nextDouble();
+                if (midtermGrade > 15) {
+                    System.out.println("Invalid grade\nEnter grade less than or equal 15");
+                } else if (midtermGrade <= 15) {
+                    student.Student_Grades.get(courseIndex).setMidTermGrade(midtermGrade);
+                    System.out.println("Grade entered successfully");
+                    break;
+                }
+            }
+        }
+    }
+    private void editfinalCase(Student student,int courseIndex){
+        if (course.get(0).assignedfinal == null) {
+            System.out.println("This course doesn't have midterm yet");
+        } else {
+            while (true) {
+                System.out.println("Enter grade");
+                double finalGrade = input.nextDouble();
+                if (finalGrade > 50) {
+                    System.out.println("Invalid grade\nEnter grade less than or equal 50");
+                } else if (finalGrade <= 50) {
+                    student.Student_Grades.get(courseIndex).setFinalGrade(finalGrade);
+                    System.out.println("Grade entered successfully");
+                    break;
+                }
+            }
+        }
     }
 }
