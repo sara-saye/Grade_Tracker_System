@@ -1,14 +1,11 @@
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Notification {
-    //    private ArrayList<Assignment> assignment = new ArrayList<Assignment>();
-//    private  ArrayList<Quiz> quiz = new ArrayList<Quiz>();
     private boolean New_grade;
-   private boolean attendance;
+    private boolean attendance;
     private double gpa;
-
 
     public boolean isNew_grade() {
         return New_grade;
@@ -18,17 +15,11 @@ public class Notification {
         New_grade = new_grade;
     }
 
-//    public int warningCounter = 0;
+
+///public int warningCounter = 0;
 
 
-//    public void addAssignedAssignment(Assignment assignedAssignment) //>>instructor sends me that assignment
-//    {
-//        for (int i=0;i <= this.assignment.size();i++) {
-//            assignment.add(assignedAssignment);
-//        }
-//    }
-
-//    public void addAssignment(int ID){
+///public void addAssignment(int ID){
 //        for (int studentIndex=0;studentIndex<Main.students.size();studentIndex++){
 //            if (ID==Main.students.get(studentIndex).getID()){
 //                for (int studentCoursesIndex =0;studentCoursesIndex<Main.students.get(studentIndex).Student_courses.size();studentCoursesIndex++){
@@ -46,21 +37,15 @@ public class Notification {
 //        }
 //    }
 
-//    public void addAssignedQuiz(Quiz assignedQuiz) //>>instructor sends me that quiz
-//    {
-//        for (int i=0;i<= this.quiz.size();i++) {
-//            quiz.add(assignedQuiz);
-//        }
-//    }
 
-    public void addStatueOfGrade(boolean new_grade) //>>I get it from instructor class
+    public void addStatueOfGrade(boolean new_grade) //>>I get it from Grades class
     {
         this.New_grade = new_grade;
     }
 
     public void addAttendance(boolean attendance) {
         this.attendance = attendance;
-   }
+    }
 
     public void addGpa(double gpa) {
         this.gpa = gpa;
@@ -68,12 +53,12 @@ public class Notification {
 
 
     public void Display_Notification(ArrayList<Course> course) {
-
         if (!course.isEmpty()) {
             for (int i = 0; i < course.size(); i++) {
                 System.out.println(course.get(i).courseTitle);
-                if(!course.get(i).assignedAssignment.isEmpty()) {
-                    for (int j=0;j<course.get(i).assignedAssignment.size();j++) {
+                System.out.print("Your Assignments:");
+                if (!course.get(i).assignedAssignment.isEmpty()) {
+                    for (int j = 0; j < course.get(i).assignedAssignment.size(); j++) {
                         System.out.println(course.get(i).assignedAssignment.get(j).getTitle());
                         System.out.println("Start Date: " + course.get(i).assignedAssignment.get(j).getAssignment_startDate());
                         System.out.println("Deadline: " + course.get(i).assignedAssignment.get(j).getAssignment_Deadline());
@@ -82,26 +67,42 @@ public class Notification {
                         System.out.println("Assignment ends at " + diffDays + " days");
                     }
                 }
-            }
-        }
-
-//        for (int i =0;i<Main.students.get(studentID).Student_courses.size();i++)
-//            for(int j=0;j<Main.students.get(studentID).Student_courses.get(i).assignedAssignment.size();j++) {
-//                Main.students.get(studentID).Student_courses.get(i).assignedAssignment.get(j).getTitle();
-//
-//            }
-//
-        if(!course.isEmpty()) {
-            for (int i = 0; i < course.size(); i++) {
-                System.out.println(course.get(i).courseTitle);
-                if (!course.get(i).assignedQuiz.isEmpty()) {
-                    for (int j = 0; j < course.get(i).assignedQuiz.size(); j++) {
-                        System.out.println(course.get(i).assignedQuiz.get(j).getTitle() + " " + course.get(i).assignedQuiz.get(j).getDate());
-                    }
+                else {
+                    System.out.println("No Assignments");
                 }
             }
         }
 
+        if (!course.isEmpty()) {
+            System.out.print("Your Quizzes:");
+            for (int i = 0; i < course.size(); i++) {
+                if (!course.get(i).assignedQuiz.isEmpty()) {
+                    for (int j = 0; j < course.get(i).assignedQuiz.size(); j++) {
+                        System.out.println(course.get(i).assignedQuiz.get(j).getTitle() + " " + course.get(i).assignedQuiz.get(j).getDate());
+                    }
+                }else {
+                    System.out.println("No Quizzes");
+                }
+            }
+        }
+        if (!course.isEmpty()) {
+            System.out.print("Your Midterms:");
+            for (int i = 0; i < course.size(); i++) {
+                if(course.get(i).assignedMidterm.getID()!=0)
+                System.out.println(course.get(i).assignedMidterm.getTitle() + " " + course.get(i).assignedMidterm.getDate());
+                else
+                    System.out.println("No Midterms");
+            }
+        }
+        if (!course.isEmpty()) {
+            System.out.print("Your Finals:");
+            for (int i = 0; i < course.size(); i++) {
+                if(course.get(i).assignedfinal.getID()!=0)
+                System.out.println(course.get(i).assignedfinal.getTitle() + " " + course.get(i).assignedfinal.getDate());
+                else
+                    System.out.println("No Finals");
+            }
+        }
         if (this.New_grade) {
             System.out.println("Your grades have been updated!");
             this.New_grade = false;
@@ -109,17 +110,17 @@ public class Notification {
         if (attendance) {
             System.out.println("Warning content");
             //warningCounter++;
-           this.attendance = false;
-      }
-
-        if (this.gpa <= 1.5) {
-            System.out.println("Warning content");
+            this.attendance = false;
         }
 
-        if (!Main.eventDetails.isEmpty()) {
-            System.out.println(Main.eventDetails.get(0));
+        if (this.gpa <= 1.5 && this.gpa != -1) {
+            System.out.println("Be aware that your gpa is lower than 1.5, Please note that if gpa reached lower than 1 then you will be droped!");
         }
 
+        if (Admin.eventDetails != null) {
+            System.out.println("Events:");
+            System.out.println(Admin.eventDetails);
+        }
     }
 
 
@@ -132,13 +133,13 @@ public class Notification {
 
     }
 
-//    public void dropAttendance(int studentID){
+///   public void dropAttendance(int studentID){
 //        if (warningCounter == 3){
 //            Main.students.get(studentID).setAttendanceDrop(true);
 //        }
 //    }
 
-//    public String NotificationToString(){
+///  public String NotificationToString(){
 //        String a=New_grade+","+attendance+","+gpa+","+Event;
 //        if(!assignment.isEmpty()) {
 //            a+=",";
@@ -149,6 +150,9 @@ public class Notification {
 //                }
 //            }
 //        }
+//
+//
+//
 //
 //        if(!quiz.isEmpty()) {
 //            a+=",";
@@ -162,5 +166,4 @@ public class Notification {
 //
 //        return a;
 //    }
-
 }

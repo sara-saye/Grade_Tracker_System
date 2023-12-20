@@ -116,6 +116,7 @@ public class Student extends Person {
             } while (true);
 
     }
+
     public void DisplayCurrentCourses() {
         setStatus();
         if (!Student_courses.isEmpty()) {
@@ -140,11 +141,16 @@ public class Student extends Person {
         for (int i = 0; i < NoOfCourses; i++) {
             System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
             if (!Student_courses.get(i).assignedInstructor.isEmpty()) {
-                System.out.println(getID());
-               // System.out.println(Student_courses.get(i).assignedInstructor.get(0).course.get(0).courseTitle);
-                Student_courses.get(i).assignedInstructor.get(0).generateAttRepForIndStud(this.getID());
+                int attndance_sum=0;
+                for (int j = 0; j < 5; j++) {
+                    if (attendance[i][j]) {
+                        attndance_sum++;
+                    }
+                }
+                System.out.println("Number of attended sessions: " + attndance_sum);
+                System.out.println("Attendance grade: " + Student_Grades.get(i).getAttendanceGrade());
             }
-            if (!ZScore.isEmpty()) {
+            if (Student_courses.get(i).isStatus()) {
                 if (ZScore.get(i) > 0) {
                     System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Great");
                 } else if (ZScore.get(i) == 0) {
@@ -155,6 +161,7 @@ public class Student extends Person {
             }
             System.out.println("------------------------------------");
         }
+
     }
 
     public void ViewGrades() {
@@ -369,13 +376,18 @@ public class Student extends Person {
     }
 
     public double CalcGpa() {
-        double sum = 0; //  sums of (hour*scale)
+        double sum = -1; //  sums of (hour*scale)
         double totalHours = 0;
         for (int i = 0; i < NoOfCourses; i++) {
-            sum = sum + (Student_courses.get(i).credits * Student_Grades.get(i).Calcscale());
-            totalHours += Student_courses.get(i).credits;
+           if( Student_courses.get(i).assignedInstructor.get(0).getAllgradesAssigned()==4) {
+               sum = sum + (Student_courses.get(i).credits * Student_Grades.get(i).Calcscale());
+               totalHours += Student_courses.get(i).credits;
+           }
         }
+        if(sum!=-1)
         GPA = (sum / totalHours);
+        else
+            GPA=-1;
         this.notification.addGpa(GPA);
         return GPA;
     }

@@ -1,1 +1,1 @@
-a,a,1000,a,a@Student,a,a,0.0,-0.0,false,false,false,false,cs,1,15
+a,a,1000,a,a@Student,a,a,-1.0,-0.0,false,false,false,false,cs,1,15
