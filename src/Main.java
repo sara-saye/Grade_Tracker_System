@@ -37,11 +37,7 @@ public abstract class Main {
             Files.readEventDetails();
             first = false;
         }
-      /* for(Course course:Main.courses)
-       {
-           System.out.println(course.getCourseCode());
-           System.out.println(course.assignedInstructor.get(0));
-       }*/
+
         int studentId = students.size()+1000, instructorId = instructors.size()+1000;
         int account = 0;
         do {

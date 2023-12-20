@@ -17,7 +17,7 @@ public class Admin extends Person{
         eventDetails=eventName+"  "+eventDate+"  "+eventLocation;
     }
     public static void login() throws IOException {
-        DescriptionInput.useDelimiter("\n");
+      //  DescriptionInput.useDelimiter("\n");
         System.out.println(" 1-Add Course");
         System.out.println(" 2-Update Course");
         System.out.println(" 3-Delete Course");
@@ -192,6 +192,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 8:
                 int instructorIdDrop;
                 System.out.println("ID of instructor yow want to drop: ");
@@ -209,6 +210,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 9:
                 dropStudent();
                 System.out.println("Do you want more operations?");
@@ -223,6 +225,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 10:
                 String eventName;
                 String eventDate;
@@ -246,6 +249,7 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 11:
                 deleteEvent();
                 System.out.println("Do you want more operations?");
@@ -260,8 +264,10 @@ public class Admin extends Person{
                 {
                     Main.main(null);
                 }
+                break;
             case 12:
                 Main.main(null);
+                break;
             case 13:
                 break;
             default:
@@ -393,8 +399,11 @@ public class Admin extends Person{
 
     //once admin choose to assign instructor to course, we just call  isInstructorFree()
     public static void isInstructorFreeAndTheCourseEmpty(int instructorID, String courseCode) {
+       boolean instructorExist=false;
+       boolean courseExist=false;
         for (int instrcutorIndex = 0; instrcutorIndex < Main.instructors.size(); instrcutorIndex++) {
             if (Main.instructors.get(instrcutorIndex).getID() == instructorID) {
+                instructorExist=true;
                 if (!(Main.instructors.get(instrcutorIndex).course.isEmpty())) {
 
                     System.out.println("Dr." + Main.instructors.get(instrcutorIndex).getFname() + " " +
@@ -404,6 +413,7 @@ public class Admin extends Person{
                 else {
                     for (int courseIndex = 0; courseIndex < Main.courses.size(); courseIndex++) {
                         if (Main.courses.get(courseIndex).getCourseCode().equals(courseCode)) {
+                            courseExist=true;
                             if (!(Main.courses.get(courseIndex).assignedInstructor.isEmpty())) {
                                 System.out.println(Main.courses.get(courseIndex).courseTitle +
                                         " Course already has an instructor!");
@@ -419,6 +429,12 @@ public class Admin extends Person{
                 }
             }
         }
+       if((!instructorExist)||(!courseExist))
+        {
+            System.out.println(" Instructor ID or Course Code is not Exist ");
+        }
+
+
 
     }
 
