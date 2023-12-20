@@ -18,6 +18,7 @@ public class Instructor extends Person {
         this.department = "Unknown";
         this.setID(instructor_ID);
     }
+
     public Instructor(int ID, String Fname, String Lname, String email,String username, String password, String PhoneNumber, String office_location, String department) {
         super(ID, Fname, Lname, email,username,password, PhoneNumber);
         this.office_location = office_location;
@@ -403,9 +404,10 @@ public class Instructor extends Person {
         }
     }
     private int findindexs(Student student) {
+
         int i = 0;
         for (Course c : student.Student_courses) {
-            if (c.equals(this.course.get(0))) {
+            if (c.getCourseCode().equals(this.course.get(0).getCourseCode())) {
                 break;
             }
             i++;

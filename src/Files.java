@@ -240,6 +240,7 @@ public class Files   {
             {
                 if((!Main.courses.get(courseIndex).assignedInstructor.isEmpty())&&(Main.courses.get(courseIndex).assignedInstructor.get(0).getID()==Main.instructors.get(instructorIndex).getID()))
                 {
+                    System.out.println("am here");
                     Main.instructors.get(instructorIndex).course.add(Main.courses.get(courseIndex));
                 }
             }

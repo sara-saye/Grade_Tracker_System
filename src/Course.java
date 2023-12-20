@@ -18,6 +18,7 @@ public class Course {
     private double StandardDeviation; //if used
     private boolean status;
     public Course () {}
+
     public Course(String courseCode,String courseTitle,int credits,String department,String description
             ,String []sessionDates)
     {
@@ -221,14 +222,14 @@ public class Course {
         {
             courseData+=","+assignedInstructor.get(0).getID();
         }
-        if(this.assignedfinal.getID()!=0)
-        {
-            courseData+=","+this.assignedfinal.getID();
-        }
-        if(this.assignedMidterm.getID()!=0)
-        {
-            courseData+=","+this.assignedMidterm.getID();
-        }
+//        if(this.assignedfinal.getID()!=0)
+//        {
+//            courseData+=","+this.assignedfinal.getID();
+//        }
+//        if(this.assignedMidterm.getID()!=0)
+//        {
+//            courseData+=","+this.assignedMidterm.getID();
+//        }
         return courseData;
 
     }
