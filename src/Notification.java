@@ -16,7 +16,6 @@ public class Notification {
     }
 
 
-
     public void addStatueOfGrade(boolean new_grade) //>>I get it from Grades class
     {
         this.New_grade = new_grade;
@@ -29,6 +28,7 @@ public class Notification {
     public void addGpa(double gpa) {
         this.gpa = gpa;
     }
+
     public void Display_Notification(ArrayList<Course> course) {
         if (!course.isEmpty()) {
             for (int i = 0; i < course.size(); i++) {
@@ -43,8 +43,7 @@ public class Notification {
                         long diffDays = diff.toDays();
                         System.out.println("Assignment ends at " + diffDays + " days");
                     }
-                }
-                else {
+                } else {
                     System.out.println("No Assignments");
                 }
             }
@@ -57,7 +56,7 @@ public class Notification {
                     for (int j = 0; j < course.get(i).assignedQuiz.size(); j++) {
                         System.out.println(course.get(i).assignedQuiz.get(j).getTitle() + " " + course.get(i).assignedQuiz.get(j).getDate());
                     }
-                }else {
+                } else {
                     System.out.println("No Quizzes");
                 }
             }
@@ -66,8 +65,8 @@ public class Notification {
         if (!course.isEmpty()) {
             System.out.print("Your Midterms:");
             for (int i = 0; i < course.size(); i++) {
-                if(course.get(i).assignedMidterm.getID()!=0)
-                System.out.println(course.get(i).assignedMidterm.getTitle() + " " + course.get(i).assignedMidterm.getDate());
+                if (course.get(i).assignedMidterm.getID() != 0)
+                    System.out.println(course.get(i).assignedMidterm.getTitle() + " " + course.get(i).assignedMidterm.getDate());
                 else
                     System.out.println("No Midterms");
             }
@@ -76,8 +75,8 @@ public class Notification {
         if (!course.isEmpty()) {
             System.out.print("Your Finals:");
             for (int i = 0; i < course.size(); i++) {
-                if(course.get(i).assignedfinal.getID()!=0)
-                System.out.println(course.get(i).assignedfinal.getTitle() + " " + course.get(i).assignedfinal.getDate());
+                if (course.get(i).assignedfinal.getID() != 0)
+                    System.out.println(course.get(i).assignedfinal.getTitle() + " " + course.get(i).assignedfinal.getDate());
                 else
                     System.out.println("No Finals");
             }
@@ -105,15 +104,14 @@ public class Notification {
 
 
     public void dropGPAStudent(int studentID) {
-        for(int studentIndex=0;studentIndex<Main.students.size();studentIndex++)
-        {
-            if (studentID==Main.students.get(studentIndex).getID()) {
-                if(Main.students.get(studentIndex).getGPA()<1)
-                {
-                Main.students.get(studentID).setGpaDrop(true);
+        for (int studentIndex = 0; studentIndex < Main.students.size(); studentIndex++) {
+            if (studentID == Main.students.get(studentIndex).getID()) {
+                if (Main.students.get(studentIndex).getGPA() < 1) {
+                    Main.students.get(studentID).setGpaDrop(true);
+                }
             }
+
+
         }
-
-
     }
 }
