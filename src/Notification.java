@@ -16,27 +16,6 @@ public class Notification {
     }
 
 
-///public int warningCounter = 0;
-
-
-///public void addAssignment(int ID){
-//        for (int studentIndex=0;studentIndex<Main.students.size();studentIndex++){
-//            if (ID==Main.students.get(studentIndex).getID()){
-//                for (int studentCoursesIndex =0;studentCoursesIndex<Main.students.get(studentIndex).Student_courses.size();studentCoursesIndex++){
-//                    for (int courseIndex =0; courseIndex<Main.courses.size();courseIndex++) {
-//                        if (Main.courses.get(courseIndex).getCourseCode().equals(Main.students.get(studentIndex).Student_courses.get(studentCoursesIndex).getCourseCode())) {
-//                            if (!Main.courses.get(courseIndex).assignedAssignment.isEmpty()) {
-//                                for (int assignmentIndex = 0; assignmentIndex < Main.courses.get(courseIndex).assignedAssignment.size(); assignmentIndex++) {
-//                                    this.assignment.add(Main.courses.get(courseIndex).assignedAssignment.get(assignmentIndex));
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
 
     public void addStatueOfGrade(boolean new_grade) //>>I get it from Grades class
     {
@@ -126,45 +105,15 @@ public class Notification {
 
 
     public void dropGPAStudent(int studentID) {
-
-        if (Main.students.get(studentID).getGPA() < 1) {
-
-            Main.students.get(studentID).setGpaDrop(true);
+        for(int studentIndex=0;studentIndex<Main.students.size();studentIndex++)
+        {
+            if (studentID==Main.students.get(studentIndex).getID()) {
+                if(Main.students.get(studentIndex).getGPA()<1)
+                {
+                Main.students.get(studentID).setGpaDrop(true);
+            }
         }
 
+
     }
-
-///   public void dropAttendance(int studentID){
-//        if (warningCounter == 3){
-//            Main.students.get(studentID).setAttendanceDrop(true);
-//        }
-//    }
-
-///  public String NotificationToString(){
-//        String a=New_grade+","+attendance+","+gpa+","+Event;
-//        if(!assignment.isEmpty()) {
-//            a+=",";
-//            for (int j=0;j<assignment.size();j++) {
-//                a +=assignment.get(j).getID();
-//                if(j!= assignment.size()-1){
-//                    a+="-";
-//                }
-//            }
-//        }
-//
-//
-//
-//
-//        if(!quiz.isEmpty()) {
-//            a+=",";
-//            for (int j=0;j<quiz.size();j++) {
-//                a +=quiz.get(j).getID() ;
-//                if(j!= assignment.size()-1){
-//                    a+="-";
-//                }
-//            }
-//        }
-//
-//        return a;
-//    }
 }

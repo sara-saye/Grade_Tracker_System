@@ -106,22 +106,5 @@ public class StudentGrades{
         }
         return letterGrade;
     }
-    public void DisplayReport(String studentName , int id, ArrayList<Student>students){
-        for(int i=0;i<students.get(id).getNoOfCourses();i++) {
-            double courseGrade = CalcTotalGrade();
-            double courseScale = Calcscale();
-            String courseLetterGrade = CalcLetterGrade(courseGrade);
-            System.out.println((i+1)+"- Course : " + students.get(id).Student_courses.get(i).courseTitle);
-            System.out.println("Student Name: " + studentName);
-            System.out.println("Student ID: " + id);
-            System.out.println("Midterm: " + students.get(id).Student_Grades.get(i).getMidTermGrade());
-            System.out.println("Assignment: " + students.get(id).Student_Grades.get(i).getAssignmentGrade());
-            System.out.println("Quiz: " + students.get(id).Student_Grades.get(i).getQuizGrade());
-            System.out.println("Attendance:" + students.get(id).Student_Grades.get(i).getAttendanceGrade());
-            System.out.println("Final:" + students.get(id).Student_Grades.get(i).getFinalGrade());
-            System.out.println("Total Grade: " + courseGrade);
-            System.out.println("Points: " + courseScale);
-            System.out.println("Letter Grade: " + courseLetterGrade);
-        }
-    }
+
 }//class

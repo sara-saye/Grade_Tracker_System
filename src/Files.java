@@ -469,17 +469,17 @@ public class Files   {
                     index = i;
                 }
             }
-                Main.students.get(index).ZScore.add(Double.parseDouble(token.nextToken()));
-                String[] assignmentGrades = token.nextToken().split("-");
-                String[] quizGrades = token.nextToken().split("-");
-                for (String assignmentGrade : assignmentGrades) {
-                    studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
-                }
-                for (String quizGrade : quizGrades) {
-                    studentGrade.quizGrade.add(Double.valueOf(quizGrade));
-                }
+            Main.students.get(index).ZScore.add(Double.parseDouble(token.nextToken()));
+            String[] assignmentGrades = token.nextToken().split("-");
+            String[] quizGrades = token.nextToken().split("-");
+            for (String assignmentGrade : assignmentGrades) {
+                studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
+            }
+            for (String quizGrade : quizGrades) {
+                studentGrade.quizGrade.add(Double.valueOf(quizGrade));
+            }
 
-                Main.students.get(index).Student_Grades.add(studentGrade);
+            Main.students.get(index).Student_Grades.add(studentGrade);
         }
         GradesBR.close();
     }
