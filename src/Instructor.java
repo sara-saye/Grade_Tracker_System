@@ -378,9 +378,7 @@ public class Instructor extends Person {
         }
     }
     public void viewEnrolledStudents() {
-        for (Student student : instructor_students) {
-            course.get(0).viewListOfEnrolledStudents();
-        }
+        course.get(0).viewListOfEnrolledStudents();
     }
     public void reportForSectionsAttendance() {
         System.out.println("--------------------------------------");
