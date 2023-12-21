@@ -10,11 +10,6 @@ public class Student extends Person {
     private double GPA = -1;
     private double expenses = 0;
     private boolean expenses_paid = false;
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     private String department;
     public ArrayList<Course> Student_courses = new ArrayList<>();
     private int NoOfCourses;
@@ -29,16 +24,11 @@ public class Student extends Person {
         NoOfCourses = noOfCourses;
     }
 
-    public double getExpenses() {
-        return expenses;
+    public void setDepartment(String department) {
+        this.department = department;
     }
-
     public void setExpenses(double expenses) {
         this.expenses = expenses;
-    }
-
-    public boolean isExpenses_paid() {
-        return expenses_paid;
     }
 
     public void setExpenses_paid(boolean expenses_paid) {
@@ -277,10 +267,6 @@ public class Student extends Person {
         notification.Display_Notification(Student_courses);
     }
 
-    public void setNotification(Notification notification) {
-        this.notification = notification;
-    }
-
     public Notification getNotification() {
         return this.notification;
     }
@@ -384,10 +370,10 @@ public class Student extends Person {
             if (!Student_Grades.isEmpty()) {
                 if(Student_courses.get(i).CalcStandardDeviation()!=0.0) {
                     double z=(Student_Grades.get(i).CalcTotalGrade()-Student_courses.get(i).CalcMean()) / Student_courses.get(i).CalcStandardDeviation();
-                    ZScore.add(z);
+                    ZScore.set(i,z);
                 }
                 else
-                    ZScore.add(0.0);
+                    ZScore.set(i,0.0);
             }
         }
     }

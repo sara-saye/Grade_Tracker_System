@@ -6,17 +6,11 @@ public class StudentGrades{
     private  double finalGrade;
     private double attendanceGrade;
     public StudentGrades(){
-<<<<<<< Updated upstream
-            this.assignmentGrade.add(-1.0); //20
-        this.assignmentGrade.add(-1.0);
-            this.quizGrade.add(-1.0);
-=======
         this.assignmentGrade.add(-1.0); //20
         this.assignmentGrade.add(-1.0);
         this.quizGrade.add(-1.0);
->>>>>>> Stashed changes
-        this.quizGrade.add(-1.0);   //10
-        this.midTermGrade=-1.0;       //15
+        this.quizGrade.add(-1.0);//10
+        this.midTermGrade=-1.0;    //15
         this.finalGrade=-1.0;           //50
         this.attendanceGrade=-1.0; //5
     }

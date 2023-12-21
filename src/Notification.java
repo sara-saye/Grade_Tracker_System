@@ -107,10 +107,6 @@ public class Notification {
                 if (Main.students.get(studentIndex).getGPA() < 1&&Main.students.get(studentIndex).getGPA()!=-1) {
                     Main.students.get(studentIndex).setGpaDrop(true);
                 }
-<<<<<<< Updated upstream
             }
-=======
->>>>>>> Stashed changes
         }
-    }
 }
