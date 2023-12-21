@@ -38,7 +38,7 @@ public abstract class Main {
             first = false;
         }
         Notification.dropGPAStudent();
-        int studentId = students.size()+1000, instructorId = instructors.size()+1000;
+        int studentId = students.size()+1000, instructorId = instructors.size()+2000;
         int account = 0;
         do {
         try {
@@ -81,7 +81,7 @@ public abstract class Main {
                         input.next();
                     }
                 }while (true);
-                int index = Form.Registration(who, Main.students, Main.instructors, studentId, instructorId);
+                int index = Form.Registration(who, studentId, instructorId);
                 if (who == 1) {
                     Main.instructors.get(index).forSignIn();
                     instructorId++;

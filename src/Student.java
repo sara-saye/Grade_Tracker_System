@@ -162,7 +162,7 @@ public class Student extends Person {
 
     }
 
-    public void ViewGrades() {
+    public void ViewGrades()  {
         if (NoOfCourses == 0)
             System.out.println("You haven't registered any course");
         else if (expenses_paid) {
@@ -244,13 +244,14 @@ public class Student extends Person {
                         Student_courses.add(courses.get(arr[answer - 1]));
                         StudentGrades grade = new StudentGrades();
                         Student_Grades.add(grade);
-                        System.out.println(Student_Grades.size());
                         ZScore.add(0.0);
                         courses.get(arr[answer - 1]).enrollStudent(this);
                         NoOfCourses++;
                         System.out.println("Registration Done.");
-                        expenses = -expenses;
-                        expenses_paid=false;
+                        if(expenses_paid) {
+                            expenses = -expenses;
+                            expenses_paid = false;
+                        }
                     }
                     else {
                         System.out.println("You have already registered for this course.");
@@ -385,7 +386,7 @@ public class Student extends Person {
     }
 
     public double CalcGpa() {
-        double sum = 0; //  sums of (hour*scale)
+        double sum = 0; //sum of hours*scale
         double totalHours = 0;
         int counter=0;
         for (int i = 0; i < NoOfCourses; i++) {
@@ -408,12 +409,8 @@ public class Student extends Person {
     }
 
     public void StudentAfterLogin() throws IOException {
-        try {
             CalcGpa();
             CalcZScore();
-        }catch (IndexOutOfBoundsException e){
-
-        }
         int ans, ans1 = 0, ans2 = 0;
         boolean success = false;
         while (!success) {
