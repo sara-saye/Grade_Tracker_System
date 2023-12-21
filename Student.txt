@@ -1,2 +1,2 @@
-a,a,1000,a,a@Student,a,a,-1.0,600.0,true,false,true,cs,2,10-15
+a,a,1000,a,a@Student,a,a,-1.0,600.0,true,false,false,cs,2,10-15
 a,a,1001,a,b@Student,b,a,-1.0,600.0,true,false,true,cs,2,10-15

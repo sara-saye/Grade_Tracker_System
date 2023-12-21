@@ -1,4 +1,4 @@
-1000,Nrmeen,Araby,nrmeen,n@Instructor,222,01022613978,Genedy,cs,8
-1001,Sra,Araby,nrmeen,s@Instructor,111,01022613978,Genedy,cs,17
-1002,Ziad,Yasser,ziadYasser@gmail.com,ziad@Instructor,1111,123456789,Cs,CS,0
-1003,Sara,Darwish,saraDarwish@gmail.com,sara18@Instructor,123456,123456789,Genady,CS,0
+1000,Nrmeen,Araby,nrmeen,n@Instructor,222,01022613978,Genedy,cs
+1001,Sra,Araby,nrmeen,s@Instructor,111,01022613978,Genedy,cs
+1002,Ziad,Yasser,ziadYasser@gmail.com,ziad@Instructor,1111,123456789,Cs,CS
+1003,Sara,Darwish,saraDarwish@gmail.com,sara18@Instructor,123456,123456789,Genady,CS

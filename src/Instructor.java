@@ -9,12 +9,8 @@ public class Instructor extends Person {
     Scanner input = new Scanner(System.in);
     public static int instructor_ID = 0;
     private String office_location, department;
-    private int allgradesAssigned = 0;
     public ArrayList<Course> course = new ArrayList<>();
     public ArrayList<Student> instructor_students = new ArrayList<>();
-    public void setAllgradesAssigned(int allgradesAssigned) {
-        this.allgradesAssigned = allgradesAssigned;
-    }
     public Instructor() {
         super();
         this.office_location = "Unknown";
@@ -396,7 +392,7 @@ public class Instructor extends Person {
         }
     }
     public String toString(){
-        return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getUsername()+","+getPassword()+","+PhoneNumber+","+office_location+","+department+","+allgradesAssigned;
+        return getID()+","+getFname()+","+getLname()+","+getEmail()+","+getUsername()+","+getPassword()+","+PhoneNumber+","+office_location+","+department;
     }
     public void editGrades() throws IOException {
         int choice=0;
@@ -434,9 +430,6 @@ public class Instructor extends Person {
                     break;
             }
         }
-    }
-    public int getAllgradesAssigned() {
-        return allgradesAssigned;
     }
     private void setassignment(Assignment assignment,int number,int i) {
         assignment.courseCode = course.get(0).getCourseCode();
@@ -575,7 +568,6 @@ public class Instructor extends Person {
                     } else if (assignmentGrade <= 20) {
                         student.Student_Grades.get(courseIndex).setAssignmentGrade(0, assignmentGrade);
                         System.out.println("Grade entered successfully");
-                        allgradesAssigned++;
                         student.getNotification().addStatueOfGrade(true);
                         break;
                     }
@@ -597,7 +589,6 @@ public class Instructor extends Person {
                         }
                     }
                 }
-                allgradesAssigned++;
                 student.getNotification().addStatueOfGrade(true);
             }
         }
@@ -619,7 +610,6 @@ public class Instructor extends Person {
                     } else if (quizGrade <= 20) {
                         student.Student_Grades.get(courseIndex).setQuizGrade(0, quizGrade);
                         System.out.println("Grade entered successfully");
-                        allgradesAssigned++;
                         break;
                     }
                 }
@@ -640,7 +630,6 @@ public class Instructor extends Person {
                         }
                     }
                 }
-                allgradesAssigned++;
                 student.getNotification().addStatueOfGrade(true);
             }
         }
@@ -660,7 +649,6 @@ public class Instructor extends Person {
                 } else if (midtermGrade <= 15) {
                     student.Student_Grades.get(courseIndex).setMidTermGrade(midtermGrade);
                     System.out.println("Grade entered successfully");
-                    allgradesAssigned++;
                     break;
                 }
             }
@@ -682,7 +670,6 @@ public class Instructor extends Person {
                 } else if (finalGrade <= 50) {
                     student.Student_Grades.get(courseIndex).setFinalGrade(finalGrade);
                     System.out.println("Grade entered successfully");
-                    allgradesAssigned++;
                     break;
                 }
             }

@@ -169,20 +169,26 @@ public class Student extends Person {
             if (notification.isNew_grade()) {
                 for (int i = 0; i < Student_courses.size(); i++) {
                     System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
-                    System.out.println((Student_Grades.get(i)));
                     double courseGrade = Student_Grades.get(i).CalcTotalGrade();
                     double courseScale = Student_Grades.get(i).Calcscale();
                     String courseLetterGrade = Student_Grades.get(i).CalcLetterGrade(courseGrade);
-                    System.out.println("Student Name: " + this.getFname() + " " + this.getLname());
-                    System.out.println("Student ID: " + this.getID());
+                    if(Student_Grades.get(i).getMidTermGrade()>-1)
                     System.out.println("Midterm: " + Student_Grades.get(i).getMidTermGrade());
+                    if(Student_Grades.get(i).getAssignmentGrade()>-1)
                     System.out.println("Assignment: " + Student_Grades.get(i).getAssignmentGrade());
+                    if(Student_Grades.get(i).getQuizGrade()>-1)
                     System.out.println("Quiz: " + Student_Grades.get(i).getQuizGrade());
+                    if(Student_Grades.get(i).getAttendanceGrade()>-1)
                     System.out.println("Attendance:" + Student_Grades.get(i).getAttendanceGrade());
+                    if(Student_Grades.get(i).getFinalGrade()>-1)
                     System.out.println("Final:" + Student_Grades.get(i).getFinalGrade());
-                    System.out.println("Total Grade: " + courseGrade);
-                    System.out.println("Points: " + courseScale);
-                    System.out.println("Letter Grade: " + courseLetterGrade);
+                    if( Student_Grades.get(i).getQuizGrade()>-1.0&&Student_Grades.get(i).getAttendanceGrade()>-1.0&&
+                            Student_Grades.get(i).getFinalGrade()>-1.0&&Student_Grades.get(i).getMidTermGrade()>-1.0&&Student_Grades.get(i).getAssignmentGrade()>-1.0)
+                    {
+                        System.out.println("Total Grade: " + courseGrade);
+                        System.out.println("Points: " + courseScale);
+                        System.out.println("Letter Grade: " + courseLetterGrade);
+                    }
                     System.out.println("\n*********************\n");
                 }
             } else
@@ -400,7 +406,6 @@ public class Student extends Person {
             return GPA;
 
     }
-
 
     public void StudentAfterLogin() throws IOException {
         try {

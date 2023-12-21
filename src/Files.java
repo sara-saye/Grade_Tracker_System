@@ -34,7 +34,6 @@ public class Files   {
         String department=" ";
         String username=" ";
         String line="" ;
-        int gradesAssigned;
         while((line = instructorBR.readLine())!=null)
         {
             token =new StringTokenizer(line,",");
@@ -47,9 +46,7 @@ public class Files   {
             PhoneNumber=token.nextToken();
             office_location=token.nextToken();
             department=token.nextToken();
-            gradesAssigned= Integer.parseInt(token.nextToken());
             Instructor instructor=new Instructor(id,firstName,lastName,email,username,password, PhoneNumber, office_location, department);
-            instructor.setAllgradesAssigned(gradesAssigned);
             Main.instructors.add(instructor);
         }
         instructorBR.close();
