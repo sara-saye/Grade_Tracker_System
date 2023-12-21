@@ -1,2 +1,2 @@
-a,a,1000,a,a@Student,a,a,-1.0,600.0,true,false,false,cs,2,10-15
-a,a,1001,a,b@Student,b,a,-1.0,600.0,true,false,true,cs,2,10-15
+amor,ebrahim,1000,amor,amor@Student,123,0100,-1.0,-0.0,false,false,true,general,1,5
+ahmed,a,1001,ahmeed,ahmed@Student,123,011,-1.0,-0.0,false,false,true,general,1,5

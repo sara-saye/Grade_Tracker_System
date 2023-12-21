@@ -131,8 +131,6 @@ public class Student extends Person {
         for (int i = 0; i < NoOfCourses; i++) {
             if (!Student_courses.get(i).assignedInstructor.isEmpty()) {
                 System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
-                if(Student_Grades.get(i).getAttendanceGrade()>-1.0)
-                {
                     int attndance_sum = 0;
                     for (int j = 0; j < 5; j++) {
                         if (attendance[i][j]) {
@@ -140,12 +138,14 @@ public class Student extends Person {
                         }
                     }
                     System.out.println("Number of attended sessions: " + attndance_sum);
-                    System.out.println("Attendance grade: " + Student_Grades.get(i).getAttendanceGrade());
-                }else {
-                    System.out.println("Attendance report hasn't been generated yet");
-                }
+                        if(Student_Grades.get(i).getAttendanceGrade()>-1.0) {
+                            System.out.println("Attendance grade: " + Student_Grades.get(i).getAttendanceGrade());
+                        }
+                        else {
+                            System.out.println("Attendance grade: " + 0);
+                        }
                 if (Student_Grades.get(i).getQuizGrade()>-1.0&&Student_Grades.get(i).getAttendanceGrade()>-1.0&&
-                                       Student_Grades.get(i).getFinalGrade()>-1.0&&Student_Grades.get(i).getMidTermGrade()>-1.0&&Student_Grades.get(i).getAssignmentGrade()>-1.0) {
+                                       Student_Grades.get(i).getFinalGrade()>-1.0&&Student_Grades.get(i).getMidTermGrade()>-1.0&&Student_Grades.get(i).getAssignmentGrade()>-1.0&&Student_courses.get(i).CalcStandardDeviation()!=-1.0) {
                 if (ZScore.get(i) > 0) {
                     System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Great");
                 } else if (ZScore.get(i) == 0) {
@@ -374,7 +374,7 @@ public class Student extends Person {
     public void CalcZScore() {
         for (int i = 0; i < NoOfCourses; i++) {
             if (!Student_Grades.isEmpty()) {
-                if(Student_courses.get(i).CalcStandardDeviation()!=0.0) {
+                if(Student_courses.get(i).CalcStandardDeviation()!=0.0&&Student_courses.get(i).CalcStandardDeviation()!=-1) {
                     double z=(Student_Grades.get(i).CalcTotalGrade()-Student_courses.get(i).CalcMean()) / Student_courses.get(i).CalcStandardDeviation();
                     ZScore.set(i,z);
                 }

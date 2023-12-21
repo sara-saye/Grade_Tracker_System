@@ -38,45 +38,6 @@ public class Course {
         }
 
     }
-   /* public Course (String courseCode,String courseTitle,int credits,String department,String description,
-                   String []sessionDates,Instructor assignedInstructor,MidtermExam assignedMidterm,FinalExam assignedfinal)
-    {
-        this(courseCode,courseTitle,credits,department,description,sessionDates);
-        if(assignedInstructor!=null) {
-            this.assignedInstructor.add(assignedInstructor);
-        }
-        if(assignedfinal!=null) {
-            this.assignedfinal = assignedfinal;
-        }
-        if(assignedMidterm!=null) {
-            this.assignedMidterm = assignedMidterm;
-
-        }
-    }*/
-
- /*  public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
-    Assignment  assignedAssignment,Quiz assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
-    {
-        this(courseCode,courseTitle,credits,department,description,sessionDates,assignedInstructor,assignedMidterm,assignedfinal);
-        this.assignedAssignment.add(assignedAssignment);
-        this.assignedQuiz.add(assignedQuiz);
-    }
-
-    public Course (String courseCode,String courseTitle,int credits,String department,String description,String []sessionDates,Instructor assignedInstructor,
-                  ArrayList <Assignment> assignedAssignment,ArrayList<Quiz> assignedQuiz,MidtermExam assignedMidterm,FinalExam assignedfinal)
-    {
-        this(courseCode,courseTitle,credits,department,description,sessionDates);
-        this.assignedInstructor.add(assignedInstructor);
-        this.assignedAssignment=assignedAssignment;
-        this.assignedQuiz=assignedQuiz;
-        this.assignedfinal=assignedfinal;
-        this.assignedMidterm=assignedMidterm;
-    }
-    public Course(String courseCode,String courseTitle)
-    {
-        this.courseCode=courseCode;
-        this.courseTitle=courseTitle;
-    }*/
 
     public boolean isStatus() {
         return status;
@@ -152,8 +113,14 @@ public class Course {
                 }
             }
         }
-        sum/=enrolledStudents.size()-1;
-        StandardDeviation=Math.sqrt(sum);
+        if (enrolledStudents.size()>1)
+        {
+            sum /= enrolledStudents.size() - 1;
+            StandardDeviation = Math.sqrt(sum);
+        }
+        else
+            StandardDeviation=-1;
+
         return StandardDeviation;
     }
     public void displayInfo()
@@ -222,14 +189,6 @@ public class Course {
         {
             courseData+=","+assignedInstructor.get(0).getID();
         }
-//        if(this.assignedfinal.getID()!=0)
-//        {
-//            courseData+=","+this.assignedfinal.getID();
-//        }
-//        if(this.assignedMidterm.getID()!=0)
-//        {
-//            courseData+=","+this.assignedMidterm.getID();
-//        }
         return courseData;
 
     }
