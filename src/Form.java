@@ -24,19 +24,21 @@
             if(UserName.equalsIgnoreCase("Admin2023")&&Password.equals("2023"))
                 who="Admin";
 
-            for (int i=0;i<instructors.size();i++) {
-                if(instructors.get(i).getUsername().equals(IUserName)){
-                    if(instructors.get(i).getPassword().equals(Password)){
-                        who="Instructor";
-                        index=i;
+            else {
+                for (int i = 0; i < instructors.size(); i++) {
+                    if (instructors.get(i).getUsername().equals(IUserName)) {
+                        if (instructors.get(i).getPassword().equals(Password)) {
+                            who = "Instructor";
+                            index = i;
+                        }
                     }
                 }
-            }
-            for (int i =0;i<students.size();i++) {
-                if(students.get(i).getUsername().equals(SUserName)){
-                    if(students.get(i).getPassword().equals(Password)){
-                        who="Student";
-                        index=i;
+                for (int i = 0; i < students.size(); i++) {
+                    if (students.get(i).getUsername().equals(SUserName)) {
+                        if (students.get(i).getPassword().equals(Password)) {
+                            who = "Student";
+                            index = i;
+                        }
                     }
                 }
             }
@@ -51,7 +53,7 @@
             return login;
         }
 
-        public static int Registration(int who,ArrayList<Student>students, ArrayList<Instructor> instructors, int studentId, int instructorId) throws IOException {
+        public static int Registration(int who, int studentId, int instructorId) throws IOException {
 
             boolean found;
             String UserName;
@@ -64,9 +66,9 @@
                 System.out.println("Username : "); // check if username exist
                 UserName = input.next();
                 if (who == 1) {
-                    found = CheckInstructorUsername(instructors, UserName);
+                    found = CheckInstructorUsername(UserName);
                 } else {
-                    found = CheckStudentUsername(students, UserName);
+                    found = CheckStudentUsername(UserName);
                 }
                 if (found) {
                     System.out.println("User Name Already exists.Try another one");
@@ -88,19 +90,19 @@
             if(who==1) {
                 Instructor instructor = new Instructor(instructorId,Fname,Lname,Email,UserName+"@Instructor",Password,PhoneNo);
                 instructor.forSignUp();
-                instructors.add(instructor);
-               index= Main.instructors.size()-1;
+                Main.instructors.add(instructor);
+                index= Main.instructors.size()-1;
             } else if(who==2){
                 Student student = new Student(studentId,Fname,Lname,Email,UserName+"@Student",Password,PhoneNo);
                 student.Register();
-                students.add(student);
+                Main.students.add(student);
                 index =Main.students.size()-1;
             }
             return index;
         }
 
-        public static boolean CheckInstructorUsername(ArrayList<Instructor> instructors, String UserName){
-            for (Instructor instructor:instructors) {
+        public static boolean CheckInstructorUsername(String UserName){
+            for (Instructor instructor:Main.instructors) {
                 if(instructor.getUsername().replaceAll("@Instructor","").equals(UserName)){
                     return true;
                 }
@@ -108,8 +110,8 @@
             return false;
         }
 
-        public static boolean CheckStudentUsername(ArrayList<Student> students, String UserName){
-            for (Student student:students) {
+        public static boolean CheckStudentUsername(String UserName){
+            for (Student student:Main.students) {
                 if(student.getUsername().replaceAll("@Student","").equals(UserName)){
                     return true;
                 }
