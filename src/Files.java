@@ -470,8 +470,8 @@ public class Files   {
                 }
             }
             Main.students.get(index).ZScore.add(Double.parseDouble(token.nextToken()));
-            String[] assignmentGrades = token.nextToken().split("-");
-            String[] quizGrades = token.nextToken().split("-");
+            String[] assignmentGrades = token.nextToken().split("_");
+            String[] quizGrades = token.nextToken().split("_");
             for (String assignmentGrade : assignmentGrades) {
                 studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
             }

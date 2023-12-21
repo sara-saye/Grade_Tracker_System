@@ -412,7 +412,11 @@ public class Admin extends Person {
                 System.out.println("Do you want to try again? ");
                 System.out.println("1-yes");
                 System.out.println("2-No");
+<<<<<<< Updated upstream
                 int moreOperationsChoice777 = -1;
+=======
+                int moreOperationsChoice777 =-1;
+>>>>>>> Stashed changes
                 boolean read131 = false;
                 do {
                     try {

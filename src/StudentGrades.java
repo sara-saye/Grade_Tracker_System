@@ -6,9 +6,15 @@ public class StudentGrades{
     private  double finalGrade;
     private double attendanceGrade;
     public StudentGrades(){
+<<<<<<< Updated upstream
             this.assignmentGrade.add(-1.0); //20
         this.assignmentGrade.add(-1.0);
             this.quizGrade.add(-1.0);
+=======
+        this.assignmentGrade.add(-1.0); //20
+        this.assignmentGrade.add(-1.0);
+        this.quizGrade.add(-1.0);
+>>>>>>> Stashed changes
         this.quizGrade.add(-1.0);   //10
         this.midTermGrade=-1.0;       //15
         this.finalGrade=-1.0;           //50
@@ -62,25 +68,25 @@ public class StudentGrades{
     public double Calcscale(){
         double scale;
         double totalMark=this.CalcTotalGrade();
-        if(totalMark<=100 && totalMark>=93){
+        if(totalMark<=100.0 && totalMark>=93.0){
             scale=4.0;
-        } else if (totalMark<93 && totalMark>=89) {
+        } else if (totalMark<93.0 && totalMark>=89.0) {
             scale=3.7;
-        } else if (totalMark<89 && totalMark>=84) {
+        } else if (totalMark<89.0 && totalMark>=84.0) {
             scale=3.3;
-        } else if (totalMark<84 && totalMark>=80 ) {
+        } else if (totalMark<84.0 && totalMark>=80.0 ) {
             scale=3.0;
-        } else if (totalMark<80 && totalMark>=76 ) {
+        } else if (totalMark<80.0 && totalMark>=76.0 ) {
             scale=2.7;
-        } else if (totalMark<76 && totalMark>=73) {
+        } else if (totalMark<76.0 && totalMark>=73.0) {
             scale=2.3;
-        } else if (totalMark<73 && totalMark>=70) {
+        } else if (totalMark<73.0 && totalMark>=70.0) {
             scale=2.0;
-        } else if (totalMark<70 && totalMark>=67) {
+        } else if (totalMark<70.0 && totalMark>=67.0) {
             scale=1.7;
-        } else if (totalMark<67 && totalMark>=64) {
+        } else if (totalMark<67.0 && totalMark>=64.0) {
             scale=1.3;
-        } else if (totalMark<64 && totalMark>=60) {
+        } else if (totalMark<64.0 && totalMark>=60.0) {
             scale=1.0;
         }else{
             scale=0.0;

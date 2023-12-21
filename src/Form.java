@@ -21,7 +21,7 @@
             System.out.println("Password : ");
             String Password = input.next();
 
-            if(UserName.equalsIgnoreCase("Admin2023")&&Password.equals("88888888"))
+            if(UserName.equalsIgnoreCase("Admin2023")&&Password.equals("2023"))
                 who="Admin";
 
             for (int i=0;i<instructors.size();i++) {

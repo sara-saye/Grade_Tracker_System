@@ -37,7 +37,7 @@ public abstract class Main {
             Files.readEventDetails();
             first = false;
         }
-
+        Notification.dropGPAStudent();
         int studentId = students.size()+1000, instructorId = instructors.size()+1000;
         int account = 0;
         do {

@@ -102,14 +102,15 @@ public class Notification {
         }
     }
 
-
-    public void dropGPAStudent(int studentID) {
+    public static void dropGPAStudent() {
         for (int studentIndex = 0; studentIndex < Main.students.size(); studentIndex++) {
-            if (studentID == Main.students.get(studentIndex).getID()) {
-                if (Main.students.get(studentIndex).getGPA() < 1) {
-                    Main.students.get(studentID).setGpaDrop(true);
+                if (Main.students.get(studentIndex).getGPA() < 1&&Main.students.get(studentIndex).getGPA()!=-1) {
+                    Main.students.get(studentIndex).setGpaDrop(true);
                 }
+<<<<<<< Updated upstream
             }
+=======
+>>>>>>> Stashed changes
         }
     }
 }
