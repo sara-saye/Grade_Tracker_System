@@ -325,15 +325,22 @@ public class Instructor extends Person {
                 int courseIndex = findindexs(student);
                 switch (choice) {
                     case 1: //Assignment
-                        assignmentCase(student, courseIndex);
+                        if(student.Student_Grades.get(courseIndex).assignmentGrade.get(0)==-1) {
+                            assignmentCase(student, courseIndex);
+                        }
                         break;
                     case 2: //Quiz
-                        quizCase(student, courseIndex);
+                        if(student.Student_Grades.get(courseIndex).quizGrade.get(0)==-1) {
+                            quizCase(student, courseIndex);
+                        }
                         break;
                     case 3: //Midterm
-                        midtermCase(student, courseIndex);
+                        if(student.Student_Grades.get(courseIndex).getMidTermGrade()==-1) {
+                            midtermCase(student, courseIndex);
+                        }
                         break;
                     case 4: //final exam
+                        if(student.Student_Grades.get(courseIndex).getFinalGrade()==-1)
                         finalCase(student, courseIndex);
                         break;
                     case 5:
@@ -523,8 +530,7 @@ public class Instructor extends Person {
         test.setID(input.nextInt());
         System.out.print("Title: ");
         test.setTitle(input.next());
-        System.out.println("Enter date like this format yyyy-MM-dd ");
-        test.setDate(input.next());
+        test.setDate();
         test.setMax_score(max_Score);
         System.out.print("Duration in hours: ");
         test.setDuration(input.nextDouble());
@@ -608,9 +614,9 @@ public class Instructor extends Person {
                 while (true) {
                     System.out.println("Enter grade: ");
                     quizGrade = input.nextDouble();
-                    if (quizGrade > 20) {
+                    if (quizGrade > 10) {
                         System.out.println("Invalid grade\nEnter grade less than or equal 10");
-                    } else if (quizGrade <= 20) {
+                    } else if (quizGrade <= 10) {
                         student.Student_Grades.get(courseIndex).setQuizGrade(0, quizGrade);
                         System.out.println("Grade entered successfully");
                         break;
@@ -726,9 +732,9 @@ public class Instructor extends Person {
                 while (true) {
                     System.out.println("Enter grade: ");
                     quizGrade = input.nextDouble();
-                    if (quizGrade > 20) {
+                    if (quizGrade > 10) {
                         System.out.println("Invalid grade\nEnter grade less than or equal 10");
-                    } else if (quizGrade <= 20) {
+                    } else if (quizGrade <= 10) {
                         student.Student_Grades.get(courseIndex).quizGrade.set(0, quizGrade);
                         System.out.println("Grade entered successfully");
                         break;
