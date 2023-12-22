@@ -35,6 +35,8 @@ public class StudentGrades{
     public double getAssignmentGrade() {
         double totalassignment=0;
         for(double grade:assignmentGrade){
+            if(grade==-1.0)
+              continue;
             totalassignment+=grade;
         }
         return totalassignment;
@@ -42,6 +44,8 @@ public class StudentGrades{
     public double getQuizGrade() {
         double totalquiz=0;
         for(double grade:quizGrade){
+            if(grade==-1)
+                continue;
             totalquiz+=grade;
         }
         return totalquiz;
@@ -56,7 +60,14 @@ public class StudentGrades{
         return attendanceGrade;
     }
     public double CalcTotalGrade(){
-        double totalMark=(this.getAssignmentGrade() + this.getQuizGrade() + midTermGrade + finalGrade + attendanceGrade);
+        double mid=midTermGrade,fin=finalGrade,att=attendanceGrade;
+        if( mid==-1.0)
+            mid=0.0;
+        if( fin==-1.0)
+            fin=0.0;
+        if( att==-1.0)
+            att=0.0;
+        double totalMark=(this.getAssignmentGrade() + this.getQuizGrade() + mid + fin + att);
         return totalMark;
     }
     public double Calcscale(){

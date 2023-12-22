@@ -80,4 +80,3 @@ public abstract class Test {
         Duration = duration;
     }
 }
-

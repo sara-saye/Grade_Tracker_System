@@ -109,14 +109,16 @@ public class Student extends Person {
 
     public void DisplayCurrentCourses() {
         setStatus();
+        int index=1;
         if (!Student_courses.isEmpty()) {
             System.out.println("------------------------------------");
             for (int i = 0; i < Student_courses.size(); i++) {
                 if (!Student_courses.get(i).isStatus()) {
-                    System.out.println((i + 1) + "- " + Student_courses.get(i).courseTitle);
+                    System.out.println((index) + "- " + Student_courses.get(i).courseTitle);
                     System.out.println("Department: "+Student_courses.get(i).department);
                     System.out.println("Description: "+Student_courses.get(i).description);
                     System.out.println("Credit Hours: "+Student_courses.get(i).credits);
+                    index++;
                     if (!Student_courses.get(i).assignedInstructor.isEmpty())
                         System.out.println("Instructor: "+Student_courses.get(i).assignedInstructor.get(0).getFname()+" "+ Student_courses.get(i).assignedInstructor.get(0).getLname());
                 }
@@ -131,29 +133,29 @@ public class Student extends Person {
         for (int i = 0; i < NoOfCourses; i++) {
             if (!Student_courses.get(i).assignedInstructor.isEmpty()) {
                 System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
-                    int attndance_sum = 0;
-                    for (int j = 0; j < 5; j++) {
-                        if (attendance[i][j]) {
-                            attndance_sum++;
-                        }
+                int attndance_sum = 0;
+                for (int j = 0; j < 5; j++) {
+                    if (attendance[i][j]) {
+                        attndance_sum++;
                     }
-                    System.out.println("Number of attended sessions: " + attndance_sum);
-                        if(Student_Grades.get(i).getAttendanceGrade()>-1.0) {
-                            System.out.println("Attendance grade: " + Student_Grades.get(i).getAttendanceGrade());
-                        }
-                        else {
-                            System.out.println("Attendance grade: " + 0);
-                        }
-                if (Student_Grades.get(i).getQuizGrade()>-1.0&&Student_Grades.get(i).getAttendanceGrade()>-1.0&&
-                                       Student_Grades.get(i).getFinalGrade()>-1.0&&Student_Grades.get(i).getMidTermGrade()>-1.0&&Student_Grades.get(i).getAssignmentGrade()>-1.0&&Student_courses.get(i).CalcStandardDeviation()!=-1.0) {
-                if (ZScore.get(i) > 0) {
-                    System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Great");
-                } else if (ZScore.get(i) == 0) {
-                    System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Good");
-                } else {
-                    System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Weak");
                 }
-            }
+                System.out.println("Number of attended sessions: " + attndance_sum);
+                if(Student_Grades.get(i).getAttendanceGrade()>-1.0) {
+                    System.out.println("Attendance grade: " + Student_Grades.get(i).getAttendanceGrade());
+                }
+                else {
+                    System.out.println("Attendance grade: " + 0);
+                }
+                if (Student_Grades.get(i).getQuizGrade()>-1.0&&Student_Grades.get(i).getAttendanceGrade()>-1.0&&
+                        Student_Grades.get(i).getFinalGrade()>-1.0&&Student_Grades.get(i).getMidTermGrade()>-1.0&&Student_Grades.get(i).getAssignmentGrade()>-1.0&&Student_courses.get(i).CalcStandardDeviation()!=-1.0) {
+                    if (ZScore.get(i) > 0) {
+                        System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Great");
+                    } else if (ZScore.get(i) == 0) {
+                        System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Good");
+                    } else {
+                        System.out.println("Your Performance in " + Student_courses.get(i).courseTitle + " is Weak");
+                    }
+                }
                 System.out.println("------------------------------------");
             }else {
                 System.out.println("Performance report hasn't been generated yet");
@@ -168,28 +170,31 @@ public class Student extends Person {
         else if (expenses_paid) {
             if (notification.isNew_grade()) {
                 for (int i = 0; i < Student_courses.size(); i++) {
-                    System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
-                    double courseGrade = Student_Grades.get(i).CalcTotalGrade();
-                    double courseScale = Student_Grades.get(i).Calcscale();
-                    String courseLetterGrade = Student_Grades.get(i).CalcLetterGrade(courseGrade);
-                    if(Student_Grades.get(i).getMidTermGrade()>-1)
-                    System.out.println("Midterm: " + Student_Grades.get(i).getMidTermGrade());
-                    if(Student_Grades.get(i).getAssignmentGrade()>-1)
-                    System.out.println("Assignment: " + Student_Grades.get(i).getAssignmentGrade());
-                    if(Student_Grades.get(i).getQuizGrade()>-1)
-                    System.out.println("Quiz: " + Student_Grades.get(i).getQuizGrade());
-                    if(Student_Grades.get(i).getAttendanceGrade()>-1)
-                    System.out.println("Attendance:" + Student_Grades.get(i).getAttendanceGrade());
-                    if(Student_Grades.get(i).getFinalGrade()>-1)
-                    System.out.println("Final:" + Student_Grades.get(i).getFinalGrade());
-                    if( Student_Grades.get(i).getQuizGrade()>-1.0&&Student_Grades.get(i).getAttendanceGrade()>-1.0&&
-                            Student_Grades.get(i).getFinalGrade()>-1.0&&Student_Grades.get(i).getMidTermGrade()>-1.0&&Student_Grades.get(i).getAssignmentGrade()>-1.0)
-                    {
-                        System.out.println("Total Grade: " + courseGrade);
-                        System.out.println("Points: " + courseScale);
-                        System.out.println("Letter Grade: " + courseLetterGrade);
+                    if( Student_Grades.get(i).quizGrade.get(0)>-1||Student_Grades.get(i).quizGrade.get(1)>-1||Student_Grades.get(i).getAttendanceGrade()>-1.0||
+                            Student_Grades.get(i).getFinalGrade()>-1.0||Student_Grades.get(i).getMidTermGrade()>-1.0||Student_Grades.get(i).assignmentGrade.get(0)>-1||Student_Grades.get(i).assignmentGrade.get(1)>-1) {
+                        System.out.println((i + 1) + "- Course : " + Student_courses.get(i).courseTitle);
+                        double courseGrade = Student_Grades.get(i).CalcTotalGrade();
+                        double courseScale = Student_Grades.get(i).Calcscale();
+                        String courseLetterGrade = Student_Grades.get(i).CalcLetterGrade(courseGrade);
+                        if (Student_Grades.get(i).getMidTermGrade() > -1)
+                            System.out.println("Midterm: " + Student_Grades.get(i).getMidTermGrade());
+                        if (Student_Grades.get(i).assignmentGrade.get(0) > -1 || Student_Grades.get(i).assignmentGrade.get(1) > -1)
+                            System.out.println("Assignment: " + Student_Grades.get(i).getAssignmentGrade());
+                        if (Student_Grades.get(i).quizGrade.get(0) > -1 || Student_Grades.get(i).quizGrade.get(1) > -1)
+                            System.out.println("Quiz: " + Student_Grades.get(i).getQuizGrade());
+                        if (Student_Grades.get(i).getAttendanceGrade() > -1)
+                            System.out.println("Attendance:" + Student_Grades.get(i).getAttendanceGrade());
+                        if (Student_Grades.get(i).getFinalGrade() > -1)
+                            System.out.println("Final:" + Student_Grades.get(i).getFinalGrade());
+                        if ((Student_Grades.get(i).quizGrade.get(0) > -1 || Student_Grades.get(i).quizGrade.get(1) > -1) && Student_Grades.get(i).getAttendanceGrade() > -1.0 &&
+                                Student_Grades.get(i).getFinalGrade() > -1.0 && Student_Grades.get(i).getMidTermGrade() > -1.0 && Student_Grades.get(i).assignmentGrade.get(0) > -1 || Student_Grades.get(i).assignmentGrade.get(1) > -1) {
+                            System.out.println("Total Grade: " + courseGrade);
+                            System.out.println("Points: " + courseScale);
+                            System.out.println("Letter Grade: " + courseLetterGrade);
+                        }
+
+                        System.out.println("\n*********************\n");
                     }
-                    System.out.println("\n*********************\n");
                 }
             } else
                 System.out.println("Unavailable Grades");
@@ -390,27 +395,26 @@ public class Student extends Person {
         double totalHours = 0;
         int counter=0;
         for (int i = 0; i < NoOfCourses; i++) {
-            if (Student_Grades.get(i).getQuizGrade() > -1.0 && Student_Grades.get(i).getAttendanceGrade() > -1.0 &&
-                    Student_Grades.get(i).getFinalGrade() > -1.0 && Student_Grades.get(i).getMidTermGrade() > -1.0 && Student_Grades.get(i).getAssignmentGrade() > -1.0) {
+            if ((Student_Grades.get(i).quizGrade.get(0)> -1.0 || Student_Grades.get(i).quizGrade.get(1)> -1.0 )&&Student_Grades.get(i).getAttendanceGrade() > -1.0 &&
+                    Student_Grades.get(i).getFinalGrade() > -1.0 && Student_Grades.get(i).getMidTermGrade() > -1.0 &&( Student_Grades.get(i).assignmentGrade.get(0)> -1.0 || Student_Grades.get(i).assignmentGrade.get(1)> -1.0 )) {
                 sum = sum + (Student_courses.get(i).credits * Student_Grades.get(i).Calcscale());
                 totalHours += Student_courses.get(i).credits;
-                System.out.println(Student_Grades.get(i).Calcscale());
                 counter++;
             }
         }
-            if (counter==NoOfCourses)
-                GPA = (sum / totalHours);
-            else
-                GPA = -1;
+        if (counter==NoOfCourses)
+            GPA = (sum / totalHours);
+        else
+            GPA = -1;
 
-            this.notification.addGpa(GPA);
-            return GPA;
+        this.notification.addGpa(GPA);
+        return GPA;
 
     }
 
     public void StudentAfterLogin() throws IOException {
-            CalcGpa();
-            CalcZScore();
+        CalcGpa();
+        CalcZScore();
         int ans, ans1 = 0, ans2 = 0;
         boolean success = false;
         while (!success) {
@@ -454,27 +458,27 @@ public class Student extends Person {
                     case 2:
                         do {
                             try {
-                            System.out.println("1- Current Course");
-                            System.out.println("2- Grades");
-                            System.out.println("3- Course Registration");
-                            System.out.println("4- Performance ");// stat analysis,attendance report,comments and feedback
-                            ans2 = input.nextInt();
-                            switch (ans2) {
-                                case 1:
-                                    DisplayCurrentCourses();
-                                    break;
-                                case 2:
-                                    ViewGrades();
-                                    break;
-                                case 3:
-                                    RegisterForCourse(Main.courses);
-                                    break;
-                                case 4:
-                                    ViewStudentPerformance();
-                                    break;
-                                default:
-                                    System.out.println("Invalid Choice!Try Again.");
-                            }
+                                System.out.println("1- Current Course");
+                                System.out.println("2- Grades");
+                                System.out.println("3- Course Registration");
+                                System.out.println("4- Performance ");// stat analysis,attendance report,comments and feedback
+                                ans2 = input.nextInt();
+                                switch (ans2) {
+                                    case 1:
+                                        DisplayCurrentCourses();
+                                        break;
+                                    case 2:
+                                        ViewGrades();
+                                        break;
+                                    case 3:
+                                        RegisterForCourse(Main.courses);
+                                        break;
+                                    case 4:
+                                        ViewStudentPerformance();
+                                        break;
+                                    default:
+                                        System.out.println("Invalid Choice!Try Again.");
+                                }
                             } catch (InputMismatchException exception) {
                                 System.out.println("Invalid! Please enter numeric values.");
                                 input.next();
@@ -530,25 +534,25 @@ public class Student extends Person {
 
     public String GradesToString(StudentGrades grade,double zscore) {
         String a = "";
-                a = getID() + "," + grade.getMidTermGrade()
-                        + "," + grade.getFinalGrade() + "," + grade.getAttendanceGrade();
-                    a += "," + zscore;
-                if (!grade.assignmentGrade.isEmpty()) {
-                    a += ",";
-                    for (int j = 0; j < 2; j++) {
-                        a += grade.assignmentGrade.get(j);
-                        if (j != grade.assignmentGrade.size() - 1)
-                            a += "_";
-                    }
-                }
-                if (!grade.quizGrade.isEmpty()) {
-                    a += ",";
-                    for (int j = 0; j <2; j++) {
-                        a += grade.quizGrade.get(j);
-                        if (j != grade.quizGrade.size() - 1)
-                            a += "_";
-                    }
-                }
+        a = getID() + "," + grade.getMidTermGrade()
+                + "," + grade.getFinalGrade() + "," + grade.getAttendanceGrade();
+        a += "," + zscore;
+        if (!grade.assignmentGrade.isEmpty()) {
+            a += ",";
+            for (int j = 0; j < 2; j++) {
+                a += grade.assignmentGrade.get(j);
+                if (j != 1)
+                    a += "_";
+            }
+        }
+        if (!grade.quizGrade.isEmpty()) {
+            a += ",";
+            for (int j = 0; j <2; j++) {
+                a += grade.quizGrade.get(j);
+                if (j != 1)
+                    a += "_";
+            }
+        }
         return a;
     }
 
@@ -568,10 +572,11 @@ public class Student extends Person {
         if (!Student_courses.isEmpty()) {
             for (int i = 0; i < Student_Grades.size(); i++) {
                 if (!Student_courses.get(i).assignedInstructor.isEmpty()) {
-                    if ( Student_Grades.get(i).getQuizGrade()>-1.0&&Student_Grades.get(i).getAttendanceGrade()>-1.0&&
-                            Student_Grades.get(i).getFinalGrade()>-1.0&&Student_Grades.get(i).getMidTermGrade()>-1.0&&Student_Grades.get(i).getAssignmentGrade()>-1.0&&
+                    if ((Student_Grades.get(i).quizGrade.get(0)> -1.0 || Student_Grades.get(i).quizGrade.get(1)> -1.0 )&&Student_Grades.get(i).getAttendanceGrade() > -1.0 &&
+                            Student_Grades.get(i).getFinalGrade() > -1.0 && Student_Grades.get(i).getMidTermGrade() > -1.0 &&( Student_Grades.get(i).assignmentGrade.get(0)> -1.0 || Student_Grades.get(i).assignmentGrade.get(1)> -1.0 )&&
                             Student_Grades.get(i).CalcTotalGrade() >= 60) {
                         Student_courses.get(i).setStatus(true);
+                        Student_courses.get(i).enrolledStudents.remove(this);
                     }
                 }
             }

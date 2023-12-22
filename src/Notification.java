@@ -104,9 +104,9 @@ public class Notification {
 
     public static void dropGPAStudent() {
         for (int studentIndex = 0; studentIndex < Main.students.size(); studentIndex++) {
-                if (Main.students.get(studentIndex).getGPA() < 1&&Main.students.get(studentIndex).getGPA()!=-1) {
-                    Main.students.get(studentIndex).setGpaDrop(true);
-                }
+            if (Main.students.get(studentIndex).getGPA() < 1&&Main.students.get(studentIndex).getGPA()!=-1) {
+                Main.students.get(studentIndex).setGpaDrop(true);
             }
         }
+    }
 }

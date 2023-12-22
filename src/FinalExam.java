@@ -9,8 +9,8 @@ public class FinalExam extends Test {
         setDuration(exam_Time);
     }
     public FinalExam(int id, String Title,double max_score , String date,String location,double exam_Time,String courseCode){
-      this(id,Title,max_score,date,location,exam_Time);
-       this.courseCode=courseCode;
+        this(id,Title,max_score,date,location,exam_Time);
+        this.courseCode=courseCode;
     }
     public void setLocation(String location) {
         Location = location;
@@ -23,4 +23,3 @@ public class FinalExam extends Test {
         return getID()+","+getTitle()+","+getMax_score()+","+getDate()+","+Location+","+getDuration()+","+courseCode;
     }
 }
-

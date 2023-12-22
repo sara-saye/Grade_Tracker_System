@@ -1,2 +1,2 @@
-1000,amr,a,amr,amr@Instructor,111,010,asd,general
-1001,esraa,a,esraa,esraa@Instructor,111,010,a,cs
+2000,ks,sk,fedas,n@Instructor,1,ks,4,s
+2001,sd,fvd,sd,b@Instructor,b,d,d,d

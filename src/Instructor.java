@@ -50,12 +50,12 @@ public class Instructor extends Person {
             System.out.println("-------------------------");
             System.out.println("1-Show your information\n2-Edit your information");
 
-                System.out.println("3-View students\n4-Assign Assessment");
-                System.out.println("5-Take attendance\n6-Input students grades");
-                System.out.println("7-Make report for attendance specific student");
-                System.out.println("8-Make report for attendance all students");
-                System.out.println("9-Generate Report for attendance by sections");
-                System.out.println("10-Edit students grades");
+            System.out.println("3-View students\n4-Assign Assessment");
+            System.out.println("5-Take attendance\n6-Input students grades");
+            System.out.println("7-Make report for attendance specific student");
+            System.out.println("8-Make report for attendance all students");
+            System.out.println("9-Generate Report for attendance by sections");
+            System.out.println("10-Edit students grades");
 
             System.out.println("11-Logout");
             System.out.println("12-Exit");
@@ -75,11 +75,11 @@ public class Instructor extends Person {
                     break;
                 case 4:
                     if (!isNotResponsibleForCourse()){
-                    this.setAssessmentsToCourse();}
+                        this.setAssessmentsToCourse();}
                     break;
                 case 5:
                     if (!isNotResponsibleForCourse()){
-                    this.trackAttendance();}
+                        this.trackAttendance();}
                     break;
                 case 6:
                     if (!isNotResponsibleForCourse()) {
@@ -88,21 +88,21 @@ public class Instructor extends Person {
                     break;
                 case 7:
                     if (!isNotResponsibleForCourse()){
-                    System.out.println("Enter student ID");
-                    int studentID = input.nextInt();
-                    this.generateAttRepForIndStud(studentID);}
+                        System.out.println("Enter student ID");
+                        int studentID = input.nextInt();
+                        this.generateAttRepForIndStud(studentID);}
                     break;
                 case 8:
                     if (!isNotResponsibleForCourse()){
-                    this.generateAttrepforallstud();}
+                        this.generateAttrepforallstud();}
                     break;
                 case 9:
                     if (!isNotResponsibleForCourse()){
-                    this.reportForSectionsAttendance();}
+                        this.reportForSectionsAttendance();}
                     break;
                 case 10:
                     if (!isNotResponsibleForCourse()){
-                    this.editGrades();}
+                        this.editGrades();}
                 case 11:
                     Main.main(null);
                     break;
@@ -374,6 +374,9 @@ public class Instructor extends Person {
         }
     }
     public void viewEnrolledStudents() {
+        for (Student student:instructor_students){
+            student.setStatus();
+        }
         course.get(0).viewListOfEnrolledStudents();
     }
     public void reportForSectionsAttendance() {
