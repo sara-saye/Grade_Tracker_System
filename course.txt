@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 10,oop,3,cs,integration Of Software Components,1-2,2000
 15,Database,3,cs,monitoring Administration And Maintenance of Databases,4-5,2001
 20,sp,3,is,Encourages Dividing An Application Program Into A Hierarchy Of Modules,12-12
@@ -6,6 +7,11 @@
 25,Logic,3,general,Basics Of Formal Logic,3-4,2002
 30,Report Writing,2,general,Soft Skills Improvement,1-2,2003
 254,english,2,general,english,2-3,2004
+=======
+3000,oop,3,general,sfln,22-10,2000
+3001,database,3,general,dsbjlovcl,1-1,2001
+3002,h,3,general,dsgfhjk,44-44
+>>>>>>> 72a5c2d72df15ba4cce349096bcf7fb51f1c43a0
 =======
 3000,oop,3,general,sfln,22-10,2000
 3001,database,3,general,dsbjlovcl,1-1,2001
