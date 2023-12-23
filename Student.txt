@@ -1,2 +1,9 @@
-a,a,1000,a,a@Student,a,a,-1.0,600.0,true,false,false,cs,2,10-15
-a,a,1001,a,b@Student,b,a,-1.0,600.0,true,false,true,cs,2,10-15
+<<<<<<< HEAD
+Esraa,Bassiouny,1000,esraa,esraa@Student,222,01033251941,-1.0,600.0,true,false,false,cs,2,10-15
+Amr,Ibrahim,1001,amr,amr@Student,222,01011111111,NaN,0.0,false,false,false,general,0
+=======
+edfss,ae,1000,fds,e@Student,1,e,1.3333333333333333,300.0,true,true,true,general,3,3000-3001-3002
+ds,ds,1001,lk,a@Student,1,ds,-1.0,300.0,true,true,true,general,2,3000-3001
+c,c,1002,c,c@Student,c,c,-1.0,0.0,false,false,true,general,1,3000
+j,j,1003,j,j@Student,j,j,-1.0,0.0,false,false,false,general,1,3002
+>>>>>>> 72a5c2d72df15ba4cce349096bcf7fb51f1c43a0

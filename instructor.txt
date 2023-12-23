@@ -1,4 +1,11 @@
-2000,Nrmeen,Araby,nrmeen,n@Instructor,222,01022613978,Genedy,cs
+<<<<<<< HEAD
+2000,Nrmeen,Araby,nrmeen,n@Instructor,111,01022613978,Genedy,cs
 2001,Sra,Araby,nrmeen,s@Instructor,111,01022613978,Genedy,cs
-2002,Ziad,Yasser,ziadYasser@gmail.com,ziad@Instructor,1111,123456789,Cs,CS
-2003,Sara,Darwish,saraDarwish@gmail.com,sara18@Instructor,123456,123456789,Genady,CS
+2002,Ziad,Yasser,ziadYasser@gmail.com,ziad@Instructor,111,123456789,Cs,CS
+2003,Sara,Darwish,saraDarwish@gmail.com,sara18@Instructor,111,123456789,Genady,CS
+2004,Arwa,Yasser,arwaYasser@gmail.com,arwa@Instructor,111,123456789,Genady,CS
+2005,khaled,ali,khaled,khaled@Instructor,111,010587,genedy,general
+=======
+2000,ks,sk,fedas,n@Instructor,1,ks,4,s
+2001,sd,fvd,sd,b@Instructor,b,d,d,d
+>>>>>>> 72a5c2d72df15ba4cce349096bcf7fb51f1c43a0

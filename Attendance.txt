@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+1000,true,true,true,true,true,false,false,false,false,false
+1001
+=======
+1000,true,true,true,true,true,true,true,true,true,true,false,false,false,false,false
+1001,true,true,true,true,true,false,false,false,false,false
+1002,false,false,false,false,false
+1003,false,false,false,false,false
+>>>>>>> 72a5c2d72df15ba4cce349096bcf7fb51f1c43a0

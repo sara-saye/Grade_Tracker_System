@@ -152,8 +152,14 @@ public class Course {
                 }
             }
         }
-        sum/=enrolledStudents.size()-1;
-        StandardDeviation=Math.sqrt(sum);
+        if (enrolledStudents.size()>1)
+        {
+            sum /= enrolledStudents.size() - 1;
+            StandardDeviation = Math.sqrt(sum);
+        }
+        else
+            StandardDeviation=-1;
+
         return StandardDeviation;
     }
     public void displayInfo()
