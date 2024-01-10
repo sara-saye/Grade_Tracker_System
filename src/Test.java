@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public abstract class Test {
     Scanner input=new Scanner(System.in);
+    public String courseCode;
     private int ID;
     private String Title ;
     private double Max_score;
@@ -37,19 +38,23 @@ public abstract class Test {
         Title=title;
     }
 
-    public void setDate(String date) {
+    public void setDate() {
+        String date;
         while(true){
+            System.out.println("Enter date like this format DD-MM-YYYY");
+            date = input.next();
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 Date = LocalDate.parse(date, formatter);
                 break;
             }catch (DateTimeException dt) {
                 System.out.println("Invalid Date, you entered past date");
+                input.nextLine();
             } catch (InputMismatchException ime) {
                 System.out.println("Invalid Date, Please enter a valid date.");
                 input.nextLine();
             } catch (Exception e) {
-                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                System.out.println("Invalid date format. Please enter the date in dd-mm-yyyy format.");
                 input.nextLine();
             }
         }
@@ -79,4 +84,3 @@ public abstract class Test {
         Duration = duration;
     }
 }
-

@@ -16,28 +16,6 @@ public class Notification {
     }
 
 
-///public int warningCounter = 0;
-
-
-///public void addAssignment(int ID){
-//        for (int studentIndex=0;studentIndex<Main.students.size();studentIndex++){
-//            if (ID==Main.students.get(studentIndex).getID()){
-//                for (int studentCoursesIndex =0;studentCoursesIndex<Main.students.get(studentIndex).Student_courses.size();studentCoursesIndex++){
-//                    for (int courseIndex =0; courseIndex<Main.courses.size();courseIndex++) {
-//                        if (Main.courses.get(courseIndex).getCourseCode().equals(Main.students.get(studentIndex).Student_courses.get(studentCoursesIndex).getCourseCode())) {
-//                            if (!Main.courses.get(courseIndex).assignedAssignment.isEmpty()) {
-//                                for (int assignmentIndex = 0; assignmentIndex < Main.courses.get(courseIndex).assignedAssignment.size(); assignmentIndex++) {
-//                                    this.assignment.add(Main.courses.get(courseIndex).assignedAssignment.get(assignmentIndex));
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
     public void addStatueOfGrade(boolean new_grade) //>>I get it from Grades class
     {
         this.New_grade = new_grade;
@@ -50,7 +28,6 @@ public class Notification {
     public void addGpa(double gpa) {
         this.gpa = gpa;
     }
-
 
     public void Display_Notification(ArrayList<Course> course) {
         if (!course.isEmpty()) {
@@ -66,13 +43,12 @@ public class Notification {
                         long diffDays = diff.toDays();
                         System.out.println("Assignment ends at " + diffDays + " days");
                     }
-                }
-                else {
+                } else {
                     System.out.println("No Assignments");
                 }
             }
         }
-
+        System.out.println("-----------------------------------");
         if (!course.isEmpty()) {
             System.out.print("Your Quizzes:");
             for (int i = 0; i < course.size(); i++) {
@@ -80,90 +56,57 @@ public class Notification {
                     for (int j = 0; j < course.get(i).assignedQuiz.size(); j++) {
                         System.out.println(course.get(i).assignedQuiz.get(j).getTitle() + " " + course.get(i).assignedQuiz.get(j).getDate());
                     }
-                }else {
+                } else {
                     System.out.println("No Quizzes");
                 }
             }
         }
+        System.out.println("-----------------------------------");
         if (!course.isEmpty()) {
             System.out.print("Your Midterms:");
             for (int i = 0; i < course.size(); i++) {
-                if(course.get(i).assignedMidterm.getID()!=0)
-                System.out.println(course.get(i).assignedMidterm.getTitle() + " " + course.get(i).assignedMidterm.getDate());
+                if (course.get(i).assignedMidterm.getID() != 0)
+                    System.out.println(course.get(i).assignedMidterm.getTitle() + " " + course.get(i).assignedMidterm.getDate());
                 else
                     System.out.println("No Midterms");
             }
         }
+        System.out.println("-----------------------------------");
         if (!course.isEmpty()) {
             System.out.print("Your Finals:");
             for (int i = 0; i < course.size(); i++) {
-                if(course.get(i).assignedfinal.getID()!=0)
-                System.out.println(course.get(i).assignedfinal.getTitle() + " " + course.get(i).assignedfinal.getDate());
+                if (course.get(i).assignedfinal.getID() != 0)
+                    System.out.println(course.get(i).assignedfinal.getTitle() + " " + course.get(i).assignedfinal.getDate());
                 else
                     System.out.println("No Finals");
             }
         }
+        System.out.println("-----------------------------------");
         if (this.New_grade) {
             System.out.println("Your grades have been updated!");
             this.New_grade = false;
         }
+        System.out.println("-----------------------------------");
         if (attendance) {
-            System.out.println("Warning content");
-            //warningCounter++;
+            System.out.println("You have an attendance warning, please be aware to attend the remaining sessions");
             this.attendance = false;
         }
-
+        System.out.println("-----------------------------------");
         if (this.gpa <= 1.5 && this.gpa != -1) {
             System.out.println("Be aware that your gpa is lower than 1.5, Please note that if gpa reached lower than 1 then you will be droped!");
         }
-
+        System.out.println("-----------------------------------");
         if (Admin.eventDetails != null) {
             System.out.println("Events:");
             System.out.println(Admin.eventDetails);
         }
     }
 
-
-    public void dropGPAStudent(int studentID) {
-
-        if (Main.students.get(studentID).getGPA() < 1) {
-
-            Main.students.get(studentID).setGpaDrop(true);
+    public static void dropGPAStudent() {
+        for (int studentIndex = 0; studentIndex < Main.students.size(); studentIndex++) {
+            if (Main.students.get(studentIndex).getGPA() < 1&&Main.students.get(studentIndex).getGPA()!=-1) {
+                Main.students.get(studentIndex).setGpaDrop(true);
+            }
         }
-
     }
-
-///   public void dropAttendance(int studentID){
-//        if (warningCounter == 3){
-//            Main.students.get(studentID).setAttendanceDrop(true);
-//        }
-//    }
-
-///  public String NotificationToString(){
-//        String a=New_grade+","+attendance+","+gpa+","+Event;
-//        if(!assignment.isEmpty()) {
-//            a+=",";
-//            for (int j=0;j<assignment.size();j++) {
-//                a +=assignment.get(j).getID();
-//                if(j!= assignment.size()-1){
-//                    a+="-";
-//                }
-//            }
-//        }
-//
-//
-//
-//
-//        if(!quiz.isEmpty()) {
-//            a+=",";
-//            for (int j=0;j<quiz.size();j++) {
-//                a +=quiz.get(j).getID() ;
-//                if(j!= assignment.size()-1){
-//                    a+="-";
-//                }
-//            }
-//        }
-//
-//        return a;
-//    }
 }

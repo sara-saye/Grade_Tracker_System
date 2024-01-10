@@ -238,7 +238,6 @@ public class Files   {
             {
                 if((!Main.courses.get(courseIndex).assignedInstructor.isEmpty())&&(Main.courses.get(courseIndex).assignedInstructor.get(0).getID()==Main.instructors.get(instructorIndex).getID()))
                 {
-                    System.out.println("am here");
                     Main.instructors.get(instructorIndex).course.add(Main.courses.get(courseIndex));
                 }
             }
@@ -382,8 +381,10 @@ public class Files   {
         for(Student student:Main.students)
         {
             if(!student.Student_Grades.isEmpty()) {
-                gradesBW.write(student.GradesToString());
-                gradesBW.newLine();
+                for(int i=0;i<student.Student_Grades.size();i++){
+                    gradesBW.write(student.GradesToString(student.Student_Grades.get(i),student.ZScore.get(i)));
+                    gradesBW.newLine();
+                }
             }
         }
         gradesBW.flush();
@@ -428,7 +429,6 @@ public class Files   {
             student.setExpenses(Double.parseDouble(token.nextToken()));
             student.setExpenses_paid(Boolean.parseBoolean(token.nextToken()));
             student.setGpaDrop(Boolean.parseBoolean(token.nextToken()));
-            student.setAttendanceDrop(Boolean.parseBoolean(token.nextToken()));
             student.getNotification().setNew_grade(Boolean.parseBoolean(token.nextToken()));
             student.setDepartment(token.nextToken());
             student.setNoOfCourses(Integer.parseInt(token.nextToken()));
@@ -453,9 +453,9 @@ public class Files   {
         String line="" ;
         int id;
         int index = 0;
-        StudentGrades studentGrade=new StudentGrades(0);
         while((line = GradesBR.readLine())!=null)
         {
+            StudentGrades studentGrade=new StudentGrades(0);
             token =new StringTokenizer(line,",");
             id=Integer.parseInt(token.nextToken());
             studentGrade.setMidTermGrade(Double.parseDouble(token.nextToken()));
@@ -466,17 +466,17 @@ public class Files   {
                     index = i;
                 }
             }
-                Main.students.get(index).ZScore.add(Double.parseDouble(token.nextToken()));
-                String[] assignmentGrades = token.nextToken().split("-");
-                String[] quizGrades = token.nextToken().split("-");
-                for (String assignmentGrade : assignmentGrades) {
-                    studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
-                }
-                for (String quizGrade : quizGrades) {
-                    studentGrade.quizGrade.add(Double.valueOf(quizGrade));
-                }
+            Main.students.get(index).ZScore.add(Double.parseDouble(token.nextToken()));
+            String[] assignmentGrades = token.nextToken().split("_");
+            String[] quizGrades = token.nextToken().split("_");
+            for (String assignmentGrade : assignmentGrades) {
+                studentGrade.assignmentGrade.add(Double.valueOf(assignmentGrade));
+            }
+            for (String quizGrade : quizGrades) {
+                studentGrade.quizGrade.add(Double.valueOf(quizGrade));
+            }
 
-                Main.students.get(index).Student_Grades.add(studentGrade);
+            Main.students.get(index).Student_Grades.add(studentGrade);
         }
         GradesBR.close();
     }
