@@ -1,8 +1,9 @@
 # **Grade Tracker System**
 - **Description**
 Build a system where teachers can input student grades for different subjects. Use classes like Student, Subject and Grade. Include features for grade calculation (Multiple grade components, Grade scale configuration), report generation and statistical analysis (like Mean...).
-**Data Members/attributes**
-*For Courses*
+
+# **Data Members/attributes**
+# *For Courses*
 - Course Code
 - Course Title
 - Department
@@ -12,36 +13,36 @@ Build a system where teachers can input student grades for different subjects. U
 - Assignments,quizzes and exams associated with the course
 - Enrolled students
 - Session dates
-*For Students*
+# *For Students*
 - Student ID
 - Student name
 - Enrolled courses and grades
 - Attendance
-*For Instructor*
+# *For Instructor*
 - Instructor id
 - Instructor name
 - Department
-*For Assignment*
+# *For Assignment*
 - Assignment ID
 - Title
 - Max score
 - Deadline
-*For Quiz*
+# *For Quiz*
 - Quiz ID
 - Title
 - Max score
-*For Exams*
+# *For Exams*
 - Exam ID
 - Title
 - Max score
-*For Grades*
+# *For Grades*
 - Assignments
 - Quizzes
 - Exam
-*Admin Functionalities*
+# *Admin Functionalities*
 - Add ,Update and delete subjects\courses
 - Assign instructors to courses
-*User Functionalities*
+# *User Functionalities*
 - Register for the first time
 - Login to access the system
 - Logout
